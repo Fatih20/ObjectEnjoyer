@@ -3,7 +3,7 @@
 
 template <typename T>
 class Card{
-    private:
+    protected:
         T value;
     
     public:
