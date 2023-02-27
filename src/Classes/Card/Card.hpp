@@ -8,12 +8,6 @@ class Card{
     
     public:
         /**
-         * @brief Construct a new Card object with default value NULL
-         * 
-         */
-        Card();
-
-        /**
          * @brief Construct a new Card object with given value
          * 
          * @param value The face value of the card
@@ -27,14 +21,14 @@ class Card{
          * @brief Get the face value of the card
          * 
          */
-        T getvalue();
+        virtual T getValue();
 
         /**
          * @brief Set the face value of the card
          * 
          * @param value 
          */
-        void setvalue(T value);
+        void setValue(T value);
 };
 
 #endif

@@ -16,28 +16,23 @@ typedef enum{
 
 // bagaimana memasukkan enumeration ke dalam template?
 
-class AbilityCard: public Card<Ability> {
+class AbilityCard: public Card<int> {
     private:
         std::string description;
     
     public:
         /**
-         * @brief Construct a new Ability Card object with default value NULL
-         * 
-         */
-        AbilityCard();
-
-        /**
          * @brief Construct a new Ability Card object with given ability
          * 
          * @param value The ability of the card (REROLL, QUADRUPLE, QUARTER, REVERSE, SWAP, SWITCH, ABILITYLESS)
          */
-        AbilityCard(Ability value, std::string description);
+        AbilityCard(int value, std::string description);
         // CCtor dan assignment operator tidak perlu karena tidak ada pointer
         // Dtor tidak perlu karena hanya menyimpan data sederhana
 
         /**
-         * @brief Get the Ability of the card
+         * @brief Get the Ability of the card from integer conversion to enum
+         * 
          */
         Ability getAbility();
 

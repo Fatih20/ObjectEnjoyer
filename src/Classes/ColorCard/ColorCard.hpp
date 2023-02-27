@@ -19,12 +19,6 @@ class ColorCard: public Card<int> {
     
     public:
         /**
-         * @brief Construct a new Color Card object with default value -1 and color GREEN
-         * 
-         */
-        ColorCard();
-
-        /**
          * @brief Construct a new Color Card object with given value and color
          * 
          * @param value The face value of the card
@@ -33,12 +27,6 @@ class ColorCard: public Card<int> {
         ColorCard(int value, Color color);
         // CCtor dan assignment operator tidak perlu karena tidak ada pointer
         // Dtor tidak perlu karena hanya menyimpan data sederhana
-
-        /**
-         * @brief Get the face value of the card
-         * 
-         */
-        int getValue();
 
         /**
          * @brief Get the color of the card
@@ -50,7 +38,7 @@ class ColorCard: public Card<int> {
          * @brief Get the card weight based on the value and color relative to other color cards
          * 
          */
-        double getWeight();
+        int getValue();
 };
 
 typedef enum{
