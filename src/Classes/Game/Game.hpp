@@ -47,11 +47,14 @@ class Game {
         /* pembagian kartu ability pada ronde kedua */
         void giveAbilityCard();
 
-        /* memberi giftPoin kepada player pemenang ronde */
-        void endOfRound();
+        /* memberi giftPoin kepada player pemenang 6 ronde */
+        void endOfRound6();
 
         /* mekanisme giliran pemain, currentPlayer akan input command dan command akan dijalankan */
         void playerTurn();
+        
+        // blm selesai
+
 };
 
 #endif
