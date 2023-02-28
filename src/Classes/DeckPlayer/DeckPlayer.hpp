@@ -2,10 +2,10 @@
 #define _DECKPLAYER_HPP_
 
 #include "Classes/Deck/Deck.hpp"
-#include "Classes/Player/Player.hpp"
+#include "Classes/Card/Card.hpp"
 
 template <typename T>
-class DeckPlayer: public Deck<Player> {
+class DeckPlayer: public Deck {
     
     public:
         /**
@@ -21,7 +21,7 @@ class DeckPlayer: public Deck<Player> {
          * @param size current size of the deck
          * @param maxSize maximum size of the deck
         */
-        DeckPlayer(T* value, int size, int maxSize);
+        DeckPlayer(Card<T>* value, int size, int maxSize);
 
         /**
          * @brief construct new Player Deck based on an already constructed Deck

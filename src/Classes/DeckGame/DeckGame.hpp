@@ -5,7 +5,7 @@
 #include "Classes/Card/Card.hpp"
 
 template <typename T>
-class DeckGame: public Deck<Card> {
+class DeckGame: public Deck {
     public:
         /**
          * @brief construct new Game Deck with empty array as its attribute
@@ -21,7 +21,7 @@ class DeckGame: public Deck<Card> {
          * @param size current size of the deck
          * @param maxSize maximum size of the deck
         */
-       DeckGame(T* value, int size, int maxSize);
+       DeckGame(Card<T>* value, int size, int maxSize);
 
         /**
          * @brief construct new Game Deck based on an already constructed Deck
@@ -38,7 +38,7 @@ class DeckGame: public Deck<Card> {
         /**
          * @brief draw a card from this deck
         */
-        T DrawCard();
+        Card DrawCard();
 };
 
 #endif

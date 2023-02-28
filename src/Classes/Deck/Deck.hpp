@@ -1,10 +1,12 @@
 #ifndef _DECK_HPP_
 #define _DECK_HPP_
 
+#include "Classes/Card/Card.hpp"
+
 template <typename T>
 class Deck {
     protected:
-        T* array;
+        Card<T>* array;
 
         int maxSize;
         int size;
@@ -25,7 +27,7 @@ class Deck {
          * @param size current size of the deck
          * @param maxSize maximum size of the deck
         */
-       Deck(T* value, int size, int maxSize);
+       Deck(Card<T>* value, int size, int maxSize);
 
         /**
          * @brief construct new Deck based on an already constructed Deck
@@ -38,6 +40,11 @@ class Deck {
          * @brief destruct a constructed Deck
         */
        ~Deck();
+
+        /**
+         * @brief swap contents with another deck
+        */
+       void Swap(Deck& other);
 };
 
 #endif
