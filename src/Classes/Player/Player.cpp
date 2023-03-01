@@ -78,7 +78,12 @@ Player::Player(const Player &givenPlayer)
     allNicknames.push_back(username);
 };
 
-void Player::operator=(const Player &givenPlayer) { Player(givenPlayer); };
+void Player::operator=(const Player &givenPlayer)
+{
+    numberOfPlayer++;
+    username = givenPlayer.getUsername();
+    allNicknames.push_back(username);
+};
 
 int Player::getScore()
 {
@@ -112,5 +117,5 @@ void Player::resetScore()
 
 void Player::printScore()
 {
-    cout << username << " : " << getScore() << endl;
+    cout << username << ": " << getScore() << endl;
 }
