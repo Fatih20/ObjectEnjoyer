@@ -1,7 +1,7 @@
 #ifndef _DECK_HPP_
 #define _DECK_HPP_
 
-#include "Classes/Card/Card.hpp"
+#include "../Card/Card.hpp"
 
 template <typename T>
 class Deck {

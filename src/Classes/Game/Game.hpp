@@ -1,56 +1,26 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "../PlayerCollection/PlayerCollection.hpp"
-#include "../DeckGame/DeckGame.hpp"
 
-#include <vector>
 using namespace std;
 
 class Game {
     protected:
-        PlayerCollection players;   //pemain
-        int round;                  //ronde permainan
-        int giftPoint;              //poin hadiah tiap ronde
-        DeckGame mainDeck;          //deck utama
-        Player currentTurn;         //pemain giliran saat ini
-        vector<int> playerTurn;        //urutan giliran pemain saat ini
+        int round;
     public:
         /**
-        * @brief Construct a new Game object.
-        * round 1, giftPoint 64, currentTurn p1, playerTurn [1,2,3,4,5,6,7]
-        */
+         * @brief Construct a new Game object
+         * 
+         */
         Game();
+        // round = 1
 
-        /**
-         * @brief Destroy the Game object
-         * 
-         */
-        ~Game();
-
-        /**
-         * @brief Construct a copy of Game object
-         * 
-         */
-        Game(const Game&);
-
-        /**
-         * @brief Get the Player object
-         * 
-         * @param playerId
-         * @return Player 
-         */
-        Player getPlayer(int playerId);
 
         /**
          * @brief start game
          * 
          */
-        void start();
-        /* set nickname player
-         * loop untill winning condition
-         *      if (ronde = 1) : set DeckCard
-         *      loop player turn & !winning condition */
+        virtual void start();
 
         /**
          * @brief winning condition : one of the players has 2^32>= points
@@ -58,79 +28,33 @@ class Game {
          * @return true 
          * @return false 
          */
-        bool isWinning();
+        virtual bool isWinning()=0;
 
         /**
-         * @brief Set the Deck Card object,
-         * inisiasi mainDeck dan membagikan kartu pemain pada awal ronde (user-input/file based)
-         */
-        void setDeckCard();
-
-
-        /**
-         * @brief give gift point to the player with the highest point 
+         * @brief is round over
          * 
          */
-        void endOfRound6();
+        virtual bool isRoundOver()=0;
+        // saat semua player telah mendapat giliran
 
         /**
-         * @brief mekanisme giliran pemain, currentPlayer akan input command dan command akan dijalankan
+         * @brief begin new game with same players, different deck card
          * 
          */
-        void playerTurn();
+        virtual void newGame()=0;
+        // new deck card
 
         /**
-         * @brief change currentPlayer to the next player in playerTurn
+         * @brief akhir dari maks ronde (belum tentu mendapat pemenang)
          * 
          */
-        void nextTurn();
+        virtual void endOfGame()=0;
 
         /**
-         * @brief change playerTurn at the end of the round
+         * @brief menjalankan game 1 ronde
          * 
          */
-        void nextRoundPlayerTurn();
+        virtual void startRound()=0;
 
-        ////not for chapsa////
-        /**
-         * @brief multiply gift point by x
-         * 
-         * @param x gift point multiplier
-         */
-        void multiplyGiftPoin(int x);
-
-        /**
-         * @brief give players ability card in round 2
-         * 
-         */
-        void giveAbilityCard();
-
-        /**
-         * @brief activate ability card that the current player has
-         * 
-         */
-        void activateAbility();
-
-        /**
-         * @brief reverse the rest of playerTurn
-         * 
-         */
-        void reverseTurn();
-
-        void commandDOUBLE();
-        void commandNEXT();
-        void commandHALF();
-
-        void commandREROLL();
-        void commandQUADRUPLE();
-        void commandHALF();
-        void commandQUARTER();
-        void commandREVERSE();
-        void commandSWAPCARD();
-        void commandSWITCH();
-        void commandABILITYLESS();
-
-        // blm selesai
 };
-
 #endif

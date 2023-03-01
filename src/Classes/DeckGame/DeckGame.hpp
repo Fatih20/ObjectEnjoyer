@@ -1,11 +1,11 @@
 #ifndef _DECKGAME_HPP_
 #define _DECKGAME_HPP_
 
-#include "Classes/Deck/Deck.hpp"
-#include "Classes/Card/Card.hpp"
+#include "../Deck/Deck.hpp"
+#include "../Card/Card.hpp"
 
 template <typename T>
-class DeckGame: public Deck {
+class DeckGame: public Deck<T> {
     public:
         /**
          * @brief construct new Game Deck with empty array as its attribute
@@ -38,7 +38,7 @@ class DeckGame: public Deck {
         /**
          * @brief draw a card from this deck
         */
-        Card DrawCard();
+        Card<T> DrawCard();
 };
 
 #endif
