@@ -23,12 +23,12 @@ void PlayerCollection::operator<<(Player &addedPlayer)
     players.push_back(addedPlayer);
 }
 
-void PlayerCollection::showLeaderboard()
+void PlayerCollection::remove(int index)
 {
-    int numberOfPlayer = getNumberOfPlayer();
-    for (int i = 0; i < numberOfPlayer; i++)
-    {
-        cout << i + 1 << ".";
-        players.at(i).getScore();
-    }
+    players.erase(players.begin() + (index - 1));
+}
+
+void PlayerCollection::operator-=(int index)
+{
+    remove(index);
 }
