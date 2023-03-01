@@ -11,7 +11,7 @@ class Player
 {
 private:
     static vector<string> allNicknames;
-    static int playerNumber;
+    static int numberOfPlayer;
     string username;
     int score;
     // DeckPlayer deck;
@@ -36,11 +36,23 @@ public:
     ~Player();
 
     /**
+     * @brief Construct a new player object from another player
+     *
+     */
+    Player(const Player &);
+
+    /**
+     * @brief Assign a player to another player with the assignment operator
+     *
+     */
+    void operator=(const Player &);
+
+    /**
      * @brief Get the username of the player
      *
      * @return string
      */
-    string getUserName();
+    string getUsername() const;
 
     /**
      * @brief Get the player's score
@@ -146,10 +158,16 @@ public:
     // void operator<=>(Player &givenPlayer);
 
     /**
-     * @brief Print the cards that the player's have
+     * @brief Print out the score
      *
      */
-    void showCard();
+    void printScore();
+
+    /**
+     * @brief Print out the player's card
+     *
+     */
+    void printColorCard();
 
     // Overloading untuk ngurusin deck nggak diimplementasikan dulu karena urusannya sama deck
     /*

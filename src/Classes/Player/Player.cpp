@@ -8,11 +8,12 @@
 using namespace std;
 
 vector<string> Player::allNicknames(0);
-int Player::playerNumber = 0;
+int Player::numberOfPlayer = 0;
 
 Player::Player()
 {
-    playerNumber += 1;
+    numberOfPlayer++;
+    score = 0;
     bool validUsername = false;
     while (!validUsername)
     {
@@ -50,7 +51,7 @@ Player::~Player()
 
 string Player::askForUsername()
 {
-    cout << "Masukkan username player ke-" << playerNumber << " : ";
+    cout << "Masukkan username player ke-" << numberOfPlayer << " : ";
     string askedUsername;
     cin >> askedUsername;
     if (askedUsername == "")
@@ -63,4 +64,53 @@ string Player::askForUsername()
     }
 
     return askedUsername;
+}
+
+string Player::getUsername() const
+{
+    return username;
+}
+
+Player::Player(const Player &givenPlayer)
+{
+    numberOfPlayer++;
+    username = givenPlayer.getUsername();
+    allNicknames.push_back(username);
+};
+
+void Player::operator=(const Player &givenPlayer) { Player(givenPlayer); };
+
+int Player::getScore()
+{
+    return score;
+}
+
+void Player::addScore(int addedScore)
+{
+    score += addedScore;
+}
+
+void Player::subtractScore(int subtractedScore)
+{
+    score -= subtractedScore;
+}
+
+void Player::operator+=(int addedScore)
+{
+    addScore(addedScore);
+};
+
+void Player::operator-=(int subtractedScore)
+{
+    subtractScore(subtractedScore);
+}
+
+void Player::resetScore()
+{
+    score = 0;
+}
+
+void Player::printScore()
+{
+    cout << username << " : " << getScore() << endl;
 }
