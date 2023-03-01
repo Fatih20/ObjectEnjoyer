@@ -1,16 +1,26 @@
 #include <cstring>
 #include <string>
-#include "../Deck/Deck.hpp"
-#include "../Card/Card.hpp"
+#include <exception>
+#include <vector>
+// #include "../Deck/Deck.hpp"
+// #include "../Card/Card.hpp"
 
 using namespace std;
 
 class Player
 {
 private:
+    static vector<string> allNicknames;
+    static int playerNumber;
     string username;
     int score;
     // DeckPlayer deck;
+
+    /**
+     * @brief Ask for username from the user
+     *
+     */
+    string askForUsername();
 
 public:
     /**
@@ -18,6 +28,12 @@ public:
      *
      */
     Player();
+
+    /**
+     * @brief Destroy the Player object
+     *
+     */
+    ~Player();
 
     /**
      * @brief Get the username of the player
