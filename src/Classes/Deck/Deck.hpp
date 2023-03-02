@@ -2,6 +2,8 @@
 #define _DECK_HPP_
 
 #include <vector>
+#include <cstring>
+#include <iostream>
 // #include "Classes/Card/Card.hpp"
 
 template <class T>
@@ -43,6 +45,13 @@ class Deck {
          * @brief shuffle deck
         */
        void shuffle();
+
+       void setDeck(std::vector<T> vec);
+
+        std::vector<T> getDeck();
+
+        template <typename Y>
+        friend std::ostream& operator<<(std::ostream& os, const Deck<Y>& deck);
 };
 
 #endif

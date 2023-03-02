@@ -7,7 +7,7 @@
 #include "Classes/Card/Card.hpp"
 
 template <class T>
-class DeckGame: public Deck {
+class DeckGame: public Deck<T> {
     public:
         /**
          * @brief construct new Game Deck with empty vector as its attribute

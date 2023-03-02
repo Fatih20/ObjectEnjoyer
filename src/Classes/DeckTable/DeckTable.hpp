@@ -7,7 +7,7 @@
 #include <vector>
 
 template <class T>
-class DeckTable : public Deck {
+class DeckTable : public Deck<T> {
     public:
         DeckTable();
 

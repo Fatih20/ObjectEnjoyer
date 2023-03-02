@@ -3,13 +3,13 @@
 #include <vector>
 
 template <typename T>
-DeckGame<T>::DeckGame() : Deck() {}
+DeckGame<T>::DeckGame() : Deck<T>::Deck() {}
 
 template <typename T>
-DeckGame<T>::DeckGame(std::vector<T> vec) : Deck(vec) {}
+DeckGame<T>::DeckGame(std::vector<T> vec) : Deck<T>::Deck(vec) {}
 
 template <typename T>
-DeckGame<T>::DeckGame(const DeckGame& other) : Deck(other) {}
+DeckGame<T>::DeckGame(const DeckGame& other) : Deck<T>::Deck(other) {}
 
 template <typename T>
 T DeckGame<T>::drawCard() {
@@ -20,3 +20,6 @@ T DeckGame<T>::drawCard() {
     return res;
 }
 
+
+template int DeckGame<int>::drawCard();
+template class DeckGame<int>;
