@@ -44,7 +44,7 @@ Player &PlayerInGame::getPlayerWithTurn()
 
 int PlayerInGame::getNthPlayerWithTurn()
 {
-    return currentTurn++;
+    return currentTurn;
 }
 
 void PlayerInGame::nextTurn()
