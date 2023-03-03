@@ -6,29 +6,30 @@
 #include <iostream>
 
 int main(){
-    std::vector<int> keo;
+    std::vector<int> valuesA = {2, 3, 4, 5, 6};
+    std::vector<int> valuesB = {-12, -13, -134, -9, -23};
 
-    keo.push_back(10);
-    keo.push_back(11);
+    Deck<int> deckA(valuesA);
+    Deck<int> deckB(valuesB);
 
-    Deck<int> deck(keo);
+    std::cout <<    "[first]" << std::endl << 
+                    "deck A" << deckA << std::endl << 
+                    "deck B" << deckB << std::endl;
 
-    keo.push_back(12);
+    Deck<int>::swapDeck(deckA, deckB);
 
-    Deck<int> dack(keo);
+    std::cout <<    "[swapping]" << std::endl << 
+                    "deck A" << deckA << std::endl << 
+                    "deck B" << deckB << std::endl;
+
+    deckA.swap(deckB);
+
+    std::cout <<    "[swapping]" << std::endl << 
+                    "deck A" << deckA << std::endl << 
+                    "deck B" << deckB << std::endl;
 
 
-    std::cout << deck;
-    std::cout << dack;
 
-    deck.swap(dack);
-
-    std::cout << deck;
-    std::cout << dack;
-
-    DeckGame<int> dega(keo);
-
-    std::cout <<  std::endl << "drawed card " << dega.drawCard() << std::endl << dega;
 
     return 0;
 }

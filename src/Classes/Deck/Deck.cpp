@@ -29,9 +29,7 @@ Deck<T>::~Deck() {
 
 template <typename T>
 void Deck<T>::swap(Deck& other) {
-    std::vector<T> temp = this->vec;
-    this->vec = other.vec;
-    other.vec = temp;
+    std::swap(this->vec, other.vec);
 }
 
 template <typename T>
@@ -47,6 +45,11 @@ void Deck<T>::setDeck(std::vector<T> vec) {
 template <typename T>
 std::vector<T> Deck<T>::getDeck() {
     return this->vec;
+}
+
+template <class T>
+void Deck<T>::swapDeck(Deck<T>& deck1, Deck<T>& deck2) {
+    std::swap(deck1.vec, deck2.vec);
 }
 
 template <class T>

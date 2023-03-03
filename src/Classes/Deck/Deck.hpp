@@ -46,9 +46,22 @@ class Deck {
         */
        void shuffle();
 
+
+        /**
+         * @brief set a vector of cards as the content of Deck
+        */
        void setDeck(std::vector<T> vec);
 
+        /**
+         * @brief get the cards contained by the Deck as a vector
+        */
         std::vector<T> getDeck();
+
+        /**
+         * @brief swap the content of two separate Decks
+        */
+        static void swapDeck(Deck& deck1, Deck& deck2);
+
 
         template <typename Y>
         friend std::ostream& operator<<(std::ostream& os, const Deck<Y>& deck);
