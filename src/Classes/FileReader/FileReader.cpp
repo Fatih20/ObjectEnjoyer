@@ -4,35 +4,14 @@ FileReader::FileReader(string filePath){
     this->filePath = filePath;
 }
 
-FileReader::~FileReader(){
-    delete[] this->handCardOrder;
-    delete[] this->abilityCardOrder;
-    delete[] this->tableCardOrder;
+DeckGame< Card<int> > FileReader::getDeckOrder(){
+    return this->deckOrder;
 }
 
-int FileReader::getHandCardCap(){
-    return this->handCardCap;
+DeckGame< Card<int> > FileReader::getAbilityCardOrder(){
+    return this->abi;
 }
 
-int FileReader::getAbilityCardCap(){
-    return this->abilityCardCap;
-}
-
-int FileReader::getTableCardCap(){
-    return this->tableCardCap;
-}
-
-string* FileReader::getHandCardOrder(){
-    return this->handCardOrder;
-}
-
-string* FileReader::getAbilityCardOrder(){
-    return this->abilityCardOrder;
-}
-
-string* FileReader::getTableCardOrder(){
-    return this->tableCardOrder;
-}
 
 void FileReader::read(){ //beluma ada validasi, execption handling
     string temp;

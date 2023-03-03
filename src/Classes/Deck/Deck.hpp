@@ -1,33 +1,26 @@
 #ifndef _DECK_HPP_
 #define _DECK_HPP_
 
-#include "Classes/Card/Card.hpp"
+#include <vector>
+// #include "Classes/Card/Card.hpp"
 
-template <typename T>
+template <class T>
 class Deck {
     protected:
-        Card<T>* array;
-
-        int maxSize;
-        int size;
+        std::vector<T> vec;
 
     public:
         /**
-         * @brief construct new Deck with empty array as its attribute
-         * 
-         * @param size current size of the deck
-         * @param maxSize maximum size of the deck
+         * @brief construct new Deck with empty vector as its attribute
         */
-        Deck(int size, int maxSize);
+        Deck();
 
         /**
          * @brief construct new Deck with a given value as its attribute
          * 
-         * @param value array that will be set as the attribute of this Deck
-         * @param size current size of the deck
-         * @param maxSize maximum size of the deck
+         * @param vec vector that will be set as the attribute of this Deck
         */
-       Deck(Card<T>* value, int size, int maxSize);
+       Deck(std::vector<T> vec);
 
         /**
          * @brief construct new Deck based on an already constructed Deck
@@ -44,7 +37,12 @@ class Deck {
         /**
          * @brief swap contents with another deck
         */
-       void Swap(Deck& other);
+       void swap(Deck& other);
+
+        /**
+         * @brief shuffle deck
+        */
+       void shuffle();
 };
 
 #endif
