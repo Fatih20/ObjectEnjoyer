@@ -28,7 +28,7 @@ int main(){
 
     DeckGame<int> dega(keo);
 
-    std::cout <<  std::endl << dega.drawCard() << std::endl << dega;
+    std::cout <<  std::endl << "drawed card " << dega.drawCard() << std::endl << dega;
 
     return 0;
 }

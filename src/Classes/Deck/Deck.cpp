@@ -57,6 +57,8 @@ std::ostream& operator<<(std::ostream& os, const Deck<T>& deck) {
     for(auto elmt : deck.vec) {
         os << elmt << " " << std::endl;
     }
+
+    return os;
 }
 
 template class Deck<int>;
