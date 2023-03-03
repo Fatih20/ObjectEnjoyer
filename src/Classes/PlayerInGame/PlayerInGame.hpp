@@ -74,7 +74,7 @@ public:
      * @brief Reset roundComplete to false
      *
      */
-    void resetRoundStatus();
+    virtual void resetRound();
 
     /**
      * @brief Change roundComplete to true

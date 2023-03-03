@@ -62,7 +62,7 @@ bool PlayerInGame::getIsRoundComplete()
     return roundComplete;
 }
 
-void PlayerInGame::resetRoundStatus()
+void PlayerInGame::resetRound()
 {
     roundComplete = false;
 };

@@ -20,3 +20,9 @@ void PlayerInGameCandy::reverseTurn()
 {
     reverse(players.begin() + getNthPlayerWithTurn(), players.end());
 }
+
+void PlayerInGameCandy::resetRound()
+{
+    PlayerInGame::resetRound();
+    rotate(turns.begin(), turns.begin() + 1, turns.end());
+}

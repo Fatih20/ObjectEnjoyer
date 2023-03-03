@@ -24,4 +24,10 @@ public:
      *
      */
     void reverseTurn();
+
+    /**
+     * @brief Reset roundComplete to true and rearrange the turn according to the rules
+     *
+     */
+    void resetRound();
 };
