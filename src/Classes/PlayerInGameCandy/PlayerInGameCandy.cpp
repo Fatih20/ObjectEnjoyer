@@ -1,5 +1,7 @@
 #include "PlayerInGameCandy.hpp"
+#include <algorithm>
 
+using namespace std;
 PlayerInGameCandy::PlayerInGameCandy(int numberOfPlayer, int currentTurn) : PlayerInGame(numberOfPlayer, currentTurn){
 
                                                                             };
@@ -16,5 +18,5 @@ void PlayerInGameCandy::showLeaderboard()
 
 void PlayerInGameCandy::reverseTurn()
 {
-    // Need implementation
+    reverse(players.begin() + getNthPlayerWithTurn(), players.end());
 }

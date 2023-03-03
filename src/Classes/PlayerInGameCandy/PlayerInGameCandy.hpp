@@ -20,7 +20,7 @@ public:
     void showLeaderboard();
 
     /**
-     * @brief Reverse the turn direction of the game according to the candy law
+     * @brief Reverse the turn of the game for players after the one currently holding the turn
      *
      */
     void reverseTurn();
