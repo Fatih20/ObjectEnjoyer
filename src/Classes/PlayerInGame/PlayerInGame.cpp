@@ -6,6 +6,7 @@ using namespace std;
 
 PlayerInGame::PlayerInGame() : PlayerCollection(0)
 {
+    PlayerInGame(0);
 }
 
 PlayerInGame::PlayerInGame(int numberOfPlayer) : PlayerCollection(numberOfPlayer)
@@ -16,6 +17,7 @@ PlayerInGame::PlayerInGame(int numberOfPlayer) : PlayerCollection(numberOfPlayer
         turns[i] = i + 1;
     }
     currentTurn = 0;
+    roundComplete = false;
 }
 
 PlayerInGame::PlayerInGame(int numberOfPlayer, int currentTurn) : PlayerCollection(numberOfPlayer)
@@ -47,7 +49,24 @@ int PlayerInGame::getNthPlayerWithTurn()
 
 void PlayerInGame::nextTurn()
 {
-    currentTurn++;
-    int numberOfPlayer = getNumberOfPlayer();
-    currentTurn = ((currentTurn % numberOfPlayer) + numberOfPlayer) % numberOfPlayer;
+
+    // Only increment current turn when the turn is still in range
+    currentTurn += currentTurn < getNumberOfPlayer() ? 1 : 0;
+
+    // Set the roundComplete to true once the last player is done
+    roundComplete = currentTurn >= getNumberOfPlayer();
 }
+
+bool PlayerInGame::getIsRoundComplete()
+{
+    return roundComplete;
+}
+
+void PlayerInGame::resetRoundStatus()
+{
+    roundComplete = false;
+};
+void PlayerInGame::stopRound()
+{
+    roundComplete = true;
+};

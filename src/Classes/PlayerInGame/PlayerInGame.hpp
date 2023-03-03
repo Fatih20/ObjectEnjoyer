@@ -6,6 +6,7 @@ class PlayerInGame : public PlayerCollection
 protected:
     vector<int> turns;
     int currentTurn;
+    bool roundComplete;
 
 protected:
     /**
@@ -60,4 +61,24 @@ public:
      *
      */
     void nextTurn();
+
+    /**
+     * @brief Whether the round is complete or not
+     *
+     * @return true
+     * @return false
+     */
+    bool getIsRoundComplete();
+
+    /**
+     * @brief Reset roundComplete to false
+     *
+     */
+    void resetRoundStatus();
+
+    /**
+     * @brief Change roundComplete to true
+     *
+     */
+    void stopRound();
 };
