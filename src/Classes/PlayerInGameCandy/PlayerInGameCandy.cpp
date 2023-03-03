@@ -1,8 +1,8 @@
 #include "PlayerInGameCandy.hpp"
 
-PlayerInGameCandy::PlayerInGameCandy(int numberOfPlayer, int turn, bool directionIsLeft) : PlayerInGame(numberOfPlayer, turn, directionIsLeft){
+PlayerInGameCandy::PlayerInGameCandy(int numberOfPlayer, int currentTurn) : PlayerInGame(numberOfPlayer, currentTurn){
 
-                                                                                           };
+                                                                            };
 
 void PlayerInGameCandy::showLeaderboard()
 {
@@ -14,7 +14,7 @@ void PlayerInGameCandy::showLeaderboard()
     }
 }
 
-void PlayerInGameCandy::reverse()
+void PlayerInGameCandy::reverseTurn()
 {
-    reverseTurn();
+    // Need implementation
 }
