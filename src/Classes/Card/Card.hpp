@@ -4,7 +4,7 @@
 template <typename T>
 class Card{
     protected:
-        T value;
+        T val;
     
     public:
         /**

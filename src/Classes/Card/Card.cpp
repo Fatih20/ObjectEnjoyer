@@ -2,22 +2,22 @@
 
 template <typename T>
 Card<T>::Card(T value){
-    this->value = value;
+    this->val = value;
 }
 
 template <typename T>
 T Card<T>::value(){
-    return this->value;
+    return this->val;
 }
 
 template <typename T>
 void Card<T>::setValue(T value){
-    this->value = value;
+    this->val = value;
 }
 
 template <typename T>
 void Card<T>::operator=(const Card<T>& other){
-    this->value = other.value;
+    this->val = other.value;
 }
 
 template <typename T>
