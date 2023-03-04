@@ -34,7 +34,7 @@ class Card{
          * @brief Swap the value of two cards with the same type
          * 
          */
-        void operator=(const Card<T>& other);
+        virtual void operator=(const Card<T>& other);
 };
 
 /**
