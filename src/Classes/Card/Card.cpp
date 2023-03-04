@@ -12,7 +12,7 @@ void Card<T>::operator=(const Card<T>& other){
 
 template <typename T>
 void swap(Card<T>& a, Card<T>& b){
-    T temp = a.value;
-    a.value = b.value;
-    b.value = temp;
+    Card<T> temp = a;
+    a = b;
+    b = temp;
 }
