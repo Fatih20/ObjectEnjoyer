@@ -29,6 +29,12 @@ class Card{
          * @param value 
          */
         virtual void setValue(T value);
+
+        /**
+         * @brief Swap the value of two cards with the same type
+         * 
+         */
+        void operator=(const Card<T>& other);
 };
 
 /**
