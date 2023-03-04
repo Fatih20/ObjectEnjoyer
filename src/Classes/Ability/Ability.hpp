@@ -14,20 +14,12 @@ typedef enum{
     ABILITYLESS // Disable the ability of a specific player
 } Abi;
 
-// nanti pindahkan ke cpp
-extern const std::map<Abi, std::string> abilityDescription = {
-    {REROLL, "Reroll all hand cards"},
-    {QUADRUPLE, "Quadruple the reward of the current round"},
-    {QUARTER, "Quarter the reward of the current round"},
-    {REVERSE, "Reverse the order of the players"},
-    {SWAP, "Swap a card from the hand with a card from another player's hand"},
-    {SWITCH, "Switch the hand cards with another player's hand cards"},
-    {ABILITYLESS, "Disable the ability of a specific player"}
-};
+extern const std::map<Abi, std::string> abilityDescription;
 
 class Ability {
     private:
         Abi ability;
+        std::string description;
     
     public:
         /**
@@ -41,7 +33,7 @@ class Ability {
          * @brief Get the Ability of the card from integer conversion to enum
          * 
          */
-        Ability getAbility();
+        Abi getAbility();
 
         /**
          * @brief Get the description of the card (for example, REROLL: reroll all hand cards)
