@@ -4,6 +4,8 @@
 #include <vector>
 
 #include "Classes/Deck/Deck.hpp"
+#include "Classes/DeckPlayer/DeckPlayer.hpp"
+
 #include "Classes/Card/Card.hpp"
 
 template <class T>
@@ -28,15 +30,19 @@ class DeckGame: public Deck<T> {
         */
        DeckGame(const DeckGame& other);
 
-    //     /**
-    //      * @brief destruct constructed Deck
-    //     */
-    //    ~DeckGame();
-
         /**
          * @brief draw a card from this deck
         */
         T drawCard();
+
+        /**
+         * @brief get the value of the combination of DeckGame and DeckPlayer cards
+         * 
+         * @param deckPlayer DeckPlayer to combine with
+         * 
+         * @return int value of combination (or as @Marthenn said: weights)
+        */
+        int getCombinationValueWith(DeckPlayer<T>& deckPlayer)
 };
 
 #endif
