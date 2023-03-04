@@ -11,7 +11,7 @@
 // OPERATOR OVERLOADING
 
 class AbilityCard: public Card<int> {
-    private:
+    protected:
         int Ability;
         std::string description;
     

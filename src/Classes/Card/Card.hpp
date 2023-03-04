@@ -38,7 +38,7 @@ class Card{
 };
 
 /**
- * @brief Swap the value of two cards with the same type
+ * @brief Swap two cards
  * 
  */
 template <typename T>

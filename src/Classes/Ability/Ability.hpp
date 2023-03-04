@@ -17,7 +17,7 @@ typedef enum{
 extern const std::map<Abi, std::string> abilityDescription;
 
 class Ability {
-    private:
+    protected:
         Abi ability;
         std::string description;
     
