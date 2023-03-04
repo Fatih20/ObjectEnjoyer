@@ -21,7 +21,7 @@ class Card{
          * @brief Get the face value of the card
          * 
          */
-        virtual T value() = 0;
+        virtual T value();
 
         /**
          * @brief Set the face value of the card
