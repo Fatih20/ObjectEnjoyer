@@ -22,6 +22,13 @@ public:
     void operator<<(Player &addedPlayer);
 
     /**
+     * @brief Add addedPlayer into the collection as the last player
+     *
+     * @param addedPlayer
+     */
+    void addPlayer(Player &addedPlayer);
+
+    /**
      * @brief Remove a player from the collection
      *
      * @param index starts at one
@@ -35,4 +42,6 @@ public:
      */
 
     void operator-=(int index);
+
+    bool usernameExist(string username);
 };
