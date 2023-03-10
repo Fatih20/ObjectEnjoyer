@@ -10,8 +10,7 @@ using namespace std;
 class Player
 {
 private:
-    static vector<string> allNicknames;
-    static int numberOfPlayer;
+    int gameID;
     string username;
     int score;
     // DeckPlayer deck;
@@ -27,7 +26,7 @@ public:
      * @brief Construct a new Player object. Menanyakan username pemain melalui CLI.
      *
      */
-    Player();
+    Player(int gameID);
 
     /**
      * @brief Destroy the Player object
@@ -45,7 +44,7 @@ public:
      * @brief Assign a player to another player with the assignment operator
      *
      */
-    void operator=(const Player &);
+    Player &operator=(const Player &);
 
     /**
      * @brief Get the username of the player
@@ -53,6 +52,13 @@ public:
      * @return string
      */
     string getUsername() const;
+
+    /**
+     * @brief Return the gameID of the object
+     *
+     * @return int
+     */
+    int getGameID();
 
     /**
      * @brief Get the player's score
@@ -151,11 +157,16 @@ public:
     void swapDeck(Player &givenPlayer);
 
     /**
-     * @brief Swap the deck of this player and the given player
+     * @brief Ask for username again
      *
-     * @param givenPlayer
      */
-    // void operator<=>(Player &givenPlayer);
+    void resetUsername();
+
+    /**
+     * @brief Ask username from the user and validate its result until it's correct
+     *
+     */
+    void setValidUsername();
 
     /**
      * @brief Print out the score

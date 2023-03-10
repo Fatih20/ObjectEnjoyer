@@ -11,13 +11,8 @@ PlayerInGame::PlayerInGame() : PlayerCollection(0)
 
 PlayerInGame::PlayerInGame(int numberOfPlayer) : PlayerCollection(numberOfPlayer)
 {
-    vector<int> turns(numberOfPlayer);
-    for (int i = 0; i < numberOfPlayer; i++)
-    {
-        turns[i] = i + 1;
-    }
-    currentTurn = 0;
-    roundComplete = false;
+    directionIsLeft = false;
+    turn = 1;
 }
 
 PlayerInGame::PlayerInGame(int numberOfPlayer, int currentTurn) : PlayerCollection(numberOfPlayer)
@@ -62,11 +57,32 @@ bool PlayerInGame::getIsRoundComplete()
     return roundComplete;
 }
 
-void PlayerInGame::resetRound()
+void PlayerInGame::nextTurn()
 {
-    roundComplete = false;
-};
-void PlayerInGame::stopRound()
+    int newTurn = getTurn() + directionIsLeft ? -1 : 1;
+    int numberOfPlayer = getNumberOfPlayer();
+    newTurn = (numberOfPlayer + (newTurn % numberOfPlayer)) % numberOfPlayer;
+    turn = newTurn;
+}
+
+void PlayerInGame::showPlayer()
 {
-    roundComplete = true;
+    for (int i = 0; i < players.size(); i++)
+    {
+        cout << i + 1 << ". " << players.at(i).getUsername() << endl;
+    }
 };
+
+void PlayerInGame::showPlayerExcept(int unprintedID)
+{
+    bool print = true;
+    int index = 0;
+    for (int i = 0; i < players.size(); i++)
+    {
+        if (players.at(i).getGameID() != unprintedID)
+        {
+            cout << index + 1 << ". " << players.at(i).getUsername() << endl;
+            index++;
+        }
+    }
+}

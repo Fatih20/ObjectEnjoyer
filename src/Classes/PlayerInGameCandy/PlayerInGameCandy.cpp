@@ -2,17 +2,22 @@
 #include <algorithm>
 
 using namespace std;
+
+using namespace std;
 PlayerInGameCandy::PlayerInGameCandy(int numberOfPlayer, int currentTurn) : PlayerInGame(numberOfPlayer, currentTurn){
 
                                                                             };
 
 void PlayerInGameCandy::showLeaderboard()
 {
+    vector<Player> sortedPlayers = players;
+    sort(sortedPlayers.begin(), sortedPlayers.end(), [](Player p1, Player p2) -> bool
+         { return p1 > p2; });
     int numberOfPlayer = getNumberOfPlayer();
     for (int i = 0; i < numberOfPlayer; i++)
     {
         cout << i + 1 << ".";
-        players.at(i).getScore();
+        sortedPlayers.at(i).getScore();
     }
 }
 
