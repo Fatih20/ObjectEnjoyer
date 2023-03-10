@@ -1,5 +1,4 @@
 #include "ColorCard.hpp"
-#include <iostream>
 
 const std::map<std::pair<int, Color>, int> ColorCard::cardWeight = {
     {{1, GREEN}, 1}, {{1, BLUE}, 2}, {{1, YELLOW}, 3}, {{1, RED}, 4},
