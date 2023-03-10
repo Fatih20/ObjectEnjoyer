@@ -42,7 +42,7 @@ class DeckGame: public Deck<T> {
          * 
          * @return int value of combination (or as @Marthenn said: weights)
         */
-        int getCombinationValueWith(DeckPlayer<T>& deckPlayer)
+        int getCombinationValueWith(const Deck<T>& deckPlayer);
 };
 
 #endif

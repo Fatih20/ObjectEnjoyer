@@ -1,8 +1,8 @@
 CC = g++
-STD = -std=c++11
+STD = -std=c++14
 
 OBJECTS = src/main.cpp src/Classes/*/*.cpp
-CINCLUDES = -Isrc -Isrc/Classes -Isrc/Classes/*/
+CINCLUDES = -Isrc -Isrc/Classes -Isrc/Classes/DeckPlayer/
 
 TARGET = bin/main
 

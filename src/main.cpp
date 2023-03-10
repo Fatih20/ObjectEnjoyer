@@ -1,12 +1,8 @@
 #include "Classes/Player/Player.hpp"
 
-int main()
-{
-
-    Player p5;
-    p5 += 10;
 #include "Deck/Deck.hpp"
 #include "DeckGame/DeckGame.hpp"
+#include "DeckPlayer/DeckPlayer.hpp"
 
 #include <vector>
 
@@ -38,7 +34,7 @@ int main(){
 
 
 
-    p5.printScore();
-}
+    // p5.printScore();
+
     return 0;
 }

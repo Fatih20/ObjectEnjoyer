@@ -21,7 +21,7 @@ T DeckGame<T>::drawCard() {
 }
 
 template <typename T>
-int DeckGame<T>::getCombinationValueWith(DeckPlayer<T>& deckPlayer) {
+int DeckGame<T>::getCombinationValueWith(const Deck<T> &deckPlayer) {
     
 }
 
