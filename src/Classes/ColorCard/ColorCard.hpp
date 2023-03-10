@@ -60,6 +60,12 @@ class ColorCard: public Card<int> {
          * 
          */
         virtual void operator=(const ColorCard& other);
+
+        /**
+         * @brief Compare if two color cards have the same value and color
+         * 
+         */
+        bool operator==(ColorCard other);
 };
 
 /**

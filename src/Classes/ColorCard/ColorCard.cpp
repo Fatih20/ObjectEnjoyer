@@ -48,3 +48,7 @@ void swap(ColorCard& a, ColorCard& b){
     a = b;
     b = temp;
 }
+
+bool ColorCard::operator==(ColorCard other){
+    return this->value() == other.value();
+}
