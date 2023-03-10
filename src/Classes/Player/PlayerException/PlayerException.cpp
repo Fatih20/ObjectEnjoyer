@@ -1,3 +1,11 @@
 #include "PlayerException.hpp"
 
-UsernameEmpty::UsernameEmpty(){};
+UsernameEmpty::UsernameEmpty()
+{
+    message = "Username cannot be empty!";
+};
+
+string UsernameEmpty::getMessage()
+{
+    return message;
+}

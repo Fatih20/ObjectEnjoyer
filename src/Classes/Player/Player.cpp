@@ -28,9 +28,9 @@ void Player::setValidUsername()
             username = askForUsername();
             validUsername = true;
         }
-        catch (UsernameExist e)
+        catch (UsernameEmpty e)
         {
-            cout << "Username " << e.getUsernameThatExist() << " already exists" << endl;
+            cout << e.getMessage() << endl;
         }
     }
 }
