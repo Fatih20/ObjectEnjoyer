@@ -10,10 +10,9 @@ public:
      * @brief Construct a new Player In Game Candy object
      *
      * @param numberOfPlayer
-     * @param turn
-     * @param leftIsDirection
+     * @param currentTurn starts at 1
      */
-    PlayerInGameCandy(int numberOfPlayer, int turn, bool directionIsLeft);
+    PlayerInGameCandy(int numberOfPlayer, int currentTurn);
     /**
      * @brief Print the leaderboard of players in the collection
      *
@@ -21,8 +20,14 @@ public:
     void showLeaderboard();
 
     /**
-     * @brief Reverse the turn direction of the game
+     * @brief Reverse the turn of the game for players after the one currently holding the turn
      *
      */
-    void reverse();
+    void reverseTurn();
+
+    /**
+     * @brief Reset roundComplete to true and rearrange the turn according to the rules
+     *
+     */
+    void resetRound();
 };

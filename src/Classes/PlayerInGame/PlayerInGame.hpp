@@ -4,9 +4,10 @@ template <class T>
 class PlayerInGame : public PlayerCollection
 {
 
-private:
-    int turn;
-    bool directionIsLeft;
+protected:
+    vector<int> turns;
+    int currentTurn;
+    bool roundComplete;
 
 protected:
     /**
@@ -20,7 +21,7 @@ protected:
      * @brief Reverse the turn direction of the player
      *
      */
-    void reverseTurn();
+    virtual void reverseTurn();
 
 public:
     /**
@@ -40,13 +41,44 @@ public:
      * @brief Construct a new Player In Game object
      *
      * @param numberOfPlayer
-     * @param turn
-     * @param directionLeft
+     * @param currentTurn starts at 1
      */
-    PlayerInGame(int numberOfPlayer, int turn, int directionIsLeft);
+    PlayerInGame(int numberOfPlayer, int currentTurn);
 
     /**
-     * @brief Return whether the direction of the turn is to the left
+     * @brief Return the player that currently has the turn
+     *
+     */
+    Player &getPlayerWithTurn();
+
+    /**
+     * @brief Return the nth player that currently has the turn
+     *
+     */
+    int getNthPlayerWithTurn();
+
+    /**
+     * @brief Move to the turn to the next player
+     *
+     */
+    void nextTurn();
+
+    /**
+     * @brief Whether the round is complete or not
+     *
+     * @return true
+     * @return false
+     */
+    bool getIsRoundComplete();
+
+    /**
+     * @brief Reset roundComplete to false
+     *
+     */
+    virtual void resetRound();
+
+    /**
+     * @brief Change roundComplete to true
      *
      */
     bool getTurn();
@@ -76,6 +108,7 @@ public:
      * @param removedID
      */
     void removePlayerOfID(int removedID);
-};
 
-// Kurang retake deck dan re-roll
+    // Kurang retake deck dan re-roll
+    void stopRound();
+};

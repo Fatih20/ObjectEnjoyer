@@ -1,33 +1,43 @@
 #include "PlayerInGame.hpp"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
 template <class T>
 PlayerInGame<T>::PlayerInGame() : PlayerCollection(0)
 {
+    PlayerInGame(0);
 }
 template <class T>
 PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection(numberOfPlayer)
 {
-    directionIsLeft = false;
-    turn = 1;
+    vector<int> turns(numberOfPlayer);
+    for (int i = 0; i < numberOfPlayer; i++)
+    {
+        turns[i] = i + 1;
+    }
+    currentTurn = 0;
+    roundComplete = false;
 }
+
 template <class T>
-PlayerInGame<T>::PlayerInGame(int numberOfPlayer, int turn, int directionIsLeft) : PlayerCollection(numberOfPlayer)
+PlayerInGame<T>::PlayerInGame(int numberOfPlayer, int currentTurn) : PlayerCollection(numberOfPlayer)
 {
-    this->directionIsLeft = directionIsLeft;
-    this->turn = (turn % numberOfPlayer) + 1;
+    PlayerInGame(number);
+    this->currentTurn = currentTurn - 1;
 }
+
 template <class T>
 void PlayerInGame<T>::setTurn(int newTurn)
 {
-    turn = newTurn;
+    int numberOfPlayer = getNumberOfPlayer();
+    currentTurn = (((newTurn - 1) % numberOfPlayer) + numberOfPlayer) % numberOfPlayer;
 }
 template <class T>
 void PlayerInGame<T>::reverseTurn()
 {
-    directionIsLeft = !directionIsLeft;
+    reverse(turns.begin(), turns.end());
 }
 template <class T>
 bool PlayerInGame<T>::getTurn()
@@ -78,5 +88,45 @@ void PlayerInGame<T>::removePlayerOfID(int removedID)
 }
 
 // template <class T>
+
+template <class T>
+Player &PlayerInGame<T>::getPlayerWithTurn()
+{
+    return players.at(currentTurn);
+}
+
+template <class T>
+int PlayerInGame<T>::getNthPlayerWithTurn()
+{
+    return currentTurn + 1;
+}
+
+template <class T>
+void PlayerInGame<T>::nextTurn()
+{
+
+    // Only increment current turn when the turn is still in range
+    currentTurn += currentTurn < getNumberOfPlayer() ? 1 : 0;
+
+    // Set the roundComplete to true once the last player is done
+    roundComplete = currentTurn >= getNumberOfPlayer();
+}
+
+template <class T>
+bool PlayerInGame<T>::getIsRoundComplete()
+{
+    return roundComplete;
+}
+
+template <class T>
+void PlayerInGame<T>::resetRound()
+{
+    roundComplete = false;
+};
+template <class T>
+void PlayerInGame<T>::stopRound()
+{
+    roundComplete = true;
+};
 
 template class PlayerInGame<int>;

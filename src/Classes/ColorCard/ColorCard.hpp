@@ -1,8 +1,9 @@
 #ifndef _COLORCARD_HPP_
 #define _COLORCARD_HPP_
 
-#include "Classes/Card/Card.hpp"
-#include <Map>
+#include "../Card/Card.hpp"
+#include <map>
+#include <utility>
 
 typedef enum{
     GREEN,
@@ -11,12 +12,12 @@ typedef enum{
     RED
 } Color;
 
-std::map<std::pair<int, Color>, double> cardWeight; // Akan dipakai untuk menghitung bobot kartu [biar spek map kepake hehe]
 
 class ColorCard: public Card<int> {
-    private:
+    protected:  
         Color color;
-    
+        static const std::map<std::pair<int, Color>, int> cardWeight;
+        
     public:
         /**
          * @brief Construct a new Color Card object with given value and color
@@ -38,27 +39,39 @@ class ColorCard: public Card<int> {
          * @brief Get the card weight based on the value and color relative to other color cards
          * 
          */
-        int getValue();
+        virtual int value();
+
+        /**
+         * @brief Set the color of the card
+         * 
+         * @param color 
+         */
+        void setColor(Color color);
+
+        /**
+         * @brief Set the face value of the card
+         * 
+         * @param value 
+         */
+        void setValue(int value, Color color);
+
+        /**
+         * @brief Assign the value and color of another color card to this color card
+         * 
+         */
+        virtual void operator=(const ColorCard& other);
+
+        /**
+         * @brief Compare if two color cards have the same value and color
+         * 
+         */
+        bool operator==(ColorCard other);
 };
 
-typedef enum{
-    HIGH,
-    PAIR,
-    TWO_PAIR,
-    THREE_OF_A_KIND,
-    STRAIGHT,
-    FLUSH,
-    FULL_HOUSE,
-    FOUR_OF_A_KIND,
-    STRAIGHT_FLUSH
-} Combination;
-
-std::map<Combination, double> combinationWeight; // Akan dipakai untuk menghitung bobot kombinasi kartu [biar spek map kepake hehe]
-
 /**
- * @brief Get the Combination Weight of the given combination of cards
+ * @brief Swap two color cards
  * 
  */
-double getCombinationWeight(Card<int> cards[]);
+void swap(ColorCard& a, ColorCard& b);
 
-#endif 
+#endif

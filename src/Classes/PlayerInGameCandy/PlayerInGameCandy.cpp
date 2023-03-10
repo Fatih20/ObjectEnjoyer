@@ -2,10 +2,9 @@
 #include <algorithm>
 
 using namespace std;
+PlayerInGameCandy::PlayerInGameCandy(int numberOfPlayer, int currentTurn) : PlayerInGame<int>(numberOfPlayer, currentTurn){
 
-PlayerInGameCandy::PlayerInGameCandy(int numberOfPlayer, int turn, bool directionIsLeft) : PlayerInGame(numberOfPlayer, turn, directionIsLeft){
-
-                                                                                           };
+                                                                            };
 
 void PlayerInGameCandy::showLeaderboard()
 {
@@ -20,7 +19,13 @@ void PlayerInGameCandy::showLeaderboard()
     }
 }
 
-void PlayerInGameCandy::reverse()
+void PlayerInGameCandy::reverseTurn()
 {
-    reverseTurn();
+    reverse(players.begin() + getNthPlayerWithTurn(), players.end());
+}
+
+void PlayerInGameCandy::resetRound()
+{
+    PlayerInGame::resetRound();
+    rotate(turns.begin(), turns.begin() + 1, turns.end());
 }
