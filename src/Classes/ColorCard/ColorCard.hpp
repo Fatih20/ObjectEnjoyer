@@ -2,7 +2,7 @@
 #define _COLORCARD_HPP_
 
 #include "../Card/Card.hpp"
-#include <Map>
+#include <map>
 #include <utility>
 
 typedef enum{
