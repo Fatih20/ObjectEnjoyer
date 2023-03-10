@@ -5,7 +5,7 @@ NumberExp::NumberExp(NumberException expType){
     this->expType = expType;
 }
 
-const string NumberExp::msg() const throw(){
+const string NumberExp::msg(){
     switch(this->expType){
         case 0:
             return "Anda memasukan terlalu banyak deck card!\nBanyak masukan kartu yang valid adalah antara 21 sampai 52\n";
@@ -22,7 +22,7 @@ FormatExp::FormatExp(FormatException expType){
     this->expType = expType;
 }
 
-const string FormatExp::msg() const throw(){
+const string FormatExp::msg(){
     switch(this->expType){
         case 0:
             return "Fomat masukan anda untuk deck card salah!\nFormat masukan yang valid adalah \"<warna><spasi><angka>\"\nContoh: \"G 1\"\n";

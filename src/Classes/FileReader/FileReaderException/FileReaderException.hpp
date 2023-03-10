@@ -19,18 +19,18 @@ typedef enum{
 } FormatException;
 
 
-class NumberExp : public exception{
+class NumberExp{
     public:
         NumberExp(NumberException);
-        const string msg() const throw();
+        const string msg();
     private:
         NumberException expType;
 };
 
-class FormatExp : public exception{
+class FormatExp{
     public:
         FormatExp(FormatException);
-        const string msg() const throw();
+        const string msg();
     private:
         FormatException expType;
 };
