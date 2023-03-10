@@ -157,12 +157,6 @@ public:
     void swapDeck(Player &givenPlayer);
 
     /**
-     * @brief Ask for username again
-     *
-     */
-    void resetUsername();
-
-    /**
      * @brief Ask username from the user and validate its result until it's correct
      *
      */
