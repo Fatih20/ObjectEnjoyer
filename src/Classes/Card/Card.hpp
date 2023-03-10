@@ -21,14 +21,21 @@ class Card{
          * @brief Get the face value of the card
          * 
          */
-        virtual T getValue();
+        virtual T value() = 0;
 
         /**
          * @brief Set the face value of the card
          * 
          * @param value 
          */
-        void setValue(T value);
+        virtual void setValue(T value);
 };
+
+/**
+ * @brief Swap the value of two cards with the same type
+ * 
+ */
+template <typename T>
+void swap(Card<T>& a, Card<T>& b);
 
 #endif

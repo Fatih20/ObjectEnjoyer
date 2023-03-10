@@ -3,7 +3,7 @@
 
 class PlayerCollection
 {
-private:
+protected:
     vector<Player> players;
 
 public:
@@ -22,8 +22,17 @@ public:
     void operator<<(Player &addedPlayer);
 
     /**
-     * @brief Print the leaderboard of players in the collection
+     * @brief Remove a player from the collection
      *
+     * @param index starts at one
      */
-    void showLeaderboard();
+    void remove(int index);
+
+    /**
+     * @brief Remove a player from the collection
+     *
+     * @param index starts at one
+     */
+
+    void operator-=(int index);
 };
