@@ -12,7 +12,6 @@ typedef enum{
     RED
 } Color;
 
-// nanti pindahkan ke cpp
 extern const std::map<std::pair<int, Color>, int> cardWeight;
 
 class ColorCard: public Card<int> {
@@ -54,7 +53,19 @@ class ColorCard: public Card<int> {
          * 
          * @param value 
          */
-        void setValue(int value);
+        void setValue(int value, Color color);
+
+        /**
+         * @brief Assign the value and color of another color card to this color card
+         * 
+         */
+        virtual void operator=(const ColorCard& other);
 };
+
+/**
+ * @brief Swap two color cards
+ * 
+ */
+void swap(ColorCard& a, ColorCard& b);
 
 #endif
