@@ -1,5 +1,6 @@
 #include "../PlayerCollection/PlayerCollection.hpp"
 
+template <class T>
 class PlayerInGame : public PlayerCollection
 {
 

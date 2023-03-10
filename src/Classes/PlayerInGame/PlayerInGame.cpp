@@ -3,54 +3,55 @@
 
 using namespace std;
 
-PlayerInGame::PlayerInGame() : PlayerCollection(0)
+template <class T>
+PlayerInGame<T>::PlayerInGame() : PlayerCollection(0)
 {
 }
-
-PlayerInGame::PlayerInGame(int numberOfPlayer) : PlayerCollection(numberOfPlayer)
+template <class T>
+PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection(numberOfPlayer)
 {
     directionIsLeft = false;
     turn = 1;
 }
-
-PlayerInGame::PlayerInGame(int numberOfPlayer, int turn, int directionIsLeft) : PlayerCollection(numberOfPlayer)
+template <class T>
+PlayerInGame<T>::PlayerInGame(int numberOfPlayer, int turn, int directionIsLeft) : PlayerCollection(numberOfPlayer)
 {
     this->directionIsLeft = directionIsLeft;
     this->turn = (turn % numberOfPlayer) + 1;
 }
-
-void PlayerInGame::setTurn(int newTurn)
+template <class T>
+void PlayerInGame<T>::setTurn(int newTurn)
 {
     turn = newTurn;
 }
-
-void PlayerInGame::reverseTurn()
+template <class T>
+void PlayerInGame<T>::reverseTurn()
 {
     directionIsLeft = !directionIsLeft;
 }
-
-bool PlayerInGame::getTurn()
+template <class T>
+bool PlayerInGame<T>::getTurn()
 {
     return turn;
 }
-
-void PlayerInGame::nextTurn()
+template <class T>
+void PlayerInGame<T>::nextTurn()
 {
     int newTurn = getTurn() + directionIsLeft ? -1 : 1;
     int numberOfPlayer = getNumberOfPlayer();
     newTurn = (numberOfPlayer + (newTurn % numberOfPlayer)) % numberOfPlayer;
     turn = newTurn;
 }
-
-void PlayerInGame::showPlayer()
+template <class T>
+void PlayerInGame<T>::showPlayer()
 {
     for (int i = 0; i < players.size(); i++)
     {
         cout << i + 1 << ". " << players.at(i).getUsername() << endl;
     }
 };
-
-void PlayerInGame::showPlayerExcept(int unprintedID)
+template <class T>
+void PlayerInGame<T>::showPlayerExcept(int unprintedID)
 {
     bool print = true;
     int index = 0;
@@ -63,8 +64,8 @@ void PlayerInGame::showPlayerExcept(int unprintedID)
         }
     }
 }
-
-void PlayerInGame::removePlayerOfID(int removedID)
+template <class T>
+void PlayerInGame<T>::removePlayerOfID(int removedID)
 {
     // To do : Erase from turn list as well
     for (int i = 0; i < players.size(); i++)
@@ -75,3 +76,7 @@ void PlayerInGame::removePlayerOfID(int removedID)
         }
     };
 }
+
+// template <class T>
+
+template class PlayerInGame<int>;
