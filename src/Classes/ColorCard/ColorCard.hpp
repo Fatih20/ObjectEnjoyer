@@ -12,12 +12,12 @@ typedef enum{
     RED
 } Color;
 
-extern const std::map<std::pair<int, Color>, int> cardWeight;
 
 class ColorCard: public Card<int> {
-    protected:
+    protected:  
         Color color;
-    
+        static const std::map<std::pair<int, Color>, int> cardWeight;
+        
     public:
         /**
          * @brief Construct a new Color Card object with given value and color
@@ -39,7 +39,7 @@ class ColorCard: public Card<int> {
          * @brief Get the card weight based on the value and color relative to other color cards
          * 
          */
-        int value();
+        virtual int value();
 
         /**
          * @brief Set the color of the card

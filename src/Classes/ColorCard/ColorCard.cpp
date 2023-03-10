@@ -1,6 +1,7 @@
 #include "ColorCard.hpp"
+#include <iostream>
 
-const std::map<std::pair<int, Color>, int> cardWeight = {
+const std::map<std::pair<int, Color>, int> ColorCard::cardWeight = {
     {{1, GREEN}, 1}, {{1, BLUE}, 2}, {{1, YELLOW}, 3}, {{1, RED}, 4},
     {{2, GREEN}, 5}, {{2, BLUE}, 6}, {{2, YELLOW}, 7}, {{2, RED}, 8},
     {{3, GREEN}, 9}, {{3, BLUE}, 10}, {{3, YELLOW}, 11}, {{3, RED}, 12},
@@ -25,8 +26,7 @@ Color ColorCard::getColor(){
 }
 
 int ColorCard::value(){
-    Card* card = this;
-    return cardWeight.at(std::make_pair(card->value(), this->color));
+    return this->cardWeight.at(std::make_pair(this->Card::val, this->color));
 }
 
 void ColorCard::setColor(Color color){
@@ -40,9 +40,7 @@ void ColorCard::setValue(int value, Color color){
 }
 
 void ColorCard::operator=(const ColorCard& other){
-    Card* card = this;
-    Card* otherCard = (Card*) &other;
-    *card = *otherCard;
+    this->Card::val = other.Card::val;
     this->color = other.color;
 }
 

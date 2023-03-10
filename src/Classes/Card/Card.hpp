@@ -23,9 +23,7 @@ class Card{
          * @brief Get the face value of the card
          * 
          */
-        virtual T value(){
-            return this->val;
-        }
+        virtual T value() = 0;
 
         /**
          * @brief Set the face value of the card
