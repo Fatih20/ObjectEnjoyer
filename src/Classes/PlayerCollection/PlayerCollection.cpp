@@ -12,6 +12,7 @@ PlayerCollection::PlayerCollection(int numberOfPlayer)
         bool usernameUnique = !usernameExist(p.getUsername());
         while (!usernameUnique)
         {
+            cout << "Username already exists!" << endl;
             p.setValidUsername();
             usernameUnique = !usernameExist(p.getUsername());
         }
