@@ -2,7 +2,7 @@ CC = g++
 STD = -std=c++11
 
 OBJECTS = src/main.cpp src/Classes/*/*.cpp
-CINCLUDES = -Isrc -Isrc/Classes
+CINCLUDES = -Isrc -Isrc/Classes -Isrc/Classes/*/
 
 TARGET = bin/main
 
