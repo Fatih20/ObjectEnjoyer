@@ -64,5 +64,10 @@ std::ostream& operator<<(std::ostream& os, const Deck<T>& deck) {
     return os;
 }
 
+template <typename T>
+void Deck<T>::addToDeck(const Card<T>& card) {
+    this->vec.push_back(card); // havent considered whether the card should be in the very last position or the first
+}
+
 template class Deck<int>;
 template std::ostream& operator<< (std::ostream& os, const Deck<int>& deck);

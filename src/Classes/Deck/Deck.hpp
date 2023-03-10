@@ -4,7 +4,7 @@
 #include <vector>
 #include <cstring>
 #include <iostream>
-// #include "Classes/Card/Card.hpp"
+#include "Classes/Card/Card.hpp"
 
 template <class T>
 class Deck {
@@ -63,8 +63,14 @@ class Deck {
         static void swapDeck(Deck& deck1, Deck& deck2);
 
 
+        /**
+         * @brief print
+        */
         template <typename Y>
         friend std::ostream& operator<<(std::ostream& os, const Deck<Y>& deck);
+
+
+        void addToDeck(const Card<T>&);
 };
 
 #endif
