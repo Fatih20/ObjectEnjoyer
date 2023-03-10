@@ -14,12 +14,11 @@ typedef enum{
     ABILITYLESS // Disable the ability of a specific player
 } Abi;
 
-extern const std::map<Abi, std::string> abilityDescription;
-
 class Ability {
     protected:
         Abi ability;
-        std::string description;
+        static const std::map<Abi, std::string> abilityDescription;
+        static const std::map<Abi, std::string> abilityName;
     
     public:
         /**
@@ -41,10 +40,17 @@ class Ability {
         std::string getDescription();
 
         /**
+         * @brief Get the Name of the ability
+         * 
+         * @return std::string 
+         */
+        std::string getAbilityName();
+
+        /**
          * @brief Activate the ability
          * 
          */
-        virtual void activateAbility() = 0;
+        virtual void activateAbility();
 };
 
 #endif

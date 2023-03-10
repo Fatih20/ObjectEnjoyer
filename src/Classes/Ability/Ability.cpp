@@ -1,6 +1,6 @@
 #include "Ability.hpp"
 
-const std::map<Abi, std::string> abilityDescription = {
+const std::map<Abi, std::string> Ability::abilityDescription = {
     {REROLL, "Reroll all hand cards"},
     {QUADRUPLE, "Quadruple the reward of the current round"},
     {QUARTER, "Quarter the reward of the current round"},
@@ -10,9 +10,18 @@ const std::map<Abi, std::string> abilityDescription = {
     {ABILITYLESS, "Disable the ability of a specific player"}
 };
 
+const std::map<Abi, std::string> Ability::abilityName = {
+    {REROLL, "Reroll"},
+    {QUADRUPLE, "Quadruple"},
+    {QUARTER, "Quarter"},
+    {REVERSE, "Reverse"},
+    {SWAP, "Swap"},
+    {SWITCH, "Switch"},
+    {ABILITYLESS, "Abilityless"}
+};
+
 Ability::Ability(Abi ability){
     this->ability = ability;
-    this->description = abilityDescription.at(ability);
 }
 
 Abi Ability::getAbility(){
@@ -20,5 +29,14 @@ Abi Ability::getAbility(){
 }
 
 std::string Ability::getDescription(){
-    return this->description;
+    return abilityDescription.at(this->ability);
+}
+
+std::string Ability::getAbilityName(){
+    return abilityName.at(this->ability);
+}
+
+void Ability::activateAbility(){
+    std::cout << getAbilityName() << " activated" << std::endl;
+    std::cout << getDescription() << std::endl;
 }
