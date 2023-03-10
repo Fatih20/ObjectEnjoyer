@@ -63,3 +63,15 @@ void PlayerInGame::showPlayerExcept(int unprintedID)
         }
     }
 }
+
+void PlayerInGame::removePlayerOfID(int removedID)
+{
+    // To do : Erase from turn list as well
+    for (int i = 0; i < players.size(); i++)
+    {
+        if (players.at(i).getGameID() == removedID)
+        {
+            players.erase(players.begin() + i);
+        }
+    };
+}

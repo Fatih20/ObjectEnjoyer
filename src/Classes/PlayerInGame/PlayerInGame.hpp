@@ -68,6 +68,13 @@ public:
      * @param unprintedID
      */
     void showPlayerExcept(int unprintedID);
+
+    /**
+     * @brief Remove player with the gameID of removedID
+     *
+     * @param removedID
+     */
+    void removePlayerOfID(int removedID);
 };
 
 // Kurang retake deck dan re-roll
