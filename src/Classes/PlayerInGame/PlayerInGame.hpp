@@ -49,4 +49,25 @@ public:
      *
      */
     bool getTurn();
+
+    /**
+     * @brief Change the turn to the next person in line
+     *
+     */
+    void nextTurn();
+
+    /**
+     * @brief Print all of the player's in the game
+     *
+     */
+    void showPlayer();
+
+    /**
+     * @brief Print all of the player's except one with the gameID of unprintedID
+     *
+     * @param unprintedID
+     */
+    void showPlayerExcept(int unprintedID);
 };
+
+// Kurang retake deck dan re-roll
