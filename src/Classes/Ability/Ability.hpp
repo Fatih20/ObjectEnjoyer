@@ -50,7 +50,7 @@ class Ability {
          * @brief Activate the ability
          * 
          */
-        virtual void activateAbility();
+        virtual void activateAbility()=0;
 };
 
 #endif

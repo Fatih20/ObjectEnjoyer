@@ -35,8 +35,3 @@ std::string Ability::getDescription(){
 std::string Ability::getAbilityName(){
     return abilityName.at(this->ability);
 }
-
-void Ability::activateAbility(){
-    std::cout << getAbilityName() << " activated" << std::endl;
-    std::cout << getDescription() << std::endl;
-}
