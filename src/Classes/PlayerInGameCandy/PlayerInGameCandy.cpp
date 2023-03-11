@@ -8,7 +8,7 @@ PlayerInGameCandy::PlayerInGameCandy(int numberOfPlayer, int currentTurn) : Play
 
 void PlayerInGameCandy::showLeaderboard()
 {
-    vector<Player> sortedPlayers = players;
+    vector<Player<int>> sortedPlayers = players;
     // sort(sortedPlayers.begin(), sortedPlayers.end(), [](Player p1, Player p2) -> bool
     //  { return p1 > p2; });
     int numberOfPlayer = getNumberOfPlayer();

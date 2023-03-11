@@ -4,13 +4,13 @@
 
 using namespace std;
 
-template <class T>
-PlayerInGame<T>::PlayerInGame() : PlayerCollection(0)
+template <typename T>
+PlayerInGame<T>::PlayerInGame() : PlayerCollection<T>(0)
 {
     PlayerInGame(0);
 };
-template <class T>
-PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection(numberOfPlayer)
+template <typename T>
+PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection<T>(numberOfPlayer)
 {
     vector<int> turns(numberOfPlayer);
     for (int i = 0; i < numberOfPlayer; i++)
@@ -21,104 +21,104 @@ PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection(numberOfPla
     roundComplete = false;
 };
 
-template <class T>
-PlayerInGame<T>::PlayerInGame(int numberOfPlayer, int currentTurn) : PlayerCollection(numberOfPlayer)
+template <typename T>
+PlayerInGame<T>::PlayerInGame(int numberOfPlayer, int currentTurn) : PlayerCollection<T>(numberOfPlayer)
 {
     PlayerInGame(number);
     this->currentTurn = currentTurn - 1;
 };
 
-template <class T>
+template <typename T>
 void PlayerInGame<T>::setTurn(int newTurn)
 {
-    int numberOfPlayer = getNumberOfPlayer();
+    int numberOfPlayer = this->getNumberOfPlayer();
     currentTurn = (((newTurn - 1) % numberOfPlayer) + numberOfPlayer) % numberOfPlayer;
 };
-template <class T>
+template <typename T>
 void PlayerInGame<T>::reverseTurn()
 {
     reverse(turns.begin(), turns.end());
 };
-template <class T>
+template <typename T>
 bool PlayerInGame<T>::getTurn()
 {
     return currentTurn + 1;
 };
 
-template <class T>
+template <typename T>
 void PlayerInGame<T>::removePlayerOfID(int removedID)
 {
     // To do : Erase from turn list as well
-    for (int i = 0; i < players.size(); i++)
+    for (int i = 0; i < this->players.size(); i++)
     {
-        if (players.at(i).getGameID() == removedID)
+        if (this->players.at(i).getGameID() == removedID)
         {
-            players.erase(players.begin() + i);
+            this->players.erase(this->players.begin() + i);
         }
     };
 };
 
-// template <class T>
+// template <typename T>
 
-template <class T>
-Player &PlayerInGame<T>::getPlayerWithTurn()
+template <typename T>
+Player<T> &PlayerInGame<T>::getPlayerWithTurn()
 {
-    return players.at(currentTurn);
+    return this->players.at(currentTurn);
 };
 
-template <class T>
+template <typename T>
 int PlayerInGame<T>::getNthPlayerWithTurn()
 {
     return currentTurn + 1;
 };
 
-template <class T>
+template <typename T>
 void PlayerInGame<T>::nextTurn()
 {
 
     // Only increment current turn when the turn is still in range
-    currentTurn += currentTurn < getNumberOfPlayer() ? 1 : 0;
+    currentTurn += currentTurn < this->getNumberOfPlayer() ? 1 : 0;
 
     // Set the roundComplete to true once the last player is done
-    roundComplete = currentTurn >= getNumberOfPlayer();
+    roundComplete = currentTurn >= this->getNumberOfPlayer();
 };
 
-template <class T>
+template <typename T>
 bool PlayerInGame<T>::getIsRoundComplete()
 {
     return roundComplete;
 };
 
-template <class T>
+template <typename T>
 void PlayerInGame<T>::resetRound()
 {
     roundComplete = false;
 };
-template <class T>
+template <typename T>
 void PlayerInGame<T>::stopRound()
 {
     roundComplete = true;
 };
 
-template <class T>
+template <typename T>
 void PlayerInGame<T>::showPlayer()
 {
-    for (int i = 0; i < players.size(); i++)
+    for (int i = 0; i < this->players.size(); i++)
     {
-        cout << i + 1 << ". " << players.at(i).getUsername() << endl;
+        cout << i + 1 << ". " << this->players.at(i).getUsername() << endl;
     }
 };
 
-template <class T>
+template <typename T>
 void PlayerInGame<T>::showPlayerExcept(int unprintedID)
 {
     bool print = true;
     int index = 0;
-    for (int i = 0; i < players.size(); i++)
+    for (int i = 0; i < this->players.size(); i++)
     {
-        if (players.at(i).getGameID() != unprintedID)
+        if (this->players.at(i).getGameID() != unprintedID)
         {
-            cout << index + 1 << ". " << players.at(i).getUsername() << endl;
+            cout << index + 1 << ". " << this->players.at(i).getUsername() << endl;
             index++;
         }
     }

@@ -16,7 +16,7 @@ int main()
     Deck<int> deckA;
     deckA.addCard(cc1);
     deckA.addCard(cc2);
-    cout << cc1;
+    cout << deckA;
     // std::vector<int> valuesA = {2, 3, 4, 5, 6};
     // std::vector<int> valuesB = {-12, -13, -134, -9, -23};
 

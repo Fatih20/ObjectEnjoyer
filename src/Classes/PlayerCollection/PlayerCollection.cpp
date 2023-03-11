@@ -2,13 +2,13 @@
 #include <iostream>
 
 using namespace std;
-
-PlayerCollection::PlayerCollection(int numberOfPlayer)
+template <typename T>
+PlayerCollection<T>::PlayerCollection(int numberOfPlayer)
 {
-    vector<Player> players(0);
+    vector<Player<T>> players(0);
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        Player p(i + 1);
+        Player<T> p(i + 1);
         bool usernameUnique = !usernameExist(p.getUsername());
         while (!usernameUnique)
         {
@@ -20,32 +20,33 @@ PlayerCollection::PlayerCollection(int numberOfPlayer)
     }
 };
 
-int PlayerCollection::getNumberOfPlayer()
+template <typename T>
+int PlayerCollection<T>::getNumberOfPlayer()
 {
     return players.size();
 }
-
-void PlayerCollection::addPlayer(Player &addedPlayer)
+template <typename T>
+void PlayerCollection<T>::addPlayer(Player<T> &addedPlayer)
 {
     players.push_back(addedPlayer);
 }
-
-void PlayerCollection::operator<<(Player &addedPlayer)
+template <typename T>
+void PlayerCollection<T>::operator<<(Player<T> &addedPlayer)
 {
     addPlayer(addedPlayer);
 }
-
-void PlayerCollection::remove(int index)
+template <typename T>
+void PlayerCollection<T>::remove(int index)
 {
     players.erase(players.begin() + (index - 1));
 }
-
-void PlayerCollection::operator-=(int index)
+template <typename T>
+void PlayerCollection<T>::operator-=(int index)
 {
     remove(index);
 }
-
-bool PlayerCollection::usernameExist(string username)
+template <typename T>
+bool PlayerCollection<T>::usernameExist(string username)
 {
     bool found = false;
     for (int i = 0; i < players.size() && !found; i++)
@@ -54,3 +55,5 @@ bool PlayerCollection::usernameExist(string username)
     }
     return found;
 }
+
+template class PlayerCollection<int>;

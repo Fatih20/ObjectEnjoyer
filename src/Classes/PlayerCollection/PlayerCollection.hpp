@@ -1,10 +1,11 @@
 #include <vector>
 #include "../Player/Player.hpp"
 
+template <typename T>
 class PlayerCollection
 {
 protected:
-    vector<Player> players;
+    vector<Player<T>> players;
 
 public:
     PlayerCollection(int numberOfPlayer);
@@ -19,14 +20,14 @@ public:
      *
      * @param addedPlayer
      */
-    void operator<<(Player &addedPlayer);
+    void operator<<(Player<T> &addedPlayer);
 
     /**
      * @brief Add addedPlayer into the collection as the last player
      *
      * @param addedPlayer
      */
-    void addPlayer(Player &addedPlayer);
+    void addPlayer(Player<T> &addedPlayer);
 
     /**
      * @brief Remove a player from the collection

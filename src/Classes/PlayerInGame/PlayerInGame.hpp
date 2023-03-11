@@ -1,7 +1,7 @@
 #include "../PlayerCollection/PlayerCollection.hpp"
 
-template <class T>
-class PlayerInGame : public PlayerCollection
+template <typename T>
+class PlayerInGame : public PlayerCollection<T>
 {
 
 protected:
@@ -49,7 +49,7 @@ public:
      * @brief Return the player that currently has the turn
      *
      */
-    Player &getPlayerWithTurn();
+    Player<T> &getPlayerWithTurn();
 
     /**
      * @brief Return the nth player that currently has the turn

@@ -128,3 +128,10 @@ int Player<T>::getGameID()
 {
     return gameID;
 };
+
+template <typename T>
+void Player<T>::addCard(const Card<T> &card){
+
+};
+
+template class Player<int>;

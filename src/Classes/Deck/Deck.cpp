@@ -81,8 +81,8 @@ void Deck<T>::addCard(const Card<T> &card)
 template <typename T>
 void Deck<T>::operator+=(const Card<T> &card)
 {
-    this->addToDeck(card);
+    this->addCard(card);
 };
 
 template class Deck<int>;
-template std::ostream &operator<<(std::ostream &os, const Deck<int> &deck);
+// template std::ostream &operator<<(std::ostream &os, const Deck<int> &deck);
