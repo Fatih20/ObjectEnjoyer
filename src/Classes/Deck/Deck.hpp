@@ -4,6 +4,7 @@
 #include <vector>
 #include <cstring>
 #include <iostream>
+#include <algorithm>
 #include "Classes/Card/Card.hpp"
 #include "Classes/InventoryHolder/InventoryHolder.hpp"
 
@@ -86,6 +87,11 @@ public:
      * @brief shorthand for addCard()
      */
     void operator+=(const T &);
+
+    /**
+     * @brief sort deck by value
+     */
+     void sortDeck();
 };
 
 #endif

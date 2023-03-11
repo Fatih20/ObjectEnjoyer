@@ -92,6 +92,13 @@ int Deck<T>::getNumberOfCards()
     return this->vec.size();
 };
 
+template<typename T>
+void Deck<T>::sortDeck() {
+//    std::sort(this->vec.begin(), this->vec.end(), [](ColorCard a, ColorCard b){ // sementara exclusive ColorCard
+//        return a.value() < b.value();
+//    });
+}
+
 template class Deck<Card<int>>;
 template class Deck<ColorCard>;
 template class Deck<AbilityCard>;

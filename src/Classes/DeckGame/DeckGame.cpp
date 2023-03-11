@@ -4,7 +4,7 @@
 #include <vector>
 
 template <typename T>
-DeckGame<T>::DeckGame() : Deck<T>::Deck(){}; // actually redundant?
+DeckGame<T>::DeckGame() : Deck<T>::Deck(){};
 
 template <class T>
 DeckGame<T>::DeckGame(std::vector<T> vec) : Deck<T>::Deck(vec){};
@@ -19,12 +19,6 @@ T DeckGame<T>::drawCard()
     this->vec.pop_back();
 
     return res;
-}
-
-template <typename T>
-int DeckGame<T>::getCombinationValueWith(const Deck<T> &deckPlayer) const
-{
-    return 0;
 }
 
 template class DeckGame<ColorCard>;

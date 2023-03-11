@@ -23,6 +23,11 @@ int main()
 
     cout << deckB << endl;
 
+    ColorCard cc3 = deckB.drawCard();
+
+    cout << deckB << endl;
+    cout << "drawed card  : " << cc3 << endl;
+
 
 
     return 0;
