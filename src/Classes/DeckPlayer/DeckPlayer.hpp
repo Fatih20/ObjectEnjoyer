@@ -3,7 +3,6 @@
 
 #include "Classes/Deck/Deck.hpp"
 #include "Classes/DeckGame/DeckGame.hpp"
-
 #include "Classes/Card/Card.hpp"
 
 template <class T>
@@ -27,7 +26,7 @@ public:
      *
      * @param other the other Deck
      */
-    DeckPlayer(const DeckPlayer &other);
+    DeckPlayer(const DeckPlayer<T> &other);
 
     /**
      * @brief destruct constructed Player Deck
@@ -37,7 +36,7 @@ public:
     /**
      * @brief construct a DeckPlayer whose content is made of cards drawed from DeckGame
      */
-    DeckPlayer(const Deck<T> &);
+    DeckPlayer(const DeckGame<T> &);
 
     // /**
     //  * @brief compare the combination value of two Decks
