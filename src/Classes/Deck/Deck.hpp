@@ -5,9 +5,10 @@
 #include <cstring>
 #include <iostream>
 #include "Classes/Card/Card.hpp"
+#include "Classes/InventoryHolder/InventoryHolder.hpp"
 
 template <class T>
-class Deck
+class Deck : InventoryHolder
 {
 protected:
     std::vector<Card<T>> vec;
@@ -79,6 +80,8 @@ public:
     };
 
     void addToDeck(const Card<T> &);
+
+    void operator+=(const Card<T> &);
 };
 
 #endif

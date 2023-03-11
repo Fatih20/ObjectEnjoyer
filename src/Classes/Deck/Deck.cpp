@@ -78,5 +78,11 @@ void Deck<T>::addToDeck(const Card<T> &card)
     vec.push_back(card); // havent considered whether the card should be in the very last position or the first
 };
 
+template <typename T>
+void Deck<T>::operator+=(const Card<T> &card)
+{
+    vec.push_back(card);
+};
+
 template class Deck<int>;
 // template std::ostream &operator<<(std::ostream &os, const Deck<int> &deck);

@@ -2,6 +2,7 @@
 #include <string>
 #include <exception>
 #include <vector>
+#include "Classes/InventoryHolder/InventoryHolder.hpp"
 // #include "../Deck/Deck.hpp"
 // #include "../Card/Card.hpp"
 
