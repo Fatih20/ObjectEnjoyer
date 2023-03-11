@@ -23,7 +23,7 @@ T DeckGame<T>::drawCard()
 }
 
 template <typename T>
-int DeckGame<T>::getCombinationValueWith(const Deck<T> &deckPlayer)
+int DeckGame<T>::getCombinationValueWith(const Deck<T> &deckPlayer) const
 {
     return 0;
 }

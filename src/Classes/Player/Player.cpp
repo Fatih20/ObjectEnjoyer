@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include "Classes/InventoryHolder/InventoryHolder.hpp"
+#include "Classes/ColorCard/ColorCard.hpp"
 #include "../PlayerException/PlayerException.hpp"
 #include <iostream>
 #include <vector>
@@ -130,8 +131,118 @@ int Player<T>::getGameID()
 };
 
 template <typename T>
-void Player<T>::addCard(const T &card){
-
+void Player<T>::addCard(const T &card)
+{
+    handCards += card;
 };
 
-template class Player<int>;
+template <typename T>
+void Player<T>::swapDeck(Player<T> &givenPlayer)
+{
+    handCards.swap(givenPlayer.handCards);
+};
+
+template <typename T>
+void Player<T>::printColorCard()
+{
+    cout << handCards;
+};
+
+template <typename T>
+void Player<T>::drawCard(DeckGame<T> &deckGame, int numberOfCards)
+{
+    handCards.drawCard(deckGame, numberOfCards);
+};
+
+template <typename T>
+void Player<T>::operator+=(const T &addedCard)
+{
+    handCards += addedCard;
+};
+
+template <typename T>
+bool Player<T>::operator!=(const Player<T> &otherPlayer)
+{
+    return score != otherPlayer.score;
+};
+
+template <typename T>
+bool Player<T>::operator<(const Player<T> &otherPlayer)
+{
+    return score < otherPlayer.score;
+};
+
+template <typename T>
+bool Player<T>::operator>(const Player<T> &otherPlayer)
+{
+    return score > otherPlayer.score;
+};
+
+template <typename T>
+bool Player<T>::operator<=(const Player<T> &otherPlayer)
+{
+    return score <= otherPlayer.score;
+};
+
+template <typename T>
+bool Player<T>::operator>=(const Player<T> &otherPlayer)
+{
+    return score >= otherPlayer.score;
+};
+
+template <typename T>
+bool Player<T>::operator==(const Player<T> &otherPlayer)
+{
+    return score == otherPlayer.score;
+};
+
+template <typename T>
+int Player<T>::compareCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
+{
+    int ourScore = deckGame.getCombinationValueWith(handCards);
+    int theirScore = deckGame.getCombinationValueWith(otherPlayer.handCards);
+    if (ourScore > theirScore)
+    {
+        return 1;
+    }
+    else if (ourScore == theirScore)
+    {
+        return 0;
+    }
+    else
+    {
+        return -1;
+    }
+};
+
+template <typename T>
+bool Player<T>::higherCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
+{
+    return compareCombinationWeight(otherPlayer, deckGame) == 1;
+};
+
+template <typename T>
+bool Player<T>::equalCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
+{
+    return compareCombinationWeight(otherPlayer, deckGame) == 0;
+};
+
+template <typename T>
+bool Player<T>::lowerCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
+{
+    return compareCombinationWeight(otherPlayer, deckGame) == -1;
+};
+
+template <typename T>
+void Player<T>::redrawCard(DeckGame<T> &deckGame, int newNumberOfCards)
+{
+    int currentNumberOfCards = handCards.getNumberOfCards();
+    for (int i = 0; i < currentNumberOfCards; i++)
+    {
+        T returnedCard = handCards.ejectCard();
+        deckGame += returnedCard;
+    };
+    drawCard(deckGame, newNumberOfCards);
+};
+
+template class Player<ColorCard>;

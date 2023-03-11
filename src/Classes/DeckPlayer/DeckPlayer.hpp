@@ -44,6 +44,13 @@ public:
      */
     void drawCard(DeckGame<T> &, int);
 
+    /**
+     * @brief Delete a card from the deck and then return it from this function
+     *
+     * @return T
+     */
+    T ejectCard();
+
     // /**
     //  * @brief compare the combination value of two Decks
     //  *

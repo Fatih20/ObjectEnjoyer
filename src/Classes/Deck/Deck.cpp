@@ -77,13 +77,19 @@ std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
 template <typename T>
 void Deck<T>::addCard(const T &card)
 {
-    vec.emplace_back(card); // havent considered whether the card should be in the very last position or the first
+    vec.push_back(card); // havent considered whether the card should be in the very last position or the first
 };
 
 template <typename T>
 void Deck<T>::operator+=(const T &card)
 {
     this->addCard(card);
+};
+
+template <typename T>
+int Deck<T>::getNumberOfCards()
+{
+    return this->vec.size();
 };
 
 template class Deck<Card<int>>;

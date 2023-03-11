@@ -40,7 +40,7 @@ public:
      *
      * @return int value of combination (or as @Marthenn said: weights)
      */
-    int getCombinationValueWith(const Deck<T> &deckPlayer);
+    int getCombinationValueWith(const Deck<T> &deckPlayer) const;
 };
 
 #endif

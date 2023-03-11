@@ -59,6 +59,13 @@ public:
     std::vector<T> getDeck();
 
     /**
+     * @brief Get the number of cards in this deck
+     *
+     * @return int
+     */
+    int getNumberOfCards();
+
+    /**
      * @brief swap the content of two separate Decks
      */
     static void swapDeck(Deck &deck1, Deck &deck2);
