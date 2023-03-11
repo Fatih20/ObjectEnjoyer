@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class PlayerInGameCandy : public PlayerInGame<int>
+class PlayerInGameCandy : public PlayerInGame<ColorCard>
 {
 public:
     /**

@@ -2,13 +2,13 @@
 #include <algorithm>
 
 using namespace std;
-PlayerInGameCandy::PlayerInGameCandy(int numberOfPlayer, int currentTurn) : PlayerInGame<int>(numberOfPlayer, currentTurn){
+PlayerInGameCandy::PlayerInGameCandy(int numberOfPlayer, int currentTurn) : PlayerInGame<ColorCard>(numberOfPlayer, currentTurn){
 
                                                                             };
 
 void PlayerInGameCandy::showLeaderboard()
 {
-    vector<Player<int>> sortedPlayers = players;
+    vector<Player<ColorCard>> sortedPlayers = players;
     // sort(sortedPlayers.begin(), sortedPlayers.end(), [](Player p1, Player p2) -> bool
     //  { return p1 > p2; });
     int numberOfPlayer = getNumberOfPlayer();

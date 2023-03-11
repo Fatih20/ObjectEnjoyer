@@ -1,4 +1,5 @@
 #include "PlayerCollection.hpp"
+#include "Classes/ColorCard/ColorCard.hpp"
 #include <iostream>
 
 using namespace std;
@@ -56,4 +57,4 @@ bool PlayerCollection<T>::usernameExist(string username)
     return found;
 }
 
-template class PlayerCollection<int>;
+template class PlayerCollection<ColorCard>;

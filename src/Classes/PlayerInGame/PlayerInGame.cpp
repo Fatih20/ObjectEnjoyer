@@ -124,4 +124,4 @@ void PlayerInGame<T>::showPlayerExcept(int unprintedID)
     }
 };
 
-template class PlayerInGame<int>;
+template class PlayerInGame<ColorCard>;
