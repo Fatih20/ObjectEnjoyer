@@ -76,8 +76,15 @@ public:
     template <typename Y>
     friend std::ostream &operator<<(std::ostream &os, const Deck<Y> &deck);
 
+
+    /**
+     * @brief add a card into the deck
+     */
     void addCard(const T &);
 
+    /**
+     * @brief shorthand for addCard()
+     */
     void operator+=(const T &);
 };
 

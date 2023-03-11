@@ -26,7 +26,7 @@ public:
      *
      * @param other the other Deck
      */
-    DeckGame(const DeckGame<T> &other);
+    DeckGame(const Deck<T> &other);
 
     /**
      * @brief draw a card from this deck
@@ -34,12 +34,12 @@ public:
     T drawCard();
 
     /**
-     * @brief get the value of the combination of DeckGame and DeckPlayer cards
-     *
-     * @param deckPlayer DeckPlayer to combine with
-     *
-     * @return int value of combination (or as @Marthenn said: weights)
-     */
+    * @brief get the value of the combination of DeckGame and DeckPlayer cards
+    *
+    * @param deckPlayer DeckPlayer to combine with
+    *
+    * @return int value of combination (or as @Marthenn said: weights)
+    */
     int getCombinationValueWith(const Deck<T> &deckPlayer) const;
 };
 

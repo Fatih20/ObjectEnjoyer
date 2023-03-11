@@ -77,7 +77,7 @@ std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
 template <typename T>
 void Deck<T>::addCard(const T &card)
 {
-    vec.push_back(card); // havent considered whether the card should be in the very last position or the first
+    this->vec.push_back(card); // havent considered whether the card should be in the very last position or the first
 };
 
 template <typename T>

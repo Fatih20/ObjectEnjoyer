@@ -10,13 +10,12 @@ template <class T>
 DeckGame<T>::DeckGame(std::vector<T> vec) : Deck<T>::Deck(vec){};
 
 template <typename T>
-DeckGame<T>::DeckGame(const DeckGame<T> &other) : Deck<T>::Deck(other) {}
+DeckGame<T>::DeckGame(const Deck<T> &other) : Deck<T>::Deck(other) {}
 
 template <typename T>
 T DeckGame<T>::drawCard()
 {
     T res = this->vec.back();
-
     this->vec.pop_back();
 
     return res;
@@ -29,5 +28,3 @@ int DeckGame<T>::getCombinationValueWith(const Deck<T> &deckPlayer) const
 }
 
 template class DeckGame<ColorCard>;
-
-// template Card<int> DeckGame<Card<int>>::drawCard();
