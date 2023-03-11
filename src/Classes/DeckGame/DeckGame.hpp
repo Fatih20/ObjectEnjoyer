@@ -1,12 +1,9 @@
+#include <vector>
+#include "Classes/Deck/Deck.hpp"
+#include "Classes/Card/Card.hpp"
+
 #ifndef _DECKGAME_HPP_
 #define _DECKGAME_HPP_
-
-#include <vector>
-
-#include "Classes/Deck/Deck.hpp"
-#include "Classes/DeckPlayer/DeckPlayer.hpp"
-
-#include "Classes/Card/Card.hpp"
 
 template <class T>
 class DeckGame : public Deck<T>

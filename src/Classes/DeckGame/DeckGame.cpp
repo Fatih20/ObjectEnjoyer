@@ -1,4 +1,5 @@
 #include "DeckGame.hpp"
+#include "Classes/ColorCard/ColorCard.hpp"
 
 #include <vector>
 
@@ -27,5 +28,6 @@ int DeckGame<T>::getCombinationValueWith(const Deck<T> &deckPlayer)
     return 0;
 }
 
-// template class DeckGame<Card<int>>;
+template class DeckGame<ColorCard>;
+
 // template Card<int> DeckGame<Card<int>>::drawCard();

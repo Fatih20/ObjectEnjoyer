@@ -4,6 +4,7 @@
 #include "Classes/Deck/Deck.hpp"
 #include "Classes/DeckGame/DeckGame.hpp"
 #include "Classes/Card/Card.hpp"
+#include "Classes/ColorCard/ColorCard.hpp"
 
 template <class T>
 class DeckPlayer : public Deck<T>
@@ -13,7 +14,7 @@ public:
     /**
      * @brief construct a DeckPlayer whose content is made of cards drawn from DeckGame
      */
-    DeckPlayer(Deck<T> &);
+    DeckPlayer(DeckPlayer<T> &);
     /**
      * @brief construct new Player Deck with empty array as its attribute
      */
@@ -26,16 +27,22 @@ public:
     DeckPlayer(std::vector<T> vec);
 
     /**
-     * @brief construct new Player Deck based on an already constructed Deck
+     * @brief construct new Player Deck with cards drawn from an already constructed Deck
      *
      * @param other the other Deck
      */
-    DeckPlayer(const DeckPlayer<T> &other);
+    DeckPlayer(DeckGame<T> &other, int numberOfCards);
 
     /**
      * @brief destruct constructed Player Deck
      */
     ~DeckPlayer();
+
+    /**
+     * @brief Draw a number of cards from the deck game
+     *
+     */
+    void drawCard(DeckGame<T> &, int);
 
     // /**
     //  * @brief compare the combination value of two Decks
