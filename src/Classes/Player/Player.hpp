@@ -23,6 +23,12 @@ private:
 
 public:
     /**
+     * @brief Construct a new Player object
+     *
+     */
+    Player();
+
+    /**
      * @brief Construct a new Player object. Menanyakan username pemain melalui CLI.
      *
      */

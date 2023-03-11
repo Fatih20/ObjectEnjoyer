@@ -1,11 +1,18 @@
 #include "Player.hpp"
-#include "PlayerException/PlayerException.hpp"
+#include "../PlayerException/PlayerException.hpp"
 #include <iostream>
 #include <vector>
 #include <exception>
 #include <algorithm>
 
 using namespace std;
+
+Player::Player()
+{
+    this->gameID = 0;
+    username = "";
+    score = 0;
+}
 
 Player::Player(int gameID)
 {
@@ -33,7 +40,7 @@ void Player::setValidUsername()
             cout << e.getMessage() << endl;
         }
     }
-}
+};
 
 string Player::askForUsername()
 {

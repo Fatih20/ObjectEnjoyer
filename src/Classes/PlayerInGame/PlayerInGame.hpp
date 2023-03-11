@@ -58,12 +58,6 @@ public:
     int getNthPlayerWithTurn();
 
     /**
-     * @brief Move to the turn to the next player
-     *
-     */
-    void nextTurn();
-
-    /**
      * @brief Whether the round is complete or not
      *
      * @return true
