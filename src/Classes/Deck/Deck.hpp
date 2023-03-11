@@ -75,16 +75,6 @@ public:
      */
     template <typename Y>
     friend std::ostream &operator<<(std::ostream &os, const Deck<Y> &deck);
-    // {
-    //     os << "\nsize : " << deck.vec.size() << "\nmembers : \n";
-
-    //     for (auto elmt : deck.vec)
-    //     {
-    //         os << elmt << " " << std::endl;
-    //     }
-
-    //     return os;
-    // };
 
     void addCard(const T &);
 

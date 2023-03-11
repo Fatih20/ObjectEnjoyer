@@ -82,10 +82,10 @@ void PlayerInGame<T>::nextTurn()
 {
 
     // Only increment current turn when the turn is still in range and the round isn't completed
-    currentTurn += currentTurn < getNumberOfPlayer() && !roundComplete ? 1 : 0;
+    currentTurn += currentTurn < this->getNumberOfPlayer() && !roundComplete ? 1 : 0;
 
     // Set the roundComplete to true once the last player is done
-    roundComplete = currentTurn >= getNumberOfPlayer();
+    roundComplete = currentTurn >= this->getNumberOfPlayer();
 };
 
 template <typename T>
