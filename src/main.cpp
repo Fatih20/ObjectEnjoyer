@@ -11,16 +11,18 @@
 
 int main()
 {
+    cout << "deckA" << endl;
     ColorCard cc1(1, GREEN);
     ColorCard cc2(2, RED);
     Deck<ColorCard> deckA;
-    deckA.addCard(cc1);
     deckA.addCard(cc2);
+    deckA.addCard(cc1);
     cout << deckA << endl;
     // p5.printScore();
 
+    cout << "sorted deck" << endl << "deckB" << endl;
     DeckGame<ColorCard> deckB(deckA);
-
+    deckB.sortDeck();
     cout << deckB << endl;
 
     ColorCard cc3 = deckB.drawCard();
