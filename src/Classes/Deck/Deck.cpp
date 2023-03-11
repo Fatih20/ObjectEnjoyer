@@ -73,7 +73,7 @@ void Deck<T>::swapDeck(Deck<T> &deck1, Deck<T> &deck2)
 // };
 
 template <typename T>
-void Deck<T>::addToDeck(const Card<T> &card)
+void Deck<T>::addCard(const Card<T> &card)
 {
     vec.push_back(card); // havent considered whether the card should be in the very last position or the first
 };
@@ -81,8 +81,8 @@ void Deck<T>::addToDeck(const Card<T> &card)
 template <typename T>
 void Deck<T>::operator+=(const Card<T> &card)
 {
-    vec.push_back(card);
+    this->addToDeck(card);
 };
 
 template class Deck<int>;
-// template std::ostream &operator<<(std::ostream &os, const Deck<int> &deck);
+template std::ostream &operator<<(std::ostream &os, const Deck<int> &deck);

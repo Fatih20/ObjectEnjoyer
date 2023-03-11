@@ -1,8 +1,9 @@
 #include "Classes/Player/Player.hpp"
-
-#include "Deck/Deck.hpp"
-#include "DeckGame/DeckGame.hpp"
-#include "DeckPlayer/DeckPlayer.hpp"
+#include "Classes/Deck/Deck.hpp"
+#include "Classes/DeckGame/DeckGame.hpp"
+#include "Classes/DeckPlayer/DeckPlayer.hpp"
+#include "Classes/ColorCard/ColorCard.hpp"
+#include "Classes/AbilityCard/AbilityCard.hpp"
 
 #include <vector>
 
@@ -10,6 +11,12 @@
 
 int main()
 {
+    ColorCard cc1(1, GREEN);
+    ColorCard cc2(2, GREEN);
+    Deck<int> deckA;
+    deckA.addCard(cc1);
+    deckA.addCard(cc2);
+    cout << cc1;
     // std::vector<int> valuesA = {2, 3, 4, 5, 6};
     // std::vector<int> valuesB = {-12, -13, -134, -9, -23};
 

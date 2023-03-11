@@ -40,3 +40,4 @@ std::ostream &operator<<(std::ostream &os, const Card<T> &card)
 }
 
 template class Card<int>;
+template std::ostream &operator<<(std::ostream &os, const Card<int> &card);

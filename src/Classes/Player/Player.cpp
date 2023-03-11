@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "Classes/InventoryHolder/InventoryHolder.hpp"
 #include "../PlayerException/PlayerException.hpp"
 #include <iostream>
 #include <vector>
@@ -7,14 +8,16 @@
 
 using namespace std;
 
-Player::Player()
+template <typename T>
+Player<T>::Player()
 {
     this->gameID = 0;
     username = "";
     score = 0;
 }
 
-Player::Player(int gameID)
+template <typename T>
+Player<T>::Player(int gameID)
 {
     this->gameID;
     score = 0;
@@ -22,9 +25,11 @@ Player::Player(int gameID)
     setValidUsername();
 };
 
-Player::~Player(){};
+template <typename T>
+Player<T>::~Player(){};
 
-void Player::setValidUsername()
+template <typename T>
+void Player<T>::setValidUsername()
 {
     username = askForUsername();
     bool validUsername = false;
@@ -42,7 +47,8 @@ void Player::setValidUsername()
     }
 };
 
-string Player::askForUsername()
+template <typename T>
+string Player<T>::askForUsername()
 {
     cout << "Masukkan username player ke-" << gameID << " : ";
     string askedUsername;
@@ -54,60 +60,71 @@ string Player::askForUsername()
     return askedUsername;
 };
 
-string Player::getUsername() const
+template <typename T>
+string Player<T>::getUsername() const
 {
     return username;
 };
 
-Player::Player(const Player &givenPlayer)
+template <typename T>
+Player<T>::Player(const Player &givenPlayer)
 {
     username = givenPlayer.getUsername();
     gameID = givenPlayer.gameID;
 };
 
-Player &Player::operator=(const Player &givenPlayer)
+template <typename T>
+Player<T> &Player<T>::operator=(const Player<T> &givenPlayer)
 {
     username = givenPlayer.getUsername();
     gameID = givenPlayer.gameID;
     return *this;
 };
 
-int Player::getScore()
+template <typename T>
+int Player<T>::getScore()
 {
     return score;
 };
 
-void Player::addScore(int addedScore)
+template <typename T>
+void Player<T>::addScore(int addedScore)
 {
     score += addedScore;
 };
 
-void Player::subtractScore(int subtractedScore)
+template <typename T>
+void Player<T>::subtractScore(int subtractedScore)
 {
     score -= subtractedScore;
 };
 
-void Player::operator+=(int addedScore)
+template <typename T>
+void Player<T>::operator+=(int addedScore)
 {
     addScore(addedScore);
 };
 
-void Player::operator-=(int subtractedScore)
+template <typename T>
+void Player<T>::operator-=(int subtractedScore)
 {
     subtractScore(subtractedScore);
 };
 
-void Player::resetScore()
+template <typename T>
+void Player<T>::resetScore()
 {
     score = 0;
 };
 
-void Player::printScore()
+template <typename T>
+void Player<T>::printScore()
 {
     cout << username << ": " << getScore() << endl;
 };
 
-int Player::getGameID()
+template <typename T>
+int Player<T>::getGameID()
 {
     return gameID;
 };

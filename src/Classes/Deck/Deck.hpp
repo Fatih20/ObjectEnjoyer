@@ -8,7 +8,7 @@
 #include "Classes/InventoryHolder/InventoryHolder.hpp"
 
 template <class T>
-class Deck : InventoryHolder
+class Deck : InventoryHolder<T>
 {
 protected:
     std::vector<Card<T>> vec;
@@ -79,7 +79,7 @@ public:
         return os;
     };
 
-    void addToDeck(const Card<T> &);
+    void addCard(const Card<T> &);
 
     void operator+=(const Card<T> &);
 };

@@ -8,7 +8,8 @@
 
 using namespace std;
 
-class Player
+template <typename T>
+class Player : InventoryHolder<T>
 {
 private:
     int gameID;
@@ -180,6 +181,13 @@ public:
      *
      */
     void printColorCard();
+
+    /**
+     * @brief Add card to player's hand
+     *
+     * @param card
+     */
+    void addCard(const Card<T> &card);
 
     // Overloading untuk ngurusin deck nggak diimplementasikan dulu karena urusannya sama deck
     /*
