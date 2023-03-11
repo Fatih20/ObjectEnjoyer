@@ -129,4 +129,28 @@ void PlayerInGame<T>::stopRound()
     roundComplete = true;
 };
 
+template <class T>
+void PlayerInGame<T>::showPlayer()
+{
+    for (int i = 0; i < players.size(); i++)
+    {
+        cout << i + 1 << ". " << players.at(i).getUsername() << endl;
+    }
+};
+
+template <class T>
+void PlayerInGame<T>::showPlayerExcept(int unprintedID)
+{
+    bool print = true;
+    int index = 0;
+    for (int i = 0; i < players.size(); i++)
+    {
+        if (players.at(i).getGameID() != unprintedID)
+        {
+            cout << index + 1 << ". " << players.at(i).getUsername() << endl;
+            index++;
+        }
+    }
+}
+
 template class PlayerInGame<int>;

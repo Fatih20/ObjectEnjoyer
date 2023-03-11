@@ -2,26 +2,24 @@
 #define _DECKPLAYER_HPP_
 
 #include "Classes/Deck/Deck.hpp"
+#include "Classes/DeckGame/DeckGame.hpp"
+
 #include "Classes/Card/Card.hpp"
 
-template <typename T>
-class DeckPlayer: public Deck {
+template <class T>
+class DeckPlayer: public Deck<T> {
     
     public:
         /**
          * @brief construct new Player Deck with empty array as its attribute
-         * @param size current size of the deck
-         * @param maxSize maximum size of the deck
         */
-        DeckPlayer(int size, int maxSize);
+        DeckPlayer();
 
         /**
          * @brief construct new Player Deck with a given array as its attribute
-         * @param value array that will be set as the attribute of this Deck
-         * @param size current size of the deck
-         * @param maxSize maximum size of the deck
+         * @param vec array that will be set as the attribute of this Deck
         */
-        DeckPlayer(Card<T>* value, int size, int maxSize);
+        DeckPlayer(std::vector<Card<T>> vec);
 
         /**
          * @brief construct new Player Deck based on an already constructed Deck
@@ -34,6 +32,52 @@ class DeckPlayer: public Deck {
          * @brief destruct constructed Player Deck
         */
         ~DeckPlayer();
+
+        /**
+         * @brief construct a DeckPlayer whose content is made of cards drawed from DeckGame
+        */
+       DeckPlayer(const Deck<T>&);
+
+        // /**
+        //  * @brief compare the combination value of two Decks
+        //  * 
+        //  * @return true Left player has worse combination
+        //  * @return false Left player has better combination
+        // */
+        // bool operator<(const DeckPlayer&);
+
+        // /**
+        //  * @brief compare the combination value of two Decks
+        //  * 
+        //  * @return true Left player has better combination
+        //  * @return false Left player has worse combination
+        // */
+        // bool operator>(const DeckPlayer&);
+
+        // /**
+        //  * @brief compare the combination value of two Decks
+        //  * 
+        //  * @return true Both players have the same combination value
+        //  * @return false The two players have different value of cards combination
+        // */
+        // bool operator==(const DeckPlayer&);
+
+        // /**
+        //  * @brief compare the combination value of two Decks
+        //  * 
+        //  * @return true Left player has worse if not the same value of cards combination
+        //  * @return false Left player has better combination
+        // */
+        // bool operator<=(const DeckPlayer&);
+
+        // /**
+        //  * @brief compare the combination value of two Decks
+        //  * 
+        //  * @return true Left player has better if not the same value of cards combination
+        //  * @return false Left player has worse combination
+        // */
+        // bool operator>=(const DeckPlayer&);
+    
 };
 
 #endif

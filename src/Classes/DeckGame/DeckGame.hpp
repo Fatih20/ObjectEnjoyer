@@ -1,27 +1,27 @@
 #ifndef _DECKGAME_HPP_
 #define _DECKGAME_HPP_
 
+#include <vector>
+
 #include "Classes/Deck/Deck.hpp"
+#include "Classes/DeckPlayer/DeckPlayer.hpp"
+
 #include "Classes/Card/Card.hpp"
 
-template <typename T>
-class DeckGame: public Deck {
+template <class T>
+class DeckGame: public Deck<T> {
     public:
         /**
-         * @brief construct new Game Deck with empty array as its attribute
-         * @param size current size of the deck
-         * @param maxSize maximum size of the deck
+         * @brief construct new Game Deck with empty vector as its attribute
         */
-        DeckGame(int size, int maxSize);
+        DeckGame(); 
 
         /**
          * @brief construct new Game Deck with a given value as its attribute
          * 
-         * @param value array that will be set as the attribute of this Deck
-         * @param size current size of the deck
-         * @param maxSize maximum size of the deck
+         * @param vec array that will be set as the attribute of this Deck
         */
-       DeckGame(Card<T>* value, int size, int maxSize);
+       DeckGame(std::vector<T> vec);
 
         /**
          * @brief construct new Game Deck based on an already constructed Deck
@@ -31,14 +31,18 @@ class DeckGame: public Deck {
        DeckGame(const DeckGame& other);
 
         /**
-         * @brief destruct constructed Deck
-        */
-       ~DeckGame();
-
-        /**
          * @brief draw a card from this deck
         */
-        Card DrawCard();
+        T drawCard();
+
+        /**
+         * @brief get the value of the combination of DeckGame and DeckPlayer cards
+         * 
+         * @param deckPlayer DeckPlayer to combine with
+         * 
+         * @return int value of combination (or as @Marthenn said: weights)
+        */
+        int getCombinationValueWith(const Deck<T>& deckPlayer);
 };
 
 #endif
