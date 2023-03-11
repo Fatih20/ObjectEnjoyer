@@ -12,9 +12,9 @@ template <typename T>
 DeckGame<T>::DeckGame(const DeckGame<T> &other) : Deck<T>::Deck(other) {}
 
 template <typename T>
-Card<T> DeckGame<T>::drawCard()
+T DeckGame<T>::drawCard()
 {
-    Card<T> res = this->vec.back();
+    T res = this->vec.back();
 
     this->vec.pop_back();
 

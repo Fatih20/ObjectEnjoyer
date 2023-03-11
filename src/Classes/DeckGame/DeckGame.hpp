@@ -34,7 +34,7 @@ public:
     /**
      * @brief draw a card from this deck
      */
-    Card<T> drawCard();
+    T drawCard();
 
     /**
      * @brief get the value of the combination of DeckGame and DeckPlayer cards
