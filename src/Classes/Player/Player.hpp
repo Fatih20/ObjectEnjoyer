@@ -214,6 +214,12 @@ public:
     void redrawCard(DeckGame<T> &deckGame, int newNumberOfCards);
 
     /**
+     * @brief Return all of the cards in this player's hands to the deckGame and retake a the same amount of cards the player has before
+     *
+     * @param deckGame
+     */
+    void redrawCard(DeckGame<T> &deckGame);
+    /**
      * @brief Return 1 if this player is higher, 0 if same, -1 if this player is lower
      *
      * @param otherPlayer

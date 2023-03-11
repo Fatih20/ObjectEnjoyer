@@ -1,4 +1,5 @@
 #include "../PlayerCollection/PlayerCollection.hpp"
+#include "Classes/DeckGame/DeckGame.hpp"
 
 template <typename T>
 class PlayerInGame : public PlayerCollection<T>
@@ -33,6 +34,15 @@ public:
     /**
      * @brief Construct a new Player In Game object
      *
+     * @param deckGame the deck for the player to draw from
+     * @param numberOfCards the number of cards given to each player
+     * @param numberOfPlayer the number of player in the game
+     */
+    PlayerInGame(DeckGame<T> deckGame, int numberOfCards, int numberOfPlayer);
+
+    /**
+     * @brief Construct a new Player In Game object
+     *
      * @param numberOfPlayer the number of player in it
      */
     PlayerInGame(int numberOfPlayer);
@@ -41,7 +51,7 @@ public:
      * @brief Construct a new Player In Game object
      *
      * @param numberOfPlayer
-     * @param currentTurn starts at 1
+     * @param currentTurn starts at 0
      */
     PlayerInGame(int numberOfPlayer, int currentTurn);
 
@@ -52,10 +62,19 @@ public:
     Player<T> &getPlayerWithTurn();
 
     /**
-     * @brief Return the nth player that currently has the turn
+     * @brief Make the nth player redraw their card
      *
+     * @param deckGame the deck from which the player's draw their card
+     * @param n the turn of the player's to redraw
      */
-    int getNthPlayerWithTurn();
+    void redrawCardForNthPlayer(DeckGame<T> &deckGame, int n);
+
+    /**
+     * @brief Redraw the card for the player's currently in turn
+     *
+     * @param deckGame
+     */
+    void redrawCardForCurrentPlayer(DeckGame<T> &deckGame);
 
     /**
      * @brief Whether the round is complete or not
@@ -75,7 +94,7 @@ public:
      * @brief Change roundComplete to true
      *
      */
-    bool getTurn();
+    bool getCurrentTurn();
 
     /**
      * @brief Change the turn to the next person in line

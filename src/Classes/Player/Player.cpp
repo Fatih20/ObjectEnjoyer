@@ -245,4 +245,11 @@ void Player<T>::redrawCard(DeckGame<T> &deckGame, int newNumberOfCards)
     drawCard(deckGame, newNumberOfCards);
 };
 
+template <typename T>
+void Player<T>::redrawCard(DeckGame<T> &deckGame)
+{
+
+    drawCard(deckGame, handCards.getNumberOfCards());
+};
+
 template class Player<ColorCard>;

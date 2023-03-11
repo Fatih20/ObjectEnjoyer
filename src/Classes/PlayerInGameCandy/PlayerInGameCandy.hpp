@@ -10,9 +10,10 @@ public:
      * @brief Construct a new Player In Game Candy object
      *
      * @param numberOfPlayer
-     * @param currentTurn starts at 1
+     * @param currentTurn starts at 0
      */
-    PlayerInGameCandy(int numberOfPlayer, int currentTurn);
+    PlayerInGameCandy(DeckGame<ColorCard> deckGame, int numberOfPlayer);
+
     /**
      * @brief Print the leaderboard of players in the collection
      *

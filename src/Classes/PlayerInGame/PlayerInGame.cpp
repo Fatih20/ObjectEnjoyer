@@ -1,4 +1,5 @@
 #include "PlayerInGame.hpp"
+#include "Classes/PlayerInGameException/PlayerInGameException.hpp"
 #include <iostream>
 #include <algorithm>
 
@@ -9,6 +10,7 @@ PlayerInGame<T>::PlayerInGame() : PlayerCollection<T>(0)
 {
     PlayerInGame(0);
 };
+
 template <typename T>
 PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection<T>(numberOfPlayer)
 {
@@ -22,17 +24,26 @@ PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection<T>(numberOf
 };
 
 template <typename T>
+PlayerInGame<T>::PlayerInGame(DeckGame<T> deckGame, int numberOfCards, int numberOfPlayer) : PlayerInGame<T>(numberOfPlayer)
+{
+    for (int i = 0; i < numberOfPlayer; i++)
+    {
+        this->players.at(turns.at(i)).drawCard(deckGame, numberOfCards);
+    }
+};
+
+template <typename T>
 PlayerInGame<T>::PlayerInGame(int numberOfPlayer, int currentTurn) : PlayerCollection<T>(numberOfPlayer)
 {
     PlayerInGame(number);
-    this->currentTurn = currentTurn - 1;
+    this->currentTurn = currentTurn;
 };
 
 template <typename T>
 void PlayerInGame<T>::setTurn(int newTurn)
 {
     int numberOfPlayer = this->getNumberOfPlayer();
-    currentTurn = (((newTurn - 1) % numberOfPlayer) + numberOfPlayer) % numberOfPlayer;
+    currentTurn = (((newTurn) % numberOfPlayer) + numberOfPlayer) % numberOfPlayer;
 };
 template <typename T>
 void PlayerInGame<T>::reverseTurn()
@@ -40,9 +51,9 @@ void PlayerInGame<T>::reverseTurn()
     reverse(turns.begin(), turns.end());
 };
 template <typename T>
-bool PlayerInGame<T>::getTurn()
+bool PlayerInGame<T>::getCurrentTurn()
 {
-    return currentTurn + 1;
+    return currentTurn;
 };
 
 template <typename T>
@@ -67,20 +78,14 @@ Player<T> &PlayerInGame<T>::getPlayerWithTurn()
 };
 
 template <typename T>
-int PlayerInGame<T>::getNthPlayerWithTurn()
-{
-    return currentTurn + 1;
-};
-
-template <typename T>
 void PlayerInGame<T>::nextTurn()
 {
 
-    // Only increment current turn when the turn is still in range
-    currentTurn += currentTurn < this->getNumberOfPlayer() ? 1 : 0;
+    // Only increment current turn when the turn is still in range and the round isn't completed
+    currentTurn += currentTurn < getNumberOfPlayer() && !roundComplete ? 1 : 0;
 
     // Set the roundComplete to true once the last player is done
-    roundComplete = currentTurn >= this->getNumberOfPlayer();
+    roundComplete = currentTurn >= getNumberOfPlayer();
 };
 
 template <typename T>
@@ -93,7 +98,9 @@ template <typename T>
 void PlayerInGame<T>::resetRound()
 {
     roundComplete = false;
+    currentTurn = 0;
 };
+
 template <typename T>
 void PlayerInGame<T>::stopRound()
 {
@@ -122,6 +129,18 @@ void PlayerInGame<T>::showPlayerExcept(int unprintedID)
             index++;
         }
     }
+};
+
+template <typename T>
+void PlayerInGame<T>::redrawCardForNthPlayer(DeckGame<T> &deckGame, int n)
+{
+    this->players.at(n).redrawCard(deckGame);
+};
+
+template <typename T>
+void PlayerInGame<T>::redrawCardForCurrentPlayer(DeckGame<T> &deckGame)
+{
+    redrawCardForNthPlayer(deckGame, getCurrentTurn());
 };
 
 template class PlayerInGame<ColorCard>;

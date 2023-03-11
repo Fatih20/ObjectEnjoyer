@@ -41,11 +41,13 @@ void PlayerCollection<T>::remove(int index)
 {
     players.erase(players.begin() + (index - 1));
 }
+
 template <typename T>
 void PlayerCollection<T>::operator-=(int index)
 {
     remove(index);
 }
+
 template <typename T>
 bool PlayerCollection<T>::usernameExist(string username)
 {

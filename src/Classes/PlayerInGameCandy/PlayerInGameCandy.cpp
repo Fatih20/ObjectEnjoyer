@@ -2,15 +2,15 @@
 #include <algorithm>
 
 using namespace std;
-PlayerInGameCandy::PlayerInGameCandy(int numberOfPlayer, int currentTurn) : PlayerInGame<ColorCard>(numberOfPlayer, currentTurn){
+PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> deckGame, int numberOfPlayer) : PlayerInGame<ColorCard>(deckGame, 2, numberOfPlayer){
 
-                                                                            };
+                                                                                         };
 
 void PlayerInGameCandy::showLeaderboard()
 {
     vector<Player<ColorCard>> sortedPlayers = players;
-    // sort(sortedPlayers.begin(), sortedPlayers.end(), [](Player p1, Player p2) -> bool
-    //  { return p1 > p2; });
+    sort(sortedPlayers.begin(), sortedPlayers.end(), [](Player<ColorCard> p1, Player<ColorCard> p2) -> bool
+         { return p1 > p2; });
     int numberOfPlayer = getNumberOfPlayer();
     for (int i = 0; i < numberOfPlayer; i++)
     {
@@ -21,7 +21,7 @@ void PlayerInGameCandy::showLeaderboard()
 
 void PlayerInGameCandy::reverseTurn()
 {
-    reverse(players.begin() + getNthPlayerWithTurn(), players.end());
+    reverse(players.begin() + getCurrentTurn(), players.end());
 }
 
 void PlayerInGameCandy::resetRound()
