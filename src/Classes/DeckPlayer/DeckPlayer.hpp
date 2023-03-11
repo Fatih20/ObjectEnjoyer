@@ -11,6 +11,10 @@ class DeckPlayer : public Deck<T>
 
 public:
     /**
+     * @brief construct a DeckPlayer whose content is made of cards drawn from DeckGame
+     */
+    DeckPlayer(Deck<T> &);
+    /**
      * @brief construct new Player Deck with empty array as its attribute
      */
     DeckPlayer();
@@ -32,11 +36,6 @@ public:
      * @brief destruct constructed Player Deck
      */
     ~DeckPlayer();
-
-    /**
-     * @brief construct a DeckPlayer whose content is made of cards drawed from DeckGame
-     */
-    DeckPlayer(const DeckGame<T> &);
 
     // /**
     //  * @brief compare the combination value of two Decks
