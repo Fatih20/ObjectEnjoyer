@@ -5,7 +5,7 @@ template <typename T>
 class Playable
 {
 public:
-    virtual T value() = 0;
+    virtual T value() const = 0;
 };
 
 #endif

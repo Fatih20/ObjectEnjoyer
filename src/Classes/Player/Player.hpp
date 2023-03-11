@@ -187,7 +187,7 @@ public:
      *
      * @param card
      */
-    void addCard(const Card<T> &card);
+    void addCard(const T &card);
 
     // Overloading untuk ngurusin deck nggak diimplementasikan dulu karena urusannya sama deck
     /*

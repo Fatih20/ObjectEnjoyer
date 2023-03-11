@@ -1,5 +1,7 @@
 #include "Deck.hpp"
 #include "Classes/Card/Card.hpp"
+#include "Classes/ColorCard/ColorCard.hpp"
+#include "Classes/AbilityCard/AbilityCard.hpp"
 
 #include <vector>
 #include <iostream>
@@ -7,13 +9,13 @@
 template <typename T>
 Deck<T>::Deck()
 {
-    std::vector<Card<T>> vec;
+    std::vector<T> vec;
 
     this->vec = vec;
 };
 
 template <class T>
-Deck<T>::Deck(std::vector<Card<T>> vec)
+Deck<T>::Deck(std::vector<T> vec)
 {
     this->vec = vec;
 };
@@ -40,13 +42,13 @@ template <typename T>
 void Deck<T>::shuffle(){};
 
 template <typename T>
-void Deck<T>::setDeck(std::vector<Card<T>> vec)
+void Deck<T>::setDeck(std::vector<T> vec)
 {
     this->vec = vec;
 };
 
 template <typename T>
-std::vector<Card<T>> Deck<T>::getDeck()
+std::vector<T> Deck<T>::getDeck()
 {
     return this->vec;
 };
@@ -59,30 +61,34 @@ void Deck<T>::swapDeck(Deck<T> &deck1, Deck<T> &deck2)
 
 // Need fixing
 
-// template <typename T>
-// std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
-// {
-//     os << "\nsize : " << deck.vec.size() << "\nmembers : \n";
-
-//     for (auto elmt : deck.vec)
-//     {
-//         os << elmt << " " << std::endl;
-//     }
-
-//     return os;
-// };
-
 template <typename T>
-void Deck<T>::addCard(const Card<T> &card)
+std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
 {
-    vec.push_back(card); // havent considered whether the card should be in the very last position or the first
+    os << "\nsize : " << deck.vec.size() << "\nmembers : \n";
+
+    for (auto elmt : deck.vec)
+    {
+        os << elmt << " " << std::endl;
+    }
+
+    return os;
 };
 
 template <typename T>
-void Deck<T>::operator+=(const Card<T> &card)
+void Deck<T>::addCard(const T &card)
+{
+    vec.emplace_back(card); // havent considered whether the card should be in the very last position or the first
+};
+
+template <typename T>
+void Deck<T>::operator+=(const T &card)
 {
     this->addCard(card);
 };
 
-template class Deck<int>;
-// template std::ostream &operator<<(std::ostream &os, const Deck<int> &deck);
+template class Deck<Card<int>>;
+template class Deck<ColorCard>;
+template class Deck<AbilityCard>;
+template std::ostream &operator<<(std::ostream &os, const Deck<Card<int>> &deck);
+template std::ostream &operator<<(std::ostream &os, const Deck<ColorCard> &deck);
+template std::ostream &operator<<(std::ostream &os, const Deck<AbilityCard> &deck);

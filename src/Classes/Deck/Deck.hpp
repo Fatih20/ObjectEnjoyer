@@ -11,7 +11,7 @@ template <class T>
 class Deck : InventoryHolder<T>
 {
 protected:
-    std::vector<Card<T>> vec;
+    std::vector<T> vec;
 
 public:
     /**
@@ -24,7 +24,7 @@ public:
      *
      * @param vec vector that will be set as the attribute of this Deck
      */
-    Deck(std::vector<Card<T>> vec);
+    Deck(std::vector<T> vec);
 
     /**
      * @brief construct new Deck based on an already constructed Deck
@@ -51,12 +51,12 @@ public:
     /**
      * @brief set a vector of cards as the content of Deck
      */
-    void setDeck(std::vector<Card<T>> vec);
+    void setDeck(std::vector<T> vec);
 
     /**
      * @brief get the cards contained by the Deck as a vector
      */
-    std::vector<Card<T>> getDeck();
+    std::vector<T> getDeck();
 
     /**
      * @brief swap the content of two separate Decks
@@ -67,21 +67,21 @@ public:
      * @brief print
      */
     template <typename Y>
-    friend std::ostream &operator<<(std::ostream &os, const Deck<Y> &deck)
-    {
-        os << "\nsize : " << deck.vec.size() << "\nmembers : \n";
+    friend std::ostream &operator<<(std::ostream &os, const Deck<Y> &deck);
+    // {
+    //     os << "\nsize : " << deck.vec.size() << "\nmembers : \n";
 
-        for (auto elmt : deck.vec)
-        {
-            os << elmt << " " << std::endl;
-        }
+    //     for (auto elmt : deck.vec)
+    //     {
+    //         os << elmt << " " << std::endl;
+    //     }
 
-        return os;
-    };
+    //     return os;
+    // };
 
-    void addCard(const Card<T> &);
+    void addCard(const T &);
 
-    void operator+=(const Card<T> &);
+    void operator+=(const T &);
 };
 
 #endif

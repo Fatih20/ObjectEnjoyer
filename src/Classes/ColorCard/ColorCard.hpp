@@ -40,7 +40,7 @@ public:
      * @brief Get the card weight based on the value and color relative to other color cards
      *
      */
-    virtual int value();
+    virtual int value() const;
 
     /**
      * @brief Set the color of the card
@@ -68,7 +68,7 @@ public:
      */
     bool operator==(ColorCard other);
 
-    // friend std::ostream &operator<<(std::ostream &os, const ColorCard &card);
+    friend std::ostream &operator<<(std::ostream &os, const ColorCard &card);
 };
 
 /**

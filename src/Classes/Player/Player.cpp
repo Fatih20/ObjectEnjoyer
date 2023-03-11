@@ -130,7 +130,7 @@ int Player<T>::getGameID()
 };
 
 template <typename T>
-void Player<T>::addCard(const Card<T> &card){
+void Player<T>::addCard(const T &card){
 
 };
 

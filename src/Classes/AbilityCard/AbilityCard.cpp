@@ -23,8 +23,8 @@ int AbilityCard::value() const
     return this->Card::val;
 }
 
-// std::ostream &operator<<(std::ostream &os, const AbilityCard &card)
-// {
-//     os << card.val << card.getDescription();
-//     return os;
-// }
+std::ostream &operator<<(std::ostream &os, const AbilityCard &card)
+{
+    os << card.val << " " << card.getDescription();
+    return os;
+}

@@ -25,7 +25,7 @@ public:
      * @brief Get the face value of the card
      *
      */
-    virtual T value();
+    virtual T value() const;
 
     /**
      * @brief Set the face value of the card

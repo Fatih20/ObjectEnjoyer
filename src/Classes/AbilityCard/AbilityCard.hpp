@@ -39,7 +39,7 @@ public:
      */
     void activateAbility();
 
-    // friend std::ostream &operator<<(std::ostream &os, const AbilityCard &card);
+    friend std::ostream &operator<<(std::ostream &os, const AbilityCard &card);
 };
 
 #endif

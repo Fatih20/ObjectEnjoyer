@@ -13,7 +13,7 @@ int main()
 {
     ColorCard cc1(1, GREEN);
     ColorCard cc2(2, GREEN);
-    Deck<int> deckA;
+    DeckPlayer<ColorCard> deckA;
     deckA.addCard(cc1);
     deckA.addCard(cc2);
     cout << deckA;

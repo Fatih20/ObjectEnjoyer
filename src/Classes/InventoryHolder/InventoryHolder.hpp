@@ -7,7 +7,7 @@ template <typename T>
 class InventoryHolder
 {
 public:
-    virtual void addCard(const Card<T> &) = 0;
+    virtual void addCard(const T &) = 0;
 };
 
 #endif

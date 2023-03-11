@@ -7,7 +7,7 @@ Card<T>::Card(T value)
 };
 
 template <typename T>
-T Card<T>::value()
+T Card<T>::value() const
 {
     return val;
 }
@@ -29,12 +29,12 @@ Card<T> &Card<T>::operator=(const Card<T> &other)
 {
     val = other.val;
     return *this;
-}
+};
 
 template <typename T>
 std::ostream &operator<<(std::ostream &os, const Card<T> &card)
 {
-    os << card.val;
+    os << card.value();
 
     return os;
 }

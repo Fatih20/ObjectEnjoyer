@@ -13,7 +13,7 @@ Color ColorCard::getColor()
     return this->color;
 }
 
-int ColorCard::value()
+int ColorCard::value() const
 {
     return this->cardWeight.at(std::make_pair(this->Card::val, this->color));
 }
@@ -48,9 +48,9 @@ bool ColorCard::operator==(ColorCard other)
     return this->value() == other.value();
 }
 
-// std::ostream &operator<<(std::ostream &os, const ColorCard &card)
-// {
-//     os << card.val << " " << card.color;
+std::ostream &operator<<(std::ostream &os, const ColorCard &card)
+{
+    os << card.val << " " << card.color;
 
-//     return os;
-// };
+    return os;
+};

@@ -22,14 +22,14 @@ public:
      *
      * @param vec array that will be set as the attribute of this Deck
      */
-    DeckGame(std::vector<Card<T>> vec);
+    DeckGame(std::vector<T> vec);
 
     /**
      * @brief construct new Game Deck based on an already constructed Deck
      *
      * @param other the other Deck
      */
-    DeckGame(const DeckGame &other);
+    DeckGame(const DeckGame<T> &other);
 
     /**
      * @brief draw a card from this deck

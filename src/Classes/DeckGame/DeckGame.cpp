@@ -6,10 +6,10 @@ template <typename T>
 DeckGame<T>::DeckGame() : Deck<T>::Deck(){}; // actually redundant?
 
 template <class T>
-DeckGame<T>::DeckGame(std::vector<Card<T>> vec) : Deck<T>::Deck(vec){};
+DeckGame<T>::DeckGame(std::vector<T> vec) : Deck<T>::Deck(vec){};
 
 template <typename T>
-DeckGame<T>::DeckGame(const DeckGame &other) : Deck<T>::Deck(other) {}
+DeckGame<T>::DeckGame(const DeckGame<T> &other) : Deck<T>::Deck(other) {}
 
 template <typename T>
 Card<T> DeckGame<T>::drawCard()
@@ -27,5 +27,5 @@ int DeckGame<T>::getCombinationValueWith(const Deck<T> &deckPlayer)
     return 0;
 }
 
-template Card<int> DeckGame<int>::drawCard();
-template class DeckGame<int>;
+// template class DeckGame<Card<int>>;
+// template Card<int> DeckGame<Card<int>>::drawCard();
