@@ -1,20 +1,23 @@
+#ifndef _PLAYER_HPP
+#define _PLAYER_HPP
+
 #include <cstring>
 #include <string>
 #include <exception>
 #include <vector>
-// #include "../Deck/Deck.hpp"
-// #include "../Card/Card.hpp"
+#include "Classes/InventoryHolder/InventoryHolder.hpp"
+#include "Classes/DeckPlayer/DeckPlayer.hpp"
 
 using namespace std;
 
-class Player
+template <typename T>
+class Player : InventoryHolder<T>
 {
 private:
-    static vector<string> allNicknames;
-    static int numberOfPlayer;
+    int gameID;
     string username;
     int score;
-    // DeckPlayer deck;
+    DeckPlayer<T> handCards;
 
     /**
      * @brief Ask for username from the user
@@ -22,12 +25,26 @@ private:
      */
     string askForUsername();
 
+protected:
+    /**
+     * @brief Set the gameID of the player
+     *
+     * @param gameID
+     */
+    void setGameID(int gameID);
+
 public:
+    /**
+     * @brief Construct a new Player object
+     *
+     */
+    Player();
+
     /**
      * @brief Construct a new Player object. Menanyakan username pemain melalui CLI.
      *
      */
-    Player();
+    Player(int gameID);
 
     /**
      * @brief Destroy the Player object
@@ -45,7 +62,7 @@ public:
      * @brief Assign a player to another player with the assignment operator
      *
      */
-    void operator=(const Player &);
+    Player &operator=(const Player &);
 
     /**
      * @brief Get the username of the player
@@ -53,6 +70,12 @@ public:
      * @return string
      */
     string getUsername() const;
+    /**
+     * @brief Return the gameID of the object
+     *
+     * @return int
+     */
+    int getGameID();
 
     /**
      * @brief Get the player's score
@@ -76,12 +99,19 @@ public:
     void operator-=(int subtractedScore);
 
     /**
+     * @brief Add card to the player
+     *
+     * @param addedCard
+     */
+    void operator+=(const T &addedCard);
+
+    /**
      * @brief Compare the player's score
      *
      * @return true Left player's score is lower than the right
      * @return false Left player's score is not lower than the right player
      */
-    bool operator<(const Player &);
+    bool operator<(const Player<T> &);
 
     /**
      * @brief Compare the player's score
@@ -89,7 +119,7 @@ public:
      * @return true Left player's score is higher than the right
      * @return false Left player's score is not higher than the right player
      */
-    bool operator>(const Player &);
+    bool operator>(const Player<T> &);
 
     /**
      * @brief Compare the player's score
@@ -97,7 +127,7 @@ public:
      * @return true Left player's score is higher or equal to the right player
      * @return false Left player's score is not higher and not equal than the right player
      */
-    bool operator>=(const Player &);
+    bool operator>=(const Player<T> &);
 
     /**
      * @brief Compare the player's score
@@ -105,7 +135,7 @@ public:
      * @return true Left player's score is lower or equal to the right player
      * @return false Left player's score is not lower and not equal than the right player
      */
-    bool operator<=(const Player &);
+    bool operator<=(const Player<T> &);
 
     /**
      * @brief Compare the player's score
@@ -113,7 +143,7 @@ public:
      * @return true Left player's score is equal to the right player
      * @return false Left player's score is not equal to the right player
      */
-    bool operator==(const Player &);
+    bool operator==(const Player<T> &);
 
     /**
      * @brief Compare the player's score
@@ -121,7 +151,7 @@ public:
      * @return true Left player's score is not equal to the right player
      * @return false Left player's score is equal to the right player
      */
-    bool operator!=(const Player &);
+    bool operator!=(const Player<T> &);
 
     /**
      * @brief Subtract the player's score
@@ -148,14 +178,13 @@ public:
      *
      * @param givenPlayer
      */
-    void swapDeck(Player &givenPlayer);
+    void swapDeck(Player<T> &givenPlayer);
 
     /**
-     * @brief Swap the deck of this player and the given player
+     * @brief Ask username from the user and validate its result until it's correct
      *
-     * @param givenPlayer
      */
-    // void operator<=>(Player &givenPlayer);
+    void setValidUsername();
 
     /**
      * @brief Print out the score
@@ -169,8 +198,80 @@ public:
      */
     void printColorCard();
 
+    /**
+     * @brief Add card to player's hand
+     *
+     * @param card
+     */
+    void addCard(const T &card);
+
+    /**
+     * @brief Draw numberOfCard amount of card for the player from the given deck game.
+     *
+     * @param deckGame
+     * @param numberOfCards
+     */
+    void drawCard(DeckGame<T> &deckGame, int numberOfCards);
+
+    /**
+     * @brief Return all of the cards in this player's hands to the deckGame and retake a numberOfCards of new card from it
+     *
+     * @param deckGame
+     * @param numberOfCards
+     */
+    void redrawCard(DeckGame<T> &deckGame, int newNumberOfCards);
+
+    /**
+     * @brief Return all of the cards in this player's hands to the deckGame and retake a the same amount of cards the player has before
+     *
+     * @param deckGame
+     */
+    void redrawCard(DeckGame<T> &deckGame);
+    /**
+     * @brief Return 1 if this player is higher, 0 if same, -1 if this player is lower
+     *
+     * @param otherPlayer
+     * @param deckGame
+     * @return int
+     */
+    int compareCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame);
+
+    /**
+     * @brief Return true if we have equal combination weight
+     *
+     * @param otherPlayer
+     * @param deckGame
+     * @return int
+     */
+    bool equalCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame);
+
+    /**
+     * @brief Return true if this player have lower combination weight
+     *
+     * @param otherPlayer
+     * @param deckGame
+     * @return true
+     * @return false
+     */
+    bool lowerCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame);
+
+    /**
+     * @brief Return true if this player have bigger combination weight
+     *
+     * @param otherPlayer
+     * @param deckGame
+     * @return true
+     * @return false
+     */
+    bool higherCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame);
+
     // Overloading untuk ngurusin deck nggak diimplementasikan dulu karena urusannya sama deck
     /*
     void operator+(Card<CardValueType> addedCard);
     */
+
+    template <typename Y>
+    friend std::ostream &operator<<(std::ostream &os, const Player<Y> &player);
 };
+
+#endif

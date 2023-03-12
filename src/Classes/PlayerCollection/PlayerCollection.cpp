@@ -1,34 +1,42 @@
 #include "PlayerCollection.hpp"
+#include "Classes/ColorCard/ColorCard.hpp"
+#include "Classes/PlayerCandy/PlayerCandy.hpp"
 #include <iostream>
 
 using namespace std;
-
-PlayerCollection::PlayerCollection(int numberOfPlayer)
+template <typename T>
+PlayerCollection<T>::PlayerCollection(int numberOfPlayer)
 {
-    vector<Player> players(0);
-    for (int i = 0; i < numberOfPlayer; i++)
-    {
-        Player p;
-        players.push_back(p);
-    }
+    vector<T> players(0);
 };
 
-int PlayerCollection::getNumberOfPlayer()
+template <typename T>
+int PlayerCollection<T>::getNumberOfPlayer()
 {
     return players.size();
 }
-
-void PlayerCollection::operator<<(Player &addedPlayer)
+template <typename T>
+void PlayerCollection<T>::addPlayer(T &addedPlayer)
 {
     players.push_back(addedPlayer);
 }
+template <typename T>
+void PlayerCollection<T>::operator<<(T &addedPlayer)
+{
+    addPlayer(addedPlayer);
+}
 
-void PlayerCollection::remove(int index)
+template <typename T>
+void PlayerCollection<T>::remove(int index)
 {
     players.erase(players.begin() + (index - 1));
 }
 
-void PlayerCollection::operator-=(int index)
+template <typename T>
+void PlayerCollection<T>::operator-=(int index)
 {
     remove(index);
 }
+
+template class PlayerCollection<Player<ColorCard>>;
+template class PlayerCollection<PlayerCandy>;
