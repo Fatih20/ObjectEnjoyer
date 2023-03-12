@@ -1,0 +1,124 @@
+\hypertarget{class_player_collection}{}\doxysection{Player\+Collection Class Reference}
+\label{class_player_collection}\index{PlayerCollection@{PlayerCollection}}
+
+
+{\ttfamily \#include $<$Player\+Collection.\+hpp$>$}
+
+
+
+Inheritance diagram for Player\+Collection\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{class_player_collection__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Player\+Collection\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{class_player_collection__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_player_collection_af08bf382f5e33fef222e60b9904728a3}{Player\+Collection}} (\mbox{\hyperlink{classint}{int}} number\+Of\+Player)
+\item 
+\mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_player_collection_ab7184a1cee64a60ad6fce662048cb47b}{get\+Number\+Of\+Player}} ()
+\begin{DoxyCompactList}\small\item\em Return the number of player in this collection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_collection_a42c0a1d5dd7209da5313cc3639bec498}{operator$<$$<$}} (\mbox{\hyperlink{class_player}{Player}} \&added\+Player)
+\begin{DoxyCompactList}\small\item\em Add added\+Player into the collection as the last player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_collection_ab19c1b4507cebf744ad4f5978cf088f2}{remove}} (\mbox{\hyperlink{classint}{int}} index)
+\begin{DoxyCompactList}\small\item\em Remove a player from the collection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_collection_a740cb42bb24f0cde62f86a4d08d5685d}{operator-\/=}} (\mbox{\hyperlink{classint}{int}} index)
+\begin{DoxyCompactList}\small\item\em Remove a player from the collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{class_player}{Player}} $>$ \mbox{\hyperlink{class_player_collection_a4c0c8be5bfffe4960620f2953eb488cb}{players}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_player_collection_af08bf382f5e33fef222e60b9904728a3}\label{class_player_collection_af08bf382f5e33fef222e60b9904728a3}} 
+\index{PlayerCollection@{PlayerCollection}!PlayerCollection@{PlayerCollection}}
+\index{PlayerCollection@{PlayerCollection}!PlayerCollection@{PlayerCollection}}
+\doxysubsubsection{\texorpdfstring{PlayerCollection()}{PlayerCollection()}}
+{\footnotesize\ttfamily Player\+Collection\+::\+Player\+Collection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{number\+Of\+Player }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_player_collection_ab7184a1cee64a60ad6fce662048cb47b}\label{class_player_collection_ab7184a1cee64a60ad6fce662048cb47b}} 
+\index{PlayerCollection@{PlayerCollection}!getNumberOfPlayer@{getNumberOfPlayer}}
+\index{getNumberOfPlayer@{getNumberOfPlayer}!PlayerCollection@{PlayerCollection}}
+\doxysubsubsection{\texorpdfstring{getNumberOfPlayer()}{getNumberOfPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classint}{int}} Player\+Collection\+::get\+Number\+Of\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return the number of player in this collection. 
+
+\mbox{\Hypertarget{class_player_collection_a740cb42bb24f0cde62f86a4d08d5685d}\label{class_player_collection_a740cb42bb24f0cde62f86a4d08d5685d}} 
+\index{PlayerCollection@{PlayerCollection}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!PlayerCollection@{PlayerCollection}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily void Player\+Collection\+::operator-\/= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{index }\end{DoxyParamCaption})}
+
+
+
+Remove a player from the collection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & starts at one \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_collection_a42c0a1d5dd7209da5313cc3639bec498}\label{class_player_collection_a42c0a1d5dd7209da5313cc3639bec498}} 
+\index{PlayerCollection@{PlayerCollection}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!PlayerCollection@{PlayerCollection}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily void Player\+Collection\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_player}{Player}} \&}]{added\+Player }\end{DoxyParamCaption})}
+
+
+
+Add added\+Player into the collection as the last player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em added\+Player} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_collection_ab19c1b4507cebf744ad4f5978cf088f2}\label{class_player_collection_ab19c1b4507cebf744ad4f5978cf088f2}} 
+\index{PlayerCollection@{PlayerCollection}!remove@{remove}}
+\index{remove@{remove}!PlayerCollection@{PlayerCollection}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily void Player\+Collection\+::remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{index }\end{DoxyParamCaption})}
+
+
+
+Remove a player from the collection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & starts at one \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_player_collection_a4c0c8be5bfffe4960620f2953eb488cb}\label{class_player_collection_a4c0c8be5bfffe4960620f2953eb488cb}} 
+\index{PlayerCollection@{PlayerCollection}!players@{players}}
+\index{players@{players}!PlayerCollection@{PlayerCollection}}
+\doxysubsubsection{\texorpdfstring{players}{players}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_player}{Player}}$>$ Player\+Collection\+::players\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Classes/\+Player\+Collection/\mbox{\hyperlink{_player_collection_8hpp}{Player\+Collection.\+hpp}}\item 
+src/\+Classes/\+Player\+Collection/\mbox{\hyperlink{_player_collection_8cpp}{Player\+Collection.\+cpp}}\end{DoxyCompactItemize}

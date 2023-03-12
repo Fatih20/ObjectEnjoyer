@@ -1,0 +1,52 @@
+\hypertarget{_color_card_8hpp_source}{}\doxysection{Color\+Card.\+hpp}
+\label{_color_card_8hpp_source}\index{src/Classes/ColorCard/ColorCard.hpp@{src/Classes/ColorCard/ColorCard.hpp}}
+\mbox{\hyperlink{_color_card_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_COLORCARD\_HPP\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_COLORCARD\_HPP\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_card_8hpp}{Classes/Card/Card.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Map>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{00008\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1caa60bd322f93178d68184e30e162571ca}{GREEN}},}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1ca35d6719cb4d7577c031b3d79057a1b79}{BLUE}},}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1cae735a848bf82163a19236ead1c3ef2d2}{YELLOW}},}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1caf80f9a890089d211842d59625e561f88}{RED}}}
+\DoxyCodeLine{00012\ \}\ \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ std::map<std::pair<int,\ Color>,\ \textcolor{keywordtype}{double}>\ \mbox{\hyperlink{_color_card_8hpp_a1ea0367793a344ac9a16df966084492d}{cardWeight}};\ \textcolor{comment}{//\ Akan\ dipakai\ untuk\ menghitung\ bobot\ kartu\ [biar\ spek\ map\ kepake\ hehe]}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_color_card}{ColorCard}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_card}{Card}}<int>\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}}\ color;}
+\DoxyCodeLine{00019\ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_color_card_a578ae58ea2b6ffbb09206a1f3dd699f4}{ColorCard}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_card_a2bc9403a92ad2f3a692223d269713640}{value}},\ \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}}\ color);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CCtor\ dan\ assignment\ operator\ tidak\ perlu\ karena\ tidak\ ada\ pointer}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dtor\ tidak\ perlu\ karena\ hanya\ menyimpan\ data\ sederhana}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}}\ \mbox{\hyperlink{class_color_card_ae2ae2d5e8b9358a6385c5a8c0d7a46cc}{getColor}}();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_color_card_a00631b37cdaddb158d77d704b4bdff1e}{getValue}}();}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a0c3a1dacf94061154b3ee354359c5893}{HIGH}},}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a360fa17489dc77903b0bcf1d91ae47bb}{PAIR}},}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a9fdfcb7a9f59b8b1eb2a756393b21cfb}{TWO\_PAIR}},}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a95bce95773a363c23cd8131c557a8291}{THREE\_OF\_A\_KIND}},}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a08707fd429345dc72f3d7b0cc867ef05}{STRAIGHT}},}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a365b228f1c799ff897f963650ec33dd9}{FLUSH}},}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a49fbc484dfc6768f0937c39462def32d}{FULL\_HOUSE}},}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a850cb6627e3c9162f1721e5fd4187fb0}{FOUR\_OF\_A\_KIND}},}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a02768de5a629b299fc73da4b03833b0a}{STRAIGHT\_FLUSH}}}
+\DoxyCodeLine{00054\ \}\ \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73}{Combination}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ std::map<Combination,\ double>\ \mbox{\hyperlink{_color_card_8hpp_acc94a824a1626f1eb89a59d71cb86549}{combinationWeight}};\ \textcolor{comment}{//\ Akan\ dipakai\ untuk\ menghitung\ bobot\ kombinasi\ kartu\ [biar\ spek\ map\ kepake\ hehe]}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{_color_card_8hpp_a11a8c6836d3f7f97bc890e98f9635dd9}{getCombinationWeight}}(\mbox{\hyperlink{class_card}{Card<int>}}\ cards[]);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}

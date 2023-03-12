@@ -1,0 +1,77 @@
+\hypertarget{_game_8hpp_source}{}\doxysection{Game.\+hpp}
+\label{_game_8hpp_source}\index{src/Classes/Game/Game.hpp@{src/Classes/Game/Game.hpp}}
+\mbox{\hyperlink{_game_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GAME\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GAME\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../PlayerCollection/PlayerCollection.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../DeckGame/DeckGame.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_game}{Game}}\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_player_collection}{PlayerCollection}}\ \mbox{\hyperlink{class_game_aa326b1f037f16fc6cc6fedf36518ee1e}{players}};\ \ \ \textcolor{comment}{//pemain}}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_game_a9087c3cd44012a3f321bea7cac6e243c}{round}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ronde\ permainan}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_game_aa5c2208aafa31878b8108816b833b6e4}{giftPoint}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//poin\ hadiah\ tiap\ ronde}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_deck_game}{DeckGame}}\ \mbox{\hyperlink{class_game_a5d9b653c1b43f29b3886e544b998ba75}{mainDeck}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//deck\ utama}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_player}{Player}}\ \mbox{\hyperlink{class_game_a191dcd576c2d6e6a4f63413dab97c711}{currentTurn}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//pemain\ giliran\ saat\ ini}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ vector<int>\ \mbox{\hyperlink{class_game_ab4f17cc84b1f1e238905a4fd2b9f4ca2}{playerTurn}};\ \ \ \ \ \ \ \ \textcolor{comment}{//urutan\ giliran\ pemain\ saat\ ini}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_game_ad59df6562a58a614fda24622d3715b65}{Game}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_game_ae3d112ca6e0e55150d2fdbc704474530}{\string~Game}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_game_aa79443880de5f26387c2a1c70c8c1aae}{Game}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_game}{Game}}\&);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_player}{Player}}\ \mbox{\hyperlink{class_game_a6867b178958c2da3a3ea8c537f8e16b9}{getPlayer}}(\textcolor{keywordtype}{int}\ playerId);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a3d9b98f7c4a96ecf578f75b96c9f0e90}{start}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ set\ nickname\ player}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ loop\ untill\ winning\ condition}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ \ \ \ \ \ if\ (ronde\ =\ 1)\ :\ set\ DeckCard}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ \ \ \ \ \ loop\ player\ turn\ \&\ !winning\ condition\ */}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_game_af96f57942c5ced0930c0a64844875e41}{isWinning}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a44e13d60ee21673a7b102c01fed57542}{setDeckCard}}();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a8dac5a4105662d6a12dd791a4ff72761}{endOfRound6}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_ab4bd639d87e65757e2ac1061ee8f1a64}{playerTurn}}();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a801658c7cef474bc1d9a830f4a79034c}{nextTurn}}();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_aad29356f32ac5d609d6fab1420c213d6}{nextRoundPlayerTurn}}();}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a2f7b4982b4167cff8343b7c8e77b0bba}{multiplyGiftPoin}}(\textcolor{keywordtype}{int}\ x);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a3a0c5adfaa92af2653a6302edbf58276}{giveAbilityCard}}();}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a02e7fe79554934b04a952afe8ab8e53b}{activateAbility}}();}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a5b50f6594b8caa9a09b66c72b28d5f76}{reverseTurn}}();}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a09b4ef6e5fe944d9633bda2fd6d05371}{commandDOUBLE}}();}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a4b93ed235d5633e2b1181903481284ef}{commandNEXT}}();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a87a53355de6fcec2708e236467dea579}{commandHALF}}();}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a54c3cadb17faf33d6ae927c383b51891}{commandREROLL}}();}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a897081551f804b1626fefe5cfd434174}{commandQUADRUPLE}}();}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a87a53355de6fcec2708e236467dea579}{commandHALF}}();}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_aaf0bb6bcc6cfca893b6d7c739deddfb3}{commandQUARTER}}();}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a2f84209267336abbd8bf78b11f3e5b30}{commandREVERSE}}();}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a360475997a9c3e8b618892d86a93e5bb}{commandSWAPCARD}}();}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_a1132fb590f432dce9fb747e40819a855}{commandSWITCH}}();}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_af338a2727f02e26f0d580e3b82e7cfff}{commandABILITYLESS}}();}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ blm\ selesai}}
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

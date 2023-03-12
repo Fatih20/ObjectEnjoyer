@@ -1,0 +1,11 @@
+<map id="Game" name="Game">
+<area shape="rect" id="node1" title=" " alt="" coords="218,792,401,1236"/>
+<area shape="rect" id="node2" href="$class_player_collection.html" title=" " alt="" coords="5,469,163,605"/>
+<area shape="rect" id="node3" title=" " alt="" coords="25,182,143,259"/>
+<area shape="rect" id="node4" href="$classint.html" title=" " alt="" coords="187,498,226,575"/>
+<area shape="rect" id="node5" href="$class_deck_game.html" title=" " alt="" coords="250,476,369,597"/>
+<area shape="rect" id="node6" href="$class_deck.html" title=" " alt="" coords="267,145,351,296"/>
+<area shape="rect" id="node7" title=" " alt="" coords="265,5,354,83"/>
+<area shape="rect" id="node8" href="$class_player.html" title=" " alt="" coords="393,359,519,715"/>
+<area shape="rect" id="node9" title=" " alt="" coords="544,498,640,575"/>
+</map>

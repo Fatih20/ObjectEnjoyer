@@ -1,0 +1,40 @@
+\hypertarget{_player_in_game_8hpp_source}{}\doxysection{Player\+In\+Game.\+hpp}
+\label{_player_in_game_8hpp_source}\index{src/Classes/PlayerInGame/PlayerInGame.hpp@{src/Classes/PlayerInGame/PlayerInGame.hpp}}
+\mbox{\hyperlink{_player_in_game_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}../PlayerCollection/PlayerCollection.hpp"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_player_in_game}{PlayerInGame}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_player_collection}{PlayerCollection}}}
+\DoxyCodeLine{00004\ \{}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00007\ \ \ \ \ vector<int>\ \mbox{\hyperlink{class_player_in_game_a0d7b910c93674b711b75d877572cb220}{turns}};}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_player_in_game_a3e63bb4f2d031969dffcdd880c31bb28}{currentTurn}};}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_player_in_game_af1b52b6ad832b90f44f0454f2d130798}{roundComplete}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_in_game_a943e44015802de30cc13d2baf2f22546}{setTurn}}(\textcolor{keywordtype}{int}\ newTurn);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_in_game_a07ab0eac805881a53339b790b053da14}{reverseTurn}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_player_in_game_aef3887730c6e58e3ffa4b8636f5a1fd4}{PlayerInGame}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_player_in_game_aef3887730c6e58e3ffa4b8636f5a1fd4}{PlayerInGame}}(\textcolor{keywordtype}{int}\ numberOfPlayer);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_player_in_game_aef3887730c6e58e3ffa4b8636f5a1fd4}{PlayerInGame}}(\textcolor{keywordtype}{int}\ numberOfPlayer,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_player_in_game_a3e63bb4f2d031969dffcdd880c31bb28}{currentTurn}});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_player}{Player}}\ \&\mbox{\hyperlink{class_player_in_game_a9015929f79673e2a034b3b7232d123fe}{getPlayerWithTurn}}();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_player_in_game_a92b609b573989d7695e249551d2f8c23}{getNthPlayerWithTurn}}();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_in_game_a93ffe6fa4db11286be9fbe929cfa5fdc}{nextTurn}}();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_player_in_game_a42856fc6788da2354648e7e1a2057170}{getIsRoundComplete}}();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_in_game_ab12f977e154531b4f3c6e8adbb7d8417}{resetRound}}();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_player_in_game_a5f461b2a1ab95729531a1ce2ab404a8f}{stopRound}}();}
+\DoxyCodeLine{00084\ \};}
+
+\end{DoxyCode}

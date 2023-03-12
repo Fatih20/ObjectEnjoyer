@@ -1,0 +1,369 @@
+\hypertarget{class_game}{}\doxysection{Game Class Reference}
+\label{class_game}\index{Game@{Game}}
+
+
+{\ttfamily \#include $<$Game.\+hpp$>$}
+
+
+
+Collaboration diagram for Game\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_game__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_ad59df6562a58a614fda24622d3715b65}{Game}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_game}{Game}} object. round 1, gift\+Point 64, current\+Turn p1, player\+Turn \mbox{[}1,2,3,4,5,6,7\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_ae3d112ca6e0e55150d2fdbc704474530}{$\sim$\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{class_game}{Game}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_aa79443880de5f26387c2a1c70c8c1aae}{Game}} (const \mbox{\hyperlink{class_game}{Game}} \&)
+\begin{DoxyCompactList}\small\item\em Construct a copy of \mbox{\hyperlink{class_game}{Game}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_player}{Player}} \mbox{\hyperlink{class_game_a6867b178958c2da3a3ea8c537f8e16b9}{get\+Player}} (\mbox{\hyperlink{classint}{int}} player\+Id)
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{class_player}{Player}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a3d9b98f7c4a96ecf578f75b96c9f0e90}{start}} ()
+\begin{DoxyCompactList}\small\item\em start game \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_game_af96f57942c5ced0930c0a64844875e41}{is\+Winning}} ()
+\begin{DoxyCompactList}\small\item\em winning condition \+: one of the players has 2$^\wedge$32\texorpdfstring{$>$}{>}= points \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a44e13d60ee21673a7b102c01fed57542}{set\+Deck\+Card}} ()
+\begin{DoxyCompactList}\small\item\em Set the \mbox{\hyperlink{class_deck}{Deck}} \mbox{\hyperlink{class_card}{Card}} object, inisiasi main\+Deck dan membagikan kartu pemain pada awal ronde (user-\/input/file based) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a8dac5a4105662d6a12dd791a4ff72761}{end\+Of\+Round6}} ()
+\begin{DoxyCompactList}\small\item\em give gift point to the player with the highest point \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_ab4bd639d87e65757e2ac1061ee8f1a64}{player\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em mekanisme giliran pemain, current\+Player akan input command dan command akan dijalankan \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a801658c7cef474bc1d9a830f4a79034c}{next\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em change current\+Player to the next player in player\+Turn \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_aad29356f32ac5d609d6fab1420c213d6}{next\+Round\+Player\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em change player\+Turn at the end of the round \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a2f7b4982b4167cff8343b7c8e77b0bba}{multiply\+Gift\+Poin}} (\mbox{\hyperlink{classint}{int}} x)
+\begin{DoxyCompactList}\small\item\em multiply gift point by x \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a3a0c5adfaa92af2653a6302edbf58276}{give\+Ability\+Card}} ()
+\begin{DoxyCompactList}\small\item\em give players ability card in round 2 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a02e7fe79554934b04a952afe8ab8e53b}{activate\+Ability}} ()
+\begin{DoxyCompactList}\small\item\em activate ability card that the current player has \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a5b50f6594b8caa9a09b66c72b28d5f76}{reverse\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em reverse the rest of player\+Turn \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a09b4ef6e5fe944d9633bda2fd6d05371}{command\+DOUBLE}} ()
+\item 
+void \mbox{\hyperlink{class_game_a4b93ed235d5633e2b1181903481284ef}{command\+NEXT}} ()
+\item 
+void \mbox{\hyperlink{class_game_a87a53355de6fcec2708e236467dea579}{command\+HALF}} ()
+\item 
+void \mbox{\hyperlink{class_game_a54c3cadb17faf33d6ae927c383b51891}{command\+REROLL}} ()
+\item 
+void \mbox{\hyperlink{class_game_a897081551f804b1626fefe5cfd434174}{command\+QUADRUPLE}} ()
+\item 
+void \mbox{\hyperlink{class_game_a87a53355de6fcec2708e236467dea579}{command\+HALF}} ()
+\item 
+void \mbox{\hyperlink{class_game_aaf0bb6bcc6cfca893b6d7c739deddfb3}{command\+QUARTER}} ()
+\item 
+void \mbox{\hyperlink{class_game_a2f84209267336abbd8bf78b11f3e5b30}{command\+REVERSE}} ()
+\item 
+void \mbox{\hyperlink{class_game_a360475997a9c3e8b618892d86a93e5bb}{command\+SWAPCARD}} ()
+\item 
+void \mbox{\hyperlink{class_game_a1132fb590f432dce9fb747e40819a855}{command\+SWITCH}} ()
+\item 
+void \mbox{\hyperlink{class_game_af338a2727f02e26f0d580e3b82e7cfff}{command\+ABILITYLESS}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_player_collection}{Player\+Collection}} \mbox{\hyperlink{class_game_aa326b1f037f16fc6cc6fedf36518ee1e}{players}}
+\item 
+\mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_game_a9087c3cd44012a3f321bea7cac6e243c}{round}}
+\item 
+\mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_game_aa5c2208aafa31878b8108816b833b6e4}{gift\+Point}}
+\item 
+\mbox{\hyperlink{class_deck_game}{Deck\+Game}} \mbox{\hyperlink{class_game_a5d9b653c1b43f29b3886e544b998ba75}{main\+Deck}}
+\item 
+\mbox{\hyperlink{class_player}{Player}} \mbox{\hyperlink{class_game_a191dcd576c2d6e6a4f63413dab97c711}{current\+Turn}}
+\item 
+vector$<$ \mbox{\hyperlink{classint}{int}} $>$ \mbox{\hyperlink{class_game_ab4f17cc84b1f1e238905a4fd2b9f4ca2}{player\+Turn}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_game_ad59df6562a58a614fda24622d3715b65}\label{class_game_ad59df6562a58a614fda24622d3715b65}} 
+\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Game\+::\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{class_game}{Game}} object. round 1, gift\+Point 64, current\+Turn p1, player\+Turn \mbox{[}1,2,3,4,5,6,7\mbox{]}. 
+
+\mbox{\Hypertarget{class_game_ae3d112ca6e0e55150d2fdbc704474530}\label{class_game_ae3d112ca6e0e55150d2fdbc704474530}} 
+\index{Game@{Game}!````~Game@{$\sim$Game}}
+\index{````~Game@{$\sim$Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{$\sim$Game()}{~Game()}}
+{\footnotesize\ttfamily Game\+::$\sim$\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \mbox{\hyperlink{class_game}{Game}} object. 
+
+\mbox{\Hypertarget{class_game_aa79443880de5f26387c2a1c70c8c1aae}\label{class_game_aa79443880de5f26387c2a1c70c8c1aae}} 
+\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Game\+::\+Game (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_game}{Game}} \&}]{ }\end{DoxyParamCaption})}
+
+
+
+Construct a copy of \mbox{\hyperlink{class_game}{Game}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_a02e7fe79554934b04a952afe8ab8e53b}\label{class_game_a02e7fe79554934b04a952afe8ab8e53b}} 
+\index{Game@{Game}!activateAbility@{activateAbility}}
+\index{activateAbility@{activateAbility}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{activateAbility()}{activateAbility()}}
+{\footnotesize\ttfamily void Game\+::activate\+Ability (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+activate ability card that the current player has 
+
+\mbox{\Hypertarget{class_game_af338a2727f02e26f0d580e3b82e7cfff}\label{class_game_af338a2727f02e26f0d580e3b82e7cfff}} 
+\index{Game@{Game}!commandABILITYLESS@{commandABILITYLESS}}
+\index{commandABILITYLESS@{commandABILITYLESS}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{commandABILITYLESS()}{commandABILITYLESS()}}
+{\footnotesize\ttfamily void Game\+::command\+ABILITYLESS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_a09b4ef6e5fe944d9633bda2fd6d05371}\label{class_game_a09b4ef6e5fe944d9633bda2fd6d05371}} 
+\index{Game@{Game}!commandDOUBLE@{commandDOUBLE}}
+\index{commandDOUBLE@{commandDOUBLE}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{commandDOUBLE()}{commandDOUBLE()}}
+{\footnotesize\ttfamily void Game\+::command\+DOUBLE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_a87a53355de6fcec2708e236467dea579}\label{class_game_a87a53355de6fcec2708e236467dea579}} 
+\index{Game@{Game}!commandHALF@{commandHALF}}
+\index{commandHALF@{commandHALF}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{commandHALF()}{commandHALF()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Game\+::command\+HALF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_a87a53355de6fcec2708e236467dea579}\label{class_game_a87a53355de6fcec2708e236467dea579}} 
+\index{Game@{Game}!commandHALF@{commandHALF}}
+\index{commandHALF@{commandHALF}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{commandHALF()}{commandHALF()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Game\+::command\+HALF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_a4b93ed235d5633e2b1181903481284ef}\label{class_game_a4b93ed235d5633e2b1181903481284ef}} 
+\index{Game@{Game}!commandNEXT@{commandNEXT}}
+\index{commandNEXT@{commandNEXT}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{commandNEXT()}{commandNEXT()}}
+{\footnotesize\ttfamily void Game\+::command\+NEXT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_a897081551f804b1626fefe5cfd434174}\label{class_game_a897081551f804b1626fefe5cfd434174}} 
+\index{Game@{Game}!commandQUADRUPLE@{commandQUADRUPLE}}
+\index{commandQUADRUPLE@{commandQUADRUPLE}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{commandQUADRUPLE()}{commandQUADRUPLE()}}
+{\footnotesize\ttfamily void Game\+::command\+QUADRUPLE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_aaf0bb6bcc6cfca893b6d7c739deddfb3}\label{class_game_aaf0bb6bcc6cfca893b6d7c739deddfb3}} 
+\index{Game@{Game}!commandQUARTER@{commandQUARTER}}
+\index{commandQUARTER@{commandQUARTER}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{commandQUARTER()}{commandQUARTER()}}
+{\footnotesize\ttfamily void Game\+::command\+QUARTER (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_a54c3cadb17faf33d6ae927c383b51891}\label{class_game_a54c3cadb17faf33d6ae927c383b51891}} 
+\index{Game@{Game}!commandREROLL@{commandREROLL}}
+\index{commandREROLL@{commandREROLL}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{commandREROLL()}{commandREROLL()}}
+{\footnotesize\ttfamily void Game\+::command\+REROLL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_a2f84209267336abbd8bf78b11f3e5b30}\label{class_game_a2f84209267336abbd8bf78b11f3e5b30}} 
+\index{Game@{Game}!commandREVERSE@{commandREVERSE}}
+\index{commandREVERSE@{commandREVERSE}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{commandREVERSE()}{commandREVERSE()}}
+{\footnotesize\ttfamily void Game\+::command\+REVERSE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_a360475997a9c3e8b618892d86a93e5bb}\label{class_game_a360475997a9c3e8b618892d86a93e5bb}} 
+\index{Game@{Game}!commandSWAPCARD@{commandSWAPCARD}}
+\index{commandSWAPCARD@{commandSWAPCARD}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{commandSWAPCARD()}{commandSWAPCARD()}}
+{\footnotesize\ttfamily void Game\+::command\+SWAPCARD (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_a1132fb590f432dce9fb747e40819a855}\label{class_game_a1132fb590f432dce9fb747e40819a855}} 
+\index{Game@{Game}!commandSWITCH@{commandSWITCH}}
+\index{commandSWITCH@{commandSWITCH}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{commandSWITCH()}{commandSWITCH()}}
+{\footnotesize\ttfamily void Game\+::command\+SWITCH (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_a8dac5a4105662d6a12dd791a4ff72761}\label{class_game_a8dac5a4105662d6a12dd791a4ff72761}} 
+\index{Game@{Game}!endOfRound6@{endOfRound6}}
+\index{endOfRound6@{endOfRound6}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{endOfRound6()}{endOfRound6()}}
+{\footnotesize\ttfamily void Game\+::end\+Of\+Round6 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+give gift point to the player with the highest point 
+
+\mbox{\Hypertarget{class_game_a6867b178958c2da3a3ea8c537f8e16b9}\label{class_game_a6867b178958c2da3a3ea8c537f8e16b9}} 
+\index{Game@{Game}!getPlayer@{getPlayer}}
+\index{getPlayer@{getPlayer}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getPlayer()}{getPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_player}{Player}} Game\+::get\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{player\+Id }\end{DoxyParamCaption})}
+
+
+
+Get the \mbox{\hyperlink{class_player}{Player}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_player}{Player}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_a3a0c5adfaa92af2653a6302edbf58276}\label{class_game_a3a0c5adfaa92af2653a6302edbf58276}} 
+\index{Game@{Game}!giveAbilityCard@{giveAbilityCard}}
+\index{giveAbilityCard@{giveAbilityCard}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{giveAbilityCard()}{giveAbilityCard()}}
+{\footnotesize\ttfamily void Game\+::give\+Ability\+Card (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+give players ability card in round 2 
+
+\mbox{\Hypertarget{class_game_af96f57942c5ced0930c0a64844875e41}\label{class_game_af96f57942c5ced0930c0a64844875e41}} 
+\index{Game@{Game}!isWinning@{isWinning}}
+\index{isWinning@{isWinning}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{isWinning()}{isWinning()}}
+{\footnotesize\ttfamily bool Game\+::is\+Winning (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+winning condition \+: one of the players has 2$^\wedge$32\texorpdfstring{$>$}{>}= points 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_a2f7b4982b4167cff8343b7c8e77b0bba}\label{class_game_a2f7b4982b4167cff8343b7c8e77b0bba}} 
+\index{Game@{Game}!multiplyGiftPoin@{multiplyGiftPoin}}
+\index{multiplyGiftPoin@{multiplyGiftPoin}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{multiplyGiftPoin()}{multiplyGiftPoin()}}
+{\footnotesize\ttfamily void Game\+::multiply\+Gift\+Poin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{x }\end{DoxyParamCaption})}
+
+
+
+multiply gift point by x 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & gift point multiplier \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_game_aad29356f32ac5d609d6fab1420c213d6}\label{class_game_aad29356f32ac5d609d6fab1420c213d6}} 
+\index{Game@{Game}!nextRoundPlayerTurn@{nextRoundPlayerTurn}}
+\index{nextRoundPlayerTurn@{nextRoundPlayerTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{nextRoundPlayerTurn()}{nextRoundPlayerTurn()}}
+{\footnotesize\ttfamily void Game\+::next\+Round\+Player\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+change player\+Turn at the end of the round 
+
+\mbox{\Hypertarget{class_game_a801658c7cef474bc1d9a830f4a79034c}\label{class_game_a801658c7cef474bc1d9a830f4a79034c}} 
+\index{Game@{Game}!nextTurn@{nextTurn}}
+\index{nextTurn@{nextTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{nextTurn()}{nextTurn()}}
+{\footnotesize\ttfamily void Game\+::next\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+change current\+Player to the next player in player\+Turn 
+
+\mbox{\Hypertarget{class_game_ab4bd639d87e65757e2ac1061ee8f1a64}\label{class_game_ab4bd639d87e65757e2ac1061ee8f1a64}} 
+\index{Game@{Game}!playerTurn@{playerTurn}}
+\index{playerTurn@{playerTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{playerTurn()}{playerTurn()}}
+{\footnotesize\ttfamily void Game\+::player\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+mekanisme giliran pemain, current\+Player akan input command dan command akan dijalankan 
+
+\mbox{\Hypertarget{class_game_a5b50f6594b8caa9a09b66c72b28d5f76}\label{class_game_a5b50f6594b8caa9a09b66c72b28d5f76}} 
+\index{Game@{Game}!reverseTurn@{reverseTurn}}
+\index{reverseTurn@{reverseTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{reverseTurn()}{reverseTurn()}}
+{\footnotesize\ttfamily void Game\+::reverse\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+reverse the rest of player\+Turn 
+
+\mbox{\Hypertarget{class_game_a44e13d60ee21673a7b102c01fed57542}\label{class_game_a44e13d60ee21673a7b102c01fed57542}} 
+\index{Game@{Game}!setDeckCard@{setDeckCard}}
+\index{setDeckCard@{setDeckCard}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{setDeckCard()}{setDeckCard()}}
+{\footnotesize\ttfamily void Game\+::set\+Deck\+Card (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set the \mbox{\hyperlink{class_deck}{Deck}} \mbox{\hyperlink{class_card}{Card}} object, inisiasi main\+Deck dan membagikan kartu pemain pada awal ronde (user-\/input/file based) 
+
+\mbox{\Hypertarget{class_game_a3d9b98f7c4a96ecf578f75b96c9f0e90}\label{class_game_a3d9b98f7c4a96ecf578f75b96c9f0e90}} 
+\index{Game@{Game}!start@{start}}
+\index{start@{start}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Game\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+start game 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_game_a191dcd576c2d6e6a4f63413dab97c711}\label{class_game_a191dcd576c2d6e6a4f63413dab97c711}} 
+\index{Game@{Game}!currentTurn@{currentTurn}}
+\index{currentTurn@{currentTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{currentTurn}{currentTurn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_player}{Player}} Game\+::current\+Turn\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_game_aa5c2208aafa31878b8108816b833b6e4}\label{class_game_aa5c2208aafa31878b8108816b833b6e4}} 
+\index{Game@{Game}!giftPoint@{giftPoint}}
+\index{giftPoint@{giftPoint}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{giftPoint}{giftPoint}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classint}{int}} Game\+::gift\+Point\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_game_a5d9b653c1b43f29b3886e544b998ba75}\label{class_game_a5d9b653c1b43f29b3886e544b998ba75}} 
+\index{Game@{Game}!mainDeck@{mainDeck}}
+\index{mainDeck@{mainDeck}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mainDeck}{mainDeck}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_deck_game}{Deck\+Game}} Game\+::main\+Deck\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_game_aa326b1f037f16fc6cc6fedf36518ee1e}\label{class_game_aa326b1f037f16fc6cc6fedf36518ee1e}} 
+\index{Game@{Game}!players@{players}}
+\index{players@{players}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{players}{players}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_player_collection}{Player\+Collection}} Game\+::players\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_game_ab4f17cc84b1f1e238905a4fd2b9f4ca2}\label{class_game_ab4f17cc84b1f1e238905a4fd2b9f4ca2}} 
+\index{Game@{Game}!playerTurn@{playerTurn}}
+\index{playerTurn@{playerTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{playerTurn}{playerTurn}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classint}{int}}$>$ Game\+::player\+Turn\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_game_a9087c3cd44012a3f321bea7cac6e243c}\label{class_game_a9087c3cd44012a3f321bea7cac6e243c}} 
+\index{Game@{Game}!round@{round}}
+\index{round@{round}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{round}{round}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classint}{int}} Game\+::round\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Classes/\+Game/\mbox{\hyperlink{_game_8hpp}{Game.\+hpp}}\end{DoxyCompactItemize}

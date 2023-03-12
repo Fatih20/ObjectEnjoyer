@@ -1,0 +1,336 @@
+\hypertarget{class_player}{}\doxysection{Player Class Reference}
+\label{class_player}\index{Player@{Player}}
+
+
+{\ttfamily \#include $<$Player.\+hpp$>$}
+
+
+
+Collaboration diagram for Player\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{class_player__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}{Player}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_player}{Player}} object. Menanyakan username pemain melalui CLI. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_player_a749d2c00e1fe0f5c2746f7505a58c062}{$\sim$\+Player}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{class_player}{Player}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_player_a8826850c4f8a2871819713ef61148836}{Player}} (const \mbox{\hyperlink{class_player}{Player}} \&)
+\begin{DoxyCompactList}\small\item\em Construct a new player object from another player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_acb407a162bee36795fd258b2f385a25e}{operator=}} (const \mbox{\hyperlink{class_player}{Player}} \&)
+\begin{DoxyCompactList}\small\item\em Assign a player to another player with the assignment operator. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_player_ac6d23f5bab09b2bb1f6ad042d9693add}{get\+Username}} () const
+\begin{DoxyCompactList}\small\item\em Get the username of the player. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_player_a97e5447778ae6c384eedc532dcd8431d}{get\+Score}} ()
+\begin{DoxyCompactList}\small\item\em Get the player\textquotesingle{}s score. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_ade9c59e2a9714e649c472f22f484f765}{operator+=}} (\mbox{\hyperlink{classint}{int}} added\+Score)
+\begin{DoxyCompactList}\small\item\em Add score to the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_af953e8f7e86316651267f29e0cb4d3e4}{operator-\/=}} (\mbox{\hyperlink{classint}{int}} subtracted\+Score)
+\begin{DoxyCompactList}\small\item\em Subtract the player\textquotesingle{}s score. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_player_ade78a9a32745ac03c322197d2c9ecb98}{operator$<$}} (const \mbox{\hyperlink{class_player}{Player}} \&)
+\begin{DoxyCompactList}\small\item\em Compare the player\textquotesingle{}s score. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_player_ada245979b1652b1d7795269cf73c1a6b}{operator$>$}} (const \mbox{\hyperlink{class_player}{Player}} \&)
+\begin{DoxyCompactList}\small\item\em Compare the player\textquotesingle{}s score. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_player_ae5c4bf98a96877598a4fbd130e005401}{operator$>$=}} (const \mbox{\hyperlink{class_player}{Player}} \&)
+\begin{DoxyCompactList}\small\item\em Compare the player\textquotesingle{}s score. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_player_a45e3bf46cb19e75d81236454a3e00b29}{operator$<$=}} (const \mbox{\hyperlink{class_player}{Player}} \&)
+\begin{DoxyCompactList}\small\item\em Compare the player\textquotesingle{}s score. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_player_ad43cdfced3d93b55a9a7019c1893ac1a}{operator==}} (const \mbox{\hyperlink{class_player}{Player}} \&)
+\begin{DoxyCompactList}\small\item\em Compare the player\textquotesingle{}s score. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_player_a7f3eabffbce9d4f7234494e4e4963a11}{operator!=}} (const \mbox{\hyperlink{class_player}{Player}} \&)
+\begin{DoxyCompactList}\small\item\em Compare the player\textquotesingle{}s score. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_a10d2304fbe3bfc225938adeb5d867ec6}{subtract\+Score}} (\mbox{\hyperlink{classint}{int}} subtracted\+Score)
+\begin{DoxyCompactList}\small\item\em Subtract the player\textquotesingle{}s score. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_aeb32aaff0818ff3bf29f01c60d9e10ea}{add\+Score}} (\mbox{\hyperlink{classint}{int}} added\+Score)
+\begin{DoxyCompactList}\small\item\em Add score to the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_a7dfdc0be35fa9ae42104a6bfe47634b8}{reset\+Score}} ()
+\begin{DoxyCompactList}\small\item\em Reset the player\textquotesingle{}s score to 0. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_a3809c9f8023ca74abc24272458c26551}{swap\+Deck}} (\mbox{\hyperlink{class_player}{Player}} \&given\+Player)
+\begin{DoxyCompactList}\small\item\em Swap the deck of this player and the given player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_ad164767fbf542c0d536b559f6bc91b3a}{print\+Score}} ()
+\begin{DoxyCompactList}\small\item\em Swap the deck of this player and the given player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_af15bf4a81e0dd763ab53e061bc1c44f3}{print\+Color\+Card}} ()
+\begin{DoxyCompactList}\small\item\em Print out the player\textquotesingle{}s card. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}\label{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}} 
+\index{Player@{Player}!Player@{Player}}
+\index{Player@{Player}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{Player()}{Player()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Player\+::\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{class_player}{Player}} object. Menanyakan username pemain melalui CLI. 
+
+\mbox{\Hypertarget{class_player_a749d2c00e1fe0f5c2746f7505a58c062}\label{class_player_a749d2c00e1fe0f5c2746f7505a58c062}} 
+\index{Player@{Player}!````~Player@{$\sim$Player}}
+\index{````~Player@{$\sim$Player}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{$\sim$Player()}{~Player()}}
+{\footnotesize\ttfamily Player\+::$\sim$\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \mbox{\hyperlink{class_player}{Player}} object. 
+
+\mbox{\Hypertarget{class_player_a8826850c4f8a2871819713ef61148836}\label{class_player_a8826850c4f8a2871819713ef61148836}} 
+\index{Player@{Player}!Player@{Player}}
+\index{Player@{Player}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{Player()}{Player()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Player\+::\+Player (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_player}{Player}} \&}]{given\+Player }\end{DoxyParamCaption})}
+
+
+
+Construct a new player object from another player. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_player_aeb32aaff0818ff3bf29f01c60d9e10ea}\label{class_player_aeb32aaff0818ff3bf29f01c60d9e10ea}} 
+\index{Player@{Player}!addScore@{addScore}}
+\index{addScore@{addScore}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{addScore()}{addScore()}}
+{\footnotesize\ttfamily void Player\+::add\+Score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{added\+Score }\end{DoxyParamCaption})}
+
+
+
+Add score to the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em added\+Score} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_a97e5447778ae6c384eedc532dcd8431d}\label{class_player_a97e5447778ae6c384eedc532dcd8431d}} 
+\index{Player@{Player}!getScore@{getScore}}
+\index{getScore@{getScore}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{getScore()}{getScore()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classint}{int}} Player\+::get\+Score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the player\textquotesingle{}s score. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_ac6d23f5bab09b2bb1f6ad042d9693add}\label{class_player_ac6d23f5bab09b2bb1f6ad042d9693add}} 
+\index{Player@{Player}!getUsername@{getUsername}}
+\index{getUsername@{getUsername}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{getUsername()}{getUsername()}}
+{\footnotesize\ttfamily string Player\+::get\+Username (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the username of the player. 
+
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_a7f3eabffbce9d4f7234494e4e4963a11}\label{class_player_a7f3eabffbce9d4f7234494e4e4963a11}} 
+\index{Player@{Player}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool Player\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_player}{Player}} \&}]{ }\end{DoxyParamCaption})}
+
+
+
+Compare the player\textquotesingle{}s score. 
+
+\begin{DoxyReturn}{Returns}
+true Left player\textquotesingle{}s score is not equal to the right player 
+
+false Left player\textquotesingle{}s score is equal to the right player 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_ade9c59e2a9714e649c472f22f484f765}\label{class_player_ade9c59e2a9714e649c472f22f484f765}} 
+\index{Player@{Player}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily void Player\+::operator+= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{added\+Score }\end{DoxyParamCaption})}
+
+
+
+Add score to the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em added\+Score} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_af953e8f7e86316651267f29e0cb4d3e4}\label{class_player_af953e8f7e86316651267f29e0cb4d3e4}} 
+\index{Player@{Player}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily void Player\+::operator-\/= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{subtracted\+Score }\end{DoxyParamCaption})}
+
+
+
+Subtract the player\textquotesingle{}s score. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subtracted\+Score} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_ade78a9a32745ac03c322197d2c9ecb98}\label{class_player_ade78a9a32745ac03c322197d2c9ecb98}} 
+\index{Player@{Player}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Player\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_player}{Player}} \&}]{ }\end{DoxyParamCaption})}
+
+
+
+Compare the player\textquotesingle{}s score. 
+
+\begin{DoxyReturn}{Returns}
+true Left player\textquotesingle{}s score is lower than the right 
+
+false Left player\textquotesingle{}s score is not lower than the right player 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_a45e3bf46cb19e75d81236454a3e00b29}\label{class_player_a45e3bf46cb19e75d81236454a3e00b29}} 
+\index{Player@{Player}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily bool Player\+::operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_player}{Player}} \&}]{ }\end{DoxyParamCaption})}
+
+
+
+Compare the player\textquotesingle{}s score. 
+
+\begin{DoxyReturn}{Returns}
+true Left player\textquotesingle{}s score is lower or equal to the right player 
+
+false Left player\textquotesingle{}s score is not lower and not equal than the right player 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_acb407a162bee36795fd258b2f385a25e}\label{class_player_acb407a162bee36795fd258b2f385a25e}} 
+\index{Player@{Player}!operator=@{operator=}}
+\index{operator=@{operator=}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily void Player\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_player}{Player}} \&}]{given\+Player }\end{DoxyParamCaption})}
+
+
+
+Assign a player to another player with the assignment operator. 
+
+\mbox{\Hypertarget{class_player_ad43cdfced3d93b55a9a7019c1893ac1a}\label{class_player_ad43cdfced3d93b55a9a7019c1893ac1a}} 
+\index{Player@{Player}!operator==@{operator==}}
+\index{operator==@{operator==}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Player\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_player}{Player}} \&}]{ }\end{DoxyParamCaption})}
+
+
+
+Compare the player\textquotesingle{}s score. 
+
+\begin{DoxyReturn}{Returns}
+true Left player\textquotesingle{}s score is equal to the right player 
+
+false Left player\textquotesingle{}s score is not equal to the right player 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_ada245979b1652b1d7795269cf73c1a6b}\label{class_player_ada245979b1652b1d7795269cf73c1a6b}} 
+\index{Player@{Player}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily bool Player\+::operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_player}{Player}} \&}]{ }\end{DoxyParamCaption})}
+
+
+
+Compare the player\textquotesingle{}s score. 
+
+\begin{DoxyReturn}{Returns}
+true Left player\textquotesingle{}s score is higher than the right 
+
+false Left player\textquotesingle{}s score is not higher than the right player 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_ae5c4bf98a96877598a4fbd130e005401}\label{class_player_ae5c4bf98a96877598a4fbd130e005401}} 
+\index{Player@{Player}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily bool Player\+::operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_player}{Player}} \&}]{ }\end{DoxyParamCaption})}
+
+
+
+Compare the player\textquotesingle{}s score. 
+
+\begin{DoxyReturn}{Returns}
+true Left player\textquotesingle{}s score is higher or equal to the right player 
+
+false Left player\textquotesingle{}s score is not higher and not equal than the right player 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_af15bf4a81e0dd763ab53e061bc1c44f3}\label{class_player_af15bf4a81e0dd763ab53e061bc1c44f3}} 
+\index{Player@{Player}!printColorCard@{printColorCard}}
+\index{printColorCard@{printColorCard}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{printColorCard()}{printColorCard()}}
+{\footnotesize\ttfamily void Player\+::print\+Color\+Card (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Print out the player\textquotesingle{}s card. 
+
+\mbox{\Hypertarget{class_player_ad164767fbf542c0d536b559f6bc91b3a}\label{class_player_ad164767fbf542c0d536b559f6bc91b3a}} 
+\index{Player@{Player}!printScore@{printScore}}
+\index{printScore@{printScore}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{printScore()}{printScore()}}
+{\footnotesize\ttfamily void Player\+::print\+Score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Swap the deck of this player and the given player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em given\+Player} & \\
+\hline
+\end{DoxyParams}
+Print out the score \mbox{\Hypertarget{class_player_a7dfdc0be35fa9ae42104a6bfe47634b8}\label{class_player_a7dfdc0be35fa9ae42104a6bfe47634b8}} 
+\index{Player@{Player}!resetScore@{resetScore}}
+\index{resetScore@{resetScore}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{resetScore()}{resetScore()}}
+{\footnotesize\ttfamily void Player\+::reset\+Score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reset the player\textquotesingle{}s score to 0. 
+
+\mbox{\Hypertarget{class_player_a10d2304fbe3bfc225938adeb5d867ec6}\label{class_player_a10d2304fbe3bfc225938adeb5d867ec6}} 
+\index{Player@{Player}!subtractScore@{subtractScore}}
+\index{subtractScore@{subtractScore}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{subtractScore()}{subtractScore()}}
+{\footnotesize\ttfamily void Player\+::subtract\+Score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{subtracted\+Score }\end{DoxyParamCaption})}
+
+
+
+Subtract the player\textquotesingle{}s score. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subtracted\+Score} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_a3809c9f8023ca74abc24272458c26551}\label{class_player_a3809c9f8023ca74abc24272458c26551}} 
+\index{Player@{Player}!swapDeck@{swapDeck}}
+\index{swapDeck@{swapDeck}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{swapDeck()}{swapDeck()}}
+{\footnotesize\ttfamily void Player\+::swap\+Deck (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_player}{Player}} \&}]{given\+Player }\end{DoxyParamCaption})}
+
+
+
+Swap the deck of this player and the given player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em given\+Player} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Classes/\+Player/\mbox{\hyperlink{_player_8hpp}{Player.\+hpp}}\item 
+src/\+Classes/\+Player/\mbox{\hyperlink{_player_8cpp}{Player.\+cpp}}\end{DoxyCompactItemize}

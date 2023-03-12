@@ -1,0 +1,5 @@
+<map id="AbilityCard" name="AbilityCard">
+<area shape="rect" id="node1" title=" " alt="" coords="5,331,132,437"/>
+<area shape="rect" id="node2" href="$class_card.html" title=" " alt="" coords="23,175,115,281"/>
+<area shape="rect" id="node3" href="$class_card.html" title=" " alt="" coords="23,5,115,112"/>
+</map>

@@ -1,0 +1,252 @@
+\hypertarget{class_player_in_game}{}\doxysection{Player\+In\+Game Class Reference}
+\label{class_player_in_game}\index{PlayerInGame@{PlayerInGame}}
+
+
+{\ttfamily \#include $<$Player\+In\+Game.\+hpp$>$}
+
+
+
+Inheritance diagram for Player\+In\+Game\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{class_player_in_game__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Player\+In\+Game\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_player_in_game__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_player_in_game_aef3887730c6e58e3ffa4b8636f5a1fd4}{Player\+In\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_player}{Player}} In \mbox{\hyperlink{class_game}{Game}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_player_in_game_aeaca6f01b95e3174611b75670e0ec43a}{Player\+In\+Game}} (\mbox{\hyperlink{classint}{int}} number\+Of\+Player)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_player}{Player}} In \mbox{\hyperlink{class_game}{Game}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_player_in_game_a3d5d52e9726d3e4562e874942df97444}{Player\+In\+Game}} (\mbox{\hyperlink{classint}{int}} number\+Of\+Player, \mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_player_in_game_a3e63bb4f2d031969dffcdd880c31bb28}{current\+Turn}})
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_player}{Player}} In \mbox{\hyperlink{class_game}{Game}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_player}{Player}} \& \mbox{\hyperlink{class_player_in_game_a9015929f79673e2a034b3b7232d123fe}{get\+Player\+With\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em Return the player that currently has the turn. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_player_in_game_a92b609b573989d7695e249551d2f8c23}{get\+Nth\+Player\+With\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em Return the nth player that currently has the turn. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_in_game_a93ffe6fa4db11286be9fbe929cfa5fdc}{next\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em Move to the turn to the next player. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_player_in_game_a42856fc6788da2354648e7e1a2057170}{get\+Is\+Round\+Complete}} ()
+\begin{DoxyCompactList}\small\item\em Whether the round is complete or not. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_player_in_game_ab12f977e154531b4f3c6e8adbb7d8417}{reset\+Round}} ()
+\begin{DoxyCompactList}\small\item\em Reset round\+Complete to false. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_in_game_a5f461b2a1ab95729531a1ce2ab404a8f}{stop\+Round}} ()
+\begin{DoxyCompactList}\small\item\em Change round\+Complete to true. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_player_collection}{Player\+Collection}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_player_collection_af08bf382f5e33fef222e60b9904728a3}{Player\+Collection}} (\mbox{\hyperlink{classint}{int}} number\+Of\+Player)
+\item 
+\mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_player_collection_ab7184a1cee64a60ad6fce662048cb47b}{get\+Number\+Of\+Player}} ()
+\begin{DoxyCompactList}\small\item\em Return the number of player in this collection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_collection_a42c0a1d5dd7209da5313cc3639bec498}{operator$<$$<$}} (\mbox{\hyperlink{class_player}{Player}} \&added\+Player)
+\begin{DoxyCompactList}\small\item\em Add added\+Player into the collection as the last player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_collection_ab19c1b4507cebf744ad4f5978cf088f2}{remove}} (\mbox{\hyperlink{classint}{int}} index)
+\begin{DoxyCompactList}\small\item\em Remove a player from the collection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_collection_a740cb42bb24f0cde62f86a4d08d5685d}{operator-\/=}} (\mbox{\hyperlink{classint}{int}} index)
+\begin{DoxyCompactList}\small\item\em Remove a player from the collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_player_in_game_a943e44015802de30cc13d2baf2f22546}{set\+Turn}} (\mbox{\hyperlink{classint}{int}} new\+Turn)
+\begin{DoxyCompactList}\small\item\em Set the turn of the object. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_player_in_game_a07ab0eac805881a53339b790b053da14}{reverse\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em Reverse the turn direction of the player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{classint}{int}} $>$ \mbox{\hyperlink{class_player_in_game_a0d7b910c93674b711b75d877572cb220}{turns}}
+\item 
+\mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_player_in_game_a3e63bb4f2d031969dffcdd880c31bb28}{current\+Turn}}
+\item 
+bool \mbox{\hyperlink{class_player_in_game_af1b52b6ad832b90f44f0454f2d130798}{round\+Complete}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_player_collection}{Player\+Collection}}}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{class_player}{Player}} $>$ \mbox{\hyperlink{class_player_collection_a4c0c8be5bfffe4960620f2953eb488cb}{players}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_player_in_game_aef3887730c6e58e3ffa4b8636f5a1fd4}\label{class_player_in_game_aef3887730c6e58e3ffa4b8636f5a1fd4}} 
+\index{PlayerInGame@{PlayerInGame}!PlayerInGame@{PlayerInGame}}
+\index{PlayerInGame@{PlayerInGame}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{PlayerInGame()}{PlayerInGame()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Player\+In\+Game\+::\+Player\+In\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{class_player}{Player}} In \mbox{\hyperlink{class_game}{Game}} object. 
+
+\mbox{\Hypertarget{class_player_in_game_aeaca6f01b95e3174611b75670e0ec43a}\label{class_player_in_game_aeaca6f01b95e3174611b75670e0ec43a}} 
+\index{PlayerInGame@{PlayerInGame}!PlayerInGame@{PlayerInGame}}
+\index{PlayerInGame@{PlayerInGame}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{PlayerInGame()}{PlayerInGame()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Player\+In\+Game\+::\+Player\+In\+Game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{number\+Of\+Player }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{class_player}{Player}} In \mbox{\hyperlink{class_game}{Game}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number\+Of\+Player} & the number of player in it \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_in_game_a3d5d52e9726d3e4562e874942df97444}\label{class_player_in_game_a3d5d52e9726d3e4562e874942df97444}} 
+\index{PlayerInGame@{PlayerInGame}!PlayerInGame@{PlayerInGame}}
+\index{PlayerInGame@{PlayerInGame}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{PlayerInGame()}{PlayerInGame()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Player\+In\+Game\+::\+Player\+In\+Game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{number\+Of\+Player,  }\item[{\mbox{\hyperlink{classint}{int}}}]{current\+Turn }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{class_player}{Player}} In \mbox{\hyperlink{class_game}{Game}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number\+Of\+Player} & \\
+\hline
+{\em current\+Turn} & starts at 1 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_player_in_game_a42856fc6788da2354648e7e1a2057170}\label{class_player_in_game_a42856fc6788da2354648e7e1a2057170}} 
+\index{PlayerInGame@{PlayerInGame}!getIsRoundComplete@{getIsRoundComplete}}
+\index{getIsRoundComplete@{getIsRoundComplete}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{getIsRoundComplete()}{getIsRoundComplete()}}
+{\footnotesize\ttfamily bool Player\+In\+Game\+::get\+Is\+Round\+Complete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Whether the round is complete or not. 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_in_game_a92b609b573989d7695e249551d2f8c23}\label{class_player_in_game_a92b609b573989d7695e249551d2f8c23}} 
+\index{PlayerInGame@{PlayerInGame}!getNthPlayerWithTurn@{getNthPlayerWithTurn}}
+\index{getNthPlayerWithTurn@{getNthPlayerWithTurn}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{getNthPlayerWithTurn()}{getNthPlayerWithTurn()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classint}{int}} Player\+In\+Game\+::get\+Nth\+Player\+With\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return the nth player that currently has the turn. 
+
+\mbox{\Hypertarget{class_player_in_game_a9015929f79673e2a034b3b7232d123fe}\label{class_player_in_game_a9015929f79673e2a034b3b7232d123fe}} 
+\index{PlayerInGame@{PlayerInGame}!getPlayerWithTurn@{getPlayerWithTurn}}
+\index{getPlayerWithTurn@{getPlayerWithTurn}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{getPlayerWithTurn()}{getPlayerWithTurn()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_player}{Player}} \& Player\+In\+Game\+::get\+Player\+With\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return the player that currently has the turn. 
+
+\mbox{\Hypertarget{class_player_in_game_a93ffe6fa4db11286be9fbe929cfa5fdc}\label{class_player_in_game_a93ffe6fa4db11286be9fbe929cfa5fdc}} 
+\index{PlayerInGame@{PlayerInGame}!nextTurn@{nextTurn}}
+\index{nextTurn@{nextTurn}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{nextTurn()}{nextTurn()}}
+{\footnotesize\ttfamily void Player\+In\+Game\+::next\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Move to the turn to the next player. 
+
+\mbox{\Hypertarget{class_player_in_game_ab12f977e154531b4f3c6e8adbb7d8417}\label{class_player_in_game_ab12f977e154531b4f3c6e8adbb7d8417}} 
+\index{PlayerInGame@{PlayerInGame}!resetRound@{resetRound}}
+\index{resetRound@{resetRound}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{resetRound()}{resetRound()}}
+{\footnotesize\ttfamily void Player\+In\+Game\+::reset\+Round (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reset round\+Complete to false. 
+
+
+
+Reimplemented in \mbox{\hyperlink{class_player_in_game_candy_a6b15f7ccf5ac1161fb57405c8198fbeb}{Player\+In\+Game\+Candy}}.
+
+\mbox{\Hypertarget{class_player_in_game_a07ab0eac805881a53339b790b053da14}\label{class_player_in_game_a07ab0eac805881a53339b790b053da14}} 
+\index{PlayerInGame@{PlayerInGame}!reverseTurn@{reverseTurn}}
+\index{reverseTurn@{reverseTurn}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{reverseTurn()}{reverseTurn()}}
+{\footnotesize\ttfamily void Player\+In\+Game\+::reverse\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reverse the turn direction of the player. 
+
+
+
+Reimplemented in \mbox{\hyperlink{class_player_in_game_candy_ab8f423c6d6be42eb9ad07ec9ecdf816c}{Player\+In\+Game\+Candy}}.
+
+\mbox{\Hypertarget{class_player_in_game_a943e44015802de30cc13d2baf2f22546}\label{class_player_in_game_a943e44015802de30cc13d2baf2f22546}} 
+\index{PlayerInGame@{PlayerInGame}!setTurn@{setTurn}}
+\index{setTurn@{setTurn}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{setTurn()}{setTurn()}}
+{\footnotesize\ttfamily void Player\+In\+Game\+::set\+Turn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{new\+Turn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Set the turn of the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Turn} & starts at one \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_in_game_a5f461b2a1ab95729531a1ce2ab404a8f}\label{class_player_in_game_a5f461b2a1ab95729531a1ce2ab404a8f}} 
+\index{PlayerInGame@{PlayerInGame}!stopRound@{stopRound}}
+\index{stopRound@{stopRound}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{stopRound()}{stopRound()}}
+{\footnotesize\ttfamily void Player\+In\+Game\+::stop\+Round (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Change round\+Complete to true. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_player_in_game_a3e63bb4f2d031969dffcdd880c31bb28}\label{class_player_in_game_a3e63bb4f2d031969dffcdd880c31bb28}} 
+\index{PlayerInGame@{PlayerInGame}!currentTurn@{currentTurn}}
+\index{currentTurn@{currentTurn}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{currentTurn}{currentTurn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classint}{int}} Player\+In\+Game\+::current\+Turn\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_player_in_game_af1b52b6ad832b90f44f0454f2d130798}\label{class_player_in_game_af1b52b6ad832b90f44f0454f2d130798}} 
+\index{PlayerInGame@{PlayerInGame}!roundComplete@{roundComplete}}
+\index{roundComplete@{roundComplete}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{roundComplete}{roundComplete}}
+{\footnotesize\ttfamily bool Player\+In\+Game\+::round\+Complete\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_player_in_game_a0d7b910c93674b711b75d877572cb220}\label{class_player_in_game_a0d7b910c93674b711b75d877572cb220}} 
+\index{PlayerInGame@{PlayerInGame}!turns@{turns}}
+\index{turns@{turns}!PlayerInGame@{PlayerInGame}}
+\doxysubsubsection{\texorpdfstring{turns}{turns}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classint}{int}}$>$ Player\+In\+Game\+::turns\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Classes/\+Player\+In\+Game/\mbox{\hyperlink{_player_in_game_8hpp}{Player\+In\+Game.\+hpp}}\item 
+src/\+Classes/\+Player\+In\+Game/\mbox{\hyperlink{_player_in_game_8cpp}{Player\+In\+Game.\+cpp}}\end{DoxyCompactItemize}

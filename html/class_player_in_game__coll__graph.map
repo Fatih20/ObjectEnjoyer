@@ -1,0 +1,8 @@
+<map id="PlayerInGame" name="PlayerInGame">
+<area shape="rect" id="node1" title=" " alt="" coords="189,344,360,568"/>
+<area shape="rect" id="node2" href="$class_player_collection.html" title=" " alt="" coords="5,145,163,281"/>
+<area shape="rect" id="node3" title=" " alt="" coords="25,5,143,83"/>
+<area shape="rect" id="node4" title=" " alt="" coords="187,175,283,252"/>
+<area shape="rect" id="node5" href="$classint.html" title=" " alt="" coords="307,175,346,252"/>
+<area shape="rect" id="node6" title=" " alt="" coords="401,175,447,252"/>
+</map>

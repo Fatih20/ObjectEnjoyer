@@ -1,0 +1,42 @@
+\hypertarget{_ability_card_8hpp_source}{}\doxysection{Ability\+Card.\+hpp}
+\label{_ability_card_8hpp_source}\index{src/Classes/AbilityCard/AbilityCard.hpp@{src/Classes/AbilityCard/AbilityCard.hpp}}
+\mbox{\hyperlink{_ability_card_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_ABILITYCARD\_HPP\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_ABILITYCARD\_HPP\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_card_8hpp}{Classes/Card/Card.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{00008\ \ \ \ \ \mbox{\hyperlink{_ability_card_8hpp_acf88ba4d206a95c4780772285103dac5a7d41a364ef10370ae361205a324c0207}{REROLL}},\ \textcolor{comment}{//\ Reroll\ all\ hand\ cards}}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{_ability_card_8hpp_acf88ba4d206a95c4780772285103dac5a44dd5050b619d5c65b8026955d9a3e3b}{QUADRUPLE}},\ \textcolor{comment}{//\ Quadruple\ the\ reward\ of\ the\ current\ round}}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{_ability_card_8hpp_acf88ba4d206a95c4780772285103dac5a8dd9342a0e4fd716d2beb9961f5deeed}{QUARTER}},\ \textcolor{comment}{//\ Quarter\ the\ reward\ of\ the\ current\ round}}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{_ability_card_8hpp_acf88ba4d206a95c4780772285103dac5a906b7cc20b42994dda4da492767c1de9}{REVERSE}},\ \textcolor{comment}{//\ Reverse\ the\ order\ of\ the\ players}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{_ability_card_8hpp_acf88ba4d206a95c4780772285103dac5aaa826be4c1bbb2ee3d5f2e2fb6912a23}{SWAP}},\ \textcolor{comment}{//\ Swap\ a\ card\ from\ the\ hand\ with\ a\ card\ from\ another\ player's\ hand}}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{_ability_card_8hpp_acf88ba4d206a95c4780772285103dac5a53396ea1193548270407675ea4eeee2b}{SWITCH}},\ \textcolor{comment}{//\ Switch\ the\ hand\ cards\ with\ another\ player's\ hand\ cards}}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{_ability_card_8hpp_acf88ba4d206a95c4780772285103dac5a15e29624282c9d2987076235c01ef26d}{ABILITYLESS}}\ \textcolor{comment}{//\ Disable\ the\ ability\ of\ a\ specific\ player}}
+\DoxyCodeLine{00015\ \}\ \mbox{\hyperlink{_ability_card_8hpp_acf88ba4d206a95c4780772285103dac5}{Ability}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ bagaimana\ memasukkan\ enumeration\ ke\ dalam\ template?}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ability_card}{AbilityCard}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_card}{Card}}<int>\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ std::string\ description;}
+\DoxyCodeLine{00022\ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ability_card_a4deb4d8bd0a322bdcab0af4a7d5e141f}{AbilityCard}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_card_a2bc9403a92ad2f3a692223d269713640}{value}},\ std::string\ description);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CCtor\ dan\ assignment\ operator\ tidak\ perlu\ karena\ tidak\ ada\ pointer}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dtor\ tidak\ perlu\ karena\ hanya\ menyimpan\ data\ sederhana}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_ability_card_8hpp_acf88ba4d206a95c4780772285103dac5}{Ability}}\ \mbox{\hyperlink{class_ability_card_a3f082a4f1ac0ebcf6ad3253984462602}{getAbility}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{class_ability_card_a817911554a72b3c353c562e94012d9f8}{getDescription}}();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Aktivasi\ kartu\ perlu\ terhubung\ ke\ kelas\ Game\ untuk\ mengubah\ kondisi\ game}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tidak\ dibuat\ setter\ karena\ nilai\ kartu\ tidak\ perlu\ diubah}}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

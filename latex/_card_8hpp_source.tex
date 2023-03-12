@@ -1,0 +1,26 @@
+\hypertarget{_card_8hpp_source}{}\doxysection{Card.\+hpp}
+\label{_card_8hpp_source}\index{src/Classes/Card/Card.hpp@{src/Classes/Card/Card.hpp}}
+\mbox{\hyperlink{_card_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_CARD\_HPP\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_CARD\_HPP\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_card}{Card}}\{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ T\ \mbox{\hyperlink{class_card_a2bc9403a92ad2f3a692223d269713640}{value}};}
+\DoxyCodeLine{00008\ \ \ \ \ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_card_a0ffaa477536613beb8448e69672d0f4c}{Card}}(T\ \mbox{\hyperlink{class_card_a2bc9403a92ad2f3a692223d269713640}{value}});}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CCtor\ dan\ assignment\ operator\ tidak\ perlu\ karena\ tidak\ ada\ pointer}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dtor\ tidak\ perlu\ karena\ hanya\ menyimpan\ data\ sederhana}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Perlu\ dipertimbangkan\ apakah\ perlu\ karena\ T\ bisa\ berupa\ pointer\ juga\ (misalnya\ char*)}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ T\ \mbox{\hyperlink{class_card_a5a066f1767ecf63b70f0b07ba8729a3c}{getValue}}();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_card_abf0913c5365bebe8a238f62e89b434fd}{setValue}}(T\ \mbox{\hyperlink{class_card_a2bc9403a92ad2f3a692223d269713640}{value}});}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

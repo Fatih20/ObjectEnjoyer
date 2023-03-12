@@ -1,0 +1,159 @@
+\hypertarget{_color_card_8hpp}{}\doxysection{src/\+Classes/\+Color\+Card/\+Color\+Card.hpp File Reference}
+\label{_color_card_8hpp}\index{src/Classes/ColorCard/ColorCard.hpp@{src/Classes/ColorCard/ColorCard.hpp}}
+{\ttfamily \#include \char`\"{}Classes/\+Card/\+Card.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$Map$>$}\newline
+Include dependency graph for Color\+Card.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{_color_card_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{_color_card_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_color_card}{Color\+Card}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} \{ \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1caa60bd322f93178d68184e30e162571ca}{GREEN}}
+, \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1ca35d6719cb4d7577c031b3d79057a1b79}{BLUE}}
+, \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1cae735a848bf82163a19236ead1c3ef2d2}{YELLOW}}
+, \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1caf80f9a890089d211842d59625e561f88}{RED}}
+ \}
+\item 
+enum \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73}{Combination}} \{ \newline
+\mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a0c3a1dacf94061154b3ee354359c5893}{HIGH}}
+, \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a360fa17489dc77903b0bcf1d91ae47bb}{PAIR}}
+, \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a9fdfcb7a9f59b8b1eb2a756393b21cfb}{TWO\+\_\+\+PAIR}}
+, \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a95bce95773a363c23cd8131c557a8291}{THREE\+\_\+\+OF\+\_\+\+A\+\_\+\+KIND}}
+, \newline
+\mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a08707fd429345dc72f3d7b0cc867ef05}{STRAIGHT}}
+, \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a365b228f1c799ff897f963650ec33dd9}{FLUSH}}
+, \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a49fbc484dfc6768f0937c39462def32d}{FULL\+\_\+\+HOUSE}}
+, \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a850cb6627e3c9162f1721e5fd4187fb0}{FOUR\+\_\+\+OF\+\_\+\+A\+\_\+\+KIND}}
+, \newline
+\mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a02768de5a629b299fc73da4b03833b0a}{STRAIGHT\+\_\+\+FLUSH}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{_color_card_8hpp_a11a8c6836d3f7f97bc890e98f9635dd9}{get\+Combination\+Weight}} (\mbox{\hyperlink{class_card}{Card}}$<$ \mbox{\hyperlink{classint}{int}} $>$ cards\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Get the Combination Weight of the given combination of cards. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ std\+::pair$<$ \mbox{\hyperlink{classint}{int}}, \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}} $>$, double $>$ \mbox{\hyperlink{_color_card_8hpp_a1ea0367793a344ac9a16df966084492d}{card\+Weight}}
+\item 
+std\+::map$<$ \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73}{Combination}}, double $>$ \mbox{\hyperlink{_color_card_8hpp_acc94a824a1626f1eb89a59d71cb86549}{combination\+Weight}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1c}\label{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1c}} 
+\index{ColorCard.hpp@{ColorCard.hpp}!Color@{Color}}
+\index{Color@{Color}!ColorCard.hpp@{ColorCard.hpp}}
+\doxysubsubsection{\texorpdfstring{Color}{Color}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GREEN@{GREEN}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!GREEN@{GREEN}}}\mbox{\Hypertarget{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1caa60bd322f93178d68184e30e162571ca}\label{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1caa60bd322f93178d68184e30e162571ca}} 
+GREEN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BLUE@{BLUE}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!BLUE@{BLUE}}}\mbox{\Hypertarget{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1ca35d6719cb4d7577c031b3d79057a1b79}\label{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1ca35d6719cb4d7577c031b3d79057a1b79}} 
+BLUE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{YELLOW@{YELLOW}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!YELLOW@{YELLOW}}}\mbox{\Hypertarget{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1cae735a848bf82163a19236ead1c3ef2d2}\label{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1cae735a848bf82163a19236ead1c3ef2d2}} 
+YELLOW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RED@{RED}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!RED@{RED}}}\mbox{\Hypertarget{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1caf80f9a890089d211842d59625e561f88}\label{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1caf80f9a890089d211842d59625e561f88}} 
+RED&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73}\label{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73}} 
+\index{ColorCard.hpp@{ColorCard.hpp}!Combination@{Combination}}
+\index{Combination@{Combination}!ColorCard.hpp@{ColorCard.hpp}}
+\doxysubsubsection{\texorpdfstring{Combination}{Combination}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73}{Combination}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HIGH@{HIGH}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!HIGH@{HIGH}}}\mbox{\Hypertarget{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a0c3a1dacf94061154b3ee354359c5893}\label{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a0c3a1dacf94061154b3ee354359c5893}} 
+HIGH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PAIR@{PAIR}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!PAIR@{PAIR}}}\mbox{\Hypertarget{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a360fa17489dc77903b0bcf1d91ae47bb}\label{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a360fa17489dc77903b0bcf1d91ae47bb}} 
+PAIR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TWO\_PAIR@{TWO\_PAIR}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!TWO\_PAIR@{TWO\_PAIR}}}\mbox{\Hypertarget{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a9fdfcb7a9f59b8b1eb2a756393b21cfb}\label{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a9fdfcb7a9f59b8b1eb2a756393b21cfb}} 
+TWO\+\_\+\+PAIR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{THREE\_OF\_A\_KIND@{THREE\_OF\_A\_KIND}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!THREE\_OF\_A\_KIND@{THREE\_OF\_A\_KIND}}}\mbox{\Hypertarget{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a95bce95773a363c23cd8131c557a8291}\label{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a95bce95773a363c23cd8131c557a8291}} 
+THREE\+\_\+\+OF\+\_\+\+A\+\_\+\+KIND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRAIGHT@{STRAIGHT}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!STRAIGHT@{STRAIGHT}}}\mbox{\Hypertarget{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a08707fd429345dc72f3d7b0cc867ef05}\label{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a08707fd429345dc72f3d7b0cc867ef05}} 
+STRAIGHT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLUSH@{FLUSH}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!FLUSH@{FLUSH}}}\mbox{\Hypertarget{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a365b228f1c799ff897f963650ec33dd9}\label{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a365b228f1c799ff897f963650ec33dd9}} 
+FLUSH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FULL\_HOUSE@{FULL\_HOUSE}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!FULL\_HOUSE@{FULL\_HOUSE}}}\mbox{\Hypertarget{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a49fbc484dfc6768f0937c39462def32d}\label{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a49fbc484dfc6768f0937c39462def32d}} 
+FULL\+\_\+\+HOUSE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FOUR\_OF\_A\_KIND@{FOUR\_OF\_A\_KIND}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!FOUR\_OF\_A\_KIND@{FOUR\_OF\_A\_KIND}}}\mbox{\Hypertarget{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a850cb6627e3c9162f1721e5fd4187fb0}\label{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a850cb6627e3c9162f1721e5fd4187fb0}} 
+FOUR\+\_\+\+OF\+\_\+\+A\+\_\+\+KIND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRAIGHT\_FLUSH@{STRAIGHT\_FLUSH}!ColorCard.hpp@{ColorCard.hpp}}\index{ColorCard.hpp@{ColorCard.hpp}!STRAIGHT\_FLUSH@{STRAIGHT\_FLUSH}}}\mbox{\Hypertarget{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a02768de5a629b299fc73da4b03833b0a}\label{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73a02768de5a629b299fc73da4b03833b0a}} 
+STRAIGHT\+\_\+\+FLUSH&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_color_card_8hpp_a11a8c6836d3f7f97bc890e98f9635dd9}\label{_color_card_8hpp_a11a8c6836d3f7f97bc890e98f9635dd9}} 
+\index{ColorCard.hpp@{ColorCard.hpp}!getCombinationWeight@{getCombinationWeight}}
+\index{getCombinationWeight@{getCombinationWeight}!ColorCard.hpp@{ColorCard.hpp}}
+\doxysubsubsection{\texorpdfstring{getCombinationWeight()}{getCombinationWeight()}}
+{\footnotesize\ttfamily double get\+Combination\+Weight (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_card}{Card}}$<$ \mbox{\hyperlink{classint}{int}} $>$}]{cards\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Get the Combination Weight of the given combination of cards. 
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_color_card_8hpp_a1ea0367793a344ac9a16df966084492d}\label{_color_card_8hpp_a1ea0367793a344ac9a16df966084492d}} 
+\index{ColorCard.hpp@{ColorCard.hpp}!cardWeight@{cardWeight}}
+\index{cardWeight@{cardWeight}!ColorCard.hpp@{ColorCard.hpp}}
+\doxysubsubsection{\texorpdfstring{cardWeight}{cardWeight}}
+{\footnotesize\ttfamily std\+::map$<$std\+::pair$<$\mbox{\hyperlink{classint}{int}}, \mbox{\hyperlink{_color_card_8hpp_ab87bacfdad76e61b9412d7124be44c1c}{Color}}$>$, double$>$ card\+Weight}
+
+\mbox{\Hypertarget{_color_card_8hpp_acc94a824a1626f1eb89a59d71cb86549}\label{_color_card_8hpp_acc94a824a1626f1eb89a59d71cb86549}} 
+\index{ColorCard.hpp@{ColorCard.hpp}!combinationWeight@{combinationWeight}}
+\index{combinationWeight@{combinationWeight}!ColorCard.hpp@{ColorCard.hpp}}
+\doxysubsubsection{\texorpdfstring{combinationWeight}{combinationWeight}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{_color_card_8hpp_a2ff1a926d9c0c87dd7147055e08d9d73}{Combination}}, double$>$ combination\+Weight}
+

@@ -19,7 +19,7 @@ typedef enum{
 } FormatException;
 
 
-class NumberExp{
+class NumberExp: public exception{
     public:
         NumberExp(NumberException);
         const string msg();
@@ -27,7 +27,7 @@ class NumberExp{
         NumberException expType;
 };
 
-class FormatExp{
+class FormatExp: public exception{
     public:
         FormatExp(FormatException);
         const string msg();

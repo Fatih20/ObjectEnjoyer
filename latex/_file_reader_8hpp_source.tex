@@ -1,0 +1,35 @@
+\hypertarget{_file_reader_8hpp_source}{}\doxysection{File\+Reader.\+hpp}
+\label{_file_reader_8hpp_source}\index{src/Classes/FileReader/FileReader.hpp@{src/Classes/FileReader/FileReader.hpp}}
+\mbox{\hyperlink{_file_reader_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_FILEREADER\_HPP\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_FILEREADER\_HPP\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_deck_game_8hpp}{Classes/DeckGame/DeckGame.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_color_card_8hpp}{Classes/ColorCard/ColorCard.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ability_card_8hpp}{Classes/AbilityCard/AbilityCard.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_file_reader}{FileReader}}\{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ filePath;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_deck_game}{DeckGame<\ Card<int>}}\ >\ deckOrder;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ vector\ <\ Card<int>\ >\ abilityCardOrder;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_file_reader}{FileReader}}(\textcolor{keywordtype}{string}\ filePath);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_deck_game}{DeckGame<\ Card<int>}}\ >\ \mbox{\hyperlink{class_file_reader_a896126dd9afd0d10e534e39a9e0f5451}{getDeckOrder}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ vector<\ Card<int>\ >\ \mbox{\hyperlink{class_file_reader_ae860ae3948f503d415fef146c59c1941}{getAbilityCardOrder}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_file_reader_a1036120d4474f706ec7faab43f2468dc}{read}}();}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif\ }}
+\DoxyCodeLine{00046\ }
+
+\end{DoxyCode}

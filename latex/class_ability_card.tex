@@ -1,0 +1,94 @@
+\hypertarget{class_ability_card}{}\doxysection{Ability\+Card Class Reference}
+\label{class_ability_card}\index{AbilityCard@{AbilityCard}}
+
+
+{\ttfamily \#include $<$Ability\+Card.\+hpp$>$}
+
+
+
+Inheritance diagram for Ability\+Card\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{class_ability_card__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Ability\+Card\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{class_ability_card__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ability_card_a4deb4d8bd0a322bdcab0af4a7d5e141f}{Ability\+Card}} (\mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_card_a2bc9403a92ad2f3a692223d269713640}{value}}, std\+::string description)
+\begin{DoxyCompactList}\small\item\em Construct a new Ability \mbox{\hyperlink{class_card}{Card}} object with given ability. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_ability_card_8hpp_acf88ba4d206a95c4780772285103dac5}{Ability}} \mbox{\hyperlink{class_ability_card_a3f082a4f1ac0ebcf6ad3253984462602}{get\+Ability}} ()
+\begin{DoxyCompactList}\small\item\em Get the Ability of the card from integer conversion to enum. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_ability_card_a817911554a72b3c353c562e94012d9f8}{get\+Description}} ()
+\begin{DoxyCompactList}\small\item\em Get the description of the card (for example, REROLL\+: reroll all hand cards) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_card}{Card$<$ int $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_card_a0ffaa477536613beb8448e69672d0f4c}{Card}} (\mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_card_a2bc9403a92ad2f3a692223d269713640}{value}})
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_card}{Card}} object with given value. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_card_a5a066f1767ecf63b70f0b07ba8729a3c}{get\+Value}} ()
+\begin{DoxyCompactList}\small\item\em Get the face value of the card. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_card_abf0913c5365bebe8a238f62e89b434fd}{set\+Value}} (\mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_card_a2bc9403a92ad2f3a692223d269713640}{value}})
+\begin{DoxyCompactList}\small\item\em Set the face value of the card. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_card}{Card$<$ int $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classint}{int}} \mbox{\hyperlink{class_card_a2bc9403a92ad2f3a692223d269713640}{value}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_ability_card_a4deb4d8bd0a322bdcab0af4a7d5e141f}\label{class_ability_card_a4deb4d8bd0a322bdcab0af4a7d5e141f}} 
+\index{AbilityCard@{AbilityCard}!AbilityCard@{AbilityCard}}
+\index{AbilityCard@{AbilityCard}!AbilityCard@{AbilityCard}}
+\doxysubsubsection{\texorpdfstring{AbilityCard()}{AbilityCard()}}
+{\footnotesize\ttfamily Ability\+Card\+::\+Ability\+Card (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classint}{int}}}]{value,  }\item[{std\+::string}]{description }\end{DoxyParamCaption})}
+
+
+
+Construct a new Ability \mbox{\hyperlink{class_card}{Card}} object with given ability. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The ability of the card (REROLL, QUADRUPLE, QUARTER, REVERSE, SWAP, SWITCH, ABILITYLESS) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_ability_card_a3f082a4f1ac0ebcf6ad3253984462602}\label{class_ability_card_a3f082a4f1ac0ebcf6ad3253984462602}} 
+\index{AbilityCard@{AbilityCard}!getAbility@{getAbility}}
+\index{getAbility@{getAbility}!AbilityCard@{AbilityCard}}
+\doxysubsubsection{\texorpdfstring{getAbility()}{getAbility()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_ability_card_8hpp_acf88ba4d206a95c4780772285103dac5}{Ability}} Ability\+Card\+::get\+Ability (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Ability of the card from integer conversion to enum. 
+
+\mbox{\Hypertarget{class_ability_card_a817911554a72b3c353c562e94012d9f8}\label{class_ability_card_a817911554a72b3c353c562e94012d9f8}} 
+\index{AbilityCard@{AbilityCard}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!AbilityCard@{AbilityCard}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily std\+::string Ability\+Card\+::get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the description of the card (for example, REROLL\+: reroll all hand cards) 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Classes/\+Ability\+Card/\mbox{\hyperlink{_ability_card_8hpp}{Ability\+Card.\+hpp}}\end{DoxyCompactItemize}

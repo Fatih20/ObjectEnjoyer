@@ -1,0 +1,7 @@
+<map id="exception" name="exception">
+<area shape="rect" id="node1" title=" " alt="" coords="227,5,306,83"/>
+<area shape="rect" id="node2" href="$class_format_exp.html" title=" " alt="" coords="5,131,112,223"/>
+<area shape="rect" id="node3" href="$class_number_exp.html" title=" " alt="" coords="137,131,247,223"/>
+<area shape="rect" id="node4" href="$class_username_empty.html" title=" " alt="" coords="271,138,411,215"/>
+<area shape="rect" id="node5" href="$class_username_exist.html" title=" " alt="" coords="436,131,612,223"/>
+</map>
