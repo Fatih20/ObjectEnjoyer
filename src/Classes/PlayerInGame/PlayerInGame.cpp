@@ -1,15 +1,13 @@
 #include "PlayerInGame.hpp"
 #include "Classes/PlayerInGameException/PlayerInGameException.hpp"
+#include "Classes/PlayerCandy/PlayerCandy.hpp"
 #include <iostream>
 #include <algorithm>
 
 using namespace std;
 
 template <typename T>
-PlayerInGame<T>::PlayerInGame() : PlayerCollection<T>(0)
-{
-    PlayerInGame(0);
-};
+PlayerInGame<T>::PlayerInGame() : PlayerInGame<T>(0){};
 
 template <typename T>
 PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection<T>(numberOfPlayer)
@@ -23,19 +21,18 @@ PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection<T>(numberOf
     roundComplete = false;
 };
 
-template <typename T>
-PlayerInGame<T>::PlayerInGame(DeckGame<T> deckGame, int numberOfCards, int numberOfPlayer) : PlayerInGame<T>(numberOfPlayer)
-{
-    for (int i = 0; i < numberOfPlayer; i++)
-    {
-        this->players.at(turns.at(i)).drawCard(deckGame, numberOfCards);
-    }
-};
+// template <typename T>
+// PlayerInGame<T>::PlayerInGame(DeckGame<T> deckGame, int numberOfCards, int numberOfPlayer) : PlayerInGame<T>(numberOfPlayer)
+// {
+//     for (int i = 0; i < numberOfPlayer; i++)
+//     {
+//         this->players.at(turns.at(i)).drawCard(deckGame, numberOfCards);
+//     }
+// };
 
 template <typename T>
-PlayerInGame<T>::PlayerInGame(int numberOfPlayer, int currentTurn) : PlayerCollection<T>(numberOfPlayer)
+PlayerInGame<T>::PlayerInGame(int numberOfPlayer, int currentTurn) : PlayerInGame<T>(numberOfPlayer)
 {
-    PlayerInGame(number);
     this->currentTurn = currentTurn;
 };
 
@@ -51,28 +48,34 @@ void PlayerInGame<T>::reverseTurn()
     reverse(turns.begin(), turns.end());
 };
 template <typename T>
-bool PlayerInGame<T>::getCurrentTurn()
+int PlayerInGame<T>::getCurrentTurn()
 {
     return currentTurn;
 };
 
 template <typename T>
-void PlayerInGame<T>::removePlayerOfID(int removedID)
+int PlayerInGame<T>::getIndexOfCurrentTurn()
 {
-    // To do : Erase from turn list as well
-    for (int i = 0; i < this->players.size(); i++)
-    {
-        if (this->players.at(i).getGameID() == removedID)
-        {
-            this->players.erase(this->players.begin() + i);
-        }
-    };
-};
+    return turns.at(currentTurn);
+}
+
+// template <typename T>
+// void PlayerInGame<T>::removePlayerOfID(int removedID)
+// {
+//     // To do : Erase from turn list as well
+//     for (int i = 0; i < this->players.size(); i++)
+//     {
+//         if (this->players.at(i).getGameID() == removedID)
+//         {
+//             this->players.erase(this->players.begin() + i);
+//         }
+//     };
+// };
 
 // template <typename T>
 
 template <typename T>
-Player<T> &PlayerInGame<T>::getPlayerWithTurn()
+T &PlayerInGame<T>::getPlayerWithTurn()
 {
     return this->players.at(currentTurn);
 };
@@ -112,35 +115,60 @@ void PlayerInGame<T>::showPlayer()
 {
     for (int i = 0; i < this->players.size(); i++)
     {
-        cout << i + 1 << ". " << this->players.at(i).getUsername() << endl;
+        cout << i + 1 << ". " << this->players.at(i) << endl;
     }
 };
 
-template <typename T>
-void PlayerInGame<T>::showPlayerExcept(int unprintedID)
-{
-    bool print = true;
-    int index = 0;
-    for (int i = 0; i < this->players.size(); i++)
-    {
-        if (this->players.at(i).getGameID() != unprintedID)
-        {
-            cout << index + 1 << ". " << this->players.at(i).getUsername() << endl;
-            index++;
-        }
-    }
-};
+// template <typename T, typename Func>
+// void PlayerInGame<T>::showPlayerIf(const Func &f)
+// {
+//     bool print = true;
+//     int index = 0;
+//     for (int i = 0; i < this->players.size(); i++)
+//     {
+//         if (this->players.at(i).getGameID() != unprintedID)
+//         {
+//             cout << index + 1 << ". " << this->players.at(i).getUsername() << endl;
+//             index++;
+//         }
+//     }
+// };
 
 template <typename T>
-void PlayerInGame<T>::redrawCardForNthPlayer(DeckGame<T> &deckGame, int n)
+void PlayerInGame<T>::remove(int index)
 {
-    this->players.at(n).redrawCard(deckGame);
-};
+    remove_if(turns.begin(), turns.end(), [index](int element) -> bool
+              { return index == element; });
 
-template <typename T>
-void PlayerInGame<T>::redrawCardForCurrentPlayer(DeckGame<T> &deckGame)
-{
-    redrawCardForNthPlayer(deckGame, getCurrentTurn());
-};
+    PlayerCollection<T>::remove(index);
+}
 
-template class PlayerInGame<ColorCard>;
+// template <typename T>
+// void PlayerInGame<T>::showPlayerExcept(int unprintedID)
+// {
+//     bool print = true;
+//     int index = 0;
+//     for (int i = 0; i < this->players.size(); i++)
+//     {
+//         if (this->players.at(i).getGameID() != unprintedID)
+//         {
+//             cout << index + 1 << ". " << this->players.at(i).getUsername() << endl;
+//             index++;
+//         }
+//     }
+// };
+
+// template <typename T>
+// void PlayerInGame<T>::redrawCardForNthPlayer(DeckGame<T> &deckGame, int n)
+// {
+//     this->players.at(n).redrawCard(deckGame);
+// };
+
+// template <typename T>
+// void PlayerInGame<T>::redrawCardForCurrentPlayer(DeckGame<T> &deckGame)
+// {
+//     redrawCardForNthPlayer(deckGame, getCurrentTurn());
+// };
+
+template class PlayerInGame<Player<ColorCard>>;
+template class PlayerInGame<PlayerCandy>;

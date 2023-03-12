@@ -5,7 +5,7 @@ template <typename T>
 class PlayerCollection
 {
 protected:
-    vector<Player<T>> players;
+    vector<T> players;
 
 public:
     PlayerCollection(int numberOfPlayer);
@@ -20,21 +20,27 @@ public:
      *
      * @param addedPlayer
      */
-    void operator<<(Player<T> &addedPlayer);
+    virtual void operator<<(T &addedPlayer);
 
     /**
      * @brief Add addedPlayer into the collection as the last player
      *
      * @param addedPlayer
      */
-    void addPlayer(Player<T> &addedPlayer);
+    virtual void addPlayer(T &addedPlayer);
+
+    /**
+     * @brief Create a player and add it to the collection
+     *
+     */
+    virtual void createAndAddPlayer(int id) = 0;
 
     /**
      * @brief Remove a player from the collection
      *
      * @param index starts at one
      */
-    void remove(int index);
+    virtual void remove(int index);
 
     /**
      * @brief Remove a player from the collection
@@ -43,6 +49,4 @@ public:
      */
 
     void operator-=(int index);
-
-    bool usernameExist(string username);
 };

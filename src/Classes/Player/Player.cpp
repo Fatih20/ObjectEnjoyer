@@ -62,6 +62,12 @@ string Player<T>::askForUsername()
 };
 
 template <typename T>
+void Player<T>::setGameID(int gameID)
+{
+    this->gameID = gameID;
+}
+
+template <typename T>
 string Player<T>::getUsername() const
 {
     return username;
@@ -252,4 +258,12 @@ void Player<T>::redrawCard(DeckGame<T> &deckGame)
     drawCard(deckGame, handCards.getNumberOfCards());
 };
 
+template <typename Y>
+std::ostream &operator<<(std::ostream &os, const Player<Y> &player)
+{
+    os << player.getUsername();
+    return os;
+};
+
 template class Player<ColorCard>;
+template std::ostream &operator<<(std::ostream &os, const Player<ColorCard> &deck);
