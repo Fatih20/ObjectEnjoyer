@@ -3,7 +3,7 @@
 
 #include "../Game/Game.hpp"
 #include "../PlayerInGameCandy/PlayerInGameCandy.hpp"
-#include "../DeckGame/DeckGame.hpp"
+// #include "../DeckGame/DeckGame.hpp"
 #include "GameCandyException/GameCandyException.hpp"
 #include <map>
 using namespace std;
@@ -32,8 +32,7 @@ map<string, Command> cmd{{"next", NEXT}, {"doubble", DOUBLE}, {"half", HALF}, {"
 //                         //   {3,"re-roll"}, {4,"quadruple"}, {5,"quarter"},
 //                         //   {6,"reverse"}, {7,"swap"}, {8,"switch"}, {9, "abilityless"}};
 
-template <typename T>
-class GameCandy : public Game<T>
+class GameCandy : public Game
 {
 private:
     // PlayerInGameCandy players;   // pemain
@@ -96,7 +95,7 @@ public:
      * @brief mekanisme giliran pemain, currentPlayer akan input command dan command akan dijalankan
      *
      */
-    void playerAction(int action);
+    void playerAction(string action);
 
     /**
      * @brief

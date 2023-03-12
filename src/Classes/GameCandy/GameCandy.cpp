@@ -6,16 +6,15 @@
 
 using namespace std;
 
-template <typename T>
-GameCandy<T>::GameCandy()
+GameCandy::GameCandy()
 {
     splashScreen();
     round = 1;
     giftPoint = 64;
 }
 
-template <typename T>
-void GameCandy<T>::start()
+
+void GameCandy::start()
 {
     cout << "New game start\n";
     while (!isWinning())
@@ -29,36 +28,34 @@ void GameCandy<T>::start()
         }
     }
 }
-template <typename T>
-bool GameCandy<T>::isWinning()
+
+bool GameCandy::isWinning()
 {
     // return (winningPlayer()!=0)
     return false;
 }
 
-template <typename T>
-bool GameCandy<T>::isRoundOver()
+
+bool GameCandy::isRoundOver()
 {
     // true jika semua player telah mendapat giliran
     return false;
 }
 
-template <typename T>
-void GameCandy<T>::newGame()
+
+void GameCandy::newGame()
 {
     // deck card baru
 }
 
-template <typename T>
-void GameCandy<T>::endOfGame()
+void GameCandy::endOfGame()
 {
     // i = winningPlayer();
     // players.at(i).addScore(giftPoint);
     giftPoint = 64;
 }
 
-template <typename T>
-void GameCandy<T>::startRound()
+void GameCandy::startRound()
 {
     //     switch (round)
     //     {
@@ -71,14 +68,14 @@ void GameCandy<T>::startRound()
 
     for (int i = 0; i < 7; i++)
     {
-        int cmd = inputCommand();
+        string cmd = inputCommand();
         playerAction(cmd);
         // nextTurn();
     }
 }
 
-template <typename T>
-void GameCandy<T>::playerAction(int cmd)
+
+void GameCandy::playerAction(string cmd)
 {
     // switch (cmd)
     // {
@@ -91,8 +88,8 @@ void GameCandy<T>::playerAction(int cmd)
     // }
 }
 
-template <typename T>
-string GameCandy<T>::inputCommand()
+
+string GameCandy::inputCommand()
 {
     string cmd;
     bool isValid = false;
@@ -114,8 +111,8 @@ string GameCandy<T>::inputCommand()
     return cmd;
 }
 
-template <typename T>
-string GameCandy<T>::isCommandValid(string userCommand)
+
+string GameCandy::isCommandValid(string userCommand)
 {
 
     string oriCommand = userCommand;
@@ -136,22 +133,19 @@ string GameCandy<T>::isCommandValid(string userCommand)
     }
 }
 
-template <typename T>
-void GameCandy<T>::splashScreen()
+
+void GameCandy::splashScreen()
 {
     cout << "Game Candy Splash screen\n";
 }
 
-template <typename T>
-void GameCandy<T>::multiplyGiftPoint(double multiplier)
+
+void GameCandy::multiplyGiftPoint(double multiplier)
 {
     giftPoint *= multiplier;
 }
 
-template <typename T>
-void GameCandy<T>::operator*=(double multiplier)
+void GameCandy::operator*=(double multiplier)
 {
     multiplyGiftPoint(multiplier);
 }
-
-template GameCandy<int>::GameCandy();

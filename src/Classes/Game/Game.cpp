@@ -4,16 +4,12 @@
 
 using namespace std;
 
-template <typename T>
-Game<T>::Game(){
+Game::Game(){
 }
 
-template <typename T>
-void Game<T>::splashScreen(){
+void Game::splashScreen(){
     cout << "Game splash screen\n\n";
 }
-
-template Game<int>::Game();
 
 
 
