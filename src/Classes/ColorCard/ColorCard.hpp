@@ -36,6 +36,12 @@ class ColorCard: public Card<int> {
         Color getColor();
 
         /**
+         * @brief Get the Face Value of the card
+         * 
+         */
+        int getNumber();
+
+        /**
          * @brief Get the card weight based on the value and color relative to other color cards
          * 
          */
@@ -66,6 +72,8 @@ class ColorCard: public Card<int> {
          * 
          */
         bool operator==(ColorCard other);
+
+        void print();
 };
 
 /**
