@@ -7,16 +7,16 @@
 using namespace std;
 
 int main(){
-    Game<int> *game;
+    Game *game;
     int opt;
     cout << "Game apah?\n";
     cout << "1. Candy\n";
     cout << "2. Capsa\n";
     cin >> opt;
     if (opt==1){
-        game = new GameCandy<int>;
+        game = new GameCandy;
     } else {
-        game = new GameCapsa<int>;
+        game = new GameCapsa;
     }
     game->start();
     return 0;

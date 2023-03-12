@@ -6,8 +6,7 @@
 #include <map>
 using namespace std;
 
-template <typename T>
-class GameCapsa: public Game<T>{
+class GameCapsa: public Game{
     private:
         // PlayerInGameCapsa players;   // pemain
         // DeckGame<T> deck;            // deck game
