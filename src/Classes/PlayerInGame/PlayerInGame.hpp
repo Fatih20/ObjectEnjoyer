@@ -38,7 +38,7 @@ public:
      * @param numberOfCards the number of cards given to each player
      * @param numberOfPlayer the number of player in the game
      */
-    PlayerInGame(DeckGame<T> deckGame, int numberOfCards, int numberOfPlayer);
+    // PlayerInGame(DeckGame<T> deckGame, int numberOfCards, int numberOfPlayer);
 
     /**
      * @brief Construct a new Player In Game object
@@ -59,22 +59,7 @@ public:
      * @brief Return the player that currently has the turn
      *
      */
-    Player<T> &getPlayerWithTurn();
-
-    /**
-     * @brief Make the nth player redraw their card
-     *
-     * @param deckGame the deck from which the player's draw their card
-     * @param n the turn of the player's to redraw
-     */
-    void redrawCardForNthPlayer(DeckGame<T> &deckGame, int n);
-
-    /**
-     * @brief Redraw the card for the player's currently in turn
-     *
-     * @param deckGame
-     */
-    void redrawCardForCurrentPlayer(DeckGame<T> &deckGame);
+    T &getPlayerWithTurn();
 
     /**
      * @brief Whether the round is complete or not
@@ -91,10 +76,20 @@ public:
     virtual void resetRound();
 
     /**
-     * @brief Change roundComplete to true
+     * @brief Get the current turn
      *
+     * @return true
+     * @return false
      */
-    bool getCurrentTurn();
+    int getCurrentTurn();
+
+    /**
+     * @brief Get the index of the player with the current turn
+     *
+     * @return true
+     * @return false
+     */
+    int getIndexOfCurrentTurn();
 
     /**
      * @brief Change the turn to the next person in line
@@ -106,23 +101,30 @@ public:
      * @brief Print all of the player's in the game
      *
      */
-    void showPlayer();
-
-    /**
-     * @brief Print all of the player's except one with the gameID of unprintedID
-     *
-     * @param unprintedID
-     */
-    void showPlayerExcept(int unprintedID);
+    virtual void showPlayer();
 
     /**
      * @brief Remove player with the gameID of removedID
      *
      * @param removedID
      */
-    void removePlayerOfID(int removedID);
+    virtual void removePlayerOfID(int removedID) = 0;
 
-    // Kurang retake deck dan re-roll
+    /**
+     * @brief Set roundComplete to true
+     *
+     */
     void stopRound();
+
+    virtual void remove(int index);
+
+    /**
+     * @brief Return whether the username exist in the object
+     *
+     * @param username
+     * @return true
+     * @return false
+     */
+    virtual bool usernameExist(string username) = 0;
 };
 // Kurang retake deck dan re-roll
