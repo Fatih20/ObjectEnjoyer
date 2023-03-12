@@ -38,7 +38,7 @@ public:
     /**
      * @brief get the combination value of this deck against deckplayer
      */
-    int getCombinationValueWith(const Deck<T> &deckPlayer) const; //TODO : make the parameter to be exclusively against deckPlayer
+    int getCombinationValueWith(const Deck<T> &deckPlayer) const; // NOTE: we use Deck as param to avoid circular dependency with DeckPlayer
 
 };
 

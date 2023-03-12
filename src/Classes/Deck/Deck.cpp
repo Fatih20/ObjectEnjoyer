@@ -69,6 +69,7 @@ Deck<T>& Deck<T>::operator<<(const T& card) {
     return *this;
 }
 
+//TODO: implement polymorphism
 template<typename T>
 void Deck<T>::sort() {
     std::sort(this->vec.begin(), this->vec.end(), [](T a, T b){
