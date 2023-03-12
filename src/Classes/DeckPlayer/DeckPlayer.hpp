@@ -6,6 +6,8 @@
 #include "Classes/Card/Card.hpp"
 #include "Classes/ColorCard/ColorCard.hpp"
 
+#include "Classes/DeckException/DeckException.hpp"
+
 template <class T>
 class DeckPlayer : public Deck<T>
 {

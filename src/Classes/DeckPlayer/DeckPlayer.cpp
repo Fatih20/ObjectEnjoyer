@@ -38,16 +38,15 @@ void DeckPlayer<T>::drawCard(DeckGame<T> &drawnDeck, int numberOfCards)
 template <typename T>
 T DeckPlayer<T>::ejectCard()
 {
-    if (this->vec.size() != 0)
-    {
-        // Seharusnya work just fine. But kalau ada misal ada masalah bisa look into this
+    try{
+        if(this->vec.size() <= 0)
+            throw EmptyDeckException(); //untested
         T ejectedCard = this->vec.back();
         this->vec.pop_back();
         return ejectedCard;
-    }
-    else
-    {
-        // Mestinya throw exception
+    } catch(EmptyDeckException& e) {
+        std::cout << e.what() << std::endl;
     }
 };
+
 template class DeckPlayer<ColorCard>;
