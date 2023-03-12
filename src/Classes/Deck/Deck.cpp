@@ -100,7 +100,7 @@ int Deck<T>::getNumberOfCards()
 template<typename T>
 void Deck<T>::sort() {
     std::sort(this->vec.begin(), this->vec.end(), [](T a, T b){ // sementara exclusive ColorCard
-        return a.value() < b.value();
+        return a.value() > b.value();
     });
 }
 
