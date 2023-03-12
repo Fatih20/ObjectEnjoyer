@@ -47,7 +47,7 @@ class Combination{
 
         void getHighestCard();
 
-        bool inPlayer();
+        bool inPlayer(vector<ColorCard> cards);
 
         void print();
 

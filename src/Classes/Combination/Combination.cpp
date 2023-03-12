@@ -3,6 +3,7 @@
 #include <iostream>
 
 Combination::Combination(vector<ColorCard> player, vector<ColorCard> table){
+    combinationType = HIGH_CARD;
     playerCards = player;
     allCards = player;
     allCards.insert(allCards.end(), table.begin(), table.end());
@@ -24,73 +25,82 @@ void Combination::calculate(vector<ColorCard> player, vector<ColorCard> table){
         isTwoPair();
         isOnePair();
     }while(prev_permutation(allCards.begin(), allCards.end()));
-    getHighestCard();
+    if(combinationType == HIGH_CARD){
+        usedCards = playerCards;
+        getHighestCard();
+    }
 }
 
 void Combination::getHighestCard(){
-    if(combinationType == HIGH_CARD){
-        sort(playerCards.begin(), playerCards.end(), [](ColorCard a, ColorCard b){
-            return a.value() > b.value();
-        });
-        score = playerCards[0].value();
-    }
-
-    for(int i = 0 ; i < usedCards.size(); i++){
+    for(int i = 0; i < usedCards.size(); i++){
         if(find(playerCards.begin(), playerCards.end(), usedCards[i]) != playerCards.end()){
-            score = usedCards[i].value();
-            return;
+            if(score <= usedCards[i].value()){
+                score = usedCards[i].value();
+            }
         }
     }
 }
 
 void Combination::isOnePair(){
+    vector<ColorCard> temp;
     if(allCards[0].getNumber() == allCards[1].getNumber()){
-        usedCards.push_back(allCards[0]);
-        usedCards.push_back(allCards[1]);
-        if(inPlayer()){
-            if(combinationType < PAIR){
+        temp.push_back(allCards[0]);
+        temp.push_back(allCards[1]);
+        if(inPlayer(temp)){
+            if(combinationType <= PAIR){
                 combinationType = PAIR;
+                usedCards = temp;
+                getHighestCard();
             }
         }
     }
 }
 
 void Combination::isTwoPair(){
+    vector<ColorCard> temp;
     if(allCards[0].getNumber() == allCards[1].getNumber() && allCards[2].getNumber() == allCards[3].getNumber()){
-        usedCards.push_back(allCards[0]);
-        usedCards.push_back(allCards[1]);
-        usedCards.push_back(allCards[2]);
-        usedCards.push_back(allCards[3]);
-        if(inPlayer()){
+        temp.push_back(allCards[0]);
+        temp.push_back(allCards[1]);
+        temp.push_back(allCards[2]);
+        temp.push_back(allCards[3]);
+        if(inPlayer(temp)){
             if(combinationType < TWO_PAIRS){
+                usedCards = temp;
                 combinationType = TWO_PAIRS;
+                getHighestCard();
             }
         }
     }
 }
 
 void Combination::isThreeOfAKind(){
+    vector<ColorCard> temp;
     if(allCards[0].getNumber() == allCards[1].getNumber() && allCards[1].getNumber() == allCards[2].getNumber()){
-        usedCards.push_back(allCards[0]);
-        usedCards.push_back(allCards[1]);
-        usedCards.push_back(allCards[2]);
-        if(inPlayer()){
-            if(combinationType < THREE_OF_A_KIND){
+        temp.push_back(allCards[0]);
+        temp.push_back(allCards[1]);
+        temp.push_back(allCards[2]);
+        if(inPlayer(temp)){
+            if(combinationType <= THREE_OF_A_KIND){
+                usedCards = temp;
                 combinationType = THREE_OF_A_KIND;
+                getHighestCard();
             }
         }
     }
 }
 
 void Combination::isFourOfAKind(){
+    vector<ColorCard> temp;
     if(allCards[0].getNumber() == allCards[1].getNumber() && allCards[1].getNumber() == allCards[2].getNumber() && allCards[2].getNumber() == allCards[3].getNumber()){
-        usedCards.push_back(allCards[0]);
-        usedCards.push_back(allCards[1]);
-        usedCards.push_back(allCards[2]);
-        usedCards.push_back(allCards[3]);
-        if(inPlayer()){
-            if(combinationType < FOUR_OF_A_KIND){
+        temp.push_back(allCards[0]);
+        temp.push_back(allCards[1]);
+        temp.push_back(allCards[2]);
+        temp.push_back(allCards[3]);
+        if(inPlayer(temp)){
+            if(combinationType <= FOUR_OF_A_KIND){
+                usedCards = temp;
                 combinationType = FOUR_OF_A_KIND;
+                getHighestCard();
             }
         }
     }
@@ -98,6 +108,7 @@ void Combination::isFourOfAKind(){
 
 void Combination::isStraight(){
     bool isStraight = true;
+    vector<ColorCard> temp;
     for(int i = 0; i < 5; i++){
         if(allCards[i].getNumber() != allCards[i+1].getNumber() + 1){
             isStraight = false;
@@ -105,14 +116,16 @@ void Combination::isStraight(){
         }
     }
     if(isStraight){
-        usedCards.push_back(allCards[0]);
-        usedCards.push_back(allCards[1]);
-        usedCards.push_back(allCards[2]);
-        usedCards.push_back(allCards[3]);
-        usedCards.push_back(allCards[4]);
-        if(inPlayer()){
-            if(combinationType < STRAIGHT){
+        temp.push_back(allCards[0]);
+        temp.push_back(allCards[1]);
+        temp.push_back(allCards[2]);
+        temp.push_back(allCards[3]);
+        temp.push_back(allCards[4]);
+        if(inPlayer(temp)){
+            if(combinationType <= STRAIGHT){
+                usedCards = temp;
                 combinationType = STRAIGHT;
+                getHighestCard();
             }
         }
     }
@@ -120,6 +133,7 @@ void Combination::isStraight(){
 
 void Combination::isFlush(){
     bool isFlush = true;
+    vector<ColorCard> temp;
     for(int i = 0; i < 5; i++){
         if(allCards[i].getColor() != allCards[i+1].getColor()){
             isFlush = false;
@@ -127,29 +141,34 @@ void Combination::isFlush(){
         }
     }
     if(isFlush){
-        usedCards.push_back(allCards[0]);
-        usedCards.push_back(allCards[1]);
-        usedCards.push_back(allCards[2]);
-        usedCards.push_back(allCards[3]);
-        usedCards.push_back(allCards[4]);
-        if(inPlayer()){
-            if(combinationType < FLUSH){
+        temp.push_back(allCards[0]);
+        temp.push_back(allCards[1]);
+        temp.push_back(allCards[2]);
+        temp.push_back(allCards[3]);
+        temp.push_back(allCards[4]);
+        if(inPlayer(temp)){
+            if(combinationType <= FLUSH){
+                usedCards = temp;
                 combinationType = FLUSH;
+                getHighestCard();
             }
         }
     }
 }
 
 void Combination::isFullHouse(){
+    vector<ColorCard> temp;
     if(allCards[0].getNumber() == allCards[1].getNumber() && allCards[1].getNumber() == allCards[2].getNumber() && allCards[3].getNumber() == allCards[4].getNumber()){
-        usedCards.push_back(allCards[0]);
-        usedCards.push_back(allCards[1]);
-        usedCards.push_back(allCards[2]);
-        usedCards.push_back(allCards[3]);
-        usedCards.push_back(allCards[4]);
-        if(inPlayer()){
-            if(combinationType < FULL_HOUSE){
+        temp.push_back(allCards[0]);
+        temp.push_back(allCards[1]);
+        temp.push_back(allCards[2]);
+        temp.push_back(allCards[3]);
+        temp.push_back(allCards[4]);
+        if(inPlayer(temp)){
+            if(combinationType <= FULL_HOUSE){
+                usedCards = temp;
                 combinationType = FULL_HOUSE;
+                getHighestCard();
             }
         }
     }
@@ -157,6 +176,7 @@ void Combination::isFullHouse(){
 
 void Combination::isStraightFlush(){
     bool isStraightFlush = true;
+    vector<ColorCard> temp;
     for(int i = 0; i < 5; i++){
         if(allCards[i].getNumber() != allCards[i+1].getNumber() + 1 || allCards[i].getColor() != allCards[i+1].getColor()){
             isStraightFlush = false;
@@ -164,22 +184,23 @@ void Combination::isStraightFlush(){
         }
     }
     if(isStraightFlush){
-        usedCards.push_back(allCards[0]);
-        usedCards.push_back(allCards[1]);
-        usedCards.push_back(allCards[2]);
-        usedCards.push_back(allCards[3]);
-        usedCards.push_back(allCards[4]);
-        if(inPlayer()){
-            if(combinationType < STRAIGHT_FLUSH){
+        temp.push_back(allCards[0]);
+        temp.push_back(allCards[1]);
+        temp.push_back(allCards[2]);
+        temp.push_back(allCards[3]);
+        temp.push_back(allCards[4]);
+        if(inPlayer(temp)){
+            if(combinationType <= STRAIGHT_FLUSH){
                 combinationType = STRAIGHT_FLUSH;
+                getHighestCard();
             }
         }
     }
 }
 
-bool Combination::inPlayer(){
-    for(int i = 0; i < usedCards.size(); i++){
-        if(find(playerCards.begin(), playerCards.end(), usedCards[i]) != playerCards.end()){
+bool Combination::inPlayer(vector<ColorCard> cards){
+    for(int i = 0; i < cards.size(); i++){
+        if(find(playerCards.begin(), playerCards.end(), cards[i]) != playerCards.end()){
             return true;
         }
     }
