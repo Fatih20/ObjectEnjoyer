@@ -56,6 +56,13 @@ public:
     PlayerInGame(int numberOfPlayer, int currentTurn);
 
     /**
+     * @brief Construct a new Player In Game object
+     *
+     * @param playerInGame
+     */
+    PlayerInGame(const PlayerInGame &playerInGame);
+
+    /**
      * @brief Return the player that currently has the turn
      *
      */

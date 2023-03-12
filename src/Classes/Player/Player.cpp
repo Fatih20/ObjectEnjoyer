@@ -89,31 +89,31 @@ Player<T> &Player<T>::operator=(const Player<T> &givenPlayer)
 };
 
 template <typename T>
-int Player<T>::getScore()
+double Player<T>::getScore()
 {
     return score;
 };
 
 template <typename T>
-void Player<T>::addScore(int addedScore)
+void Player<T>::addScore(double addedScore)
 {
     score += addedScore;
 };
 
 template <typename T>
-void Player<T>::subtractScore(int subtractedScore)
+void Player<T>::subtractScore(double subtractedScore)
 {
     score -= subtractedScore;
 };
 
 template <typename T>
-void Player<T>::operator+=(int addedScore)
+void Player<T>::operator+=(double addedScore)
 {
     addScore(addedScore);
 };
 
 template <typename T>
-void Player<T>::operator-=(int subtractedScore)
+void Player<T>::operator-=(double subtractedScore)
 {
     subtractScore(subtractedScore);
 };

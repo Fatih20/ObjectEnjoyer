@@ -11,6 +11,12 @@ PlayerCollection<T>::PlayerCollection(int numberOfPlayer)
 };
 
 template <typename T>
+PlayerCollection<T>::PlayerCollection(const PlayerCollection &pC)
+{
+    this->players = pC.players;
+};
+
+template <typename T>
 int PlayerCollection<T>::getNumberOfPlayer()
 {
     return players.size();

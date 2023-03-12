@@ -9,6 +9,13 @@ protected:
 
 public:
     PlayerCollection(int numberOfPlayer);
+
+    /**
+     * @brief Construct a new Player Collection object
+     *
+     * @param pC
+     */
+    PlayerCollection(const PlayerCollection &pC);
     /**
      * @brief Return the number of player in this collection
      *

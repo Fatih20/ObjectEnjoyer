@@ -18,6 +18,13 @@ public:
     PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer);
 
     /**
+     * @brief Construct a new Player In Game Candy object
+     *
+     * @param playerInGameCandy
+     */
+    PlayerInGameCandy(const PlayerInGameCandy &playerInGameCandy);
+
+    /**
      * @brief Print the leaderboard of players in the collection
      *
      */
@@ -96,4 +103,20 @@ public:
      * @return int
      */
     int correctedIndexCustom(int rawIndex, vector<int> exceptedIndexes);
+
+    /**
+     * @brief Get the winner of the game, if there's any
+     *
+     * @param threshold
+     * @return std::vector<PlayerCandy>
+     */
+    std::vector<string> getWinner();
+
+    /**
+     * @brief Return whether there's a winner
+     *
+     * @return true
+     * @return false
+     */
+    bool winnerExist();
 };
