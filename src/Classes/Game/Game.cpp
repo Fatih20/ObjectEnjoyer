@@ -21,6 +21,7 @@ int Game::inputOption(int optionRange){
             cout << "> ";
             cin >> option;
             isOptionValid(option, optionRange);
+            isValid = true;
         }
         catch(OptionInvalid e)
         {
