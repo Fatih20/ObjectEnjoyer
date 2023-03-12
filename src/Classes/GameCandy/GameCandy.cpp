@@ -1,126 +1,157 @@
 #include "GameCandy.hpp"
-
 #include <iostream>
 #include <map>
 #include <algorithm>
 
 using namespace std;
 
-
-template <typename T>
-GameCandy<T>::GameCandy() {
+GameCandy::GameCandy()
+{
     splashScreen();
-    round=1; giftPoint=64;
+
+    DeckGame<ColorCard> deck;
+    // DeckGame<AbilityCard> abilityCard;
+    // input randomize/from file
+
+    DeckGame<ColorCard> tableCard;
+    // empty
+
+    DeckGame<ColorCard> playerDeck;
+    // draw playerDeck from deckGame
+    
+    PlayerInGameCandy players(playerDeck, 7);
+    this->players = players;
+
+    this->deck = deck;
+    this->tableCard = tableCard;
+    // this->abilityCard = abilityCard;
+
+    round = 1;
+    giftPoint = 64;
 }
 
-template <typename T>
-void GameCandy<T>::start(){
+void GameCandy::start()
+{
     cout << "New game start\n";
-    while (!isWinning()){
-    // inisialisasi game baru -> player sama, deckCard baru
+    while (!isWinning())
+    {
+        // inisialisasi game baru -> player sama, deckCard baru
         cout << "Round " << round << " begin\n";
         newGame();
-        while (!isRoundOver()){
+        while (!isRoundOver())
+        {
+            
             inputCommand();
         }
     }
 }
 
-
-template <typename T>
-bool GameCandy<T>::isWinning(){
+bool GameCandy::isWinning()
+{
     // return (winningPlayer()!=0)
     return false;
 }
 
-template <typename T>
-bool GameCandy<T>::isRoundOver(){
+
+bool GameCandy::isRoundOver()
+{
     // true jika semua player telah mendapat giliran
-    return false;
+    return players.getIsRoundComplete();
 }
 
-template <typename T>
-void GameCandy<T>::newGame(){
+
+void GameCandy::newGame()
+{
     // deck card baru
 }
 
-template <typename T>
-void GameCandy<T>::endOfGame(){
+void GameCandy::endOfGame()
+{
     // i = winningPlayer();
     // players.at(i).addScore(giftPoint);
     giftPoint = 64;
 }
 
-template <typename T>
-void GameCandy<T>::startRound(){
-//     switch (round)
-//     {
-//     case 1:
-//         //bagi color card
-//         break;
-//     case 2:
-//         //bagi ability card
-//     }
+void GameCandy::startRound()
+{
+    //     switch (round)
+    //     {
+    //     case 1:
+    //         //bagi color card
+    //         break;
+    //     case 2:
+    //         //bagi ability card
+    //     }
 
-    for (int i=0; i<7; i++){
-        int cmd = inputCommand();
+    for (int i = 0; i < 7; i++)
+    {
+        string cmd = inputCommand();
         playerAction(cmd);
         // nextTurn();
     }
-
 }
 
-template <typename T>
-void GameCandy<T>::playerAction(int cmd){
+
+void GameCandy::playerAction(string cmd)
+{
     // switch (cmd)
     // {
     // case 1:
     //     nextCommand();
     //     break;
-    
+
     // default:
     //     break;
     // }
 }
 
-template <typename T>
-string GameCandy<T>::inputCommand(){
+
+string GameCandy::inputCommand()
+{
     string cmd;
-    bool isValid=false;
-    while (!isValid){
-        try {
+    bool isValid = false;
+    while (!isValid)
+    {
+        try
+        {
             cout << "> ";
             cin >> cmd;
             cout << isCommandValid(cmd) << endl;
             isCommandValid(cmd);
             isValid = true;
-        } catch (CommandInvalid e){
+        }
+        catch (CommandInvalid e)
+        {
             cout << "Command '" << e.getInvalidCommand() << "' is invalid\n\n";
         }
     }
     return cmd;
 }
 
-template <typename T>
-string GameCandy<T>::isCommandValid(string userCommand){
+
+string GameCandy::isCommandValid(string userCommand)
+{
 
     string oriCommand = userCommand;
-    transform(userCommand.begin(),userCommand.end(),userCommand.begin(),::tolower);
+    transform(userCommand.begin(), userCommand.end(), userCommand.begin(), ::tolower);
 
-    map<string,Command>::iterator it;
+    map<string, Command>::iterator it;
     it = cmd.find(userCommand);
 
-    if (it != cmd.end()){
-        //userCommand valid
+    if (it != cmd.end())
+    {
+        // userCommand valid
         return it->first;
-    } else{
-        //userCommand invalid
+    }
+    else
+    {
+        // userCommand invalid
         throw CommandInvalid(oriCommand);
     }
 }
 
 template <typename T>
-void GameCandy<T>::splashScreen(){
+void GameCandy::splashScreen(){
 
     cout << "       _..._                                                                                                                     " << endl;
     cout << "    .-'_..._''.                      _______                                                                                     " << endl;
@@ -138,4 +169,13 @@ void GameCandy<T>::splashScreen(){
     cout << "/nGame starting..."
 }
 
-template GameCandy<int>::GameCandy();
+
+void GameCandy::multiplyGiftPoint(double multiplier)
+{
+    giftPoint *= multiplier;
+}
+
+void GameCandy::operator*=(double multiplier)
+{
+    multiplyGiftPoint(multiplier);
+}

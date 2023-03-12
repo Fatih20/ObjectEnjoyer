@@ -1,5 +1,7 @@
 #include "Player.hpp"
-#include "PlayerException/PlayerException.hpp"
+#include "Classes/InventoryHolder/InventoryHolder.hpp"
+#include "Classes/ColorCard/ColorCard.hpp"
+#include "../PlayerException/PlayerException.hpp"
 #include <iostream>
 #include <vector>
 #include <exception>
@@ -7,13 +9,30 @@
 
 using namespace std;
 
-vector<string> Player::allNicknames(0);
-int Player::numberOfPlayer = 0;
-
-Player::Player()
+template <typename T>
+Player<T>::Player()
 {
-    numberOfPlayer++;
+    this->gameID = 0;
+    username = "";
     score = 0;
+}
+
+template <typename T>
+Player<T>::Player(int gameID)
+{
+    this->gameID;
+    score = 0;
+    username = askForUsername();
+    setValidUsername();
+};
+
+template <typename T>
+Player<T>::~Player(){};
+
+template <typename T>
+void Player<T>::setValidUsername()
+{
+    username = askForUsername();
     bool validUsername = false;
     while (!validUsername)
     {
@@ -24,98 +43,227 @@ Player::Player()
         }
         catch (UsernameEmpty e)
         {
-            cout << "Cannot have empty username!" << endl;
-        }
-        catch (UsernameExist e)
-        {
-            cout << "Username " << e.getUsernameThatExist() << " already exists" << endl;
+            cout << e.getMessage() << endl;
         }
     }
-
-    allNicknames.push_back(username);
 };
 
-Player::~Player()
+template <typename T>
+string Player<T>::askForUsername()
 {
-    bool usernameFound = false;
-    int i;
-    for (i = 0; i < allNicknames.size() && !usernameFound; i += (usernameFound ? 0 : 1))
-    {
-        usernameFound = allNicknames.at(i) == this->username;
-    };
-    if (usernameFound)
-    {
-        allNicknames.erase(allNicknames.begin() + i);
-    }
-}
-
-string Player::askForUsername()
-{
-    cout << "Masukkan username player ke-" << numberOfPlayer << " : ";
+    cout << "Masukkan username player ke-" << gameID << " : ";
     string askedUsername;
     cin >> askedUsername;
     if (askedUsername == "")
     {
         throw UsernameEmpty();
     }
-    else if (find(allNicknames.begin(), allNicknames.end(), askedUsername) != allNicknames.end())
-    {
-        throw UsernameExist(askedUsername);
-    }
-
     return askedUsername;
+};
+
+template <typename T>
+void Player<T>::setGameID(int gameID)
+{
+    this->gameID = gameID;
 }
 
-string Player::getUsername() const
+template <typename T>
+string Player<T>::getUsername() const
 {
     return username;
-}
-
-Player::Player(const Player &givenPlayer)
-{
-    numberOfPlayer++;
-    username = givenPlayer.getUsername();
-    allNicknames.push_back(username);
 };
 
-void Player::operator=(const Player &givenPlayer)
+template <typename T>
+Player<T>::Player(const Player &givenPlayer)
 {
-    numberOfPlayer++;
     username = givenPlayer.getUsername();
-    allNicknames.push_back(username);
+    gameID = givenPlayer.gameID;
 };
 
-int Player::getScore()
+template <typename T>
+Player<T> &Player<T>::operator=(const Player<T> &givenPlayer)
+{
+    username = givenPlayer.getUsername();
+    gameID = givenPlayer.gameID;
+    return *this;
+};
+
+template <typename T>
+double Player<T>::getScore()
 {
     return score;
-}
+};
 
-void Player::addScore(int addedScore)
+template <typename T>
+void Player<T>::addScore(double addedScore)
 {
     score += addedScore;
-}
+};
 
-void Player::subtractScore(int subtractedScore)
+template <typename T>
+void Player<T>::subtractScore(double subtractedScore)
 {
     score -= subtractedScore;
-}
+};
 
-void Player::operator+=(int addedScore)
+template <typename T>
+void Player<T>::operator+=(double addedScore)
 {
     addScore(addedScore);
 };
 
-void Player::operator-=(int subtractedScore)
+template <typename T>
+void Player<T>::operator-=(double subtractedScore)
 {
     subtractScore(subtractedScore);
-}
+};
 
-void Player::resetScore()
+template <typename T>
+void Player<T>::resetScore()
 {
     score = 0;
-}
+};
 
-void Player::printScore()
+template <typename T>
+void Player<T>::printScore()
 {
     cout << username << ": " << getScore() << endl;
-}
+};
+
+template <typename T>
+int Player<T>::getGameID()
+{
+    return gameID;
+};
+
+template <typename T>
+void Player<T>::addCard(const T &card)
+{
+    handCards += card;
+};
+
+template <typename T>
+void Player<T>::swapDeck(Player<T> &givenPlayer)
+{
+    handCards.swap(givenPlayer.handCards);
+};
+
+template <typename T>
+void Player<T>::printColorCard()
+{
+    cout << handCards;
+};
+
+template <typename T>
+void Player<T>::drawCard(DeckGame<T> &deckGame, int numberOfCards)
+{
+    handCards.drawCard(deckGame, numberOfCards);
+};
+
+template <typename T>
+void Player<T>::operator+=(const T &addedCard)
+{
+    handCards += addedCard;
+};
+
+template <typename T>
+bool Player<T>::operator!=(const Player<T> &otherPlayer)
+{
+    return score != otherPlayer.score;
+};
+
+template <typename T>
+bool Player<T>::operator<(const Player<T> &otherPlayer)
+{
+    return score < otherPlayer.score;
+};
+
+template <typename T>
+bool Player<T>::operator>(const Player<T> &otherPlayer)
+{
+    return score > otherPlayer.score;
+};
+
+template <typename T>
+bool Player<T>::operator<=(const Player<T> &otherPlayer)
+{
+    return score <= otherPlayer.score;
+};
+
+template <typename T>
+bool Player<T>::operator>=(const Player<T> &otherPlayer)
+{
+    return score >= otherPlayer.score;
+};
+
+template <typename T>
+bool Player<T>::operator==(const Player<T> &otherPlayer)
+{
+    return score == otherPlayer.score;
+};
+
+template <typename T>
+int Player<T>::compareCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
+{
+    int ourScore = deckGame.getCombinationValueWith(this->handCards);
+    int theirScore = deckGame.getCombinationValueWith(otherPlayer.handCards);
+    if (ourScore > theirScore)
+    {
+        return 1;
+    }
+    else if (ourScore == theirScore)
+    {
+        return 0;
+    }
+    else
+    {
+        return -1;
+    }
+};
+
+template <typename T>
+bool Player<T>::higherCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
+{
+    return compareCombinationWeight(otherPlayer, deckGame) == 1;
+};
+
+template <typename T>
+bool Player<T>::equalCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
+{
+    return compareCombinationWeight(otherPlayer, deckGame) == 0;
+};
+
+template <typename T>
+bool Player<T>::lowerCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
+{
+    return compareCombinationWeight(otherPlayer, deckGame) == -1;
+};
+
+template <typename T>
+void Player<T>::redrawCard(DeckGame<T> &deckGame, int newNumberOfCards)
+{
+    int currentNumberOfCards = handCards.getNumberOfCards();
+    for (int i = 0; i < currentNumberOfCards; i++)
+    {
+        T returnedCard = handCards.ejectCard();
+        deckGame += returnedCard;
+    };
+    drawCard(deckGame, newNumberOfCards);
+};
+
+template <typename T>
+void Player<T>::redrawCard(DeckGame<T> &deckGame)
+{
+
+    drawCard(deckGame, handCards.getNumberOfCards());
+};
+
+template <typename Y>
+std::ostream &operator<<(std::ostream &os, const Player<Y> &player)
+{
+    os << player.getUsername();
+    return os;
+};
+
+template class Player<ColorCard>;
+template std::ostream &operator<<(std::ostream &os, const Player<ColorCard> &deck);

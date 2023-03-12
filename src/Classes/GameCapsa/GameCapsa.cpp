@@ -3,13 +3,12 @@
 #include <iostream>
 using namespace std;
 
-template <typename T>
-GameCapsa<T>::GameCapsa(){
+GameCapsa::GameCapsa(){
     splashScreen();
 }
 
 template <typename T>
-void GameCapsa<T>::splashScreen(){
+void GameCapsa::splashScreen(){
     cout << ".------..------..------..------..------.     .------..------..------..------." << endl;
     cout << "|C.--. ||A.--. ||P.--. ||S.--. ||A.--. |.-.  |G.--. ||A.--. ||M.--. ||E.--. |" << endl;
     cout << "| :/\\: || (\\/) || :/\\: || :/\\: || (\\/) ((5)) | :/\\: || (\\/) || (\\/) || (\\/) |" << endl;
@@ -19,44 +18,31 @@ void GameCapsa<T>::splashScreen(){
     cout << "/nGame starting..."
 }
 
-template <typename T>
-void GameCapsa<T>::start(){
-
+void GameCapsa::start(){
 }
 
-template <typename T>
-bool GameCapsa<T>::isWinning(){
+bool GameCapsa::isWinning(){
     // return (winningPlayer()!=0)
     return false;
 }
 
-
-template <typename T>
-void GameCapsa<T>::newGame(){
+void GameCapsa::newGame(){
     // deck card baru
 }
 
-template <typename T>
-void GameCapsa<T>::endOfGame(){
+void GameCapsa::endOfGame(){
 }
 
-template <typename T>
-void GameCapsa<T>::startRound(){
-
-
+void GameCapsa::startRound(){
 }
 
-template <typename T>
-void GameCapsa<T>::playerAction(int cmd){
-
+void GameCapsa::playerAction(int cmd){
 }
 
-template <typename T>
-string GameCapsa<T>::inputCommand(){
+string GameCapsa::inputCommand(){
 }
 
-template <typename T>
-string GameCapsa<T>::isCommandValid(string userCommand){
+string GameCapsa::isCommandValid(string userCommand){
 
     string oriCommand = userCommand;
     transform(userCommand.begin(),userCommand.end(),userCommand.begin(),::tolower);
@@ -72,6 +58,3 @@ string GameCapsa<T>::isCommandValid(string userCommand){
         throw CommandInvalid(oriCommand);
     }
 }
-
-
-template GameCapsa<int>::GameCapsa();
