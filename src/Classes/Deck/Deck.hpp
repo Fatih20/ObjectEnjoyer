@@ -5,6 +5,8 @@
 #include <cstring>
 #include <iostream>
 #include <algorithm>
+#include <random>
+#include <time.h>
 #include "Classes/Card/Card.hpp"
 #include "Classes/InventoryHolder/InventoryHolder.hpp"
 
@@ -91,7 +93,7 @@ public:
     /**
      * @brief sort deck by value
      */
-     void sortDeck();
+     void sort();
 };
 
 #endif

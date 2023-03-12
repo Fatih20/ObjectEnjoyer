@@ -39,7 +39,12 @@ void Deck<T>::swap(Deck &other)
 };
 
 template <typename T>
-void Deck<T>::shuffle(){};
+void Deck<T>::shuffle(){
+    std::default_random_engine rng;
+    rng.seed(time(0));
+
+    std::shuffle(this->vec.begin(), this->vec.end(), rng);
+};
 
 template <typename T>
 void Deck<T>::setDeck(std::vector<T> vec)
@@ -93,7 +98,7 @@ int Deck<T>::getNumberOfCards()
 };
 
 template<typename T>
-void Deck<T>::sortDeck() {
+void Deck<T>::sort() {
     std::sort(this->vec.begin(), this->vec.end(), [](T a, T b){ // sementara exclusive ColorCard
         return a.value() < b.value();
     });
