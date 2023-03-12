@@ -149,7 +149,7 @@ string GameCandy::isCommandValid(string userCommand)
     }
 }
 
-template <typename T>
+
 void GameCandy::splashScreen(){
 
     cout << "       _..._                                                                                                                     " << endl;
@@ -165,7 +165,7 @@ void GameCandy::splashScreen(){
     cout << "    `-.______ / / /   | |_|  |   |  |\\_______|/       / /                 ||     ||/ /   | |_                   `''-...... -'    " << endl;
     cout << "             `  \\ \\._,\\ '/|  |   |  |             |`-' /                  \'. __// \\ \\._,\\ '/                                    " << endl;
     cout << "                 `--'  `\" '--'   '--'              '..'                    `'---'   `--'  `\"                                     " << endl;
-    cout << "/nGame starting..."
+    cout << "/nGame starting...\n";
 }
 
 
