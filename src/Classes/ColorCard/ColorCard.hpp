@@ -20,6 +20,12 @@ class ColorCard: public Card<int> {
         
     public:
         /**
+         * @brief Construct a new Color Card object with default value and color (0, GREEN)
+         * 
+         */
+        ColorCard();
+
+        /**
          * @brief Construct a new Color Card object with given value and color
          * 
          * @param value The face value of the card
