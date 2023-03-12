@@ -15,7 +15,7 @@ public:
      * @param numberOfPlayer
      * @param currentTurn starts at 0
      */
-    PlayerInGameCandy(DeckGame<ColorCard> deckGame, int numberOfPlayer);
+    PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer);
 
     /**
      * @brief Print the leaderboard of players in the collection

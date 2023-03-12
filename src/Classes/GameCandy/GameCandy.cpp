@@ -1,4 +1,3 @@
-
 #include "GameCandy.hpp"
 #include <iostream>
 #include <map>
@@ -9,10 +8,27 @@ using namespace std;
 GameCandy::GameCandy()
 {
     splashScreen();
+
+    DeckGame<ColorCard> deck;
+    // DeckGame<AbilityCard> abilityCard;
+    // input randomize/from file
+
+    DeckGame<ColorCard> tableCard;
+    // empty
+
+    DeckGame<ColorCard> playerDeck;
+    // draw playerDeck from deckGame
+    
+    PlayerInGameCandy players(playerDeck, 7);
+    this->players = players;
+
+    this->deck = deck;
+    this->tableCard = tableCard;
+    // this->abilityCard = abilityCard;
+
     round = 1;
     giftPoint = 64;
 }
-
 
 void GameCandy::start()
 {
@@ -24,6 +40,7 @@ void GameCandy::start()
         newGame();
         while (!isRoundOver())
         {
+            
             inputCommand();
         }
     }
@@ -39,7 +56,7 @@ bool GameCandy::isWinning()
 bool GameCandy::isRoundOver()
 {
     // true jika semua player telah mendapat giliran
-    return false;
+    return players.getIsRoundComplete();
 }
 
 

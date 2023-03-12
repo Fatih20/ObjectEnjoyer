@@ -3,7 +3,7 @@
 #include <algorithm>
 
 using namespace std;
-PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> deckGame, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
+PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
 {
     for (int i = 0; i < numberOfPlayer; i++)
     {

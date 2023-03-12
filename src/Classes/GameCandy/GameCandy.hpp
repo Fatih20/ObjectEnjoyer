@@ -3,7 +3,7 @@
 
 #include "../Game/Game.hpp"
 #include "../PlayerInGameCandy/PlayerInGameCandy.hpp"
-// #include "../DeckGame/DeckGame.hpp"
+#include "../DeckGame/DeckGame.hpp"
 #include "GameCandyException/GameCandyException.hpp"
 #include <map>
 using namespace std;
@@ -22,22 +22,15 @@ typedef enum
     ABILITYLESS = 9 // Disable the ability of a specific player
 } Command;
 
-// map<string, Command> cmd {{NEXT,"next"}, {DOUBLE,"doubble"}, {HALF,"half"},
-//                           {REROLL,"re-roll"}, {QUADRUPLE,"quadruple"}, {QUARTER,"quarter"},
-//                           {REVERSE,"reverse"}, {SWAP,"swap"}, {SWITCH,"switch"}, {ABILITYLESS, "abilityless"}};
-
 map<string, Command> cmd{{"next", NEXT}, {"doubble", DOUBLE}, {"half", HALF}, {"re-roll", REROLL}, {"quadruple", QUADRUPLE}, {"quarter", QUARTER}, {"reverse", REVERSE}, {"swap", SWAP}, {"switch", SWITCH}, {"abilityless", ABILITYLESS}};
-
-// map<Command, string> cmd {{NEXT,"next"}, {DOUBLE,"doubble"}, {HALF,"half"}};
-//                         //   {3,"re-roll"}, {4,"quadruple"}, {5,"quarter"},
-//                         //   {6,"reverse"}, {7,"swap"}, {8,"switch"}, {9, "abilityless"}};
 
 class GameCandy : public Game
 {
 private:
-    // PlayerInGameCandy players;   // pemain
-    // DeckGame<T> deck;            // deck game
-    // DeckGame<T> tableCard;       // table card
+    PlayerInGameCandy players;   // pemain
+    DeckGame<ColorCard> deck;            // deck game
+    DeckGame<ColorCard> tableCard;       // table card
+    // DeckGame<AbilityCard> abilityCard;
     int round;        // ronde
     double giftPoint; // point hadiah tiap akhir game
 private:
@@ -112,7 +105,19 @@ public:
      */
     string isCommandValid(string command);
 
+    /**
+     * @brief display splash screen
+     * 
+     */
     void splashScreen();
+
+    /**
+     * @brief 
+     * 
+     */
+    DeckGame<ColorCard> randomizeColorCard();
+
+    // DeckGame<AbilityCard> randomizeAbilityCard();
 };
 
 #endif
