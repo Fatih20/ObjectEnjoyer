@@ -2,7 +2,7 @@
 #define GAME_HPP
 
 #include <string>
-#include "GameException/GameException.hpp"
+#include "../GameException/GameException.hpp"
 using namespace std;
 
 class Game {

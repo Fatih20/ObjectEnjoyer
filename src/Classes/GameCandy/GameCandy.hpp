@@ -4,13 +4,10 @@
 #include "../Game/Game.hpp"
 #include "../PlayerInGameCandy/PlayerInGameCandy.hpp"
 #include "../DeckGame/DeckGame.hpp"
-#include "GameCandyException/GameCandyException.hpp"
+#include "../GameCandyException/GameCandyException.hpp"
 #include <vector>
 using namespace std;
 
-vector<string> cmd {"next","doubble","half",
-                    "re-roll","quadruple","quarter",
-                    "reverse","swap", "switch","abilityless" };
 
 class GameCandy : public Game
 {

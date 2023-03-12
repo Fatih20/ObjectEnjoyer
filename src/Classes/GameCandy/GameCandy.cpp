@@ -3,8 +3,11 @@
 #include <map>
 #include <algorithm>
 
-
 using namespace std;
+
+vector<string> commandOption {"next","doubble","half",
+                    "re-roll","quadruple","quarter",
+                    "reverse","swap", "switch","abilityless" };
 
 GameCandy::GameCandy()
 {
@@ -135,9 +138,9 @@ string GameCandy::isCommandValid(string userCommand)
     transform(userCommand.begin(), userCommand.end(), userCommand.begin(), ::tolower);
 
     vector<string>::iterator it;
-    it = find(cmd.begin(),cmd.end(),userCommand);
+    it = find(commandOption.begin(),commandOption.end(),userCommand);
 
-    if (it != cmd.end())
+    if (it != commandOption.end())
     {
         // userCommand valid
         return userCommand;
