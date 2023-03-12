@@ -64,6 +64,12 @@ string Player<T>::askForUsername()
 };
 
 template <typename T>
+void Player<T>::setGameID(int gameID)
+{
+    this->gameID = gameID;
+}
+
+template <typename T>
 string Player<T>::getUsername() const
 {
     return username;
@@ -201,9 +207,9 @@ bool Player<T>::operator==(const Player<T> &otherPlayer)
 template <typename T>
 int Player<T>::compareCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
 {
-//    int ourScore = deckGame.getCombinationValueWith(handCards);
+    //    int ourScore = deckGame.getCombinationValueWith(handCards);
     int ourScore = ComboMain::getCombinationWeight(deckGame, handCards);
-//    int theirScore = deckGame.getCombinationValueWith(otherPlayer.handCards);
+    //    int theirScore = deckGame.getCombinationValueWith(otherPlayer.handCards);
     int theirScore = ComboMain::getCombinationWeight(deckGame, otherPlayer.handCards);
     if (ourScore > theirScore)
     {
@@ -256,4 +262,12 @@ void Player<T>::redrawCard(DeckGame<T> &deckGame)
     drawCard(deckGame, handCards.getNumberOfCards());
 };
 
+template <typename Y>
+std::ostream &operator<<(std::ostream &os, const Player<Y> &player)
+{
+    os << player.getUsername();
+    return os;
+};
+
 template class Player<ColorCard>;
+template std::ostream &operator<<(std::ostream &os, const Player<ColorCard> &deck);

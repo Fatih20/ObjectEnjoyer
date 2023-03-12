@@ -1,11 +1,12 @@
+#ifndef _PLAYER_HPP
+#define _PLAYER_HPP
+
 #include <cstring>
 #include <string>
 #include <exception>
 #include <vector>
 #include "Classes/InventoryHolder/InventoryHolder.hpp"
 #include "Classes/DeckPlayer/DeckPlayer.hpp"
-// #include "../Deck/Deck.hpp"
-// #include "../Card/Card.hpp"
 
 using namespace std;
 
@@ -23,6 +24,14 @@ private:
      *
      */
     string askForUsername();
+
+protected:
+    /**
+     * @brief Set the gameID of the player
+     *
+     * @param gameID
+     */
+    void setGameID(int gameID);
 
 public:
     /**
@@ -61,7 +70,6 @@ public:
      * @return string
      */
     string getUsername() const;
-
     /**
      * @brief Return the gameID of the object
      *
@@ -261,4 +269,9 @@ public:
     /*
     void operator+(Card<CardValueType> addedCard);
     */
+
+    template <typename Y>
+    friend std::ostream &operator<<(std::ostream &os, const Player<Y> &player);
 };
+
+#endif
