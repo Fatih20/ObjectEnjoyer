@@ -5,8 +5,8 @@
 #include <string>
 #include <exception>
 #include <vector>
-#include "Classes/InventoryHolder/InventoryHolder.hpp"
-#include "Classes/DeckPlayer/DeckPlayer.hpp"
+#include "../DeckPlayer/DeckPlayer.hpp"
+#include "../InventoryHolder/InventoryHolder.hpp"
 
 using namespace std;
 
@@ -16,7 +16,7 @@ class Player : InventoryHolder<T>
 private:
     int gameID;
     string username;
-    int score;
+    double score;
     DeckPlayer<T> handCards;
 
     /**
@@ -82,21 +82,21 @@ public:
      *
      * @return int
      */
-    int getScore();
+    double getScore();
 
     /**
      * @brief Add score to the player
      *
      * @param addedScore
      */
-    void operator+=(int addedScore);
+    void operator+=(double addedScore);
 
     /**
      * @brief Subtract the player's score
      *
      * @param subtractedScore
      */
-    void operator-=(int subtractedScore);
+    void operator-=(double subtractedScore);
 
     /**
      * @brief Add card to the player
@@ -158,14 +158,14 @@ public:
      *
      * @param subtractedScore
      */
-    void subtractScore(int subtractedScore);
+    void subtractScore(double subtractedScore);
 
     /**
      * @brief Add score to the player
      *
      * @param addedScore
      */
-    void addScore(int addedScore);
+    void addScore(double addedScore);
 
     /**
      * @brief Reset the player's score to 0

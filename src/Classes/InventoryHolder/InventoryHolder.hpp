@@ -1,7 +1,7 @@
 #ifndef __INVENTORY_HOLDER_HPP_
 #define __INVENTORY_HOLDER_HPP_
 
-#include "Classes/Card/Card.hpp"
+#include "../Card/Card.hpp"
 
 template <typename T>
 class InventoryHolder

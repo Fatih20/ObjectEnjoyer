@@ -1,7 +1,7 @@
 #include "Deck.hpp"
-#include "Classes/Card/Card.hpp"
-#include "Classes/ColorCard/ColorCard.hpp"
-#include "Classes/AbilityCard/AbilityCard.hpp"
+#include "../Card/Card.hpp"
+#include "../ColorCard/ColorCard.hpp"
+// #include "../AbilityCard/AbilityCard.hpp"
 
 #include <vector>
 #include <iostream>
@@ -39,7 +39,8 @@ void Deck<T>::swap(Deck &other)
 };
 
 template <typename T>
-void Deck<T>::shuffle(){
+void Deck<T>::shuffle()
+{
     std::default_random_engine rng;
     rng.seed(time(0));
 
@@ -97,16 +98,17 @@ int Deck<T>::getNumberOfCards()
     return this->vec.size();
 };
 
-template<typename T>
-void Deck<T>::sort() {
-    std::sort(this->vec.begin(), this->vec.end(), [](T a, T b){ // sementara exclusive ColorCard
+template <typename T>
+void Deck<T>::sort()
+{
+    std::sort(this->vec.begin(), this->vec.end(), [](T a, T b) { // sementara exclusive ColorCard
         return a.value() < b.value();
     });
 }
 
 template class Deck<Card<int>>;
 template class Deck<ColorCard>;
-template class Deck<AbilityCard>;
+// template class Deck<AbilityCard>;
 template std::ostream &operator<<(std::ostream &os, const Deck<Card<int>> &deck);
 template std::ostream &operator<<(std::ostream &os, const Deck<ColorCard> &deck);
-template std::ostream &operator<<(std::ostream &os, const Deck<AbilityCard> &deck);
+// template std::ostream &operator<<(std::ostream &os, const Deck<AbilityCard> &deck);

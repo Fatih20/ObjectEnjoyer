@@ -1,15 +1,22 @@
 #include "PlayerInGameCandy.hpp"
-#include "Classes/PlayerInGameException/PlayerInGameException.hpp"
+#include "../PlayerInGameException/PlayerInGameException.hpp"
 #include <algorithm>
 
 using namespace std;
-PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> deckGame, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
+
+PlayerInGameCandy::PlayerInGameCandy() : PlayerInGame<PlayerCandy>(0){};
+
+PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
 {
     for (int i = 0; i < numberOfPlayer; i++)
     {
         this->players.at(turns.at(i)).drawCard(deckGame, 2);
     }
 };
+
+PlayerInGameCandy::PlayerInGameCandy(const PlayerInGameCandy &playerInGameCandy) : PlayerInGame<PlayerCandy>(playerInGameCandy)
+{
+}
 
 bool PlayerInGameCandy::usernameExist(string username)
 {
@@ -167,4 +174,24 @@ int PlayerInGameCandy::correctedIndexCustom(int rawIndex, vector<int> exceptedIn
         }
     }
     return resultIndex;
+};
+
+std::vector<string> PlayerInGameCandy::getWinner()
+{
+    vector<string> winnerUsernames;
+    int limit = pow(2, 32);
+    for (auto playerIterator = players.begin(); playerIterator != players.end(); playerIterator++)
+    {
+        double score = playerIterator->getScore();
+        if (score == limit || score < limit)
+        {
+            winnerUsernames.push_back(playerIterator->getUsername());
+        }
+    }
+    return winnerUsernames;
+};
+bool PlayerInGameCandy::winnerExist()
+{
+    return players.end() != find_if(players.begin(), players.end(), [](PlayerCandy p) -> bool
+                                    { return p.getScore() > pow(2, 32) || p.getScore() < 0; });
 };
