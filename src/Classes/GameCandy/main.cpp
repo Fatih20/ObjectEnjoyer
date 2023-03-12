@@ -7,8 +7,7 @@ using namespace std;
 
 int main(){
     GameCandy<int> game;
-    while (true){
-        game.inputCommand();
-    }
+    // game.inputCommand();
+    game.start();
     return 0;
 }

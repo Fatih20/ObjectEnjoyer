@@ -43,7 +43,7 @@ class Game {
 
         virtual string inputCommand()=0;
 
-        virtual bool isCommandValid(string)=0;
+        virtual string isCommandValid(string)=0;
 
 
 };

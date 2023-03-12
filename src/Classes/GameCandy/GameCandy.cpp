@@ -1,7 +1,7 @@
 #include "GameCandy.hpp"
 
 #include <iostream>
-#include <vector>
+#include <map>
 #include <algorithm>
 
 using namespace std;
@@ -14,14 +14,14 @@ GameCandy<T>::GameCandy() {
 
 template <typename T>
 void GameCandy<T>::start(){
+    cout << "New game start\n";
     while (!isWinning()){
     // inisialisasi game baru -> player sama, deckCard baru
+        cout << "Round " << round << " begin\n";
         newGame();
         while (!isRoundOver()){
-
-
+            inputCommand();
         }
-
     }
 }
 template <typename T>
@@ -83,41 +83,38 @@ void GameCandy<T>::playerAction(int cmd){
 template <typename T>
 string GameCandy<T>::inputCommand(){
     string cmd;
-    try {
-        cout << "> ";
-        cin >> cmd;
-        cout << "\n\n";
-        transform(cmd.begin(),cmd.end(),cmd.begin(),::tolower);
-        cout << cmd << endl;
-        cout << isCommandValid(cmd) << endl;
-        isCommandValid(cmd);
-    } catch (CommandInvalid e){
-        cout << "Command '" << e.getInvalidCommand() << "' is invalid\n";
+    bool isValid=false;
+    while (!isValid){
+        try {
+            cout << "> ";
+            cin >> cmd;
+            cout << isCommandValid(cmd) << endl;
+            isCommandValid(cmd);
+            isValid = true;
+        } catch (CommandInvalid e){
+            cout << "Command '" << e.getInvalidCommand() << "' is invalid\n\n";
+        }
     }
     return cmd;
 }
 
 template <typename T>
-bool GameCandy<T>::isCommandValid(string userCommand){
-    // define valid commands
-    vector<string> command { "next", "re-roll", "double", "quadruple",
-                             "half", "quarter", "reverse", "swapcard", 
-                             "abilityless"};
-    
+string GameCandy<T>::isCommandValid(string userCommand){
+
     string oriCommand = userCommand;
     transform(userCommand.begin(),userCommand.end(),userCommand.begin(),::tolower);
 
-    vector<string>::iterator it;
-    it = find(command.begin(),command.end(),userCommand);
+    map<string,Command>::iterator it;
+    it = cmd.find(userCommand);
 
-    if (it != command.end()){
-        //userCommand found in command
-        return true;
+    if (it != cmd.end()){
+        //userCommand valid
+        return it->first;
     } else{
-        //userCommand not found in command
+        //userCommand invalid
         throw CommandInvalid(oriCommand);
     }
 }
 
-// template<>
+
 template GameCandy<int>::GameCandy();
