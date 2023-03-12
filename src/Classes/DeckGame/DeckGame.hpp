@@ -1,6 +1,6 @@
 #include <vector>
-#include "Classes/Deck/Deck.hpp"
-#include "Classes/Card/Card.hpp"
+#include "../Deck/Deck.hpp"
+#include "../Card/Card.hpp"
 
 #ifndef _DECKGAME_HPP_
 #define _DECKGAME_HPP_

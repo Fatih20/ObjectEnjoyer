@@ -1,5 +1,5 @@
 #include "../PlayerCollection/PlayerCollection.hpp"
-#include "Classes/DeckGame/DeckGame.hpp"
+#include "../DeckGame/DeckGame.hpp"
 
 template <typename T>
 class PlayerInGame : public PlayerCollection<T>
@@ -54,6 +54,13 @@ public:
      * @param currentTurn starts at 0
      */
     PlayerInGame(int numberOfPlayer, int currentTurn);
+
+    /**
+     * @brief Construct a new Player In Game object
+     *
+     * @param playerInGame
+     */
+    PlayerInGame(const PlayerInGame &playerInGame);
 
     /**
      * @brief Return the player that currently has the turn

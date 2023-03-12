@@ -1,3 +1,6 @@
+#ifndef _PLAYER_COLLECTION_HPP
+#define _PLAYER_COLLECTION_HPP
+
 #include <vector>
 #include "../Player/Player.hpp"
 
@@ -9,6 +12,13 @@ protected:
 
 public:
     PlayerCollection(int numberOfPlayer);
+
+    /**
+     * @brief Construct a new Player Collection object
+     *
+     * @param pC
+     */
+    PlayerCollection(const PlayerCollection &pC);
     /**
      * @brief Return the number of player in this collection
      *
@@ -50,3 +60,5 @@ public:
 
     void operator-=(int index);
 };
+
+#endif

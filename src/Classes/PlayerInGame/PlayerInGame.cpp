@@ -21,6 +21,14 @@ PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection<T>(numberOf
     roundComplete = false;
 };
 
+template <typename T>
+PlayerInGame<T>::PlayerInGame(const PlayerInGame &playerInGame) : PlayerCollection<T>(playerInGame)
+{
+    this->turns = playerInGame.turns;
+    this->currentTurn = playerInGame.currentTurn;
+    this->roundComplete = playerInGame.roundComplete;
+};
+
 // template <typename T>
 // PlayerInGame<T>::PlayerInGame(DeckGame<T> deckGame, int numberOfCards, int numberOfPlayer) : PlayerInGame<T>(numberOfPlayer)
 // {
