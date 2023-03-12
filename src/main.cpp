@@ -147,6 +147,6 @@ int main()
     // // cout << "drawed card  : " << ccdraw << endl;
 
     // cout << deckD << deckB << deckC << endl;
-    GameCandy game;
+    // GameCandy game;
     return 0;
 }
