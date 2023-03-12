@@ -72,7 +72,7 @@ void PlayerInGameCandy::removePlayerOfID(int removedID)
 int PlayerInGameCandy::correctedIndexCurrent(int rawIndex)
 {
     vector<int> exceptedIndex = {getIndexOfCurrentTurn()};
-    correctedIndexCustom(rawIndex, exceptedIndex);
+    return correctedIndexCustom(rawIndex, exceptedIndex);
 
     // int indexOfCurrentPlayer = getIndexOfCurrentTurn();
     // return rawIndex < indexOfCurrentPlayer ? rawIndex : rawIndex + 1;
@@ -92,7 +92,7 @@ void PlayerInGameCandy::showPlayerExcept(vector<int> exceptedIndex)
     {
         if (exceptedIndex.end() != find(exceptedIndex.begin(), exceptedIndex.end(), i))
         {
-            cout << players.at(i) << endl;
+            cout << numbering + 1 << ". " << players.at(i) << endl;
             numbering++;
         }
     }
@@ -100,17 +100,8 @@ void PlayerInGameCandy::showPlayerExcept(vector<int> exceptedIndex)
 
 void PlayerInGameCandy::showPlayerExceptCurrent()
 {
-    int numberOfPlayer = getNumberOfPlayer();
-    int indexOfCurrentTurn = getIndexOfCurrentTurn();
-    int numbering = 0;
-    for (int i = 0; i < numberOfPlayer; i++)
-    {
-        if (i != indexOfCurrentTurn)
-        {
-            cout << players.at(i) << endl;
-            numbering++;
-        }
-    }
+    vector<int> exceptedIndex = {getIndexOfCurrentTurn()};
+    showPlayerExcept(exceptedIndex);
 };
 
 void PlayerInGameCandy::swapDeckOfCurrentWith(int rawTargetIndex)
