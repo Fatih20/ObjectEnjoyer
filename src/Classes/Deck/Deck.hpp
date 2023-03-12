@@ -14,6 +14,12 @@ template <class T>
 class Deck : InventoryHolder<T>
 {
 protected:
+    /**
+     * Deck holds a vector of cards
+     *  How we interact with deck should follow these rules :
+     *      - index with higher values should hold Card that is being on topmost of the Deck stack
+     *      - Game should only be able to add Card to and/or draw from the topmost of the Deck stack
+     */
     std::vector<T> vec;
 
 public:
@@ -42,16 +48,6 @@ public:
     ~Deck();
 
     /**
-     * @brief swap contents with another deck
-     */
-    void swap(Deck &other);
-
-    /**
-     * @brief shuffle deck
-     */
-    void shuffle();
-
-    /**
      * @brief set a vector of cards as the content of Deck
      */
     void setDeck(std::vector<T> vec);
@@ -69,18 +65,6 @@ public:
     int getNumberOfCards();
 
     /**
-     * @brief swap the content of two separate Decks
-     */
-    static void swapDeck(Deck &deck1, Deck &deck2);
-
-    /**
-     * @brief print
-     */
-    template <typename Y>
-    friend std::ostream &operator<<(std::ostream &os, const Deck<Y> &deck);
-
-
-    /**
      * @brief add a card into the deck
      */
     void addCard(const T &);
@@ -93,7 +77,28 @@ public:
     /**
      * @brief sort deck by value
      */
-     void sort();
+    void sort();
+
+    /**
+     * @brief swap contents with another deck
+     */
+    void swap(Deck &other);
+
+    /**
+     * @brief swap the content of two separate Decks
+     */
+    static void swapDeck(Deck &deck1, Deck &deck2);
+
+    /**
+     * @brief shuffle deck
+     */
+    void shuffle();
+
+    /**
+     * @brief print
+     */
+    template <typename Y>
+    friend std::ostream &operator<<(std::ostream &os, const Deck<Y> &deck);
 };
 
 #endif
