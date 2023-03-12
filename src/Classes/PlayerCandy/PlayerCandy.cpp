@@ -5,10 +5,9 @@ PlayerCandy::PlayerCandy(int id) : PlayerCandy()
     setGameID(id);
 };
 
-PlayerCandy::PlayerCandy(const PlayerCandy &p)
+PlayerCandy::PlayerCandy(const PlayerCandy &p) : Player(p)
 {
-    Player(p);
-    this->abilityUsed = p.abilityUsed;
+    // this->abilityUsed = p.abilityUsed;
 }
 
 PlayerCandy::PlayerCandy() : Player<ColorCard>(){};

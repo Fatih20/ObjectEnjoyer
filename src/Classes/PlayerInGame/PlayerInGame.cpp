@@ -22,11 +22,11 @@ PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection<T>(numberOf
 };
 
 template <typename T>
-PlayerInGame<T>::PlayerInGame(const PlayerInGame &playerInGame) : PlayerCollection<T>(numberOfPlayer)
+PlayerInGame<T>::PlayerInGame(const PlayerInGame &playerInGame) : PlayerCollection<T>(playerInGame.getNumberOfPlayer())
 {
     this->turns = playerInGame.turns;
     this->currentTurn = playerInGame.currentTurn;
-    this->roundComplete = pIG.roundComplete;
+    this->roundComplete = playerInGame.roundComplete;
 };
 
 // template <typename T>
