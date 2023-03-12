@@ -4,19 +4,11 @@
 
 using namespace std;
 
-Game::Game(){
-    round =1;
+template <typename T>
+Game<T>::Game(){
 }
 
-void Game::start(){
-    while (!isWinning()){
-        newGame();
-        while (!isRoundOver()){
-            startRound();
-        }
-        endOfGame();
-    }
-}
+template Game<int>::Game();
 
 
 

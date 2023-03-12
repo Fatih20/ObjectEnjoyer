@@ -1,12 +1,11 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-
+#include <string>
 using namespace std;
 
+template <typename T>
 class Game {
-    protected:
-        int round;
     public:
         /**
          * @brief Construct a new Game object
@@ -15,12 +14,11 @@ class Game {
         Game();
         // round = 1
 
-
         /**
          * @brief start game
          * 
          */
-        virtual void start();
+        virtual void start()=0;
 
         /**
          * @brief winning condition : one of the players has 2^32>= points
@@ -29,13 +27,6 @@ class Game {
          * @return false 
          */
         virtual bool isWinning()=0;
-
-        /**
-         * @brief is round over
-         * 
-         */
-        virtual bool isRoundOver()=0;
-        // saat semua player telah mendapat giliran
 
         /**
          * @brief begin new game with same players, different deck card
@@ -50,11 +41,11 @@ class Game {
          */
         virtual void endOfGame()=0;
 
-        /**
-         * @brief menjalankan game 1 ronde
-         * 
-         */
-        virtual void startRound()=0;
+        virtual string inputCommand()=0;
+
+        virtual bool isCommandValid(string)=0;
+
 
 };
+
 #endif

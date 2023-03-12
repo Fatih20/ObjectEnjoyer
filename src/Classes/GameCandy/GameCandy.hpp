@@ -4,20 +4,18 @@
 #include "../Game/Game.hpp"
 #include "../PlayerInGameCandy/PlayerInGameCandy.hpp"
 #include "../DeckGame/DeckGame.hpp"
+#include "GameCandyException/GameCandyException.hpp"
 
 using namespace std;
 
-enum playerAction {
-    NEXT,HALF,DOUBLE,REROLL,QUADRUPLE,QUARTER,REVERSE,SWAP,SWITCH,ABILITYLESS
-};
-
 template <typename T>
-class GameCandy: public Game{
+class GameCandy: public Game<T>{
     private:
-        PlayerInGameCandy players;   // pemain
-        DeckGame<T> deck;             // deck game
-        int round;                  // ronde
-        double giftPoint;           // point hadiah tiap akhir game
+        // PlayerInGameCandy players;   // pemain
+        // DeckGame<T> deck;            // deck game
+        // DeckGame<T> tableCard;       // table card
+        int round;                   // ronde
+        double giftPoint;            // point hadiah tiap akhir game
     public:
         /**
          * @brief Construct a new Game Candy object
@@ -25,6 +23,12 @@ class GameCandy: public Game{
          */
         GameCandy();
         // jumlah player 7, ronde = 1, giftpoin 64
+
+        /**
+         * @brief Start game
+         * 
+         */
+        void start();
 
         /**
          * @brief winning condition : one of the players has 2^32>= points
@@ -64,13 +68,19 @@ class GameCandy: public Game{
          * @brief mekanisme giliran pemain, currentPlayer akan input command dan command akan dijalankan
          * 
          */
-        void playerAction(int cmd);
+        void playerAction(int);
 
         /**
          * @brief 
          * 
          */
         string inputCommand();
+
+        /**
+         * @brief 
+         * 
+         */
+        bool isCommandValid(string);
 };
 
 #endif
