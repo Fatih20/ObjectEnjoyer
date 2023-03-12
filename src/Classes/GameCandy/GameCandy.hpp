@@ -50,6 +50,12 @@ class GameCandy: public Game<T>{
         // jumlah player 7, ronde = 1, giftpoin 64
 
         /**
+         * @brief Spash Screen
+         * 
+         */
+        void splashScreen();
+
+        /**
          * @brief Start game
          * 
          */
@@ -109,8 +115,6 @@ class GameCandy: public Game<T>{
          * @return int 
          */
         string isCommandValid(string command);
-
-        void splashScreen();
 
 };
 

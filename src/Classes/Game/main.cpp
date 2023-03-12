@@ -1,7 +1,7 @@
-#include "../GameCandy/GameCandy.cpp"
-#include "../GameCapsa/GameCapsa.cpp"
-#include "Game.cpp"
-#include "../GameCandy/GameCandyException/GameCandyException.cpp"
+#include "../GameCandy/GameCandy.hpp"
+#include "../GameCapsa/GameCapsa.hpp"
+#include "Game.hpp"
+#include "../GameCandy/GameCandyException/GameCandyException.hpp"
 #include <iostream>
 
 using namespace std;

@@ -1,7 +1,7 @@
 #ifndef _ABILITYCARD_HPP_
 #define _ABILITYCARD_HPP_
 
-#include "Classes/Card/Card.hpp"
+#include "../Classes/Card/Card.hpp"
 #include <string>
 
 typedef enum{

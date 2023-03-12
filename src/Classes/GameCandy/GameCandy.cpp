@@ -25,6 +25,8 @@ void GameCandy<T>::start(){
         }
     }
 }
+
+
 template <typename T>
 bool GameCandy<T>::isWinning(){
     // return (winningPlayer()!=0)
@@ -119,7 +121,21 @@ string GameCandy<T>::isCommandValid(string userCommand){
 
 template <typename T>
 void GameCandy<T>::splashScreen(){
-    cout << "Game Candy Splash screen\n";
+
+    cout << "       _..._                                                                                                                     " << endl;
+    cout << "    .-'_..._''.                      _______                                                                                     " << endl;
+    cout << "  .' .'      '.\\             _..._   \\  ___ `'.                                              __  __   ___         __.....__      " << endl;
+    cout << " / .'                      .'     '.  ' |--.\\  \\.-.          .-            .--./)           |  |/  `.'   `.   .-''         '.    " << endl;
+    cout << ". '                       .   .-.   . | |    \\  '\\ \\        / /           /.''\\            |   .-.  .-.   ' /     .-''\"'-.  `.  " << endl;
+    cout << "| |                 __    |  '   '  | | |     |  '\\ \\      / /           | |  | |      __   |  |  |  |  |  |/     /________\\   \\ " << endl;
+    cout << "| |              .:--.'.  |  |   |  | | |     |  | \\ \\    / /             \\`-' /    .:--.'. |  |  |  |  |  ||                  | " << endl;
+    cout << ". '             / |   \\ | |  |   |  | | |     ' .'  \\ \\  / /              /(\"'`    / |   \\ ||  |  |  |  |  |\\    .-------------' " << endl;
+    cout << " \\ '.          .`\" __ | | |  |   |  | | |___.' /'    \\ `  /               \\ '---.  `\" __ | ||  |  |  |  |  | \\    '-.____...---. " << endl;
+    cout << "  '. `._____.-'/ .'.''| | |  |   |  |/_______.'/      \\  /                 /'""'.\\  .'.''| ||__|  |__|  |__|  `.             .'  " << endl;
+    cout << "    `-.______ / / /   | |_|  |   |  |\\_______|/       / /                 ||     ||/ /   | |_                   `''-...... -'    " << endl;
+    cout << "             `  \\ \\._,\\ '/|  |   |  |             |`-' /                  \'. __// \\ \\._,\\ '/                                    " << endl;
+    cout << "                 `--'  `\" '--'   '--'              '..'                    `'---'   `--'  `\"                                     " << endl;
+    cout << "/nGame starting..."
 }
 
 template GameCandy<int>::GameCandy();
