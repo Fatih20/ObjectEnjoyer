@@ -70,22 +70,17 @@ public:
 
     /**
      * @brief Compare if two color cards have the same value and color
-     *
+     * 
      */
     bool operator==(ColorCard other);
 
+    friend bool operator<(ColorCard a, ColorCard b);
+
+    friend bool operator>(ColorCard a, ColorCard b);
+    
     friend std::ostream &operator<<(std::ostream &os, const ColorCard &card);
-        /**
-         * @brief Compare if two color cards have the same value and color
-         * 
-         */
-        bool operator==(ColorCard other);
 
-        friend bool operator<(ColorCard a, ColorCard b);
-
-        friend bool operator>(ColorCard a, ColorCard b);
-
-        void print();
+    void print();
 };
 
 /**

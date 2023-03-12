@@ -65,12 +65,6 @@ bool ColorCard::operator==(ColorCard other)
     return this->value() == other.value();
 }
 
-std::ostream &operator<<(std::ostream &os, const ColorCard &card)
-{
-    os << card.val << " " << card.color;
-
-    return os;
-};
 bool operator<(ColorCard a, ColorCard b){
     return a.value() < b.value();
 }
@@ -79,6 +73,13 @@ bool operator>(ColorCard a, ColorCard b){
     return a.value() > b.value();
 }
 
+std::ostream &operator<<(std::ostream &os, const ColorCard &card)
+{
+    os << "ColorCard(" << card.Card::val << ", " << card.color << ")" << std::endl;
+
+    return os;
+};
+
 void ColorCard::print(){
-    std::cout << "ColorCard(" << this->Card::val << ", " << this->color << ")" << std::endl;
+    std::cout << *this;
 }

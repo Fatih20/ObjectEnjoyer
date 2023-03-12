@@ -40,6 +40,9 @@ int main()
     cout << deckB << endl;
     cout << "ejected card  : " << ccdraw << endl;
 
+    ColorCard ccdraw_dupe = ccdraw;
+    ccdraw_dupe.print();
+
 
 
     return 0;

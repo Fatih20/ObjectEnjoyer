@@ -103,7 +103,7 @@ std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
 
     for (auto elmt : deck.vec)
     {
-        os << elmt << " " << std::endl;
+        os << elmt;
     }
 
     return os;
