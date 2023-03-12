@@ -110,6 +110,8 @@ class GameCandy: public Game<T>{
          */
         string isCommandValid(string command);
 
+        void splashScreen();
+
 };
 
 #endif

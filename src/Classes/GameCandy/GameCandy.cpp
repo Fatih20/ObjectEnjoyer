@@ -9,6 +9,7 @@ using namespace std;
 
 template <typename T>
 GameCandy<T>::GameCandy() {
+    splashScreen();
     round=1; giftPoint=64;
 }
 
@@ -116,5 +117,9 @@ string GameCandy<T>::isCommandValid(string userCommand){
     }
 }
 
+template <typename T>
+void GameCandy<T>::splashScreen(){
+    cout << "Game Candy Splash screen\n";
+}
 
 template GameCandy<int>::GameCandy();

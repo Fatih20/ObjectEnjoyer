@@ -45,7 +45,7 @@ class Game {
 
         virtual string isCommandValid(string)=0;
 
-
+        virtual void splashScreen();
 };
 
 #endif
