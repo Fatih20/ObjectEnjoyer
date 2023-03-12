@@ -122,6 +122,11 @@ public:
     bool operator== (const Deck<T>& other);
     bool operator> (const Deck<T>& other);
 
+    /**
+     * @brief add two Deck and return a new deck which consists of cards held by both Deck
+     */
+    Deck<T>& operator+(Deck<T>& other);
+
 
     /**
      * @brief print

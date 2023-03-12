@@ -207,6 +207,17 @@ bool Deck<T>::operator>(const Deck<T> &other) {
 }
 
 template <typename T>
+Deck<T>& Deck<T>::operator+(Deck<T> &other) {
+    Deck<T>* resultingDeck = new Deck<T>(*this);
+
+    for(auto card : other.getDeck()) {
+        *resultingDeck << card;
+    }
+
+    return *resultingDeck;
+}
+
+template <typename T>
 std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
 {
     os << "\nsize : " << deck.vec.size() << "\nmembers : \n";

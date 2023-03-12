@@ -57,13 +57,13 @@ int main()
     // card
     cout << "CARD Combination section" << endl;
     // input example : input these into terminal :
-    //        9 1   
-    //        10 3
-    //        5 1
-    //        6 1
-    //        7 2
-    //        8 1
-    //        13 1
+//            9 1
+//            10 3
+//            5 1
+//            6 1
+//            7 2
+//            8 1
+//            13 1
 
     vector<ColorCard> player;
     vector<ColorCard> table;
@@ -82,5 +82,8 @@ int main()
     Combination comb(player, table);
     comb.print();
 
+    Deck<ColorCard> deckD = deckB + deckC;
+
+    cout << deckD << deckB << deckC << endl;
     return 0;
 }
