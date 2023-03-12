@@ -5,8 +5,8 @@
 #include <string>
 #include <exception>
 #include <vector>
-#include "Classes/InventoryHolder/InventoryHolder.hpp"
 #include "Classes/DeckPlayer/DeckPlayer.hpp"
+#include "Classes/InventoryHolder/InventoryHolder.hpp"
 
 using namespace std;
 

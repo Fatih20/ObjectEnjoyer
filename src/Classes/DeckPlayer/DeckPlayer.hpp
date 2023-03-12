@@ -5,7 +5,6 @@
 #include "Classes/DeckGame/DeckGame.hpp"
 #include "Classes/Card/Card.hpp"
 #include "Classes/ColorCard/ColorCard.hpp"
-
 #include "Classes/DeckException/DeckException.hpp"
 
 template <class T>
