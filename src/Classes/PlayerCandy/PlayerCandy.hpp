@@ -3,13 +3,13 @@
 
 #include "../Player/Player.hpp"
 #include "../ColorCard/ColorCard.hpp"
-// #include "../AbilityCard/AbilityCard.hpp"
+#include "../AbilityCard/AbilityCard.hpp"
 
 class PlayerCandy : public Player<ColorCard>
 {
 private:
     bool abilityUsed;
-    // AbilityCard abilityHand;
+    AbilityCard abilityHand;
 
 public:
     /**

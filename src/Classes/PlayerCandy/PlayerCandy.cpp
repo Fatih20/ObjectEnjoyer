@@ -7,7 +7,9 @@ PlayerCandy::PlayerCandy(int id) : PlayerCandy()
 
 PlayerCandy::PlayerCandy(const PlayerCandy &p) : Player(p)
 {
-    // this->abilityUsed = p.abilityUsed;
+    Player(p);
+    this->abilityUsed = p.abilityUsed;
+    abilityHand = p.abilityHand;
 }
 
 PlayerCandy::PlayerCandy() : Player<ColorCard>(){};
