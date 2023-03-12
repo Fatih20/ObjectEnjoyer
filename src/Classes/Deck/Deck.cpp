@@ -130,6 +130,83 @@ void Deck<T>::shuffle(){
 };
 
 template <typename T>
+bool Deck<T>::operator<(const Deck<T> &other) {
+    //to avoid sorting the real deck
+    // we use pointer to retain derived Deck properties
+    Deck<T>* a = new Deck(*this);
+    Deck<T>* b = new Deck(other);
+
+    a->sort();
+    b->sort();
+
+    for(int i = 0; i < a->getNumberOfCards(); i++){
+        if(a->getDeck()[i].value() < b->getDeck()[i].value()){
+            delete a;
+            delete b;
+
+            return true;
+        }
+        else if(a->getDeck()[i].value() > b->getDeck()[i].value()){
+            delete a;
+            delete b;
+
+            return false;
+        }
+    }
+}
+
+template <typename T>
+bool Deck<T>::operator==(const Deck<T> &other) {
+    //to avoid sorting the real deck
+    // we use pointer to retain derived Deck properties
+    Deck<T>* a = new Deck(*this);
+    Deck<T>* b = new Deck(other);
+
+    a->sort();
+    b->sort();
+
+    for(int i = 0; i < a->getNumberOfCards(); i++){
+        if(a->getDeck()[i].value() != b->getDeck()[i].value()){
+            delete a;
+            delete b;
+
+            return false;
+        }
+    }
+
+    delete a;
+    delete b;
+
+    return true;
+}
+
+template <typename T>
+bool Deck<T>::operator>(const Deck<T> &other) {
+    //to avoid sorting the real deck
+    // we use pointer to retain derived Deck properties
+    Deck<T>* a = new Deck(*this);
+    Deck<T>* b = new Deck(other);
+
+    a->sort();
+    b->sort();
+
+    for(int i = 0; i < a->getNumberOfCards(); i++){
+        if(a->getDeck()[i].value() < b->getDeck()[i].value()){
+            delete a;
+            delete b;
+
+            return false;
+        }
+        else if(a->getDeck()[i].value() > b->getDeck()[i].value()){
+            delete a;
+            delete b;
+
+            return true;
+        }
+    }
+}
+
+template <typename T>
 std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
 {
     os << "\nsize : " << deck.vec.size() << "\nmembers : \n";

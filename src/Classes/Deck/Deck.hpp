@@ -65,6 +65,11 @@ public:
     int getNumberOfCards();
 
     /**
+     * @brief get the sum of the face values of all Cards held in this Deck
+     */
+     int getValueSum();
+
+    /**
      * @brief add a card into the deck
      */
     void addCard(const T &);
@@ -112,6 +117,11 @@ public:
      * @brief shuffle deck
      */
     void shuffle();
+
+    bool operator< (const Deck<T>& other);
+    bool operator== (const Deck<T>& other);
+    bool operator> (const Deck<T>& other);
+
 
     /**
      * @brief print
