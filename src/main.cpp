@@ -70,27 +70,32 @@ void splashScreenMain()
 
 int main()
 {
-    cout << "[deckA]" << endl;
-    ColorCard cc1(1, GREEN);
-    ColorCard cc2(2, RED);
-    ColorCard cc3(3, BLUE);
-    ColorCard cc4(4, YELLOW);
-    Deck<ColorCard> deckA;
-    deckA.addCard(cc1);
-    deckA.addCard(cc2);
-    deckA.addCard(cc3);
-    deckA.addCard(cc4);
-    deckA.sort(true);
-    cout << deckA << endl;
-    // p5.printScore();
+    // // cout << "[deckA]" << endl;
+    // ColorCard cc1(1, GREEN);
+    // ColorCard cc2(2, RED);
+    // ColorCard cc3(3, BLUE);
+    // ColorCard cc4(4, YELLOW);
+    // vector<ColorCard> vec;
+    // vec.push_back(cc1);
+    // vec.push_back(cc2);
 
-    cout << "[deckB]" << endl;
-    cout << "shuffled" << endl;
-    DeckGame<ColorCard> deckB(deckA);
-    deckB.shuffle();
-    cout << deckB << endl;
+    // Deck<ColorCard> deckA(vec);
+    // deckA.addCard(cc1);
+    // deckA.addCard(cc2);
+    // deckA.addCard(cc3);
+    // deckA.addCard(cc4);
+    // deckA.sort(true);
+    // cout << deckA << endl;
+    // // p5.printScore();
 
-    // cout << "sorted" << endl;
+    // cout << "[deckB]" << endl;
+    // cout << "shuffled" << endl;
+    // DeckGame<ColorCard> deckB(deckA);
+    // deckB.shuffle();
+    // cout << deckB << endl;
+
+    // // cout << "sorted" << endl;
+
     // deckB.sort();
     // cout << deckB << endl;
 
@@ -147,6 +152,7 @@ int main()
     // // cout << "drawed card  : " << ccdraw << endl;
 
     // cout << deckD << deckB << deckC << endl;
-    // GameCandy game;
+    GameCandy game;
+
     return 0;
 }

@@ -15,6 +15,7 @@ GameCandy::GameCandy()
 
     // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> deck = newDeck();
     DeckGame<ColorCard> deck = newDeck1();
+    cout << deck;
     this->deckGame = deck;
     // this->deckGame = deck.first;
     // this->abilityCard = deck.second;
@@ -187,7 +188,7 @@ vector<ColorCard> GameCandy::initilizeDeckGame()
     vector<ColorCard> vec;
     Color color;
     for(int i=0; i<4; i++){
-        for (int j=1; i<=13; j++){
+        for (int j=1; j<=13; j++){
             switch (i)
             {
             case 0:
@@ -236,9 +237,9 @@ DeckGame<ColorCard> GameCandy::newDeck1(){
     cout << "2. From File\n";
     int option = inputOption(2);
     // if(option==1){
-        DeckGame<ColorCard> deck(initilizeDeckGame());
+    DeckGame<ColorCard> deck(initilizeDeckGame());
         // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
-        return deck;
+    return deck;
     // } else {
     //     // file reader
     // }
