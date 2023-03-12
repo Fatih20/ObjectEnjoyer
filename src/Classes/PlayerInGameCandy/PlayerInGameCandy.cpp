@@ -93,3 +93,17 @@ void PlayerInGameCandy::showPlayerExceptCurrent()
         }
     }
 };
+
+void PlayerInGameCandy::swapDeckOfCurrentWith(int rawTargetIndex)
+{
+    PlayerCandy &playerSource = getPlayerWithTurn();
+    PlayerCandy &playerTarget = players.at(correctedIndex(rawTargetIndex));
+    playerSource.swapDeck(playerTarget);
+};
+
+void PlayerInGameCandy::swapDeckOfPlayer(int rawSourceIndex, int rawTargetIndex)
+{
+    PlayerCandy &playerSource = players.at(correctedIndex(rawSourceIndex));
+    PlayerCandy &playerTarget = players.at(correctedIndex(rawTargetIndex));
+    playerSource.swapDeck(playerTarget);
+};

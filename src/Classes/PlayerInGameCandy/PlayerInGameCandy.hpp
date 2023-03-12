@@ -59,4 +59,19 @@ public:
      * @param deckGame
      */
     void redrawCardForCurrentPlayer(DeckGame<ColorCard> &deckGame);
+
+    /**
+     * @brief Swap the deck of the current player with another player given by index
+     *
+     * @param rawTargetIndex
+     */
+    void swapDeckOfCurrentWith(int rawTargetIndex);
+
+    /**
+     * @brief Swap the deck between the player of the given index
+     *
+     * @param rawSourceIndex
+     * @param rawTargetIndex
+     */
+    void swapDeckOfPlayer(int rawSourceIndex, int rawTargetIndex);
 };
