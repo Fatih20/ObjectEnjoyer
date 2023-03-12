@@ -23,6 +23,8 @@ class CommandInvalid : public exception{
          * @return string username
          */
         string getInvalidCommand();
+
+        ~CommandInvalid() _NOEXCEPT {};
 };
 
 #endif

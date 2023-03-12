@@ -40,6 +40,17 @@ public:
     void start();
 
     /**
+     * @brief Spash Screen
+     * 
+     */
+    void splashScreen();
+
+    /**
+     * @brief Start game
+     * 
+     */
+    void start();
+    /**
      * @brief winning condition : one of the players has 2^32>= points
      *
      * @return true
@@ -98,6 +109,15 @@ public:
      * 
      */
     void splashScreen();
+
+    /**
+     * @brief if command valid return enum value of the user input command,
+     * else throw exception
+     * 
+     * @param command 
+     * @return int 
+     */
+    string isCommandValid(string command);
 
     /**
      * @brief 

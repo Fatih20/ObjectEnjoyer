@@ -1,8 +1,12 @@
 #ifndef _ABILITYCARD_HPP_
 #define _ABILITYCARD_HPP_
 
+<<<<<<< HEAD
+#include "../Classes/Card/Card.hpp"
+=======
 #include "../Card/Card.hpp"
 #include "../Ability/Ability.hpp"
+>>>>>>> 3a47d6f988be214a6d94afd0869ee2cf21530cb1
 #include <string>
 
 class AbilityCard : public Card<int>
