@@ -5,30 +5,18 @@
 #include "../PlayerInGameCandy/PlayerInGameCandy.hpp"
 #include "../DeckGame/DeckGame.hpp"
 #include "GameCandyException/GameCandyException.hpp"
-#include <map>
+#include <vector>
 using namespace std;
 
-typedef enum
-{
-    NEXT = 0,
-    DOUBLE = 1,     // Double the reward of the current round
-    HALF = 2,       // Half the reward of the current round
-    REROLL = 3,     // Reroll all hand cards
-    QUADRUPLE = 4,  // Quadruple the reward of the current round
-    QUARTER = 5,    // Quarter the reward of the current round
-    REVERSE = 6,    // Reverse the order of the players
-    SWAP = 7,       // Swap a card from the hand with a card from another player's hand
-    SWITCH = 8,     // Switch the hand cards with another player's hand cards
-    ABILITYLESS = 9 // Disable the ability of a specific player
-} Command;
-
-map<string, Command> cmd{{"next", NEXT}, {"doubble", DOUBLE}, {"half", HALF}, {"re-roll", REROLL}, {"quadruple", QUADRUPLE}, {"quarter", QUARTER}, {"reverse", REVERSE}, {"swap", SWAP}, {"switch", SWITCH}, {"abilityless", ABILITYLESS}};
+vector<string> cmd {"next","doubble","half",
+                    "re-roll","quadruple","quarter",
+                    "reverse","swap", "switch","abilityless" };
 
 class GameCandy : public Game
 {
 private:
     PlayerInGameCandy players;   // pemain
-    DeckGame<ColorCard> deck;            // deck game
+    DeckGame<ColorCard> deckGame;            // deck game
     DeckGame<ColorCard> tableCard;       // table card
     // DeckGame<AbilityCard> abilityCard;
     int round;        // ronde
@@ -115,9 +103,14 @@ public:
      * @brief 
      * 
      */
-    DeckGame<ColorCard> randomizeColorCard();
+    vector<ColorCard> initilizeDeckGame();
 
-    // DeckGame<AbilityCard> randomizeAbilityCard();
+    // vector<AbilityCard> initilizeAbilityDeck();
+
+    // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
+
+    DeckGame<ColorCard> newDeck1();
+
 };
 
 #endif

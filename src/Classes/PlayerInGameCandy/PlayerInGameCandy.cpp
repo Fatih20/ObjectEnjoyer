@@ -1,5 +1,5 @@
 #include "PlayerInGameCandy.hpp"
-#include "Classes/PlayerInGameException/PlayerInGameException.hpp"
+#include "../PlayerInGameException/PlayerInGameException.hpp"
 #include <algorithm>
 
 using namespace std;

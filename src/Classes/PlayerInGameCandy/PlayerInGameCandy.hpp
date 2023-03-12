@@ -1,5 +1,5 @@
 #include "../PlayerInGame/PlayerInGame.hpp"
-#include "Classes/PlayerCandy/PlayerCandy.hpp"
+#include "../PlayerCandy/PlayerCandy.hpp"
 
 #include <iostream>
 

@@ -1,9 +1,9 @@
 #ifndef _PLAYER_CANDY_HPP
 #define _PLAYER_CANDY_HPP
 
-#include "Classes/Player/Player.hpp"
-#include "Classes/ColorCard/ColorCard.hpp"
-#include "Classes/AbilityCard/AbilityCard.hpp"
+#include "../Player/Player.hpp"
+#include "../ColorCard/ColorCard.hpp"
+// #include "../AbilityCard/AbilityCard.hpp"
 
 class PlayerCandy : public Player<ColorCard>
 {

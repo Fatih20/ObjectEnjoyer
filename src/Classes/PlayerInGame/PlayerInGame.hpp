@@ -1,5 +1,5 @@
 #include "../PlayerCollection/PlayerCollection.hpp"
-#include "Classes/DeckGame/DeckGame.hpp"
+#include "../DeckGame/DeckGame.hpp"
 
 template <typename T>
 class PlayerInGame : public PlayerCollection<T>

@@ -1,7 +1,7 @@
 #include "Deck.hpp"
-#include "Classes/Card/Card.hpp"
-#include "Classes/ColorCard/ColorCard.hpp"
-#include "Classes/AbilityCard/AbilityCard.hpp"
+#include "../Card/Card.hpp"
+#include "../ColorCard/ColorCard.hpp"
+#include "../AbilityCard/AbilityCard.hpp"
 
 #include <vector>
 #include <iostream>

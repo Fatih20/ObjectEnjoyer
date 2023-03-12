@@ -1,5 +1,5 @@
 #include "DeckGame.hpp"
-#include "Classes/ColorCard/ColorCard.hpp"
+#include "../ColorCard/ColorCard.hpp"
 
 #include <vector>
 

@@ -7,8 +7,8 @@
 #include <algorithm>
 #include <random>
 #include <time.h>
-#include "Classes/Card/Card.hpp"
-#include "Classes/InventoryHolder/InventoryHolder.hpp"
+#include "../Card/Card.hpp"
+#include "../InventoryHolder/InventoryHolder.hpp"
 
 template <class T>
 class Deck : InventoryHolder<T>

@@ -4,15 +4,15 @@
 #include <iostream>
 #include <map>
 
-typedef enum{
-    REROLL, // Reroll all hand cards
-    QUADRUPLE, // Quadruple the reward of the current round
-    QUARTER, // Quarter the reward of the current round
-    REVERSE, // Reverse the order of the players
-    SWAP, // Swap a card from the hand with a card from another player's hand
-    SWITCH, // Switch the hand cards with another player's hand cards
-    ABILITYLESS // Disable the ability of a specific player
-} Abi;
+// typedef enum{
+//     REROLL, // Reroll all hand cards
+//     QUADRUPLE, // Quadruple the reward of the current round
+//     QUARTER, // Quarter the reward of the current round
+//     REVERSE, // Reverse the order of the players
+//     SWAP, // Swap a card from the hand with a card from another player's hand
+//     SWITCH, // Switch the hand cards with another player's hand cards
+//     ABILITYLESS // Disable the ability of a specific player
+// } Abi;
 
 class Ability {
     protected:

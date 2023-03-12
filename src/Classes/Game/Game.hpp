@@ -2,6 +2,7 @@
 #define GAME_HPP
 
 #include <string>
+#include "GameException/GameException.hpp"
 using namespace std;
 
 class Game {
@@ -45,6 +46,10 @@ class Game {
         virtual string isCommandValid(string)=0;
 
         virtual void splashScreen();
+
+        int inputOption(int);
+
+        bool isOptionValid(int,int);
 };
 
 #endif

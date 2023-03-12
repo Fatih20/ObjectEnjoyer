@@ -1,3 +1,3 @@
-#include "Classes/InventoryHolder/InventoryHolder.hpp"
+#include "../InventoryHolder/InventoryHolder.hpp"
 
 template class InventoryHolder<int>;

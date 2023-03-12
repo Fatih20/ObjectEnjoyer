@@ -3,17 +3,21 @@
 #include <map>
 #include <algorithm>
 
+
 using namespace std;
 
 GameCandy::GameCandy()
 {
     splashScreen();
 
-    DeckGame<ColorCard> deck;
-    // DeckGame<AbilityCard> abilityCard;
-    // input randomize/from file
+    // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> deck = newDeck();
+    DeckGame<ColorCard> deck = newDeck1();
+    this->deckGame = deck;
+    // this->deckGame = deck.first;
+    // this->abilityCard = deck.second;
 
     DeckGame<ColorCard> tableCard;
+    this->tableCard = tableCard;
     // empty
 
     DeckGame<ColorCard> playerDeck;
@@ -21,10 +25,6 @@ GameCandy::GameCandy()
     
     PlayerInGameCandy players(playerDeck, 7);
     this->players = players;
-
-    this->deck = deck;
-    this->tableCard = tableCard;
-    // this->abilityCard = abilityCard;
 
     round = 1;
     giftPoint = 64;
@@ -40,7 +40,6 @@ void GameCandy::start()
         newGame();
         while (!isRoundOver())
         {
-            
             inputCommand();
         }
     }
@@ -135,13 +134,13 @@ string GameCandy::isCommandValid(string userCommand)
     string oriCommand = userCommand;
     transform(userCommand.begin(), userCommand.end(), userCommand.begin(), ::tolower);
 
-    map<string, Command>::iterator it;
-    it = cmd.find(userCommand);
+    vector<string>::iterator it;
+    it = find(cmd.begin(),cmd.end(),userCommand);
 
     if (it != cmd.end())
     {
         // userCommand valid
-        return it->first;
+        return userCommand;
     }
     else
     {
@@ -165,4 +164,66 @@ void GameCandy::multiplyGiftPoint(double multiplier)
 void GameCandy::operator*=(double multiplier)
 {
     multiplyGiftPoint(multiplier);
+}
+
+vector<ColorCard> GameCandy::initilizeDeckGame()
+{
+    vector<ColorCard> vec;
+    Color color;
+    for(int i=0; i<4; i++){
+        for (int j=1; i<=13; j++){
+            switch (i)
+            {
+            case 0:
+                color = GREEN;
+                break;
+            case 1:
+                color = BLUE;
+                break;
+            case 2:
+                color = YELLOW;
+                break;
+            case 3:
+                color = RED;
+                break;
+            }
+            ColorCard colorCard(j,color);
+            vec.push_back(colorCard);
+        }
+    }
+    return vec;
+}
+
+// vector<AbilityCard> GameCandy::initilizeAbilityDeck()
+// {
+
+// }
+
+// pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> GameCandy::newDeck(){
+//     cout << "How do you want to generate Deck?\n";
+//     cout << "1. Random\n";
+//     cout << "2. From File\n";
+//     int option = inputOption(2);
+//     if(option==1){
+//         DeckGame<ColorCard> deck(initilizeDeckGame());
+//         DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
+
+//         return make_pair(deck,abilityCard);
+//     } else {
+//         // file reader
+//     }
+// }
+
+DeckGame<ColorCard> GameCandy::newDeck1(){
+    cout << "How do you want to generate Deck?\n";
+    cout << "1. Random\n";
+    cout << "2. From File\n";
+    int option = inputOption(2);
+    // if(option==1){
+        DeckGame<ColorCard> deck(initilizeDeckGame());
+        // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
+        return deck;
+    // } else {
+    //     // file reader
+    // }
 }
