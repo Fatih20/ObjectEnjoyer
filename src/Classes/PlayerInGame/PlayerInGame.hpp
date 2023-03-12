@@ -1,6 +1,8 @@
 #include "../PlayerCollection/PlayerCollection.hpp"
+#include "Classes/DeckGame/DeckGame.hpp"
 
-class PlayerInGame : public PlayerCollection
+template <typename T>
+class PlayerInGame : public PlayerCollection<T>
 {
 
 protected:
@@ -32,6 +34,15 @@ public:
     /**
      * @brief Construct a new Player In Game object
      *
+     * @param deckGame the deck for the player to draw from
+     * @param numberOfCards the number of cards given to each player
+     * @param numberOfPlayer the number of player in the game
+     */
+    // PlayerInGame(DeckGame<T> deckGame, int numberOfCards, int numberOfPlayer);
+
+    /**
+     * @brief Construct a new Player In Game object
+     *
      * @param numberOfPlayer the number of player in it
      */
     PlayerInGame(int numberOfPlayer);
@@ -40,7 +51,7 @@ public:
      * @brief Construct a new Player In Game object
      *
      * @param numberOfPlayer
-     * @param currentTurn starts at 1
+     * @param currentTurn starts at 0
      */
     PlayerInGame(int numberOfPlayer, int currentTurn);
 
@@ -48,19 +59,7 @@ public:
      * @brief Return the player that currently has the turn
      *
      */
-    Player &getPlayerWithTurn();
-
-    /**
-     * @brief Return the nth player that currently has the turn
-     *
-     */
-    int getNthPlayerWithTurn();
-
-    /**
-     * @brief Move to the turn to the next player
-     *
-     */
-    void nextTurn();
+    T &getPlayerWithTurn();
 
     /**
      * @brief Whether the round is complete or not
@@ -77,8 +76,55 @@ public:
     virtual void resetRound();
 
     /**
-     * @brief Change roundComplete to true
+     * @brief Get the current turn
+     *
+     * @return true
+     * @return false
+     */
+    int getCurrentTurn();
+
+    /**
+     * @brief Get the index of the player with the current turn
+     *
+     * @return true
+     * @return false
+     */
+    int getIndexOfCurrentTurn();
+
+    /**
+     * @brief Change the turn to the next person in line
+     *
+     */
+    void nextTurn();
+
+    /**
+     * @brief Print all of the player's in the game
+     *
+     */
+    virtual void showPlayer();
+
+    /**
+     * @brief Remove player with the gameID of removedID
+     *
+     * @param removedID
+     */
+    virtual void removePlayerOfID(int removedID) = 0;
+
+    /**
+     * @brief Set roundComplete to true
      *
      */
     void stopRound();
+
+    virtual void remove(int index);
+
+    /**
+     * @brief Return whether the username exist in the object
+     *
+     * @param username
+     * @return true
+     * @return false
+     */
+    virtual bool usernameExist(string username) = 0;
 };
+// Kurang retake deck dan re-roll

@@ -1,44 +1,41 @@
-#ifndef _DECKGAME_HPP_
-#define _DECKGAME_HPP_
-
+#include <vector>
 #include "Classes/Deck/Deck.hpp"
 #include "Classes/Card/Card.hpp"
 
-template <typename T>
-class DeckGame: public Deck {
-    public:
-        /**
-         * @brief construct new Game Deck with empty array as its attribute
-         * @param size current size of the deck
-         * @param maxSize maximum size of the deck
-        */
-        DeckGame(int size, int maxSize);
+#ifndef _DECKGAME_HPP_
+#define _DECKGAME_HPP_
 
-        /**
-         * @brief construct new Game Deck with a given value as its attribute
-         * 
-         * @param value array that will be set as the attribute of this Deck
-         * @param size current size of the deck
-         * @param maxSize maximum size of the deck
-        */
-       DeckGame(Card<T>* value, int size, int maxSize);
+// TODO : make this ABC
+template <class T>
+class DeckGame : public Deck<T>
+{
+public:
+    /**
+     * @brief construct new Game Deck with empty vector as its attribute
+     */
+    DeckGame();
 
-        /**
-         * @brief construct new Game Deck based on an already constructed Deck
-         * 
-         * @param other the other Deck
-        */
-       DeckGame(const DeckGame& other);
+    /**
+     * @brief construct new Game Deck with a given value as its attribute
+     *
+     * @param vec array that will be set as the attribute of this Deck
+     */
+    DeckGame(std::vector<T> vec);
 
-        /**
-         * @brief destruct constructed Deck
-        */
-       ~DeckGame();
+    /**
+     * @brief construct new Game Deck based on an already constructed Deck
+     *
+     * @param other the other Deck
+     */
+    DeckGame(const Deck<T> &other);
 
-        /**
-         * @brief draw a card from this deck
-        */
-        Card DrawCard();
+    /**
+     * @brief draw a card from this deck
+     */
+    T drawCard();
+
+    int getCombinationValueWith(const Deck<T> &deckPlayer) const;
+
 };
 
 #endif

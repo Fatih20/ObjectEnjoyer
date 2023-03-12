@@ -7,10 +7,11 @@ class Combo{
     public:
         /**
          * @brief Get the Weight of the combo
-         * 
-         * @return int 
+         *
+         * @return int
          */
         virtual int getWeight() = 0;
+
 };
 
 #endif

@@ -1,50 +1,99 @@
 #ifndef _DECK_HPP_
 #define _DECK_HPP_
 
+#include <vector>
+#include <cstring>
+#include <iostream>
+#include <algorithm>
+#include <random>
+#include <time.h>
 #include "Classes/Card/Card.hpp"
+#include "Classes/InventoryHolder/InventoryHolder.hpp"
 
-template <typename T>
-class Deck {
-    protected:
-        Card<T>* array;
+template <class T>
+class Deck : InventoryHolder<T>
+{
+protected:
+    std::vector<T> vec;
 
-        int maxSize;
-        int size;
+public:
+    /**
+     * @brief construct new Deck with empty vector as its attribute
+     */
+    Deck();
 
-    public:
-        /**
-         * @brief construct new Deck with empty array as its attribute
-         * 
-         * @param size current size of the deck
-         * @param maxSize maximum size of the deck
-        */
-        Deck(int size, int maxSize);
+    /**
+     * @brief construct new Deck with a given value as its attribute
+     *
+     * @param vec vector that will be set as the attribute of this Deck
+     */
+    Deck(std::vector<T> vec);
 
-        /**
-         * @brief construct new Deck with a given value as its attribute
-         * 
-         * @param value array that will be set as the attribute of this Deck
-         * @param size current size of the deck
-         * @param maxSize maximum size of the deck
-        */
-       Deck(Card<T>* value, int size, int maxSize);
+    /**
+     * @brief construct new Deck based on an already constructed Deck
+     *
+     * @param other the other Deck
+     */
+    Deck(const Deck &other);
 
-        /**
-         * @brief construct new Deck based on an already constructed Deck
-         * 
-         * @param other the other Deck
-        */
-       Deck(const Deck& other);
+    /**
+     * @brief destruct a constructed Deck
+     */
+    ~Deck();
 
-        /**
-         * @brief destruct a constructed Deck
-        */
-       ~Deck();
+    /**
+     * @brief swap contents with another deck
+     */
+    void swap(Deck &other);
 
-        /**
-         * @brief swap contents with another deck
-        */
-       void Swap(Deck& other);
+    /**
+     * @brief shuffle deck
+     */
+    void shuffle();
+
+    /**
+     * @brief set a vector of cards as the content of Deck
+     */
+    void setDeck(std::vector<T> vec);
+
+    /**
+     * @brief get the cards contained by the Deck as a vector
+     */
+    std::vector<T> getDeck();
+
+    /**
+     * @brief Get the number of cards in this deck
+     *
+     * @return int
+     */
+    int getNumberOfCards();
+
+    /**
+     * @brief swap the content of two separate Decks
+     */
+    static void swapDeck(Deck &deck1, Deck &deck2);
+
+    /**
+     * @brief print
+     */
+    template <typename Y>
+    friend std::ostream &operator<<(std::ostream &os, const Deck<Y> &deck);
+
+
+    /**
+     * @brief add a card into the deck
+     */
+    void addCard(const T &);
+
+    /**
+     * @brief shorthand for addCard()
+     */
+    void operator+=(const T &);
+
+    /**
+     * @brief sort deck by value
+     */
+     void sort();
 };
 
 #endif
