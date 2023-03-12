@@ -13,7 +13,7 @@ template <typename T>
 DeckGame<T>::DeckGame(const Deck<T> &other) : Deck<T>::Deck(other) {}
 
 template <typename T>
-T DeckGame<T>::drawCard()
+T DeckGame<T>::ejectCard()
 {
     T res = this->vec.back();
     this->vec.pop_back();

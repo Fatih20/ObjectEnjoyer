@@ -35,10 +35,10 @@ int main()
     deckB.sort();
     cout << deckB << endl;
 
-    ColorCard ccdraw = deckB.drawCard();
+    ColorCard ccdraw = deckB.ejectCard();
 
     cout << deckB << endl;
-    cout << "drawed card  : " << ccdraw << endl;
+    cout << "ejected card  : " << ccdraw << endl;
 
 
 

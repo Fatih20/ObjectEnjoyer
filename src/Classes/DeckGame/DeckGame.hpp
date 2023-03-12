@@ -31,11 +31,14 @@ public:
     DeckGame(const Deck<T> &other);
 
     /**
-     * @brief draw a card from this deck
+     * @brief eject a card from this deck and return its value
      */
-    T drawCard();
+    T ejectCard();
 
-    int getCombinationValueWith(const Deck<T> &deckPlayer) const;
+    /**
+     * @brief get the combination value of this deck against deckplayer
+     */
+    int getCombinationValueWith(const Deck<T> &deckPlayer) const; //TODO : make the parameter to be exclusively against deckPlayer
 
 };
 
