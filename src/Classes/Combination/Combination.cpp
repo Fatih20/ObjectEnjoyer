@@ -2,12 +2,32 @@
 #include <algorithm>
 #include <iostream>
 
-int cardValueSum(vector<ColorCard> cards){
-    int sum = 0;
-    for(ColorCard card : cards){
-        sum += card.value();
+bool operator>= (vector<ColorCard> a, vector<ColorCard> b){
+    sort(a.begin(), a.end(), [](ColorCard a, ColorCard b){
+        return a.value() > b.value();
+    });
+    sort(b.begin(), b.end(), [](ColorCard a, ColorCard b){
+        return a.value() > b.value();
+    });
+    cout << "a: ";
+    for(int i = 0; i < a.size(); i++){
+        cout << a[i].value() << " ";
     }
-    return sum;
+    cout << endl;
+    cout << "b: ";
+    for(int i = 0; i < b.size(); i++){
+        cout << b[i].value() << " ";
+    }
+    cout << endl;
+    if(a.size() > b.size()){
+        return true;
+    }
+    for(int i = 0; i < a.size(); i++){
+        if(a[i] < b[i]){
+            return false;
+        }
+    }
+    return true;
 }
 
 Combination::Combination(vector<ColorCard> player, vector<ColorCard> table){
@@ -46,7 +66,7 @@ void Combination::isOnePair(){
         temp.push_back(allCards[0]);
         temp.push_back(allCards[1]);
         if(inPlayer(temp)){
-            if(combinationType <= PAIR && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && cardValueSum(temp) >= cardValueSum(usedCards)){
+            if(combinationType <= PAIR && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
                 highestPlayerCard = getHighestPlayerCard(temp);
                 highestCard = allCards[0];
                 combinationType = PAIR;
@@ -64,7 +84,7 @@ void Combination::isTwoPair(){
         temp.push_back(allCards[2]);
         temp.push_back(allCards[3]);
         if(inPlayer(temp)){
-            if(combinationType <= TWO_PAIRS && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && cardValueSum(temp) >= cardValueSum(usedCards)){
+            if(combinationType <= TWO_PAIRS && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
                 highestPlayerCard = getHighestPlayerCard(temp);
                 highestCard = allCards[0];
                 usedCards = temp;
@@ -81,7 +101,7 @@ void Combination::isThreeOfAKind(){
         temp.push_back(allCards[1]);
         temp.push_back(allCards[2]);
         if(inPlayer(temp)){
-            if(combinationType <= THREE_OF_A_KIND && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && cardValueSum(temp) >= cardValueSum(usedCards)){
+            if(combinationType <= THREE_OF_A_KIND && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
                 highestPlayerCard = getHighestPlayerCard(temp);
                 highestCard = allCards[0];
                 usedCards = temp;
@@ -99,7 +119,7 @@ void Combination::isFourOfAKind(){
         temp.push_back(allCards[2]);
         temp.push_back(allCards[3]);
         if(inPlayer(temp)){
-            if(combinationType <= FOUR_OF_A_KIND && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && cardValueSum(temp) >= cardValueSum(usedCards)){
+            if(combinationType <= FOUR_OF_A_KIND && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
                 highestPlayerCard = getHighestPlayerCard(temp);
                 highestCard = allCards[0];
                 usedCards = temp;
@@ -125,7 +145,7 @@ void Combination::isStraight(){
         temp.push_back(allCards[3]);
         temp.push_back(allCards[4]);
         if(inPlayer(temp)){
-            if(combinationType <= STRAIGHT && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && cardValueSum(temp) >= cardValueSum(usedCards)){
+            if(combinationType <= STRAIGHT && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
                 highestPlayerCard = getHighestPlayerCard(temp);
                 highestCard = allCards[0];
                 usedCards = temp;
@@ -151,7 +171,7 @@ void Combination::isFlush(){
         temp.push_back(allCards[3]);
         temp.push_back(allCards[4]);
         if(inPlayer(temp)){
-            if(combinationType <= FLUSH && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && cardValueSum(temp) >= cardValueSum(usedCards)){
+            if(combinationType <= FLUSH && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
                 highestPlayerCard = getHighestPlayerCard(temp);
                 highestCard = allCards[0];
                 usedCards = temp;
@@ -170,7 +190,7 @@ void Combination::isFullHouse(){
         temp.push_back(allCards[3]);
         temp.push_back(allCards[4]);
         if(inPlayer(temp)){
-            if(combinationType <= FULL_HOUSE && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && cardValueSum(temp) >= cardValueSum(usedCards)){
+            if(combinationType <= FULL_HOUSE && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
                 highestPlayerCard = getHighestPlayerCard(temp);
                 highestCard = allCards[0];
                 usedCards = temp;
@@ -196,7 +216,7 @@ void Combination::isStraightFlush(){
         temp.push_back(allCards[3]);
         temp.push_back(allCards[4]);
         if(inPlayer(temp)){
-            if(combinationType <= STRAIGHT_FLUSH && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && cardValueSum(temp) >= cardValueSum(usedCards)){
+            if(combinationType <= STRAIGHT_FLUSH && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
                 highestPlayerCard = getHighestPlayerCard(temp);
                 highestCard = allCards[0];
                 usedCards = temp;
