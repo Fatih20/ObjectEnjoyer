@@ -6,9 +6,7 @@
 #include <vector>
 using namespace std;
 
-class Combination{
-    private:
-        typedef enum{
+typedef enum{
             HIGH_CARD,
             PAIR,
             TWO_PAIRS,
@@ -18,12 +16,16 @@ class Combination{
             FULL_HOUSE,
             FOUR_OF_A_KIND,
             STRAIGHT_FLUSH,
-        } CombinationType;
-        int score;
+} CombinationType;
+
+class Combination{
+    private:
         CombinationType combinationType;
         vector <ColorCard> allCards;
         vector <ColorCard> playerCards;
         vector <ColorCard> usedCards;
+        ColorCard highestCard;
+        ColorCard highestPlayerCard;
     public:
         Combination(vector<ColorCard> player, vector<ColorCard> table);
 
@@ -45,9 +47,9 @@ class Combination{
 
         void isOnePair();
 
-        void getHighestCard();
-
         bool inPlayer(vector<ColorCard> cards);
+
+        ColorCard getHighestPlayerCard(vector<ColorCard> cards);
 
         void print();
 
@@ -56,6 +58,8 @@ class Combination{
         bool operator>(Combination& other);
 
         bool operator==(Combination& other);
+
+        vector<ColorCard> getUsedCards();
 };
 
 #endif

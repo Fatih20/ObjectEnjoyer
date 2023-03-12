@@ -13,22 +13,27 @@ typedef enum
     RED
 } Color;
 
-class ColorCard : public Card<int>
-{
-protected:
-    Color color;
-    static const std::map<std::pair<int, Color>, int> cardWeight;
+class ColorCard: public Card<int> {
+    protected:  
+        Color color;
+        static const std::map<std::pair<int, Color>, int> cardWeight;
+        
+    public:
+        /**
+         * @brief Construct a new Color Card object with default value and color (0, GREEN)
+         * 
+         */
+        ColorCard();
 
-public:
-    /**
-     * @brief Construct a new Color Card object with given value and color
-     *
-     * @param value The face value of the card
-     * @param color The color of the card (GREEN, BLUE, YELLOW, RED)
-     */
-    ColorCard(int value, Color color);
-    // CCtor dan assignment operator tidak perlu karena tidak ada pointer
-    // Dtor tidak perlu karena hanya menyimpan data sederhana
+        /**
+         * @brief Construct a new Color Card object with given value and color
+         * 
+         * @param value The face value of the card
+         * @param color The color of the card (GREEN, BLUE, YELLOW, RED)
+         */
+        ColorCard(int value, Color color);
+        // CCtor dan assignment operator tidak perlu karena tidak ada pointer
+        // Dtor tidak perlu karena hanya menyimpan data sederhana
 
     /**
      * @brief Get the color of the card

@@ -2,6 +2,7 @@
 #include <iostream>
 
 const std::map<std::pair<int, Color>, int> ColorCard::cardWeight = {
+    {{0, GREEN}, -1}, {{0, BLUE}, -1}, {{0, YELLOW}, -1}, {{0, RED}, -1},
     {{1, GREEN}, 0}, {{1, BLUE}, 1}, {{1, YELLOW}, 2}, {{1, RED}, 3},
     {{2, GREEN}, 4}, {{2, BLUE}, 5}, {{2, YELLOW}, 6}, {{2, RED}, 7},
     {{3, GREEN}, 8}, {{3, BLUE}, 9}, {{3, YELLOW}, 10}, {{3, RED}, 11},
@@ -17,8 +18,11 @@ const std::map<std::pair<int, Color>, int> ColorCard::cardWeight = {
     {{13, GREEN}, 48}, {{13, BLUE}, 49}, {{13, YELLOW}, 50}, {{13, RED}, 51}
 };
 
-ColorCard::ColorCard(int value, Color color) : Card<int>(value)
-{
+ColorCard::ColorCard(): Card<int>(0){
+    this->color = GREEN;
+}
+
+ColorCard::ColorCard(int value, Color color): Card<int>(value){
     this->color = color;
 }
 

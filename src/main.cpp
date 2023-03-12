@@ -9,6 +9,10 @@
 
 #include <iostream>
 
+#include "Classes/Combination/Combination.hpp"
+
+using namespace std;
+
 int main()
 {
     cout << "[deckA]" << endl;
@@ -50,6 +54,33 @@ int main()
     deckB >> deckC;
     cout << "deckB" << deckB << endl << "deckC" << deckC;
 
+    // card
+    cout << "CARD Combination section" << endl;
+    // input example : input these into terminal :
+    //        9 1   
+    //        10 3
+    //        5 1
+    //        6 1
+    //        7 2
+    //        8 1
+    //        13 1
+
+    vector<ColorCard> player;
+    vector<ColorCard> table;
+    for(int i = 0; i < 2; i++){
+        int value;
+        int color;
+        cin >> value >> color;
+        player.push_back(ColorCard(value, Color(color)));
+    }
+    for(int i = 0; i < 5; i++){
+        int value;
+        int color;
+        cin >> value >> color;
+        table.push_back(ColorCard(value, Color(color)));
+    }
+    Combination comb(player, table);
+    comb.print();
 
     return 0;
 }
