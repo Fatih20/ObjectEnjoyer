@@ -190,5 +190,5 @@ std::vector<string> PlayerInGameCandy::getWinner()
 bool PlayerInGameCandy::winnerExist()
 {
     return players.end() != find_if(players.begin(), players.end(), [](PlayerCandy p) -> bool
-                                    { return p.getScore() > pow(2, 32); });
+                                    { return p.getScore() > pow(2, 32) || p.getScore() < 0; });
 };
