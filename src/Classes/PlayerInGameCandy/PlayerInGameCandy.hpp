@@ -1,3 +1,6 @@
+#ifndef _PLAYER_IN_GAME_CANDY_HPP
+#define _PLAYER_IN_GAME_CANDY_HPP
+
 #include "../PlayerInGame/PlayerInGame.hpp"
 #include "../PlayerCandy/PlayerCandy.hpp"
 
@@ -125,3 +128,5 @@ public:
      */
     bool winnerExist();
 };
+
+#endif

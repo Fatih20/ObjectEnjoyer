@@ -26,6 +26,7 @@ PlayerInGame<T>::PlayerInGame(const PlayerInGame &playerInGame) : PlayerCollecti
 {
     this->turns = playerInGame.turns;
     this->currentTurn = playerInGame.currentTurn;
+    this->roundComplete = pIG.roundComplete;
 };
 
 // template <typename T>
