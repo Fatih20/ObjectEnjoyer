@@ -67,7 +67,7 @@ public:
     /**
      * @brief get the sum of the face values of all Cards held in this Deck
      */
-     int getValueSum();
+    int getValueSum();
 
     /**
      * @brief add a card into the deck
@@ -82,7 +82,7 @@ public:
     /**
      * @brief shorthand for addCard()
      */
-    Deck<T>& operator<<(const T& card);
+    Deck<T> &operator<<(const T &card);
 
     /**
      * @brief Delete a card from the deck and then return it from this function
@@ -96,12 +96,17 @@ public:
      *
      * return is void as we should not chain ejectCard()
      */
-     void operator>>(Deck<T>& deck);
+    void operator>>(Deck<T> &deck);
 
     /**
-     * @brief sort deck by value
+     * @brief sort deck by value in an ascending manner
      */
     void sort();
+
+    /**
+     * @brief sort deck by value in the given order
+     */
+    void sort(bool descending);
 
     /**
      * @brief swap contents with another deck
@@ -123,27 +128,26 @@ public:
      * @return true if left operand has smaller sum
      * @return false if left operand has larger sum
      */
-    bool operator< (const Deck<T>& other);
+    bool operator<(const Deck<T> &other);
 
     /**
      * @brief compare Card Value Sum (not necessarily true sum)
      * @return true if both operand has the same sum
      * @return false if neither operand has the same sum
      */
-    bool operator== (const Deck<T>& other);
+    bool operator==(const Deck<T> &other);
 
     /**
      * @brief compare Card Value Sum (not necessarily true sum)
      * @return true if left operand has larger sum
      * @return false if left operand has smaller sum
      */
-    bool operator> (const Deck<T>& other);
+    bool operator>(const Deck<T> &other);
 
     /**
      * @brief add two Deck and return a new deck which consists of cards held by both Deck
      */
-    Deck<T>& operator+(Deck<T>& other);
-
+    Deck<T> &operator+(Deck<T> &other);
 
     /**
      * @brief print

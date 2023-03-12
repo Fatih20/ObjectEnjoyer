@@ -170,8 +170,15 @@ bool Deck<T>::operator<(const Deck<T> &other)
 template <typename T>
 void Deck<T>::sort()
 {
-    std::sort(this->vec.begin(), this->vec.end(), [](T a, T b) { // sementara exclusive ColorCard
-        return a.value() < b.value();
+    sort(false);
+}
+
+template <typename T>
+void Deck<T>::sort(bool descending)
+{
+    std::sort(this->vec.begin(), this->vec.end(), [descending](T a, T b) { // sementara exclusive ColorCard
+        bool result = a.value() < b.value();
+        return descending ? !result : result;
     });
 }
 
