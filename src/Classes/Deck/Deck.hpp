@@ -118,8 +118,25 @@ public:
      */
     void shuffle();
 
+    /**
+     * @brief compare Card Value Sum (not necessarily true sum)
+     * @return true if left operand has smaller sum
+     * @return false if left operand has larger sum
+     */
     bool operator< (const Deck<T>& other);
+
+    /**
+     * @brief compare Card Value Sum (not necessarily true sum)
+     * @return true if both operand has the same sum
+     * @return false if neither operand has the same sum
+     */
     bool operator== (const Deck<T>& other);
+
+    /**
+     * @brief compare Card Value Sum (not necessarily true sum)
+     * @return true if left operand has larger sum
+     * @return false if left operand has smaller sum
+     */
     bool operator> (const Deck<T>& other);
 
     /**
