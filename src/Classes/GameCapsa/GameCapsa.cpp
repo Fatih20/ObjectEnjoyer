@@ -7,7 +7,6 @@ GameCapsa::GameCapsa(){
     splashScreen();
 }
 
-template <typename T>
 void GameCapsa::splashScreen(){
     cout << ".------..------..------..------..------.     .------..------..------..------." << endl;
     cout << "|C.--. ||A.--. ||P.--. ||S.--. ||A.--. |.-.  |G.--. ||A.--. ||M.--. ||E.--. |" << endl;
@@ -15,7 +14,7 @@ void GameCapsa::splashScreen(){
     cout << "| :\\/: || :\\/: || (__) || :\\/: || :\\/: |'-.-.| :\\/: || :\\/: || :\\/: || :\\/: |" << endl;
     cout << "| '--'C|| '--'A|| '--'P|| '--'S|| '--'A| ((1)) '--'G|| '--'A|| '--'M|| '--'E|" << endl;
     cout << "`------'`------'`------'`------'`------'  '-'`------'`------'`------'`------'" << endl;
-    cout << "/nGame starting..."
+    cout << "/nGame starting..." << endl;
 }
 
 void GameCapsa::start(){
