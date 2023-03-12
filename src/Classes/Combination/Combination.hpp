@@ -20,7 +20,6 @@ typedef enum{
 
 class Combination{
     private:
-        int score;
         CombinationType combinationType;
         vector <ColorCard> allCards;
         vector <ColorCard> playerCards;
@@ -46,8 +45,6 @@ class Combination{
 
         void isOnePair();
 
-        void getHighestCard();
-
         bool inPlayer(vector<ColorCard> cards);
 
         void print();
@@ -57,6 +54,8 @@ class Combination{
         bool operator>(Combination& other);
 
         bool operator==(Combination& other);
+
+        vector<ColorCard> getUsedCards();
 };
 
 #endif

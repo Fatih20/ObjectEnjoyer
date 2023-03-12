@@ -10,7 +10,6 @@ Combination::Combination(vector<ColorCard> player, vector<ColorCard> table){
     sort(allCards.begin(), allCards.end(), [](ColorCard a, ColorCard b){
         return a.value() > b.value();
     });
-    score = -1;
     calculate(player, table);
 }
 
@@ -26,18 +25,10 @@ void Combination::calculate(vector<ColorCard> player, vector<ColorCard> table){
         isOnePair();
     }while(prev_permutation(allCards.begin(), allCards.end()));
     if(combinationType == HIGH_CARD){
-        usedCards = playerCards;
-        getHighestCard();
-    }
-}
-
-void Combination::getHighestCard(){
-    for(int i = 0; i < usedCards.size(); i++){
-        if(find(playerCards.begin(), playerCards.end(), usedCards[i]) != playerCards.end()){
-            if(score <= usedCards[i].value()){
-                score = usedCards[i].value();
-            }
-        }
+        sort(playerCards.begin(), playerCards.end(), [](ColorCard a, ColorCard b){
+            return a.value() > b.value();
+        });
+        usedCards.push_back(playerCards[0]);
     }
 }
 
@@ -50,7 +41,6 @@ void Combination::isOnePair(){
             if(combinationType <= PAIR){
                 combinationType = PAIR;
                 usedCards = temp;
-                getHighestCard();
             }
         }
     }
@@ -67,7 +57,6 @@ void Combination::isTwoPair(){
             if(combinationType < TWO_PAIRS){
                 usedCards = temp;
                 combinationType = TWO_PAIRS;
-                getHighestCard();
             }
         }
     }
@@ -83,7 +72,6 @@ void Combination::isThreeOfAKind(){
             if(combinationType <= THREE_OF_A_KIND){
                 usedCards = temp;
                 combinationType = THREE_OF_A_KIND;
-                getHighestCard();
             }
         }
     }
@@ -100,7 +88,6 @@ void Combination::isFourOfAKind(){
             if(combinationType <= FOUR_OF_A_KIND){
                 usedCards = temp;
                 combinationType = FOUR_OF_A_KIND;
-                getHighestCard();
             }
         }
     }
@@ -125,7 +112,6 @@ void Combination::isStraight(){
             if(combinationType <= STRAIGHT){
                 usedCards = temp;
                 combinationType = STRAIGHT;
-                getHighestCard();
             }
         }
     }
@@ -150,7 +136,6 @@ void Combination::isFlush(){
             if(combinationType <= FLUSH){
                 usedCards = temp;
                 combinationType = FLUSH;
-                getHighestCard();
             }
         }
     }
@@ -168,7 +153,6 @@ void Combination::isFullHouse(){
             if(combinationType <= FULL_HOUSE){
                 usedCards = temp;
                 combinationType = FULL_HOUSE;
-                getHighestCard();
             }
         }
     }
@@ -192,7 +176,6 @@ void Combination::isStraightFlush(){
         if(inPlayer(temp)){
             if(combinationType <= STRAIGHT_FLUSH){
                 combinationType = STRAIGHT_FLUSH;
-                getHighestCard();
             }
         }
     }
@@ -207,6 +190,9 @@ bool Combination::inPlayer(vector<ColorCard> cards){
     return false;
 }
 
+vector <ColorCard> Combination::getUsedCards(){
+    return usedCards;
+}
 
 
 // buat dengan array of cards dulu, baru diubah ke deck nanti ketika dack udah jadi
@@ -250,10 +236,10 @@ void Combination::print(){
             cout << "Straight Flush" << endl;
             break;
     }
+    cout<<"Used Cards: "<<endl;
     for(int i = 0; i < usedCards.size(); i++){
         usedCards[i].print();
     }
-    cout<<"Score: "<<score<<endl;
     cout<<"All Cards: "<<endl;
     for(int i = 0; i < allCards.size(); i++){
         allCards[i].print();
@@ -265,8 +251,16 @@ bool Combination::operator<(Combination& other){
         return true;
     }
     else if(this->combinationType == other.combinationType){
-        if(this->score < other.score){
-            return true;
+        vector<ColorCard> otherCards = other.getUsedCards();
+        sort(usedCards.begin(), usedCards.end(), [](ColorCard a, ColorCard b){return a.getNumber() < b.getNumber();});
+        sort(otherCards.begin(), otherCards.end(), [](ColorCard a, ColorCard b){return a.getNumber() < b.getNumber();});
+        for(int i = 0; i < usedCards.size(); i++){
+            if(usedCards[i].value() < otherCards[i].value()){
+                return true;
+            }
+            else if(usedCards[i].value() > otherCards[i].value()){
+                return false;
+            }
         }
     }
     return false;
@@ -277,15 +271,31 @@ bool Combination::operator>(Combination& other){
                 return true;
     }
     else if(this->combinationType == other.combinationType){
-        if(this->score > other.score){
-            return true;
+        vector<ColorCard> otherCards = other.getUsedCards();
+        sort(usedCards.begin(), usedCards.end(), [](ColorCard a, ColorCard b){return a.getNumber() < b.getNumber();});
+        sort(otherCards.begin(), otherCards.end(), [](ColorCard a, ColorCard b){return a.getNumber() < b.getNumber();});
+        for(int i = 0; i < usedCards.size(); i++){
+            if(usedCards[i].value() > otherCards[i].value()){
+                return true;
+            }
+            else if(usedCards[i].value() < otherCards[i].value()){
+                return false;
+            }
         }
     }
     return false;
 }
 
 bool Combination::operator==(Combination& other){
-    if(this->combinationType == other.combinationType && this->score == other.score){
+    if(this->combinationType == other.combinationType){
+        vector<ColorCard> otherCards = other.getUsedCards();
+        sort(usedCards.begin(), usedCards.end(), [](ColorCard a, ColorCard b){return a.getNumber() < b.getNumber();});
+        sort(otherCards.begin(), otherCards.end(), [](ColorCard a, ColorCard b){return a.getNumber() < b.getNumber();});
+        for(int i = 0; i < usedCards.size(); i++){
+            if(usedCards[i].value() != otherCards[i].value()){
+                return false;
+            }
+        }
         return true;
     }
     return false;
