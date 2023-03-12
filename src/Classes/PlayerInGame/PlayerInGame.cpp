@@ -22,7 +22,7 @@ PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection<T>(numberOf
 };
 
 template <typename T>
-PlayerInGame<T>::PlayerInGame(const PlayerInGame &playerInGame) : PlayerCollection<T>(playerInGame.getNumberOfPlayer())
+PlayerInGame<T>::PlayerInGame(const PlayerInGame &playerInGame) : PlayerCollection<T>(playerInGame)
 {
     this->turns = playerInGame.turns;
     this->currentTurn = playerInGame.currentTurn;
