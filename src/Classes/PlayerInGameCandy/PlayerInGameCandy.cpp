@@ -69,20 +69,33 @@ void PlayerInGameCandy::removePlayerOfID(int removedID)
     }
 }
 
-int PlayerInGameCandy::correctedIndex(int rawIndex)
+int PlayerInGameCandy::correctedIndexCurrent(int rawIndex)
 {
-    if (rawIndex < 0 || rawIndex >= getNumberOfPlayer() - 2)
-    {
-        OutOfBoundIndex e;
-        throw e;
-    }
-    int indexOfCurrentPlayer = getIndexOfCurrentTurn();
-    return rawIndex < indexOfCurrentPlayer ? rawIndex : rawIndex + 1;
+    vector<int> exceptedIndex = {getIndexOfCurrentTurn()};
+    correctedIndexCustom(rawIndex, exceptedIndex);
+
+    // int indexOfCurrentPlayer = getIndexOfCurrentTurn();
+    // return rawIndex < indexOfCurrentPlayer ? rawIndex : rawIndex + 1;
 }
 
 void PlayerInGameCandy::redrawCardForCurrentPlayer(DeckGame<ColorCard> &deckGame)
 {
     getPlayerWithTurn().redrawCard(deckGame);
+};
+
+void PlayerInGameCandy::showPlayerExcept(vector<int> exceptedIndex)
+{
+    int numberOfPlayer = getNumberOfPlayer();
+    int indexOfCurrentTurn = getIndexOfCurrentTurn();
+    int numbering = 0;
+    for (int i = 0; i < numberOfPlayer; i++)
+    {
+        if (exceptedIndex.end() != find(exceptedIndex.begin(), exceptedIndex.end(), i))
+        {
+            cout << players.at(i) << endl;
+            numbering++;
+        }
+    }
 };
 
 void PlayerInGameCandy::showPlayerExceptCurrent()
@@ -102,43 +115,65 @@ void PlayerInGameCandy::showPlayerExceptCurrent()
 
 void PlayerInGameCandy::swapDeckOfCurrentWith(int rawTargetIndex)
 {
-    int targetIndex;
-    try
-    {
-        targetIndex = correctedIndex(rawTargetIndex);
-    }
-    catch (OutOfBoundIndex e)
-    {
-        e.setMessage("Pilihan pemain sasaran ada di luar opsi!");
-        throw e;
-    }
+    // int targetIndex;
+    // try
+    // {
+    //     targetIndex = correctedIndexCurrent(rawTargetIndex);
+    // }
+    // catch (OutOfBoundIndex e)
+    // {
+    //     e.setMessage("Pilihan pemain sasaran ada di luar opsi!");
+    //     throw e;
+    // }
     PlayerCandy &playerSource = getPlayerWithTurn();
-    PlayerCandy &playerTarget = players.at(targetIndex);
+    PlayerCandy &playerTarget = players.at(rawTargetIndex);
     playerSource.swapDeck(playerTarget);
 };
 
 void PlayerInGameCandy::swapDeckOfPlayer(int rawSourceIndex, int rawTargetIndex)
 {
-    int sourceIndex;
-    try
+    // int sourceIndex;
+    // try
+    // {
+    //     sourceIndex = correctedIndex(rawSourceIndex);
+    // }
+    // catch (OutOfBoundIndex e)
+    // {
+    //     e.setMessage("Pilihan pemain pertama ada di luar opsi!");
+    // }
+    // int targetIndex;
+    // try
+    // {
+    //     targetIndex = correctedIndex(rawTargetIndex);
+    // }
+    // catch (OutOfBoundIndex e)
+    // {
+    //     e.setMessage("Pilihan pemain kedua ada di luar opsi!");
+    //     throw e;
+    // }
+    PlayerCandy &playerSource = players.at(rawSourceIndex);
+    PlayerCandy &playerTarget = players.at(rawTargetIndex);
+    playerSource.swapDeck(playerTarget);
+};
+
+int PlayerInGameCandy::correctedIndexCustom(int rawIndex, vector<int> exceptedIndexes)
+{
+    if (rawIndex < 0 || rawIndex >= getNumberOfPlayer() - exceptedIndexes.size())
     {
-        sourceIndex = correctedIndex(rawSourceIndex);
-    }
-    catch (OutOfBoundIndex e)
-    {
-        e.setMessage("Pilihan pemain pertama ada di luar opsi!");
-    }
-    int targetIndex;
-    try
-    {
-        targetIndex = correctedIndex(rawTargetIndex);
-    }
-    catch (OutOfBoundIndex e)
-    {
-        e.setMessage("Pilihan pemain kedua ada di luar opsi!");
+        OutOfBoundIndex e;
         throw e;
     }
-    PlayerCandy &playerSource = players.at(sourceIndex);
-    PlayerCandy &playerTarget = players.at(correctedIndex(rawTargetIndex));
-    playerSource.swapDeck(playerTarget);
+    auto exceptedIndexesIt = exceptedIndexes.begin();
+    bool foundLimit = false;
+    int resultIndex = rawIndex;
+    for (exceptedIndexesIt = exceptedIndexes.begin(); !foundLimit && exceptedIndexesIt != exceptedIndexes.end();
+         exceptedIndexesIt++)
+    {
+        foundLimit = resultIndex > *exceptedIndexesIt;
+        if (!foundLimit)
+        {
+            resultIndex++;
+        }
+    }
+    return resultIndex;
 };

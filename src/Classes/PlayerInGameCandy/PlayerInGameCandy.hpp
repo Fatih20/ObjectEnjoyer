@@ -8,8 +8,6 @@ using namespace std;
 class PlayerInGameCandy : public PlayerInGame<PlayerCandy>
 {
 private:
-    int correctedIndex(int rawIndex);
-
 public:
     /**
      * @brief Construct a new Player In Game Candy object
@@ -47,6 +45,13 @@ public:
     void showPlayerExceptCurrent();
 
     /**
+     * @brief Show players except for the one found in the exceptedIndex
+     *
+     * @param exceptedIndex
+     */
+    void showPlayerExcept(vector<int> exceptedIndex);
+
+    /**
      * @brief Remove player with the ID of removedID
      *
      * @param removedID
@@ -74,4 +79,21 @@ public:
      * @param rawTargetIndex
      */
     void swapDeckOfPlayer(int rawSourceIndex, int rawTargetIndex);
+
+    /**
+     * @brief Correct the index of the player with the rawIndex excepted
+     *
+     * @param rawIndex
+     * @return int
+     */
+    int correctedIndexCurrent(int rawIndex);
+
+    /**
+     * @brief Correct the index of the player with the rawIndex excepted
+     *
+     * @param rawIndex
+     * @param exceptedIndexes
+     * @return int
+     */
+    int correctedIndexCustom(int rawIndex, vector<int> exceptedIndexes);
 };
