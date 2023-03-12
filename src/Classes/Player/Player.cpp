@@ -7,8 +7,6 @@
 #include <exception>
 #include <algorithm>
 
-#include "Classes/ComboMain/ComboMain.hpp"
-
 using namespace std;
 
 template <typename T>
@@ -201,10 +199,8 @@ bool Player<T>::operator==(const Player<T> &otherPlayer)
 template <typename T>
 int Player<T>::compareCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
 {
-//    int ourScore = deckGame.getCombinationValueWith(handCards);
-    int ourScore = ComboMain::getCombinationWeight(deckGame, handCards);
-//    int theirScore = deckGame.getCombinationValueWith(otherPlayer.handCards);
-    int theirScore = ComboMain::getCombinationWeight(deckGame, otherPlayer.handCards);
+    int ourScore = deckGame.getCombinationValueWith(this->handCards);
+    int theirScore = deckGame.getCombinationValueWith(otherPlayer.handCards);
     if (ourScore > theirScore)
     {
         return 1;

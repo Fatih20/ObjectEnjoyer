@@ -52,46 +52,6 @@ public:
      * @return T
      */
     T ejectCard();
-
-    // /**
-    //  * @brief compare the combination value of two Decks
-    //  *
-    //  * @return true Left player has worse combination
-    //  * @return false Left player has better combination
-    // */
-    // bool operator<(const DeckPlayer&);
-
-    // /**
-    //  * @brief compare the combination value of two Decks
-    //  *
-    //  * @return true Left player has better combination
-    //  * @return false Left player has worse combination
-    // */
-    // bool operator>(const DeckPlayer&);
-
-    // /**
-    //  * @brief compare the combination value of two Decks
-    //  *
-    //  * @return true Both players have the same combination value
-    //  * @return false The two players have different value of cards combination
-    // */
-    // bool operator==(const DeckPlayer&);
-
-    // /**
-    //  * @brief compare the combination value of two Decks
-    //  *
-    //  * @return true Left player has worse if not the same value of cards combination
-    //  * @return false Left player has better combination
-    // */
-    // bool operator<=(const DeckPlayer&);
-
-    // /**
-    //  * @brief compare the combination value of two Decks
-    //  *
-    //  * @return true Left player has better if not the same value of cards combination
-    //  * @return false Left player has worse combination
-    // */
-    // bool operator>=(const DeckPlayer&);
 };
 
 #endif

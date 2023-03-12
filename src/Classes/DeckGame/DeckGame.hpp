@@ -33,6 +33,9 @@ public:
      * @brief draw a card from this deck
      */
     T drawCard();
+
+    int getCombinationValueWith(const Deck<T> &deckPlayer) const;
+
 };
 
 #endif

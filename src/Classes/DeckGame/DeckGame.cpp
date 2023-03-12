@@ -21,4 +21,9 @@ T DeckGame<T>::drawCard()
     return res;
 }
 
+template <typename T>
+int DeckGame<T>::getCombinationValueWith(const Deck<T> &deckPlayer) const {
+    return 0;
+}
+
 template class DeckGame<ColorCard>;
