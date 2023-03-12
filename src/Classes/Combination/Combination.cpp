@@ -9,39 +9,57 @@ Combination::Combination(vector<ColorCard> player, vector<ColorCard> table){
     sort(allCards.begin(), allCards.end(), [](ColorCard a, ColorCard b){
         return a.value() > b.value();
     });
-    // calculate(player, table);
+    score = -1;
+    calculate(player, table);
 }
 
-// void Combination::calculate(vector<ColorCard> player, vector<ColorCard> table){
-//     if(isStraightFlush(player, table)){
-//         combinationType = STRAIGHT_FLUSH;
-//     }
-//     else if(isFourOfAKind(player, table)){
-//         combinationType = FOUR_OF_A_KIND;
-//     }
-//     else if(isFullHouse(player, table)){
-//         combinationType = FULL_HOUSE;
-//     }
-//     else if(isFlush(player, table)){
-//         combinationType = FLUSH;
-//     }
-//     else if(isStraight(player, table)){
-//         combinationType = STRAIGHT;
-//     }
-//     else if(isThreeOfAKind(player, table)){
-//         combinationType = THREE_OF_A_KIND;
-//     }
-//     else if(isTwoPair(player, table)){
-//         combinationType = TWO_PAIRS;
-//     }
-//     else if(isOnePair(player, table)){
-//         combinationType = PAIR;
-//     }
-//     else{
-//         combinationType = HIGH_CARD;
-//         getHighestCard(player, table);
-//     }
-// }
+void Combination::calculate(vector<ColorCard> player, vector<ColorCard> table){
+    if(isStraightFlush(player, table)){
+        combinationType = STRAIGHT_FLUSH;
+    }
+    else if(isFourOfAKind(player, table)){
+        combinationType = FOUR_OF_A_KIND;
+    }
+    else if(isFullHouse(player, table)){
+        combinationType = FULL_HOUSE;
+    }
+    else if(isFlush(player, table)){
+        combinationType = FLUSH;
+    }
+    else if(isStraight(player, table)){
+        combinationType = STRAIGHT;
+    }
+    else if(isThreeOfAKind(player, table)){
+        combinationType = THREE_OF_A_KIND;
+    }
+    else if(isTwoPair(player, table)){
+        combinationType = TWO_PAIRS;
+    }
+    else if(isOnePair(player, table)){
+        combinationType = PAIR;
+    }
+    else{
+        combinationType = HIGH_CARD; 
+    }
+    getHighestCard(player, table);
+}
+
+void Combination::getHighestCard(vector<ColorCard> player, vector<ColorCard> table){
+    if(combinationType == HIGH_CARD){
+        sort(playerCards.begin(), playerCards.end(), [](ColorCard a, ColorCard b){
+            return a.value() > b.value();
+        });
+        score = playerCards[0].value();
+    } else {
+        int i = 0;
+        while(score == -1 && i < usedCards.size()){
+            if(find(playerCards.begin(), playerCards.end(), usedCards[i]) != playerCards.end()){
+                score = usedCards[i].value();
+            }
+            i++;
+        }
+    }
+}
 
 bool Combination::inPlayer(){
     for(int i = 0; i < usedCards.size(); i++){
@@ -70,7 +88,33 @@ bool Combination::isOnePair(vector<ColorCard> player, vector<ColorCard> table){
     return false;
 }
 
+bool Combination::isTwoPair(vector<ColorCard> player, vector<ColorCard> table){
+    return false;
+}
 
+bool Combination::isThreeOfAKind(vector<ColorCard> player, vector<ColorCard> table){
+    return false;
+}
+
+bool Combination::isStraight(vector<ColorCard> player, vector<ColorCard> table){
+    return false;
+}
+
+bool Combination::isFlush(vector<ColorCard> player, vector<ColorCard> table){
+    return false;
+}
+
+bool Combination::isFullHouse(vector<ColorCard> player, vector<ColorCard> table){
+    return false;
+}
+
+bool Combination::isFourOfAKind(vector<ColorCard> player, vector<ColorCard> table){
+    return false;
+}
+
+bool Combination::isStraightFlush(vector<ColorCard> player, vector<ColorCard> table){
+    return false;
+}
 
 // buat dengan array of cards dulu, baru diubah ke deck nanti ketika dack udah jadi
 
@@ -121,4 +165,28 @@ void Combination::print(){
     for(int i = 0; i < allCards.size(); i++){
         allCards[i].print();
     }
+}
+
+bool Combination::operator<(Combination& other){
+    if(this->combinationType < other.combinationType){
+        return true;
+    }
+    else if(this->combinationType == other.combinationType){
+        if(this->score < other.score){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Combination::operator>(Combination& other){
+    if(this->combinationType > other.combinationType){
+                return true;
+    }
+    else if(this->combinationType == other.combinationType){
+        if(this->score > other.score){
+            return true;
+        }
+    }
+    return false;
 }

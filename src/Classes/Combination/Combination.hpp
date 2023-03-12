@@ -27,19 +27,19 @@ class Combination{
     public:
         Combination(vector<ColorCard> player, vector<ColorCard> table);
 
-        // void calculate(vector<ColorCard> player, vector<ColorCard> table);
+        void calculate(vector<ColorCard> player, vector<ColorCard> table);
 
-        // bool isStraightFlush(vector<ColorCard> player, vector<ColorCard> table);
+        bool isStraightFlush(vector<ColorCard> player, vector<ColorCard> table);
 
-        // bool isFourOfAKind(vector<ColorCard> player, vector<ColorCard> table);
+        bool isFourOfAKind(vector<ColorCard> player, vector<ColorCard> table);
 
-        // bool isFullHouse(vector<ColorCard> player, vector<ColorCard> table);
+        bool isFullHouse(vector<ColorCard> player, vector<ColorCard> table);
 
-        // bool isFlush(vector<ColorCard> player, vector<ColorCard> table);
+        bool isFlush(vector<ColorCard> player, vector<ColorCard> table);
 
-        // bool isStraight(vector<ColorCard> player, vector<ColorCard> table);
+        bool isStraight(vector<ColorCard> player, vector<ColorCard> table);
 
-        // bool isThreeOfAKind(vector<ColorCard> player, vector<ColorCard> table);
+        bool isThreeOfAKind(vector<ColorCard> player, vector<ColorCard> table);
 
         bool isTwoPair(vector<ColorCard> player, vector<ColorCard> table);
 
@@ -50,6 +50,10 @@ class Combination{
         bool inPlayer();
 
         void print();
+
+        bool operator<(Combination& other);
+
+        bool operator>(Combination& other);
 };
 
 #endif
