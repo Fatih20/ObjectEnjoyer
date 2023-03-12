@@ -44,6 +44,9 @@ template <typename T>
 std::vector<T> Deck<T>::getDeck()
 {
     return this->vec;
+}
+
+template <typename T>
 void Deck<T>::shuffle()
 {
     std::default_random_engine rng;
@@ -58,16 +61,16 @@ int Deck<T>::getNumberOfCards()
     return this->vec.size();
 };
 
-//template <typename T>
-//int Deck<T>::getValueSum() {
-//    int sum = 0;
+// template <typename T>
+// int Deck<T>::getValueSum() {
+//     int sum = 0;
 //
-//    for (auto card : this->vec) {
-//        sum += card.value();
-//    }
+//     for (auto card : this->vec) {
+//         sum += card.value();
+//     }
 //
-//    return sum;
-//}
+//     return sum;
+// }
 
 template <typename T>
 void Deck<T>::addCard(const T &card)
@@ -82,39 +85,45 @@ void Deck<T>::operator+=(const T &card)
 };
 
 template <typename T>
-Deck<T>& Deck<T>::operator<<(const T& card) {
+Deck<T> &Deck<T>::operator<<(const T &card)
+{
     addCard(card);
 
     return *this;
 }
 
 template <typename T>
-T Deck<T>::ejectCard() {
-    try{
-        if(this->vec.size() <= 0)
-            throw EmptyDeckException(); //untested
+T Deck<T>::ejectCard()
+{
+    try
+    {
+        if (this->vec.size() <= 0)
+            throw EmptyDeckException(); // untested
 
         T ejectedCard = this->vec.back();
         this->vec.pop_back();
 
         return ejectedCard;
-    } catch(EmptyDeckException& e) {
+    }
+    catch (EmptyDeckException &e)
+    {
         std::cout << e.what() << std::endl;
     }
 }
 
 template <typename T>
-void Deck<T>::operator>>(Deck<T> &deck) {
+void Deck<T>::operator>>(Deck<T> &deck)
+{
     deck.addCard(this->ejectCard());
 }
 
-//TODO: implement polymorphism
-template<typename T>
-void Deck<T>::sort() {
-    std::sort(this->vec.begin(), this->vec.end(), [](T a, T b){
-        return a.value() > b.value();
-    });
-}
+// TODO: implement polymorphism
+// template <typename T>
+// void Deck<T>::sort()
+// {
+//     std::sort(this->vec.begin(), this->vec.end(), [](T a, T b)
+//               { return a.value() > b.value(); });
+// }
 
 template <typename T>
 void Deck<T>::swap(Deck &other)
@@ -129,37 +138,36 @@ void Deck<T>::swapDeck(Deck<T> &deck1, Deck<T> &deck2)
 };
 
 template <typename T>
-void Deck<T>::shuffle(){
-    std::default_random_engine rng;
-    rng.seed(time(0));
-
-    std::shuffle(this->vec.begin(), this->vec.end(), rng);
-};
-
-template <typename T>
-bool Deck<T>::operator<(const Deck<T> &other) {
-    //to avoid sorting the real deck
-    // we use pointer to retain derived Deck properties
-    Deck<T>* a = new Deck(*this);
-    Deck<T>* b = new Deck(other);
+bool Deck<T>::operator<(const Deck<T> &other)
+{
+    // to avoid sorting the real deck
+    //  we use pointer to retain derived Deck properties
+    Deck<T> *a = new Deck(*this);
+    Deck<T> *b = new Deck(other);
 
     a->sort();
     b->sort();
 
-    for(int i = 0; i < a->getNumberOfCards(); i++){
-        if(a->getDeck()[i].value() < b->getDeck()[i].value()){
+    for (int i = 0; i < a->getNumberOfCards(); i++)
+    {
+        if (a->getDeck()[i].value() < b->getDeck()[i].value())
+        {
             delete a;
             delete b;
 
             return true;
         }
-        else if(a->getDeck()[i].value() > b->getDeck()[i].value()){
+        else if (a->getDeck()[i].value() > b->getDeck()[i].value())
+        {
             delete a;
             delete b;
 
             return false;
         }
     }
+}
+
+template <typename T>
 void Deck<T>::sort()
 {
     std::sort(this->vec.begin(), this->vec.end(), [](T a, T b) { // sementara exclusive ColorCard
@@ -168,17 +176,20 @@ void Deck<T>::sort()
 }
 
 template <typename T>
-bool Deck<T>::operator==(const Deck<T> &other) {
-    //to avoid sorting the real deck
-    // we use pointer to retain derived Deck properties
-    Deck<T>* a = new Deck(*this);
-    Deck<T>* b = new Deck(other);
+bool Deck<T>::operator==(const Deck<T> &other)
+{
+    // to avoid sorting the real deck
+    //  we use pointer to retain derived Deck properties
+    Deck<T> *a = new Deck(*this);
+    Deck<T> *b = new Deck(other);
 
     a->sort();
     b->sort();
 
-    for(int i = 0; i < a->getNumberOfCards(); i++){
-        if(a->getDeck()[i].value() != b->getDeck()[i].value()){
+    for (int i = 0; i < a->getNumberOfCards(); i++)
+    {
+        if (a->getDeck()[i].value() != b->getDeck()[i].value())
+        {
             delete a;
             delete b;
 
@@ -193,23 +204,27 @@ bool Deck<T>::operator==(const Deck<T> &other) {
 }
 
 template <typename T>
-bool Deck<T>::operator>(const Deck<T> &other) {
-    //to avoid sorting the real deck
-    // we use pointer to retain derived Deck properties
-    Deck<T>* a = new Deck(*this);
-    Deck<T>* b = new Deck(other);
+bool Deck<T>::operator>(const Deck<T> &other)
+{
+    // to avoid sorting the real deck
+    //  we use pointer to retain derived Deck properties
+    Deck<T> *a = new Deck(*this);
+    Deck<T> *b = new Deck(other);
 
     a->sort();
     b->sort();
 
-    for(int i = 0; i < a->getNumberOfCards(); i++){
-        if(a->getDeck()[i].value() < b->getDeck()[i].value()){
+    for (int i = 0; i < a->getNumberOfCards(); i++)
+    {
+        if (a->getDeck()[i].value() < b->getDeck()[i].value())
+        {
             delete a;
             delete b;
 
             return false;
         }
-        else if(a->getDeck()[i].value() > b->getDeck()[i].value()){
+        else if (a->getDeck()[i].value() > b->getDeck()[i].value())
+        {
             delete a;
             delete b;
 
@@ -219,8 +234,10 @@ bool Deck<T>::operator>(const Deck<T> &other) {
 }
 
 template <typename T>
-Deck<T>& Deck<T>::operator+(Deck<T> &other) {
-    for(auto card : other.getDeck()) {
+Deck<T> &Deck<T>::operator+(Deck<T> &other)
+{
+    for (auto card : other.getDeck())
+    {
         *this << card;
     }
 
