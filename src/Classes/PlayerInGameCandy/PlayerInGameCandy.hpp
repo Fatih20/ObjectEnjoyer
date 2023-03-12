@@ -18,6 +18,13 @@ public:
     PlayerInGameCandy(DeckGame<ColorCard> deckGame, int numberOfPlayer);
 
     /**
+     * @brief Construct a new Player In Game Candy object
+     *
+     * @param playerInGameCandy
+     */
+    PlayerInGameCandy(const PlayerInGameCandy &playerInGameCandy);
+
+    /**
      * @brief Print the leaderboard of players in the collection
      *
      */

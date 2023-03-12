@@ -3,9 +3,14 @@
 
 #include "Classes/Player/Player.hpp"
 #include "Classes/ColorCard/ColorCard.hpp"
+#include "Classes/AbilityCard/AbilityCard.hpp"
 
 class PlayerCandy : public Player<ColorCard>
 {
+private:
+    bool abilityUsed;
+    // AbilityCard abilityHand;
+
 public:
     /**
      * @brief Construct a new Player Candy object with the given gameID
@@ -19,6 +24,25 @@ public:
      *
      */
     PlayerCandy();
+
+    /**
+     * @brief Copy constructor of PlayerCandy
+     *
+     * @param p
+     */
+    PlayerCandy(const PlayerCandy &p);
+
+    /**
+     * @brief Disable the ability of the player
+     *
+     */
+    void disableAbility();
+
+    /**
+     * @brief Return whether the player can still use their ability
+     *
+     */
+    bool getAbilityAvailable();
 };
 
 #endif

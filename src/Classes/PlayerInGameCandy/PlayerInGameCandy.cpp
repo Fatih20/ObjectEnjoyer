@@ -11,6 +11,10 @@ PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> deckGame, int numberOfP
     }
 };
 
+PlayerInGameCandy::PlayerInGameCandy(const PlayerInGameCandy &playerInGameCandy) : PlayerInGame<PlayerCandy>(playerInGameCandy)
+{
+}
+
 bool PlayerInGameCandy::usernameExist(string username)
 {
     bool found = false;
