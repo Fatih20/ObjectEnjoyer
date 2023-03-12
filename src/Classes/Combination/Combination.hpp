@@ -54,6 +54,8 @@ class Combination{
         bool operator<(Combination& other);
 
         bool operator>(Combination& other);
+
+        bool operator==(Combination& other);
 };
 
 #endif

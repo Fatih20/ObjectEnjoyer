@@ -283,3 +283,10 @@ bool Combination::operator>(Combination& other){
     }
     return false;
 }
+
+bool Combination::operator==(Combination& other){
+    if(this->combinationType == other.combinationType && this->score == other.score){
+        return true;
+    }
+    return false;
+}
