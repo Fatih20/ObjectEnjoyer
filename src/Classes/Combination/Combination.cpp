@@ -14,49 +14,165 @@ Combination::Combination(vector<ColorCard> player, vector<ColorCard> table){
 }
 
 void Combination::calculate(vector<ColorCard> player, vector<ColorCard> table){
-    if(isStraightFlush(player, table)){
-        combinationType = STRAIGHT_FLUSH;
-    }
-    else if(isFourOfAKind(player, table)){
-        combinationType = FOUR_OF_A_KIND;
-    }
-    else if(isFullHouse(player, table)){
-        combinationType = FULL_HOUSE;
-    }
-    else if(isFlush(player, table)){
-        combinationType = FLUSH;
-    }
-    else if(isStraight(player, table)){
-        combinationType = STRAIGHT;
-    }
-    else if(isThreeOfAKind(player, table)){
-        combinationType = THREE_OF_A_KIND;
-    }
-    else if(isTwoPair(player, table)){
-        combinationType = TWO_PAIRS;
-    }
-    else if(isOnePair(player, table)){
-        combinationType = PAIR;
-    }
-    else{
-        combinationType = HIGH_CARD; 
-    }
-    getHighestCard(player, table);
+    do{
+        isStraightFlush();
+        isFourOfAKind();
+        isFullHouse();
+        isFlush();
+        isStraight();
+        isThreeOfAKind();
+        isTwoPair();
+        isOnePair();
+    }while(prev_permutation(allCards.begin(), allCards.end()));
+    getHighestCard();
 }
 
-void Combination::getHighestCard(vector<ColorCard> player, vector<ColorCard> table){
+void Combination::getHighestCard(){
     if(combinationType == HIGH_CARD){
         sort(playerCards.begin(), playerCards.end(), [](ColorCard a, ColorCard b){
             return a.value() > b.value();
         });
         score = playerCards[0].value();
-    } else {
-        int i = 0;
-        while(score == -1 && i < usedCards.size()){
-            if(find(playerCards.begin(), playerCards.end(), usedCards[i]) != playerCards.end()){
-                score = usedCards[i].value();
+    }
+
+    for(int i = 0 ; i < usedCards.size(); i++){
+        if(find(playerCards.begin(), playerCards.end(), usedCards[i]) != playerCards.end()){
+            score = usedCards[i].value();
+            return;
+        }
+    }
+}
+
+void Combination::isOnePair(){
+    if(allCards[0].getNumber() == allCards[1].getNumber()){
+        usedCards.push_back(allCards[0]);
+        usedCards.push_back(allCards[1]);
+        if(inPlayer()){
+            if(combinationType < PAIR){
+                combinationType = PAIR;
             }
-            i++;
+        }
+    }
+}
+
+void Combination::isTwoPair(){
+    if(allCards[0].getNumber() == allCards[1].getNumber() && allCards[2].getNumber() == allCards[3].getNumber()){
+        usedCards.push_back(allCards[0]);
+        usedCards.push_back(allCards[1]);
+        usedCards.push_back(allCards[2]);
+        usedCards.push_back(allCards[3]);
+        if(inPlayer()){
+            if(combinationType < TWO_PAIRS){
+                combinationType = TWO_PAIRS;
+            }
+        }
+    }
+}
+
+void Combination::isThreeOfAKind(){
+    if(allCards[0].getNumber() == allCards[1].getNumber() && allCards[1].getNumber() == allCards[2].getNumber()){
+        usedCards.push_back(allCards[0]);
+        usedCards.push_back(allCards[1]);
+        usedCards.push_back(allCards[2]);
+        if(inPlayer()){
+            if(combinationType < THREE_OF_A_KIND){
+                combinationType = THREE_OF_A_KIND;
+            }
+        }
+    }
+}
+
+void Combination::isFourOfAKind(){
+    if(allCards[0].getNumber() == allCards[1].getNumber() && allCards[1].getNumber() == allCards[2].getNumber() && allCards[2].getNumber() == allCards[3].getNumber()){
+        usedCards.push_back(allCards[0]);
+        usedCards.push_back(allCards[1]);
+        usedCards.push_back(allCards[2]);
+        usedCards.push_back(allCards[3]);
+        if(inPlayer()){
+            if(combinationType < FOUR_OF_A_KIND){
+                combinationType = FOUR_OF_A_KIND;
+            }
+        }
+    }
+}
+
+void Combination::isStraight(){
+    bool isStraight = true;
+    for(int i = 0; i < 5; i++){
+        if(allCards[i].getNumber() != allCards[i+1].getNumber() + 1){
+            isStraight = false;
+            break;
+        }
+    }
+    if(isStraight){
+        usedCards.push_back(allCards[0]);
+        usedCards.push_back(allCards[1]);
+        usedCards.push_back(allCards[2]);
+        usedCards.push_back(allCards[3]);
+        usedCards.push_back(allCards[4]);
+        if(inPlayer()){
+            if(combinationType < STRAIGHT){
+                combinationType = STRAIGHT;
+            }
+        }
+    }
+}
+
+void Combination::isFlush(){
+    bool isFlush = true;
+    for(int i = 0; i < 5; i++){
+        if(allCards[i].getColor() != allCards[i+1].getColor()){
+            isFlush = false;
+            break;
+        }
+    }
+    if(isFlush){
+        usedCards.push_back(allCards[0]);
+        usedCards.push_back(allCards[1]);
+        usedCards.push_back(allCards[2]);
+        usedCards.push_back(allCards[3]);
+        usedCards.push_back(allCards[4]);
+        if(inPlayer()){
+            if(combinationType < FLUSH){
+                combinationType = FLUSH;
+            }
+        }
+    }
+}
+
+void Combination::isFullHouse(){
+    if(allCards[0].getNumber() == allCards[1].getNumber() && allCards[1].getNumber() == allCards[2].getNumber() && allCards[3].getNumber() == allCards[4].getNumber()){
+        usedCards.push_back(allCards[0]);
+        usedCards.push_back(allCards[1]);
+        usedCards.push_back(allCards[2]);
+        usedCards.push_back(allCards[3]);
+        usedCards.push_back(allCards[4]);
+        if(inPlayer()){
+            if(combinationType < FULL_HOUSE){
+                combinationType = FULL_HOUSE;
+            }
+        }
+    }
+}
+
+void Combination::isStraightFlush(){
+    bool isStraightFlush = true;
+    for(int i = 0; i < 5; i++){
+        if(allCards[i].getNumber() != allCards[i+1].getNumber() + 1 || allCards[i].getColor() != allCards[i+1].getColor()){
+            isStraightFlush = false;
+            break;
+        }
+    }
+    if(isStraightFlush){
+        usedCards.push_back(allCards[0]);
+        usedCards.push_back(allCards[1]);
+        usedCards.push_back(allCards[2]);
+        usedCards.push_back(allCards[3]);
+        usedCards.push_back(allCards[4]);
+        if(inPlayer()){
+            if(combinationType < STRAIGHT_FLUSH){
+                combinationType = STRAIGHT_FLUSH;
+            }
         }
     }
 }
@@ -70,51 +186,7 @@ bool Combination::inPlayer(){
     return false;
 }
 
-bool Combination::isOnePair(vector<ColorCard> player, vector<ColorCard> table){
-    this->usedCards.clear();
-    for(int i = 0; i < allCards.size(); i++){
-        for(int j = i + 1; j < allCards.size(); j++){
-            if(allCards[i].getNumber() == allCards[j].getNumber()){
-                this->usedCards.push_back(allCards[i]);
-                this->usedCards.push_back(allCards[j]);
-                if(inPlayer()){
-                    return true;
-                } else {
-                    usedCards.clear();
-                }
-            }
-        }
-    }
-    return false;
-}
 
-bool Combination::isTwoPair(vector<ColorCard> player, vector<ColorCard> table){
-    return false;
-}
-
-bool Combination::isThreeOfAKind(vector<ColorCard> player, vector<ColorCard> table){
-    return false;
-}
-
-bool Combination::isStraight(vector<ColorCard> player, vector<ColorCard> table){
-    return false;
-}
-
-bool Combination::isFlush(vector<ColorCard> player, vector<ColorCard> table){
-    return false;
-}
-
-bool Combination::isFullHouse(vector<ColorCard> player, vector<ColorCard> table){
-    return false;
-}
-
-bool Combination::isFourOfAKind(vector<ColorCard> player, vector<ColorCard> table){
-    return false;
-}
-
-bool Combination::isStraightFlush(vector<ColorCard> player, vector<ColorCard> table){
-    return false;
-}
 
 // buat dengan array of cards dulu, baru diubah ke deck nanti ketika dack udah jadi
 

@@ -73,6 +73,10 @@ class ColorCard: public Card<int> {
          */
         bool operator==(ColorCard other);
 
+        friend bool operator<(ColorCard a, ColorCard b);
+
+        friend bool operator>(ColorCard a, ColorCard b);
+
         void print();
 };
 

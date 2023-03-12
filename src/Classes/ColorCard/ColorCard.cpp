@@ -58,6 +58,14 @@ bool ColorCard::operator==(ColorCard other){
     return this->value() == other.value();
 }
 
+bool operator<(ColorCard a, ColorCard b){
+    return a.value() < b.value();
+}
+
+bool operator>(ColorCard a, ColorCard b){
+    return a.value() > b.value();
+}
+
 void ColorCard::print(){
     std::cout << "ColorCard(" << this->Card::val << ", " << this->color << ")" << std::endl;
 }

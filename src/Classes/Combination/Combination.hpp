@@ -29,23 +29,23 @@ class Combination{
 
         void calculate(vector<ColorCard> player, vector<ColorCard> table);
 
-        bool isStraightFlush(vector<ColorCard> player, vector<ColorCard> table);
+        void isStraightFlush();
 
-        bool isFourOfAKind(vector<ColorCard> player, vector<ColorCard> table);
+        void isFourOfAKind();
 
-        bool isFullHouse(vector<ColorCard> player, vector<ColorCard> table);
+        void isFullHouse();
 
-        bool isFlush(vector<ColorCard> player, vector<ColorCard> table);
+        void isFlush();
 
-        bool isStraight(vector<ColorCard> player, vector<ColorCard> table);
+        void isStraight();
 
-        bool isThreeOfAKind(vector<ColorCard> player, vector<ColorCard> table);
+        void isThreeOfAKind();
 
-        bool isTwoPair(vector<ColorCard> player, vector<ColorCard> table);
+        void isTwoPair();
 
-        bool isOnePair(vector<ColorCard> player, vector<ColorCard> table);
+        void isOnePair();
 
-        void getHighestCard(vector<ColorCard> player, vector<ColorCard> table);
+        void getHighestCard();
 
         bool inPlayer();
 
