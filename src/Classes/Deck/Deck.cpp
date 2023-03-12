@@ -208,13 +208,11 @@ bool Deck<T>::operator>(const Deck<T> &other) {
 
 template <typename T>
 Deck<T>& Deck<T>::operator+(Deck<T> &other) {
-    Deck<T>* resultingDeck = new Deck<T>(*this);
-
     for(auto card : other.getDeck()) {
-        *resultingDeck << card;
+        *this << card;
     }
 
-    return *resultingDeck;
+    return *this;
 }
 
 template <typename T>
