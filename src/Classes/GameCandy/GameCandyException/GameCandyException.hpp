@@ -24,7 +24,7 @@ class CommandInvalid : public exception{
          */
         string getInvalidCommand();
 
-        ~CommandInvalid() _NOEXCEPT {};
+        // ~CommandInvalid() _NOEXCEPT {};
 };
 
 #endif
