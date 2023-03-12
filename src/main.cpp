@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-void splashScreen(){
+void splashScreenMain(){
 cout << "                  __                                _" << endl;
 cout << "                 [  |                              | | " << endl;
 cout << " _   _   __ .---. | | .---.  .--.  _ .--..--. .---.| | " << endl;
