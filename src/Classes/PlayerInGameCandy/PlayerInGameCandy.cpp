@@ -1,4 +1,5 @@
 #include "PlayerInGameCandy.hpp"
+#include "Classes/PlayerInGameException/PlayerInGameException.hpp"
 #include <algorithm>
 
 using namespace std;
@@ -70,6 +71,11 @@ void PlayerInGameCandy::removePlayerOfID(int removedID)
 
 int PlayerInGameCandy::correctedIndex(int rawIndex)
 {
+    if (rawIndex < 0 || rawIndex >= getNumberOfPlayer() - 2)
+    {
+        OutOfBoundIndex e;
+        throw e;
+    }
     int indexOfCurrentPlayer = getIndexOfCurrentTurn();
     return rawIndex < indexOfCurrentPlayer ? rawIndex : rawIndex + 1;
 }
@@ -96,14 +102,43 @@ void PlayerInGameCandy::showPlayerExceptCurrent()
 
 void PlayerInGameCandy::swapDeckOfCurrentWith(int rawTargetIndex)
 {
+    int targetIndex;
+    try
+    {
+        targetIndex = correctedIndex(rawTargetIndex);
+    }
+    catch (OutOfBoundIndex e)
+    {
+        e.setMessage("Pilihan pemain sasaran ada di luar opsi!");
+        throw e;
+    }
     PlayerCandy &playerSource = getPlayerWithTurn();
-    PlayerCandy &playerTarget = players.at(correctedIndex(rawTargetIndex));
+    PlayerCandy &playerTarget = players.at(targetIndex);
     playerSource.swapDeck(playerTarget);
 };
 
 void PlayerInGameCandy::swapDeckOfPlayer(int rawSourceIndex, int rawTargetIndex)
 {
-    PlayerCandy &playerSource = players.at(correctedIndex(rawSourceIndex));
+    int sourceIndex;
+    try
+    {
+        sourceIndex = correctedIndex(rawSourceIndex);
+    }
+    catch (OutOfBoundIndex e)
+    {
+        e.setMessage("Pilihan pemain pertama ada di luar opsi!");
+    }
+    int targetIndex;
+    try
+    {
+        targetIndex = correctedIndex(rawTargetIndex);
+    }
+    catch (OutOfBoundIndex e)
+    {
+        e.setMessage("Pilihan pemain kedua ada di luar opsi!");
+        throw e;
+    }
+    PlayerCandy &playerSource = players.at(sourceIndex);
     PlayerCandy &playerTarget = players.at(correctedIndex(rawTargetIndex));
     playerSource.swapDeck(playerTarget);
 };
