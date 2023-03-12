@@ -18,8 +18,8 @@ int main()
     ColorCard cc4(4, YELLOW);
     Deck<ColorCard> deckA;
     deckA.addCard(cc1);
-    deckA.addCard(cc2);
-    deckA.addCard(cc3);
+    deckA += cc2;
+    deckA << cc3;
     deckA.addCard(cc4);
     cout << deckA << endl;
     // p5.printScore();

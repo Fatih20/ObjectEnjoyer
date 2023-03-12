@@ -75,6 +75,11 @@ public:
     void operator+=(const T &);
 
     /**
+     * @brief shorthand for addCard()
+     */
+    Deck<T>& operator<<(const T& card);
+
+    /**
      * @brief sort deck by value
      */
     void sort();
@@ -97,8 +102,8 @@ public:
     /**
      * @brief print
      */
-    template <typename Y>
-    friend std::ostream &operator<<(std::ostream &os, const Deck<Y> &deck);
+    template <typename Tc>
+    friend std::ostream &operator<<(std::ostream &os, const Deck<Tc> &deck);
 };
 
 #endif

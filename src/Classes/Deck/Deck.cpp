@@ -62,6 +62,13 @@ void Deck<T>::operator+=(const T &card)
     this->addCard(card);
 };
 
+template <typename T>
+Deck<T>& Deck<T>::operator<<(const T& card) {
+    addCard(card);
+
+    return *this;
+}
+
 template<typename T>
 void Deck<T>::sort() {
     std::sort(this->vec.begin(), this->vec.end(), [](T a, T b){
