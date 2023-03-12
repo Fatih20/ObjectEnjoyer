@@ -27,6 +27,10 @@ Color ColorCard::getColor()
     return this->color;
 }
 
+std::string ColorCard::getColorAsString() const {
+    return ColorCard::colorAsString(this->color);
+}
+
 int ColorCard::getNumber(){
     return this->Card::val;
 }
@@ -45,6 +49,29 @@ void ColorCard::setValue(int value, Color color)
     Card *card = this;
     card->setValue(value);
     this->color = color;
+}
+
+std::string ColorCard::colorAsString(Color col) {
+    std::string str;
+
+    switch(col) {
+        case 0:
+            str = "GREEN";
+            break;
+        case 1:
+            str = "BLUE";
+            break;
+        case 2:
+            str = "YELLOW";
+            break;
+        case 3:
+            str = "RED";
+            break;
+        default:
+            str = "COLOR_UNKNOWN";
+    }
+
+    return str;
 }
 
 void ColorCard::operator=(const ColorCard &other)
@@ -75,7 +102,7 @@ bool operator>(ColorCard a, ColorCard b){
 
 std::ostream &operator<<(std::ostream &os, const ColorCard &card)
 {
-    os << "ColorCard(" << card.Card::val << ", " << card.color << ")" << std::endl;
+    os << card.Card::val << " " << card.getColorAsString() << std::endl;
 
     return os;
 };

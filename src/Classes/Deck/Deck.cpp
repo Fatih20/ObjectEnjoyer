@@ -51,6 +51,17 @@ int Deck<T>::getNumberOfCards()
     return this->vec.size();
 };
 
+//template <typename T>
+//int Deck<T>::getValueSum() {
+//    int sum = 0;
+//
+//    for (auto card : this->vec) {
+//        sum += card.value();
+//    }
+//
+//    return sum;
+//}
+
 template <typename T>
 void Deck<T>::addCard(const T &card)
 {
@@ -123,9 +134,11 @@ std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
 {
     os << "\nsize : " << deck.vec.size() << "\nmembers : \n";
 
+    int i = 1;
     for (auto elmt : deck.vec)
     {
-        os << elmt;
+        os << i << ". " << elmt;
+        i++;
     }
 
     return os;

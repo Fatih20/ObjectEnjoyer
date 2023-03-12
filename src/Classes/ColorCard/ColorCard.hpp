@@ -36,6 +36,8 @@ public:
      */
     Color getColor();
 
+    std::string getColorAsString() const;
+
         /**
          * @brief Get the Face Value of the card
          * 
@@ -61,6 +63,8 @@ public:
      * @param value
      */
     void setValue(int value, Color color);
+
+    static std::string colorAsString(Color col);
 
     /**
      * @brief Assign the value and color of another color card to this color card
