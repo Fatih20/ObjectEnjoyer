@@ -24,6 +24,8 @@ class Combination{
         vector <ColorCard> allCards;
         vector <ColorCard> playerCards;
         vector <ColorCard> usedCards;
+        ColorCard highestCard;
+        ColorCard highestPlayerCard;
     public:
         Combination(vector<ColorCard> player, vector<ColorCard> table);
 
@@ -46,6 +48,8 @@ class Combination{
         void isOnePair();
 
         bool inPlayer(vector<ColorCard> cards);
+
+        ColorCard getHighestPlayerCard(vector<ColorCard> cards);
 
         void print();
 
