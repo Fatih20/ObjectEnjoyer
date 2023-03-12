@@ -12,6 +12,11 @@ public:
     /**
      * @brief Construct a new Player In Game Candy object
      *
+     */
+    PlayerInGameCandy();
+    /**
+     * @brief Construct a new Player In Game Candy object
+     *
      * @param numberOfPlayer
      * @param currentTurn starts at 0
      */
