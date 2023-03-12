@@ -2,6 +2,7 @@
 #include "Classes/Card/Card.hpp"
 #include "Classes/ColorCard/ColorCard.hpp"
 #include "Classes/AbilityCard/AbilityCard.hpp"
+#include "Classes/DeckException/DeckException.hpp"
 
 #include <vector>
 #include <iostream>
@@ -67,6 +68,26 @@ Deck<T>& Deck<T>::operator<<(const T& card) {
     addCard(card);
 
     return *this;
+}
+
+template <typename T>
+T Deck<T>::ejectCard() {
+    try{
+        if(this->vec.size() <= 0)
+            throw EmptyDeckException(); //untested
+
+        T ejectedCard = this->vec.back();
+        this->vec.pop_back();
+
+        return ejectedCard;
+    } catch(EmptyDeckException& e) {
+        std::cout << e.what() << std::endl;
+    }
+}
+
+template <typename T>
+void Deck<T>::operator>>(Deck<T> &deck) {
+    deck.addCard(this->ejectCard());
 }
 
 //TODO: implement polymorphism

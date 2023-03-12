@@ -13,15 +13,6 @@ template <typename T>
 DeckGame<T>::DeckGame(const Deck<T> &other) : Deck<T>::Deck(other) {}
 
 template <typename T>
-T DeckGame<T>::ejectCard()
-{
-    T res = this->vec.back();
-    this->vec.pop_back();
-
-    return res;
-}
-
-template <typename T>
 int DeckGame<T>::getCombinationValueWith(const Deck<T> &deckPlayer) const {
     return 0;
 }

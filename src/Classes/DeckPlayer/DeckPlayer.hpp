@@ -6,8 +6,6 @@
 #include "Classes/Card/Card.hpp"
 #include "Classes/ColorCard/ColorCard.hpp"
 
-#include "Classes/DeckException/DeckException.hpp"
-
 template <class T>
 class DeckPlayer : public Deck<T>
 {
@@ -45,13 +43,6 @@ public:
      *
      */
     void drawCard(DeckGame<T> &, int);
-
-    /**
-     * @brief Delete a card from the deck and then return it from this function
-     *
-     * @return T
-     */
-    T ejectCard();
 };
 
 #endif

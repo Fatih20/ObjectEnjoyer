@@ -80,6 +80,20 @@ public:
     Deck<T>& operator<<(const T& card);
 
     /**
+     * @brief Delete a card from the deck and then return it from this function
+     *
+     * @return T
+     */
+    T ejectCard();
+
+    /**
+     * @brief shorthand for ejectCard()
+     *
+     * return is void as we should not chain ejectCard()
+     */
+     void operator>>(Deck<T>& deck);
+
+    /**
      * @brief sort deck by value
      */
     void sort();

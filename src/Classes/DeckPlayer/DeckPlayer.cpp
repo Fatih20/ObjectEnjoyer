@@ -31,23 +31,7 @@ void DeckPlayer<T>::drawCard(DeckGame<T> &drawnDeck, int numberOfCards)
 {
     for (int i = 0; i < numberOfCards; i++)
     {
-        this->vec.push_back(drawnDeck.ejectCard());
-    }
-};
-
-template <typename T>
-T DeckPlayer<T>::ejectCard()
-{
-    try{
-        if(this->vec.size() <= 0)
-            throw EmptyDeckException(); //untested
-
-        T ejectedCard = this->vec.back();
-        this->vec.pop_back();
-
-        return ejectedCard;
-    } catch(EmptyDeckException& e) {
-        std::cout << e.what() << std::endl;
+        drawnDeck >> *this;
     }
 };
 

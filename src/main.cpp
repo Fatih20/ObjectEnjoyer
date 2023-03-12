@@ -37,12 +37,18 @@ int main()
 
     ColorCard ccdraw = deckB.ejectCard();
 
+    cout << "deck B" << endl;
     cout << deckB << endl;
     cout << "ejected card  : " << ccdraw << endl;
 
     ColorCard ccdraw_dupe = ccdraw;
+    cout << "ejected card : ";
     ccdraw_dupe.print();
+    cout << endl;
 
+    Deck<ColorCard> deckC;
+    deckB >> deckC;
+    cout << "deckB" << deckB << endl << "deckC" << deckC;
 
 
     return 0;
