@@ -1,6 +1,5 @@
 #ifndef _DECKPLAYER_HPP_
 #define _DECKPLAYER_HPP_
-
 #include "../Deck/Deck.hpp"
 #include "../DeckGame/DeckGame.hpp"
 #include "../Card/Card.hpp"
@@ -44,13 +43,6 @@ public:
      *
      */
     void drawCard(DeckGame<T> &, int);
-
-    /**
-     * @brief Delete a card from the deck and then return it from this function
-     *
-     * @return T
-     */
-    T ejectCard();
 };
 
 #endif
