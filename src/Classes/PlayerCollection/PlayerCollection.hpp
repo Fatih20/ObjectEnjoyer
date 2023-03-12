@@ -1,3 +1,6 @@
+#ifndef _PLAYER_COLLECTION_HPP
+#define _PLAYER_COLLECTION_HPP
+
 #include <vector>
 #include "../Player/Player.hpp"
 
@@ -57,3 +60,5 @@ public:
 
     void operator-=(int index);
 };
+
+#endif
