@@ -15,8 +15,8 @@ GameCandy::GameCandy()
 
     // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> deck = newDeck();
     DeckGame<ColorCard> deck = newDeck1();
-    cout << deck;
     this->deckGame = deck;
+    cout << deckGame;
     // this->deckGame = deck.first;
     // this->abilityCard = deck.second;
 
@@ -24,11 +24,12 @@ GameCandy::GameCandy()
     this->tableCard = tableCard;
     // empty
 
-    DeckGame<ColorCard> playerDeck;
-    // draw playerDeck from deckGame
-    
-    PlayerInGameCandy players(playerDeck, 7);
+    cout << "player\n";
+    PlayerInGameCandy players(deckGame, 7);
+    cout << "player2\n";
     this->players = players;
+    cout << deckGame;
+
 
     round = 1;
     giftPoint = 64;

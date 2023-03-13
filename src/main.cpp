@@ -153,6 +153,7 @@ int main()
 
     // cout << deckD << deckB << deckC << endl;
     GameCandy game;
+    game.start();
 
     return 0;
 }
