@@ -11,6 +11,7 @@ protected:
     vector<T> players;
 
 public:
+    PlayerCollection();
     PlayerCollection(int numberOfPlayer);
 
     /**

@@ -9,8 +9,6 @@ protected:
     vector<int> turns;
     int currentTurn;
     bool roundComplete;
-
-protected:
     /**
      * @brief Set the turn of the object
      *
@@ -133,5 +131,14 @@ public:
      * @return false
      */
     virtual bool usernameExist(string username) = 0;
+
+    /**
+     * @brief Return whether the username exist in the object and isn't owned by player with the gameID
+     *
+     * @param username
+     * @return true
+     * @return false
+     */
+    virtual bool usernameExist(string username, int gameID) = 0;
 };
 // Kurang retake deck dan re-roll

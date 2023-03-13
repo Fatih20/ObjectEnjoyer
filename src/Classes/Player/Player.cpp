@@ -20,9 +20,8 @@ Player<T>::Player()
 template <typename T>
 Player<T>::Player(int gameID)
 {
-    this->gameID;
+    this->gameID = gameID;
     score = 0;
-    username = askForUsername();
     setValidUsername();
 };
 
@@ -32,13 +31,13 @@ Player<T>::~Player(){};
 template <typename T>
 void Player<T>::setValidUsername()
 {
-    username = askForUsername();
     bool validUsername = false;
+    string usernameCandidate;
     while (!validUsername)
     {
         try
         {
-            username = askForUsername();
+            usernameCandidate = askForUsername();
             validUsername = true;
         }
         catch (UsernameEmpty e)
@@ -46,12 +45,13 @@ void Player<T>::setValidUsername()
             cout << e.getMessage() << endl;
         }
     }
+    this->username = usernameCandidate;
 };
 
 template <typename T>
 string Player<T>::askForUsername()
 {
-    cout << "Masukkan username player ke-" << gameID << " : ";
+    cout << "Masukkan username player ke-" << this->gameID << " : ";
     string askedUsername;
     cin >> askedUsername;
     if (askedUsername == "")
