@@ -169,7 +169,7 @@ void GameCandy::splashScreen(){
     cout << "    `-.______ / / /   | |_|  |   |  |\\_______|/       / /                 ||     ||/ /   | |_                   `''-...... -'    " << endl;
     cout << "             `  \\ \\._,\\ '/|  |   |  |             |`-' /                  \'. __// \\ \\._,\\ '/                                    " << endl;
     cout << "                 `--'  `\" '--'   '--'              '..'                    `'---'   `--'  `\"                                     " << endl;
-    cout << "/nGame starting...\n";
+    cout << "\nGame starting...\n";
 }
 
 
