@@ -15,6 +15,9 @@ Combination::Combo::Combo(Deck<ColorCard> cards){
 void Combination::Combo::reduceCards(){
     std::vector<ColorCard> cards = this->cards.getDeck();
     switch(this->getType()){
+        case HIGH_CARD:
+            cards.erase(cards.begin() + 1, cards.end());
+            break;
         case PAIR:
             cards.erase(cards.begin() + 2, cards.end());
             break;
