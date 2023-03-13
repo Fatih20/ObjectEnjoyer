@@ -10,7 +10,6 @@ using namespace std;
 
 class PlayerInGameCandy : public PlayerInGame<PlayerCandy>
 {
-private:
 public:
     /**
      * @brief Construct a new Player In Game Candy object
@@ -53,6 +52,8 @@ public:
     void createAndAddPlayer(int gameID);
 
     bool usernameExist(string username);
+
+    bool usernameExist(string username, int gameID);
 
     /**
      * @brief Show player except for the current player

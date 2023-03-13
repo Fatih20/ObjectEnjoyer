@@ -12,13 +12,16 @@ PlayerInGame<T>::PlayerInGame() : PlayerInGame<T>(0){};
 template <typename T>
 PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection<T>(numberOfPlayer)
 {
-    vector<int> turns(numberOfPlayer);
+    cout << "Entered PIG constructor" << endl;
+    vector<int> turnsCreated;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        turns[i] = i + 1;
+        turnsCreated.push_back(i);
     }
+    this->turns = turnsCreated;
     currentTurn = 0;
     roundComplete = false;
+    cout << "Turns size after PIG construction : " << turns.size() << endl;
 };
 
 template <typename T>

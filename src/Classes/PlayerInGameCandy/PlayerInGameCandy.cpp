@@ -10,6 +10,10 @@ PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOf
 {
     for (int i = 0; i < numberOfPlayer; i++)
     {
+        createAndAddPlayer(i + 1);
+    }
+    for (int i = 0; i < numberOfPlayer; i++)
+    {
         this->players.at(turns.at(i)).drawCard(deckGame, 2);
     }
 };
@@ -28,15 +32,23 @@ bool PlayerInGameCandy::usernameExist(string username)
     return found;
 }
 
+bool PlayerInGameCandy::usernameExist(string username, int gameID)
+{
+    bool found = false;
+    for (int i = 0; i < players.size() && !found; i++)
+    {
+        found = players.at(i).getUsername() == username;
+    }
+    return found;
+}
+
 void PlayerInGameCandy::createAndAddPlayer(int gameID)
 {
     PlayerCandy p(gameID);
-    bool usernameUnique = !usernameExist(p.getUsername());
-    while (!usernameUnique)
+    while (usernameExist(p.getUsername()))
     {
-        cout << "Username already exists!" << endl;
+        cout << "Username itu sudah dipakai! Pilih yang lain." << endl;
         p.setValidUsername();
-        usernameUnique = !usernameExist(p.getUsername());
     }
     players.push_back(p);
 }
