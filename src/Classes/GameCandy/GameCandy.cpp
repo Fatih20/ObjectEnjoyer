@@ -13,19 +13,22 @@ GameCandy::GameCandy()
 {
     splashScreen();
 
-    pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> deck = newDeck();
-    // newDeck1();
-    this->deckGame = deck.first;
-    this->deckAbility = deck.second;
+    // pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> deck = newDeck();
+    // this->deckGame = deck.first;
+    // this->deckAbility = deck.second;
+
+    newDeck1();
 
     DeckGame<ColorCard> tableCard;
     this->tableCard = tableCard;
     // table card empty
 
+    // PlayerCandy p(1, deckAbility);
     cout << deckAbility.getNumberOfCards() << endl;
 
-    PlayerInGameCandy players(deckGame, deckAbility, 7);
-    this->players = players;
+    cout << "Entered initializing pigc" << endl;
+    PlayerInGameCandy pIGC(this->deckGame, this->deckAbility, 7);
+    this->players = pIGC;
     cout << deckGame;
     round = 1;
     giftPoint = 64;
@@ -260,11 +263,20 @@ vector<AbilityCard> GameCandy::initializeAbilityDeck()
     vector<AbilityCard>
         abilityCards{ac1, ac2, ac3, ac4, ac5, ac6, ac7};
 
+    vector<AbilityCard> vec;
+    vec.push_back(ac1);
+    vec.push_back(ac2);
+    vec.push_back(ac3);
+    vec.push_back(ac4);
+    vec.push_back(ac5);
+    vec.push_back(ac6);
+    vec.push_back(ac7);
+
     cout << abilityCards.at(0).value().getName() << endl;
     cout << "Size of ability cards " << abilityCards.size() << endl;
     cout << "Exited initialize ability deck" << endl;
 
-    return abilityCards;
+    return vec;
 }
 
 pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> GameCandy::newDeck()
@@ -294,11 +306,14 @@ void GameCandy::newDeck1()
     int option = inputOption(2);
     // if(option==1){
     DeckGame<ColorCard> deck(initilizeDeckGame());
+    DeckGame<AbilityCard> deckAbility(initializeAbilityDeck());
+
     // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
     // } else {
     //     // file reader
     // }
     this->deckGame = deck;
+    this->deckAbility = deckAbility;
 }
 
 void GameCandy::roundAction()

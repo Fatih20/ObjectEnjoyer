@@ -36,14 +36,16 @@ bool PlayerCandy::getAbilityAvailable()
 void PlayerCandy::drawAbility(DeckGame<AbilityCard> &deckAbility)
 {
     cout << "Entered draw ability" << endl;
+    cout << "Deck ability cards amount before drawn " << deckAbility.getNumberOfCards() << endl;
     AbilityCard drawnCard = deckAbility.ejectCard();
+    cout << "Deck ability cards amount after drawn " << deckAbility.getNumberOfCards() << endl;
     cout << "Cards drawn" << endl;
     bool success = false;
     while (!success)
     {
-
         try
         {
+            cout << "Entering try" << endl;
             this->abilityHand = drawnCard;
 
             success = true;

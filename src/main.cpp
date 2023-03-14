@@ -71,19 +71,31 @@ void splashScreenMain()
 int main()
 {
     // cout << "[deckA]" << endl;
-    // ColorCard cc1(1, GREEN);
-    // ColorCard cc2(2, RED);
-    // ColorCard cc3(3, BLUE);
-    // ColorCard cc4(4, YELLOW);
-    // vector<ColorCard> vec;
-    // vec.push_back(cc1);
-    // vec.push_back(cc2);
+    ColorCard cc1(1, GREEN);
+    ColorCard cc2(2, RED);
+    ColorCard cc3(3, BLUE);
+    ColorCard cc4(4, YELLOW);
+    ColorCard cc5(4, YELLOW);
+    ColorCard cc6(4, YELLOW);
+    ColorCard cc7(4, YELLOW);
+    ColorCard cc8(4, YELLOW);
+    ColorCard cc9(4, YELLOW);
 
-    // Deck<ColorCard> deckA(vec);
-    // deckA.addCard(cc1);
-    // deckA.addCard(cc2);
-    // deckA.addCard(cc3);
-    // deckA.addCard(cc4);
+    vector<ColorCard> vec;
+    vec.push_back(cc1);
+    vec.push_back(cc2);
+
+    Deck<ColorCard> deckA(vec);
+    deckA.addCard(cc1);
+    deckA.addCard(cc2);
+    deckA.addCard(cc3);
+    deckA.addCard(cc4);
+    deckA.addCard(cc5);
+    deckA.addCard(cc6);
+    deckA.addCard(cc7);
+    deckA.addCard(cc8);
+    deckA.addCard(cc9);
+
     // deckA.sort(true);
     // cout << deckA << endl;
     // // p5.printScore();
@@ -155,27 +167,28 @@ int main()
     GameCandy game;
     game.start();
 
-    // Quadruple quad;
-    // Quarter quarter;
-    // Quadruple quad1;
-    // Quarter quarter1;
-    // Quadruple quad2;
-    // Quarter quarter2;
-    // Quadruple quad3;
+    Quadruple quad;
+    Quarter quarter;
+    Quadruple quad1;
+    Quarter quarter1;
+    Quadruple quad2;
+    Quarter quarter2;
+    Quadruple quad3;
 
-    // AbilityCard ac1(quad);
-    // AbilityCard ac2(quad2);
-    // AbilityCard ac3(quad3);
-    // AbilityCard ac4(quarter);
-    // AbilityCard ac5(quarter1);
-    // AbilityCard ac6(quarter2);
-    // AbilityCard ac7(quad1);
+    AbilityCard ac1(quad);
+    AbilityCard ac2(quad2);
+    AbilityCard ac3(quad3);
+    AbilityCard ac4(quarter);
+    AbilityCard ac5(quarter1);
+    AbilityCard ac6(quarter2);
+    AbilityCard ac7(quad1);
 
-    // vector<AbilityCard>
-    //     abilityCards{ac1, ac2, ac3, ac4, ac5, ac6, ac7};
-    // AbilityCard ac;
-    // ac2 = ac;
-    // cout << ac.value().getName() << endl;
+    vector<AbilityCard>
+        abilityCards{ac1, ac2, ac3, ac4, ac5, ac6, ac7};
+    DeckGame<AbilityCard> deckAbility(abilityCards);
 
+    DeckGame<ColorCard> deckA2 = deckA;
+
+    PlayerInGameCandy pigc(deckA2, deckAbility, 4);
     return 0;
 }
