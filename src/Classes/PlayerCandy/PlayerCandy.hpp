@@ -4,6 +4,9 @@
 #include "../Player/Player.hpp"
 #include "../ColorCard/ColorCard.hpp"
 #include "../AbilityCard/AbilityCard.hpp"
+#include "../DeckGame/DeckGame.hpp"
+
+class GameCandy;
 
 class PlayerCandy : public Player<ColorCard>
 {
@@ -32,6 +35,22 @@ public:
      */
     PlayerCandy(const PlayerCandy &p);
 
+    /**
+     * @brief Draw ability card from the deck
+     *
+     * @param deckAbility
+     */
+    void drawAbility(DeckGame<AbilityCard> &deckAbility);
+
+    /**
+     * @brief Use an ability if the abilityName matches, else throw an error
+     *
+     * @param abilityName
+     * @param gC
+     */
+    void useAbility(string abilityName, GameCandy &gC);
+
+    void useAbility(GameCandy &gC);
     /**
      * @brief Disable the ability of the player
      *

@@ -1,5 +1,11 @@
 #include "AbilityCard.hpp"
 
+BlankAbility AbilityCard::blankAbility = *(new BlankAbility());
+
+AbilityCard::AbilityCard() : Card<Ability &>(this->blankAbility)
+{
+}
+
 AbilityCard::AbilityCard(Ability &ability) : Card<Ability &>(ability)
 {
 }

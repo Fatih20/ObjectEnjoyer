@@ -8,7 +8,10 @@
 class AbilityCard : public Card<Ability &>
 {
 private:
+    static BlankAbility blankAbility;
+
 public:
+    AbilityCard();
     /**
      * @brief Construct a new Ability Card object with given ability
      *

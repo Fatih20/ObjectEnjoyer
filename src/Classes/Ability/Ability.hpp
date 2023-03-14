@@ -4,19 +4,20 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include "Classes/GameCandy/GameCandy.hpp"
+
+class GameCandy;
 
 using namespace std;
-typedef enum
-{
-    REROLL,     // Reroll all hand cards
-    QUADRUPLE,  // Quadruple the reward of the current round
-    QUARTER,    // Quarter the reward of the current round
-    REVERSE,    // Reverse the order of the players
-    SWAP,       // Swap a card from the hand with a card from another player's hand
-    SWITCH,     // Switch the hand cards with another player's hand cards
-    ABILITYLESS // Disable the ability of a specific player
-} Abi;
+// typedef enum
+// {
+//     REROLL,     // Reroll all hand cards
+//     QUADRUPLE,  // Quadruple the reward of the current round
+//     QUARTER,    // Quarter the reward of the current round
+//     REVERSE,    // Reverse the order of the players
+//     SWAP,       // Swap a card from the hand with a card from another player's hand
+//     SWITCH,     // Switch the hand cards with another player's hand cards
+//     ABILITYLESS // Disable the ability of a specific player
+// } Abi;
 
 class Ability
 {
@@ -27,6 +28,8 @@ protected:
     string abilityName;
     string abilityDescription;
 
+    Ability(string name, string description);
+
 public:
     /**
      * @brief Construct a new Ability object with given ability
@@ -36,15 +39,6 @@ public:
     Ability();
 
     Ability(const Ability &ability);
-
-    Ability(string name, string description);
-
-    /**
-     * @brief Get the Ability of the card from integer conversion to enum
-     *
-     */
-    Abi getAbility();
-
     /**
      * @brief Get the description of the card (for example, REROLL: reroll all hand cards)
      */
@@ -62,6 +56,11 @@ public:
      *
      */
     virtual void activateAbility(GameCandy &gC) = 0;
+};
+
+class BlankAbility : public Ability
+{
+    void activateAbility(GameCandy &gC){};
 };
 
 #endif
