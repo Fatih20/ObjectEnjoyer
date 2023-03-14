@@ -110,6 +110,14 @@ void PlayerInGameCandy::redrawCardForCurrentPlayer(DeckGame<ColorCard> &deckGame
     getPlayerWithTurn().redrawCard(deckGame);
 };
 
+void PlayerInGameCandy::redrawAll(DeckGame<ColorCard> &deckGame)
+{
+    for (int i = 0; i < getNumberOfPlayer(); i++)
+    {
+        players.at(turns.at(i)).redrawCard(deckGame);
+    }
+};
+
 void PlayerInGameCandy::showPlayerExcept(vector<int> exceptedIndex)
 {
     int numberOfPlayer = getNumberOfPlayer();

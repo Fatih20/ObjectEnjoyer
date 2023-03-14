@@ -92,6 +92,13 @@ public:
     void redrawCardForCurrentPlayer(DeckGame<ColorCard> &deckGame);
 
     /**
+     * @brief Redraw the cards for all player
+     *
+     * @param deckGame
+     */
+    void redrawAll(DeckGame<ColorCard> &deckGame);
+
+    /**
      * @brief Swap the deck of the current player with another player given by index
      *
      * @param rawTargetIndex
