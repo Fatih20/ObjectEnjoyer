@@ -251,7 +251,7 @@ vector<ColorCard> GameCandy::initilizeDeckGame()
 //     }
 // }
 
-DeckGame<ColorCard> GameCandy::newDeck1(){
+void GameCandy::newDeck1(){
     cout << "How do you want to generate Deck?\n";
     cout << "1. Random\n";
     cout << "2. From File\n";
@@ -259,7 +259,6 @@ DeckGame<ColorCard> GameCandy::newDeck1(){
     // if(option==1){
     DeckGame<ColorCard> deck(initilizeDeckGame());
         // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
-    return deck;
     // } else {
     //     // file reader
     // }
