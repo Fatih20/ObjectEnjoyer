@@ -138,6 +138,13 @@ public:
      * @return false
      */
     bool winnerExist();
+
+    /**
+     * @brief Give reward to the highest combination
+     *
+     * @param reward
+     */
+    void rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard);
 };
 
 #endif

@@ -215,3 +215,17 @@ bool PlayerInGameCandy::winnerExist()
     return players.end() != find_if(players.begin(), players.end(), [](PlayerCandy p) -> bool
                                     { return p.getScore() > pow(2, 32) || p.getScore() < 0; });
 };
+
+void PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
+{
+    int indexOfHighest = 0;
+    int numberOfPlayer = getNumberOfPlayer();
+    for (int i = 1; i < numberOfPlayer; i++)
+    {
+        if (players.at(i).higherCombinationWeight(players.at(indexOfHighest), tableCard))
+        {
+            indexOfHighest = i;
+        }
+    }
+    players.at(indexOfHighest) += reward;
+}
