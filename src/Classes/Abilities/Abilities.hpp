@@ -1,3 +1,4 @@
+#include "../Ability/Ability.hpp"
 
 class GameCandy;
 
