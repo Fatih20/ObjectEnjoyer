@@ -112,9 +112,9 @@ void GameCandy::playerAction(string cmd)
         changeGiftPoinMessage(cmd,0.5);
         halvesPoint();
     } else if (cmd == "gamestat"){
-        cout << "\033[1m\033[34m" << "-----------" << endl;
-        cout << "GAME STATUS" << endl;
-        cout << "-----------" << "\033[0m" << endl;
+        cout << "\033[1m\033[35m" << "---------------------------------" << endl;
+        cout << "           GAME STATUS" << endl;
+        cout << "---------------------------------" << "\033[0m" << endl;
         cout << "\033[1m\033[37m" << "Gift Point: " << "\033[1m\033[33m" << this->giftPoint << "\033[0m" << endl;
         cout << "\033[1m\033[37m" << "Turns: " << endl;
         vector<int> turnsVec = players.getTurns();
@@ -127,25 +127,10 @@ void GameCandy::playerAction(string cmd)
             if(*i == players.getIndexOfCurrentTurn()) cout << "\033[1m\033[32m" << "^   " << "\033[0m";
             else cout << "   ";
         }
-        cout << endl << "\033[1m\033[37m" << "Table Card: " << "\033[0m" << endl << endl << "|  ";
-        vector<ColorCard> deckVec = tableCard.getDeck();
-        for (auto i = deckVec.begin(); i != deckVec.end(); ++i){
-            if((*i).getColor() == GREEN){
-                cout << "\033[1m\033[32m";
-            }
-            else if((*i).getColor() == RED){
-                cout << "\033[1m\033[31m";
-            }
-            else if((*i).getColor() == YELLOW){
-                cout << "\033[1m\033[33m";
-            }
-            else if((*i).getColor() == BLUE){
-                cout << "\033[1m\033[34m";
-            }
-            cout << (*i).getColorAsString() << " " << (*i).getNumber() << "\033[0m" << "  |  ";
+        cout << endl << "\033[1m\033[37m" << "Table Card: " << "\033[0m" << endl;
+        printTableCard();
         }
-        cout << endl << endl << "\033[1m\033[34m" << "-----------" << "\033[0m" << endl;
-    }
+    cout << endl << "\033[1m\033[35m" << "---------------------------------" << "\033[0m" << endl;
 }
 
 string GameCandy::inputCommand()
@@ -346,27 +331,30 @@ void GameCandy::roundAction()
     if (round <= 5)
     {
         deckGame >> tableCard;
-        cout << "Table card round "<< round << endl << "|  ";
-        vector<ColorCard> tableVec = tableCard.getDeck();
-        for (auto i = tableVec.begin(); i != tableVec.end(); ++i){
-            if((*i).getColor() == GREEN){
-                cout << "\033[1m\033[32m";
-            }
-            else if((*i).getColor() == RED){
-                cout << "\033[1m\033[31m";
-            }
-            else if((*i).getColor() == YELLOW){
-                cout << "\033[1m\033[33m";
-            }
-            else if((*i).getColor() == BLUE){
-                cout << "\033[1m\033[34m";
-            }
-            cout << (*i).getColorAsString() << " " << (*i).getNumber() << "\033[0m" << "  |  ";
-        }
-        cout << endl;
+        printTableCard();
     }
 }
 
+void GameCandy::printTableCard(){
+    cout << "Table card round "<< round << endl << "|  ";
+    vector<ColorCard> tableVec = tableCard.getDeck();
+    for (auto i = tableVec.begin(); i != tableVec.end(); ++i){
+        if((*i).getColor() == GREEN){
+            cout << "\033[1m\033[32m";
+        }
+        else if((*i).getColor() == RED){
+            cout << "\033[1m\033[31m";
+        }
+        else if((*i).getColor() == YELLOW){
+            cout << "\033[1m\033[33m";
+        }
+        else if((*i).getColor() == BLUE){
+            cout << "\033[1m\033[34m";
+        }
+        cout << (*i).getColorAsString() << " " << (*i).getNumber() << "\033[0m" << "  |  ";
+    }
+    cout << endl;
+}
 void GameCandy::nextRound()
 {
     round = (round + 1) % 6;

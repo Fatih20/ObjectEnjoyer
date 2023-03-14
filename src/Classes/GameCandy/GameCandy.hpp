@@ -20,6 +20,11 @@ private:
     double giftPoint; // point hadiah tiap akhir game
     void multiplyGiftPoint(double multiplier);
     void operator*=(double multiplier);
+    /**
+     * @brief private method to firmat print tabke card
+     * 
+     */
+    void printTableCard();
 
 public:
     /**
