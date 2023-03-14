@@ -22,13 +22,10 @@ PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<Abi
 {
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        cout << "Size of deck ability : " << deckAbility.getNumberOfCards() << endl;
-        createAndAddPlayer(i + 1, deckAbility);
+        createAndAddPlayer(i + 1);
     }
-    for (int i = 0; i < numberOfPlayer; i++)
-    {
-        this->players.at(turns.at(i)).drawCard(deckGame, 2);
-    }
+    drawColorCardAll(deckGame);
+    drawAbilityCardAll(deckAbility);
 };
 
 // PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGameCandy(deckGame, numberOfPlayer)
@@ -66,9 +63,9 @@ bool PlayerInGameCandy::usernameExist(string username, int gameID)
     return found;
 }
 
-void PlayerInGameCandy::createAndAddPlayer(int gameID, DeckGame<AbilityCard> &deckGame)
+void PlayerInGameCandy::createAndAddPlayer(int gameID)
 {
-    PlayerCandy p(gameID, deckGame);
+    PlayerCandy p(gameID);
     while (usernameExist(p.getUsername()))
     {
         cout << "Username itu sudah dipakai! Pilih yang lain." << endl;
@@ -231,4 +228,21 @@ bool PlayerInGameCandy::winnerExist()
 {
     return players.end() != find_if(players.begin(), players.end(), [](PlayerCandy p) -> bool
                                     { return p.getScore() > pow(2, 32) || p.getScore() < 0; });
+};
+
+void PlayerInGameCandy::drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility)
+{
+    cout << "Size of deck ability : " << deckAbility.getNumberOfCards() << endl;
+    for (int i = 0; i < getNumberOfPlayer(); i++)
+    {
+        players.at(turns.at(i)).drawAbility(deckAbility);
+    }
+};
+
+void PlayerInGameCandy::drawColorCardAll(DeckGame<ColorCard> &deckColor)
+{
+    for (int i = 0; i < getNumberOfPlayer(); i++)
+    {
+        players.at(turns.at(i)).drawCard(deckColor, 2);
+    }
 };

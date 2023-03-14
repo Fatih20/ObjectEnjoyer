@@ -11,6 +11,22 @@ using namespace std;
 
 class PlayerInGameCandy : public PlayerInGame<PlayerCandy>
 {
+
+private:
+    /**
+     * @brief Construct a new draw Ability Card object
+     *
+     * @param deckAbility
+     */
+    void drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility);
+
+    /**
+     * @brief Construct a new draw Ability Card object
+     *
+     * @param deckAbility
+     */
+    void drawColorCardAll(DeckGame<ColorCard> &deckColor);
+
 public:
     /**
      * @brief Construct a new Player In Game Candy object
@@ -60,6 +76,8 @@ public:
     void resetRound();
 
     void createAndAddPlayer(int gameID, DeckGame<AbilityCard> &deckGame);
+
+    void createAndAddPlayer(int gameID);
 
     bool usernameExist(string username);
 
