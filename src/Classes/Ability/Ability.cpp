@@ -58,4 +58,10 @@ bool Ability::operator<(const Ability &ability) { return this->power < ability.p
 
 bool Ability::operator!=(const Ability &ability) { return this->power != ability.power; }
 
+std::ostream &operator<<(std::ostream &os, const Ability &ability)
+{
+    os << ability.abilityName << " " << ability.abilityDescription;
+    return os;
+};
+
 // bool Ability::operator<=(const Ability &ability) { return this->power > ability.power; }

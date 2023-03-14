@@ -69,6 +69,8 @@ public:
     bool operator<=(const Ability &ability);
 
     bool operator!=(const Ability &ability);
+
+    friend std::ostream &operator<<(std::ostream &os, const Ability &ability);
 };
 
 class BlankAbility : public Ability
