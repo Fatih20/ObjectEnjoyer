@@ -14,13 +14,15 @@ using namespace std;
 
 void splashScreenMain()
 {
+    cout << "\033[1m\033[34m";
     cout << "                  __                                _" << endl;
     cout << "                 [  |                              | | " << endl;
     cout << " _   _   __ .---. | | .---.  .--.  _ .--..--. .---.| | " << endl;
-    cout << "[ \\ [ \\ [  / /__\\| |/ /'`\\/ .'`\\ [ `.-. .-. / /__\\| | " << endl;
+    cout << "[ \\ [ \\ [  / /__ \\| |/ /'`\\/ .'`\\ [ `.-. .-. / /__\\| | " << endl;
     cout << " \\ \\/\\ \\/ /| \\__.,| || \\__.| \\__. || | | | | | \\__.|_| " << endl;
     cout << "  \\__/\\__/  '.__.[___'.___.''.__.'[___||__||__'.__.(_) " << endl;
-    cout << "                                     ____                                         " << endl;
+    cout << "\033[0m";
+    cout << "                                 ____                                         " << endl;
     cout << "                              .-\"    `-.      ,                               " << endl;
     cout << "                            .'          '.   /j\\                              " << endl;
     cout << "                           /              \\,/:/#\\                /\\           " << endl;
@@ -152,6 +154,7 @@ int main()
     // // cout << "drawed card  : " << ccdraw << endl;
 
     // cout << deckD << deckB << deckC << endl;
+    splashScreenMain();
     GameCandy game;
     game.start();
 
