@@ -254,9 +254,13 @@ vector<AbilityCard> GameCandy::initializeAbilityDeck()
     AbilityCard ac6(quarter2);
     AbilityCard ac7(quad1);
 
+    cout << ac1.value().getName() << endl;
+
     cout << "Finished ability card initialization" << endl;
     vector<AbilityCard>
         abilityCards{ac1, ac2, ac3, ac4, ac5, ac6, ac7};
+
+    cout << abilityCards.at(0).value().getName() << endl;
     cout << "Size of ability cards " << abilityCards.size() << endl;
     cout << "Exited initialize ability deck" << endl;
 

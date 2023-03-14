@@ -155,5 +155,27 @@ int main()
     GameCandy game;
     game.start();
 
+    // Quadruple quad;
+    // Quarter quarter;
+    // Quadruple quad1;
+    // Quarter quarter1;
+    // Quadruple quad2;
+    // Quarter quarter2;
+    // Quadruple quad3;
+
+    // AbilityCard ac1(quad);
+    // AbilityCard ac2(quad2);
+    // AbilityCard ac3(quad3);
+    // AbilityCard ac4(quarter);
+    // AbilityCard ac5(quarter1);
+    // AbilityCard ac6(quarter2);
+    // AbilityCard ac7(quad1);
+
+    // vector<AbilityCard>
+    //     abilityCards{ac1, ac2, ac3, ac4, ac5, ac6, ac7};
+    // AbilityCard ac;
+    // ac2 = ac;
+    // cout << ac.value().getName() << endl;
+
     return 0;
 }

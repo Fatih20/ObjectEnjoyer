@@ -19,11 +19,7 @@ void Card<T>::setValue(T value)
 }
 
 template <typename T>
-Card<T>::Card(const Card<T> &other) : val(other.val)
-{
-    cout << "Copy constructor of card done assigning val" << endl;
-    // val = other.val;
-};
+Card<T>::Card(const Card<T> &other) : val(other.val){};
 
 template <typename T>
 Card<T> &Card<T>::operator=(const Card<T> &other)
