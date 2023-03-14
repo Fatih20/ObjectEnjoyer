@@ -303,13 +303,31 @@ void GameCandy::newDeck1()
     cout << "1. Random\n";
     cout << "2. From File\n";
     int option = inputOption(2);
-    // if(option==1){
-    DeckGame<ColorCard> deck(initilizeDeckGame());
+    if(option==1){
+        DeckGame<ColorCard> deck(initilizeDeckGame());
+        this->deckGame = deck;
     // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
-    // } else {
-    //     // file reader
-    // }
-    this->deckGame = deck;
+    } else {
+        string path;
+        bool validPath = false;
+        while(!validPath){
+            cout << "Input File Path: ";
+            cin >> path;
+            try{
+                FileReader<ColorCard> f(path);
+                f.read();
+                this->deckGame = f.getDeckOrder();
+                validPath = true;
+            } catch(FileNotFoundExp err){
+                cout << err.what();
+            } catch(FormatExp err){
+                cout << err.what();
+            } catch(NumberExp err){
+                cout << err.what();
+            }
+        }
+    }
+    
 }
 
 void GameCandy::roundAction()

@@ -3,6 +3,8 @@
 
 #include <string>
 #include "../GameException/GameException.hpp"
+#include "../FileReader/FileReader.hpp"
+#include "../FileReaderException/FileReaderException.hpp"
 using namespace std;
 
 class Game {
