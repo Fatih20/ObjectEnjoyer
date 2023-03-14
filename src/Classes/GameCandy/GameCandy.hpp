@@ -8,17 +8,16 @@
 #include <vector>
 using namespace std;
 
-
 class GameCandy : public Game
 {
+
 private:
-    PlayerInGameCandy players;   // pemain
-    DeckGame<ColorCard> deckGame;            // deck game
-    DeckGame<ColorCard> tableCard;       // table card
-    // DeckGame<AbilityCard> abilityCard;
+    PlayerInGameCandy players;     // pemain
+    DeckGame<ColorCard> deckGame;  // deck game
+    DeckGame<ColorCard> tableCard; // table card
+    DeckGame<AbilityCard> abilityCard;
     int round;        // ronde
     double giftPoint; // point hadiah tiap akhir game
-private:
     void multiplyGiftPoint(double multiplier);
     void operator*=(double multiplier);
 
@@ -31,14 +30,14 @@ public:
     // jumlah player 7, ronde = 1, giftpoin 64
 
     /**
-     * @brief Start game
+     * @brief
      *
      */
     void start();
 
     /**
      * @brief Spash Screen
-     * 
+     *
      */
     void splashScreen();
 
@@ -96,10 +95,9 @@ public:
      */
     string isCommandValid(string command);
 
-
     /**
-     * @brief 
-     * 
+     * @brief
+     *
      */
     vector<ColorCard> initilizeDeckGame();
 
@@ -113,6 +111,38 @@ public:
 
     void nextRound();
 
+    /**
+     * @brief Double the gift point
+     *
+     */
+    void doublePoint();
+
+    /**
+     * @brief Quadruple the gift point
+     *
+     */
+    void quadruplePoint();
+
+    /**
+     * @brief Halves the gift point
+     *
+     */
+    void halvesPoint();
+
+    /**
+     * @brief Quarter the gift point
+     *
+     */
+    void quarterPoint();
+
+    /**
+     * @brief
+     *
+     */
+
+    // vector<AbilityCard> initilizeAbilityDeck();
+
+    // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
 };
 
 #endif

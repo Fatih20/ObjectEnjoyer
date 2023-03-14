@@ -3,6 +3,7 @@
 
 #include "../PlayerInGame/PlayerInGame.hpp"
 #include "../PlayerCandy/PlayerCandy.hpp"
+#include "../AbilityCard/AbilityCard.hpp"
 
 #include <iostream>
 
@@ -23,6 +24,15 @@ public:
      * @param currentTurn starts at 0
      */
     PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer);
+
+    /**
+     * @brief Construct a new Player In Game Candy object.
+     *
+     * @param deckGame
+     * @param deckAbility
+     * @param numberOfPlayer
+     */
+    PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer);
 
     /**
      * @brief Construct a new Player In Game Candy object
