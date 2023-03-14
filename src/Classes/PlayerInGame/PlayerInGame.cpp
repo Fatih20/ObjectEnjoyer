@@ -20,7 +20,6 @@ PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection<T>(numberOf
     this->turns = turnsCreated;
     currentTurn = 0;
     roundComplete = false;
-    cout << "Turns size after PIG construction : " << turns.size() << endl;
 };
 
 template <typename T>

@@ -4,6 +4,12 @@
 
 PlayerCandy::PlayerCandy(int id) : Player<ColorCard>(id){};
 
+PlayerCandy::PlayerCandy(int id, DeckGame<AbilityCard> &deckGame) : Player<ColorCard>(id)
+{
+    drawAbility(deckGame);
+    // this->abilityHand = deckGame.ejectCard();
+};
+
 PlayerCandy::PlayerCandy(const PlayerCandy &p) : Player<ColorCard>(p)
 {
     abilityUsed = p.abilityUsed;
@@ -17,6 +23,11 @@ void PlayerCandy::disableAbility()
     abilityUsed = true;
 }
 
+string PlayerCandy::getAbilityName()
+{
+    return abilityHand.getName();
+}
+
 bool PlayerCandy::getAbilityAvailable()
 {
     return !abilityUsed;
@@ -24,7 +35,24 @@ bool PlayerCandy::getAbilityAvailable()
 
 void PlayerCandy::drawAbility(DeckGame<AbilityCard> &deckAbility)
 {
-    this->abilityHand = deckAbility.ejectCard();
+    cout << "Entered draw ability" << endl;
+    AbilityCard drawnCard = deckAbility.ejectCard();
+    cout << "Cards drawn" << endl;
+    bool success = false;
+    while (!success)
+    {
+
+        try
+        {
+            this->abilityHand = drawnCard;
+
+            success = true;
+        }
+        catch (bad_alloc e)
+        {
+        }
+    }
+    cout << "Exited draw ability" << endl;
 }
 
 void PlayerCandy::useAbility(string abilityName, GameCandy &gC)

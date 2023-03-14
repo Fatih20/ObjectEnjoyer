@@ -13,17 +13,20 @@ GameCandy::GameCandy()
 {
     splashScreen();
 
-    // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> deck = newDeck();
-    newDeck1();
+    pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> deck = newDeck();
+    // newDeck1();
+    this->deckGame = deck.first;
+    this->deckAbility = deck.second;
 
     DeckGame<ColorCard> tableCard;
     this->tableCard = tableCard;
     // table card empty
 
-    PlayerInGameCandy players(deckGame, 7);
+    cout << deckAbility.getNumberOfCards() << endl;
+
+    PlayerInGameCandy players(deckGame, deckAbility, 7);
     this->players = players;
     cout << deckGame;
-
     round = 1;
     giftPoint = 64;
 }
@@ -231,25 +234,53 @@ vector<ColorCard> GameCandy::initilizeDeckGame()
     return vec;
 }
 
-// vector<AbilityCard> GameCandy::initilizeAbilityDeck()
-// {
+vector<AbilityCard> GameCandy::initializeAbilityDeck()
+{
+    cout << "Entered initialize ability deck" << endl;
 
-// }
+    Quadruple quad;
+    Quarter quarter;
+    Quadruple quad1;
+    Quarter quarter1;
+    Quadruple quad2;
+    Quarter quarter2;
+    Quadruple quad3;
 
-// pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> GameCandy::newDeck(){
-//     cout << "How do you want to generate Deck?\n";
-//     cout << "1. Random\n";
-//     cout << "2. From File\n";
-//     int option = inputOption(2);
-//     if(option==1){
-//         DeckGame<ColorCard> deck(initilizeDeckGame());
-//         DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
+    AbilityCard ac1(quad);
+    AbilityCard ac2(quad2);
+    AbilityCard ac3(quad3);
+    AbilityCard ac4(quarter);
+    AbilityCard ac5(quarter1);
+    AbilityCard ac6(quarter2);
+    AbilityCard ac7(quad1);
 
-//         return make_pair(deck,abilityCard);
-//     } else {
-//         // file reader
-//     }
-// }
+    cout << "Finished ability card initialization" << endl;
+    vector<AbilityCard>
+        abilityCards{ac1, ac2, ac3, ac4, ac5, ac6, ac7};
+    cout << "Size of ability cards " << abilityCards.size() << endl;
+    cout << "Exited initialize ability deck" << endl;
+
+    return abilityCards;
+}
+
+pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> GameCandy::newDeck()
+{
+    cout << "How do you want to generate Deck?\n";
+    cout << "1. Random\n";
+    cout << "2. From File\n";
+    int option = inputOption(2);
+    if (option == 1)
+    {
+        DeckGame<ColorCard> deck(initilizeDeckGame());
+        DeckGame<AbilityCard> abilityCard(initializeAbilityDeck());
+
+        return make_pair(deck, abilityCard);
+    }
+    else
+    {
+        // file reader
+    }
+}
 
 void GameCandy::newDeck1()
 {
@@ -268,7 +299,7 @@ void GameCandy::newDeck1()
 
 void GameCandy::roundAction()
 {
-    cout << "Player " << players.getPlayerWithTurn().getUsername() << " turn\n";
+    cout << "Player " << players.getPlayerWithTurn().getUsername() << " with ability " << players.getPlayerWithTurn().getAbilityName() << " turn\n";
     if (round == 1)
     {
     }

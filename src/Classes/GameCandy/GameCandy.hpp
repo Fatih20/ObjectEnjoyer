@@ -5,6 +5,7 @@
 #include "../PlayerInGameCandy/PlayerInGameCandy.hpp"
 #include "../DeckGame/DeckGame.hpp"
 #include "../GameCandyException/GameCandyException.hpp"
+#include "../Abilities/Abilities.hpp"
 #include <vector>
 using namespace std;
 
@@ -15,7 +16,7 @@ private:
     PlayerInGameCandy players;     // pemain
     DeckGame<ColorCard> deckGame;  // deck game
     DeckGame<ColorCard> tableCard; // table card
-    DeckGame<AbilityCard> abilityCard;
+    DeckGame<AbilityCard> deckAbility;
     int round;        // ronde
     double giftPoint; // point hadiah tiap akhir game
     void multiplyGiftPoint(double multiplier);
@@ -101,8 +102,6 @@ public:
      */
     vector<ColorCard> initilizeDeckGame();
 
-    // vector<AbilityCard> initilizeAbilityDeck();
-
     // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
 
     void newDeck1();
@@ -140,9 +139,9 @@ public:
      *
      */
 
-    // vector<AbilityCard> initilizeAbilityDeck();
+    vector<AbilityCard> initializeAbilityDeck();
 
-    // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
+    pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> newDeck();
 };
 
 #endif

@@ -70,6 +70,8 @@ public:
 
     bool operator!=(const Ability &ability);
 
+    // Ability &operator=(const Ability &ability);
+
     friend std::ostream &operator<<(std::ostream &os, const Ability &ability);
 };
 

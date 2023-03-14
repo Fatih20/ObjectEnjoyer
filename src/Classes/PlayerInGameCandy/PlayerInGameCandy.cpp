@@ -6,11 +6,24 @@ using namespace std;
 
 PlayerInGameCandy::PlayerInGameCandy() : PlayerInGame<PlayerCandy>(0){};
 
-PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
+// PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
+// {
+//     for (int i = 0; i < numberOfPlayer; i++)
+//     {
+//         createAndAddPlayer(i + 1);
+//     }
+//     for (int i = 0; i < numberOfPlayer; i++)
+//     {
+//         this->players.at(turns.at(i)).drawCard(deckGame, 2);
+//     }
+// };
+
+PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
 {
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        createAndAddPlayer(i + 1);
+        cout << "Size of deck ability : " << deckAbility.getNumberOfCards() << endl;
+        createAndAddPlayer(i + 1, deckAbility);
     }
     for (int i = 0; i < numberOfPlayer; i++)
     {
@@ -18,13 +31,16 @@ PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOf
     }
 };
 
-PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGameCandy(deckGame, numberOfPlayer)
-{
-    for (int i = 0; i < numberOfPlayer; i++)
-    {
-        this->players.at(turns.at(i)).drawAbility(deckAbility);
-    }
-};
+// PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGameCandy(deckGame, numberOfPlayer)
+// {
+//     cout << "Entered deck ability involved constructor in pigc" << endl;
+//     for (int i = 0; i < numberOfPlayer; i++)
+//     {
+//         cout << "Player " << i << "th drawing ability cards" << endl;
+//         this->players.at(turns.at(i)).drawAbility(deckAbility);
+//     }
+//     cout << "Exited deck ability involved constructor in pigc" << endl;
+// };
 
 PlayerInGameCandy::PlayerInGameCandy(const PlayerInGameCandy &playerInGameCandy) : PlayerInGame<PlayerCandy>(playerInGameCandy)
 {
@@ -50,9 +66,9 @@ bool PlayerInGameCandy::usernameExist(string username, int gameID)
     return found;
 }
 
-void PlayerInGameCandy::createAndAddPlayer(int gameID)
+void PlayerInGameCandy::createAndAddPlayer(int gameID, DeckGame<AbilityCard> &deckGame)
 {
-    PlayerCandy p(gameID);
+    PlayerCandy p(gameID, deckGame);
     while (usernameExist(p.getUsername()))
     {
         cout << "Username itu sudah dipakai! Pilih yang lain." << endl;
