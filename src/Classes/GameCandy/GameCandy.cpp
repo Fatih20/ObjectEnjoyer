@@ -5,9 +5,9 @@
 
 using namespace std;
 
-vector<string> commandOption {"next","double","half",
-                    "re-roll","quadruple","quarter",
-                    "reverse","swap", "switch","abilityless" };
+vector<string> commandOption{"next", "double", "half",
+                             "re-roll", "quadruple", "quarter",
+                             "reverse", "swap", "switch", "abilityless"};
 
 GameCandy::GameCandy()
 {
@@ -23,7 +23,6 @@ GameCandy::GameCandy()
     PlayerInGameCandy players(deckGame, 7);
     this->players = players;
     cout << deckGame;
-
 
     round = 1;
     giftPoint = 64;
@@ -140,7 +139,8 @@ string GameCandy::isCommandValid(string userCommand)
         // userCommand valid
         return userCommand;
     }
-    else if (round==1 && it-commandOption.begin()<3){
+    else if (round == 1 && it - commandOption.begin() < 3)
+    {
         return userCommand;
     }
     else
@@ -251,27 +251,30 @@ vector<ColorCard> GameCandy::initilizeDeckGame()
 //     }
 // }
 
-void GameCandy::newDeck1(){
+void GameCandy::newDeck1()
+{
     cout << "How do you want to generate Deck?\n";
     cout << "1. Random\n";
     cout << "2. From File\n";
     int option = inputOption(2);
     // if(option==1){
     DeckGame<ColorCard> deck(initilizeDeckGame());
-        // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
+    // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
     // } else {
     //     // file reader
     // }
     this->deckGame = deck;
 }
 
-void GameCandy::roundAction(){
-    cout << "Player " << players.getCurrentTurn()+1 << " turn\n";
-    if (round==1){
-
+void GameCandy::roundAction()
+{
+    cout << "Player " << players.getPlayerWithTurn().getUsername() << " turn\n";
+    if (round == 1)
+    {
     }
 }
 
-void GameCandy::nextRound(){
-    round = (round+1)%6;
+void GameCandy::nextRound()
+{
+    round = (round + 1) % 6;
 }

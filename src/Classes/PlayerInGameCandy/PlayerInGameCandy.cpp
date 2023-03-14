@@ -82,6 +82,7 @@ void PlayerInGameCandy::reverseTurn()
 void PlayerInGameCandy::resetRound()
 {
     PlayerInGame::resetRound();
+    cout << "Resetting round at pigc" << endl;
     rotate(turns.begin(), turns.begin() + 1, turns.end());
 }
 

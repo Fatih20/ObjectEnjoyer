@@ -87,7 +87,7 @@ int PlayerInGame<T>::getIndexOfCurrentTurn()
 template <typename T>
 T &PlayerInGame<T>::getPlayerWithTurn()
 {
-    return this->players.at(currentTurn);
+    return this->players.at(turns.at(currentTurn));
 };
 
 template <typename T>
