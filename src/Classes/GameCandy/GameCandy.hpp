@@ -60,7 +60,7 @@ public:
      *
      */
     void newGame();
-    // new deck card
+    // new deck card              
 
     /**
      * @brief akhir dari maks ronde (belum tentu mendapat pemenang)

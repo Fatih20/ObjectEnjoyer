@@ -256,7 +256,7 @@ Deck<T> &Deck<T>::operator+(Deck<T> &other)
 template <typename T>
 std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
 {
-    os << "\nsize : " << deck.vec.size() << "\nmembers : \n";
+    // os << "\nsize : " << deck.vec.size() << "\nmembers : \n";
 
     int i = 1;
     for (auto elmt : deck.vec)

@@ -13,16 +13,14 @@ GameCandy::GameCandy()
 {
     splashScreen();
 
-    // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> deck = newDeck();
     newDeck1();
+
+    PlayerInGameCandy players(deckGame, 7);
+    this->players = players;
 
     DeckGame<ColorCard> tableCard;
     this->tableCard = tableCard;
     // table card empty
-
-    PlayerInGameCandy players(deckGame, 7);
-    this->players = players;
-    cout << deckGame;
 
     round = 1;
     giftPoint = 64;
@@ -34,17 +32,21 @@ void GameCandy::start()
     while (!isWinning())
     {
         // inisialisasi game baru -> player sama, deckCard baru
-        newGame();
-        cout << "\nRound " << round << " begin\n\n";
-        while (!isRoundOver())
-        {
+        newDeck1();
+        while (round != 6){
+            cout << "\nRound " << round << " begin\n\n";
             roundAction();
-            inputCommand();
-            players.nextTurn();
+            while (!isRoundOver())
+            {
+                cout << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn\n";
+                inputCommand();
+                players.nextTurn();
+            }
+            nextRound();
+            players.resetRound();
         }
-        nextRound();
-        players.resetRound();
     }
+    
 }
 
 bool GameCandy::isWinning()
@@ -61,7 +63,8 @@ bool GameCandy::isRoundOver()
 
 void GameCandy::newGame()
 {
-    // deck card baru
+    newDeck1();
+    
 }
 
 void GameCandy::endOfGame()
@@ -268,9 +271,10 @@ void GameCandy::newDeck1()
 
 void GameCandy::roundAction()
 {
-    cout << "Player " << players.getPlayerWithTurn().getUsername() << " turn\n";
-    if (round == 1)
+    if (round <= 5)
     {
+        deckGame >> tableCard;
+        cout << "Table card round "<< round << endl << tableCard;
     }
 }
 
