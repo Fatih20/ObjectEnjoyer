@@ -212,7 +212,7 @@ string PlayerInGameCandy::getWinner()
     for (auto playerIterator = players.begin(); playerIterator != players.end() && !found; playerIterator++)
     {
         double score = playerIterator->getScore();
-        if (score == limit || score < limit)
+        if (score == limit || score < 0)
         {
             winnerUsername = (playerIterator->getUsername());
             found = true;
