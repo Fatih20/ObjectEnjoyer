@@ -3,7 +3,7 @@
 #include "../DeckException/DeckException.hpp"
 #include "../Card/Card.hpp"
 #include "../ColorCard/ColorCard.hpp"
-// #include "../AbilityCard/AbilityCard.hpp"
+#include "../AbilityCard/AbilityCard.hpp"
 
 #include <vector>
 #include <iostream>
@@ -165,6 +165,7 @@ bool Deck<T>::operator<(const Deck<T> &other)
             return false;
         }
     }
+    return false;
 }
 
 template <typename T>
@@ -238,6 +239,7 @@ bool Deck<T>::operator>(const Deck<T> &other)
             return true;
         }
     }
+    return false;
 }
 
 template <typename T>
@@ -268,7 +270,7 @@ std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
 
 template class Deck<Card<int>>;
 template class Deck<ColorCard>;
-// template class Deck<AbilityCard>;
+template class Deck<AbilityCard>;
 template std::ostream &operator<<(std::ostream &os, const Deck<Card<int>> &deck);
 template std::ostream &operator<<(std::ostream &os, const Deck<ColorCard> &deck);
 // template std::ostream &operator<<(std::ostream &os, const Deck<AbilityCard> &deck);

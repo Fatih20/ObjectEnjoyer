@@ -18,6 +18,14 @@ PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOf
     }
 };
 
+PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGameCandy(deckGame, numberOfPlayer)
+{
+    for (int i = 0; i < numberOfPlayer; i++)
+    {
+        this->players.at(turns.at(i)).drawAbility(deckAbility);
+    }
+};
+
 PlayerInGameCandy::PlayerInGameCandy(const PlayerInGameCandy &playerInGameCandy) : PlayerInGame<PlayerCandy>(playerInGameCandy)
 {
 }

@@ -1,361 +1,247 @@
 #include "Combination.hpp"
-#include <algorithm>
-#include <iostream>
 
-bool operator>= (vector<ColorCard> a, vector<ColorCard> b){
-    sort(a.begin(), a.end(), [](ColorCard a, ColorCard b){
-        return a.value() > b.value();
-    });
-    sort(b.begin(), b.end(), [](ColorCard a, ColorCard b){
-        return a.value() > b.value();
-    });
-    cout << "a: ";
-    for(int i = 0; i < a.size(); i++){
-        cout << a[i].value() << " ";
-    }
-    cout << endl;
-    cout << "b: ";
-    for(int i = 0; i < b.size(); i++){
-        cout << b[i].value() << " ";
-    }
-    cout << endl;
-    if(a.size() > b.size()){
-        return true;
-    }
-    for(int i = 0; i < a.size(); i++){
-        if(a[i] < b[i]){
-            return false;
-        }
-    }
-    return true;
+Combination::Combo::Combo(){
+    this->cards = Deck<ColorCard>();
+    this->highestCard = ColorCard();
+    this->cards+=this->highestCard;
 }
 
-Combination::Combination(vector<ColorCard> player, vector<ColorCard> table){
-    combinationType = HIGH_CARD;
-    playerCards = player;
-    allCards = player;
-    allCards.insert(allCards.end(), table.begin(), table.end());
-    sort(allCards.begin(), allCards.end(), [](ColorCard a, ColorCard b){
-        return a.value() > b.value();
-    });
-    calculate(player, table);
+Combination::Combo::Combo(Deck<ColorCard> cards){
+    this->cards = cards;
+    this->reduceCards(); // reduce cards to the number of cards needed for the combination
+    this->highestCard = getHighestCardIntersection(this->cards);
 }
 
-void Combination::calculate(vector<ColorCard> player, vector<ColorCard> table){
-    do{
-        isStraightFlush();
-        isFourOfAKind();
-        isFullHouse();
-        isFlush();
-        isStraight();
-        isThreeOfAKind();
-        isTwoPair();
-        isOnePair();
-    }while(prev_permutation(allCards.begin(), allCards.end()));
-    if(combinationType == HIGH_CARD){
-        sort(playerCards.begin(), playerCards.end(), [](ColorCard a, ColorCard b){
-            return a.value() > b.value();
-        });
-        usedCards.push_back(playerCards[0]);
-    }
-}
-
-void Combination::isOnePair(){
-    vector<ColorCard> temp;
-    if(allCards[0].getNumber() == allCards[1].getNumber()){
-        temp.push_back(allCards[0]);
-        temp.push_back(allCards[1]);
-        if(inPlayer(temp)){
-            if(combinationType <= PAIR && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
-                highestPlayerCard = getHighestPlayerCard(temp);
-                highestCard = allCards[0];
-                combinationType = PAIR;
-                usedCards = temp;
-            }
-        }
-    }
-}
-
-void Combination::isTwoPair(){
-    vector<ColorCard> temp;
-    if(allCards[0].getNumber() == allCards[1].getNumber() && allCards[2].getNumber() == allCards[3].getNumber()){
-        temp.push_back(allCards[0]);
-        temp.push_back(allCards[1]);
-        temp.push_back(allCards[2]);
-        temp.push_back(allCards[3]);
-        if(inPlayer(temp)){
-            if(combinationType <= TWO_PAIRS && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
-                highestPlayerCard = getHighestPlayerCard(temp);
-                highestCard = allCards[0];
-                usedCards = temp;
-                combinationType = TWO_PAIRS;
-            }
-        }
-    }
-}
-
-void Combination::isThreeOfAKind(){
-    vector<ColorCard> temp;
-    if(allCards[0].getNumber() == allCards[1].getNumber() && allCards[1].getNumber() == allCards[2].getNumber()){
-        temp.push_back(allCards[0]);
-        temp.push_back(allCards[1]);
-        temp.push_back(allCards[2]);
-        if(inPlayer(temp)){
-            if(combinationType <= THREE_OF_A_KIND && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
-                highestPlayerCard = getHighestPlayerCard(temp);
-                highestCard = allCards[0];
-                usedCards = temp;
-                combinationType = THREE_OF_A_KIND;
-            }
-        }
-    }
-}
-
-void Combination::isFourOfAKind(){
-    vector<ColorCard> temp;
-    if(allCards[0].getNumber() == allCards[1].getNumber() && allCards[1].getNumber() == allCards[2].getNumber() && allCards[2].getNumber() == allCards[3].getNumber()){
-        temp.push_back(allCards[0]);
-        temp.push_back(allCards[1]);
-        temp.push_back(allCards[2]);
-        temp.push_back(allCards[3]);
-        if(inPlayer(temp)){
-            if(combinationType <= FOUR_OF_A_KIND && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
-                highestPlayerCard = getHighestPlayerCard(temp);
-                highestCard = allCards[0];
-                usedCards = temp;
-                combinationType = FOUR_OF_A_KIND;
-            }
-        }
-    }
-}
-
-void Combination::isStraight(){
-    bool isStraight = true;
-    vector<ColorCard> temp;
-    for(int i = 0; i < 5; i++){
-        if(allCards[i].getNumber() != allCards[i+1].getNumber() + 1){
-            isStraight = false;
+void Combination::Combo::reduceCards(){
+    std::vector<ColorCard> cards = this->cards.getDeck();
+    switch(this->getType()){
+        case HIGH_CARD:
+            cards.erase(cards.begin() + 1, cards.end());
             break;
-        }
-    }
-    if(isStraight){
-        temp.push_back(allCards[0]);
-        temp.push_back(allCards[1]);
-        temp.push_back(allCards[2]);
-        temp.push_back(allCards[3]);
-        temp.push_back(allCards[4]);
-        if(inPlayer(temp)){
-            if(combinationType <= STRAIGHT && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
-                highestPlayerCard = getHighestPlayerCard(temp);
-                highestCard = allCards[0];
-                usedCards = temp;
-                combinationType = STRAIGHT;
-            }
-        }
-    }
-}
-
-void Combination::isFlush(){
-    bool isFlush = true;
-    vector<ColorCard> temp;
-    for(int i = 0; i < 5; i++){
-        if(allCards[i].getColor() != allCards[i+1].getColor()){
-            isFlush = false;
+        case PAIR:
+            cards.erase(cards.begin() + 2, cards.end());
             break;
-        }
-    }
-    if(isFlush){
-        temp.push_back(allCards[0]);
-        temp.push_back(allCards[1]);
-        temp.push_back(allCards[2]);
-        temp.push_back(allCards[3]);
-        temp.push_back(allCards[4]);
-        if(inPlayer(temp)){
-            if(combinationType <= FLUSH && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
-                highestPlayerCard = getHighestPlayerCard(temp);
-                highestCard = allCards[0];
-                usedCards = temp;
-                combinationType = FLUSH;
-            }
-        }
-    }
-}
-
-void Combination::isFullHouse(){
-    vector<ColorCard> temp;
-    if(allCards[0].getNumber() == allCards[1].getNumber() && allCards[1].getNumber() == allCards[2].getNumber() && allCards[3].getNumber() == allCards[4].getNumber()){
-        temp.push_back(allCards[0]);
-        temp.push_back(allCards[1]);
-        temp.push_back(allCards[2]);
-        temp.push_back(allCards[3]);
-        temp.push_back(allCards[4]);
-        if(inPlayer(temp)){
-            if(combinationType <= FULL_HOUSE && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
-                highestPlayerCard = getHighestPlayerCard(temp);
-                highestCard = allCards[0];
-                usedCards = temp;
-                combinationType = FULL_HOUSE;
-            }
-        }
-    }
-}
-
-void Combination::isStraightFlush(){
-    bool isStraightFlush = true;
-    vector<ColorCard> temp;
-    for(int i = 0; i < 5; i++){
-        if(allCards[i].getNumber() != allCards[i+1].getNumber() + 1 || allCards[i].getColor() != allCards[i+1].getColor()){
-            isStraightFlush = false;
+        case THREE_OF_A_KIND:
+            cards.erase(cards.begin() + 3, cards.end());
             break;
-        }
+        case TWO_PAIRS:
+        case FOUR_OF_A_KIND:
+            cards.erase(cards.begin() + 4, cards.end());
+        default:
+            cards.erase(cards.begin() + 5, cards.end());
     }
-    if(isStraightFlush){
-        temp.push_back(allCards[0]);
-        temp.push_back(allCards[1]);
-        temp.push_back(allCards[2]);
-        temp.push_back(allCards[3]);
-        temp.push_back(allCards[4]);
-        if(inPlayer(temp)){
-            if(combinationType <= STRAIGHT_FLUSH && highestCard.value() <= allCards[0].value() && highestPlayerCard.value() <= getHighestPlayerCard(temp).value() && temp >= getUsedCards()){
-                highestPlayerCard = getHighestPlayerCard(temp);
-                highestCard = allCards[0];
-                usedCards = temp;
-                combinationType = STRAIGHT_FLUSH;
-            }
-        }
-    }
+    this->cards.setDeck(cards);
 }
 
-bool Combination::inPlayer(vector<ColorCard> cards){
-    for(int i = 0; i < cards.size(); i++){
-        if(find(playerCards.begin(), playerCards.end(), cards[i]) != playerCards.end()){
+bool Combination::Combo::useOneOf(Deck<ColorCard> cards){
+    std::vector<ColorCard> deck = this->cards.getDeck();
+    std::vector<ColorCard> deck2 = cards.getDeck();
+    for(int i = 0; i < deck.size(); i++){
+        if(find(deck2.begin(), deck2.end(), deck[i]) != deck2.end()){
             return true;
         }
     }
     return false;
 }
 
-ColorCard Combination::getHighestPlayerCard(vector<ColorCard> cards){
-    ColorCard highest;
-    for(int i = 0; i < cards.size(); i++){
-        if(find(playerCards.begin(), playerCards.end(), cards[i]) != playerCards.end() && cards[i].value() >= highest.value()){
-            highest = cards[i];
-            // cout << "highest player card: " << highest.getNumber() << " " << highest.getColor() << endl;
-            // cout << "card [i]: " << cards[i].getNumber() << " " << cards[i].getColor() << endl;
+ColorCard Combination::Combo::getHighestCardIntersection(Deck<ColorCard> cards){
+    std::vector<ColorCard> deck = this->cards.getDeck();
+    std::vector<ColorCard> deck2 = cards.getDeck();
+    ColorCard highestCard = ColorCard();
+    for(int i = 0; i < deck.size(); i++){
+        if(find(deck2.begin(), deck2.end(), deck[i]) != deck2.end() && deck[i] > highestCard){
+            highestCard = deck[i];
         }
     }
-    return highest;
+    return highestCard;
 }
 
-vector <ColorCard> Combination::getUsedCards(){
-    return usedCards;
+std::string Combination::Combo::getTypeString(){
+    switch(this->getType()){
+        case STRAIGHT_FLUSH:
+            return "Straight Flush";
+        case FOUR_OF_A_KIND:
+            return "Four of a Kind";
+        case FULL_HOUSE:
+            return "Full House";
+        case FLUSH:
+            return "Flush";
+        case STRAIGHT:
+            return "Straight";
+        case THREE_OF_A_KIND:
+            return "Three of a Kind";
+        case TWO_PAIRS:
+            return "Two Pairs";
+        case PAIR:
+            return "Pair";
+        default:
+            return "High Card";
+    }
 }
 
+void Combination::Combo::print(){
+    std::cout << "Type: " << this->getTypeString() << std::endl;
+    std::cout << "Highest Card: " << this->highestCard;
+    std::cout << this->cards;
+}
 
-// buat dengan array of cards dulu, baru diubah ke deck nanti ketika dack udah jadi
+Deck<ColorCard> Combination::Combo::getCards(){
+    return this->cards;
+}
 
-/*
-boleh selama:
-1. ga overlap
-2. ngehandle kasus2 ujung, kayak kalau ditable semuanya straight flush, harus lihat dari kartu selain itu
-3. handle kasus kalau semua maksimal pair 5, tapi 5 merah ada di meja, harus lihat dari pair 5 warna kartu kedua
-4. ga ngilangin konsep oop
-5. ada subtitusi penggunaan oop, jangan sampe gegara implementasi sendiri, misal polymorphismnya ilang, ini gada toleransi
-*/
+ColorCard Combination::Combo::getHighestCard(){
+    return this->highestCard;
+}
+
+CombinationType Combination::Combo::getType(){
+    if(this->isStraightFlush()) return STRAIGHT_FLUSH;
+    if(this->isFourOfAKind()) return FOUR_OF_A_KIND;
+    if(this->isFullHouse()) return FULL_HOUSE;
+    if(this->isFlush()) return FLUSH;
+    if(this->isStraight()) return STRAIGHT;
+    if(this->isThreeOfAKind()) return THREE_OF_A_KIND;
+    if(this->isTwoPairs()) return TWO_PAIRS;
+    if(this->isPair()) return PAIR;
+    return HIGH_CARD;
+}
+
+bool Combination::Combo::isStraightFlush(){
+    return this->isStraight() && this->isFlush();
+}
+
+bool Combination::Combo::isFourOfAKind(){
+    std::vector<ColorCard> cards = this->cards.getDeck();
+    return cards[0].getNumber() == cards[1].getNumber() && cards[1].getNumber() == cards[2].getNumber() && cards[2].getNumber() == cards[3].getNumber();
+}
+
+bool Combination::Combo::isFullHouse(){
+    std::vector<ColorCard> cards = this->cards.getDeck();
+    if(cards[0].getNumber() == cards[1].getNumber() && cards[1].getNumber() == cards[2].getNumber() && cards[3].getNumber() == cards[4].getNumber()){
+        return true;
+    }
+    if(cards[0].getNumber() == cards[1].getNumber() && cards[2].getNumber() == cards[3].getNumber() && cards[3].getNumber() == cards[4].getNumber()){
+        return true;
+    }
+    return false;
+}
+
+bool Combination::Combo::isFlush(){
+    std::vector<ColorCard> cards = this->cards.getDeck();
+    return cards[0].getColor() == cards[1].getColor() && cards[1].getColor() == cards[2].getColor() && cards[2].getColor() == cards[3].getColor() && cards[3].getColor() == cards[4].getColor();
+}
+
+bool Combination::Combo::isStraight(){
+    std::vector<ColorCard> cards = this->cards.getDeck();
+    return cards[0].getNumber() == cards[1].getNumber() - 1 && cards[1].getNumber() == cards[2].getNumber() - 1 && cards[2].getNumber() == cards[3].getNumber() - 1 && cards[3].getNumber() == cards[4].getNumber() - 1;
+}
+
+bool Combination::Combo::isThreeOfAKind(){
+    std::vector<ColorCard> cards = this->cards.getDeck();
+    return cards[0].getNumber() == cards[1].getNumber() && cards[1].getNumber() == cards[2].getNumber();
+}
+
+bool Combination::Combo::isTwoPairs(){
+    std::vector<ColorCard> cards = this->cards.getDeck();
+    return cards[0].getNumber() == cards[1].getNumber() && cards[2].getNumber() == cards[3].getNumber();
+}
+
+bool Combination::Combo::isPair(){
+    std::vector<ColorCard> cards = this->cards.getDeck();
+    return cards[0].getNumber() == cards[1].getNumber();
+}
+
+bool Combination::Combo::operator==(Combo rhs){
+    return this->cards == rhs.getCards();
+}
+
+bool Combination::Combo::operator<(Combo rhs){
+    return this->getType() < rhs.getType() || (this->getType() == rhs.getType() && this->cards < rhs.getCards());
+}
+
+bool Combination::Combo::operator>(Combo rhs){
+    return this->getType() > rhs.getType() || (this->getType() == rhs.getType() && this->cards > rhs.getCards());
+}
+
+bool Combination::Combo::operator<=(Combo rhs){
+    return (*this < rhs) || (*this == rhs);
+}
+
+bool Combination::Combo::operator>=(Combo rhs){
+    return (*this > rhs) || (*this == rhs);
+}
+
+Combination::Combination(Deck<ColorCard> cards){
+    this->playerCards = cards;
+    this->allCards = cards;
+    allCards.sort(true);
+    this->bestCombo = this->getBestCombo();
+}
+
+Combination::Combination(Deck<ColorCard> player, Deck<ColorCard> table){
+    this->playerCards = player;
+    this->allCards = table + player;
+    allCards.sort(true);
+    this->bestCombo = this->getBestCombo();
+}
 
 void Combination::print(){
-    switch(combinationType){
-        case HIGH_CARD:
-            cout << "High Card" << endl;
-            break;
-        case PAIR:
-            cout << "Pair" << endl;
-            break;
-        case TWO_PAIRS:
-            cout << "Two Pairs" << endl;
-            break;
-        case THREE_OF_A_KIND:
-            cout << "Three of a Kind" << endl;
-            break;
-        case STRAIGHT:
-            cout << "Straight" << endl;
-            break;
-        case FLUSH:
-            cout << "Flush" << endl;
-            break;
-        case FULL_HOUSE:
-            cout << "Full House" << endl;
-            break;
-        case FOUR_OF_A_KIND:
-            cout << "Four of a Kind" << endl;
-            break;
-        case STRAIGHT_FLUSH:
-            cout << "Straight Flush" << endl;
-            break;
-    }
-    cout<<"Highest Card: "<<highestCard.getNumber()<<" "<<highestCard.getColor()<<endl;
-    cout<<"Highest Player Card: "<<highestPlayerCard.getNumber()<<" "<<highestPlayerCard.getColor()<<endl;
-    cout<<"Used Cards: "<<endl;
-    for(int i = 0; i < usedCards.size(); i++){
-        usedCards[i].print();
-    }
-    cout<<"All Cards: "<<endl;
-    for(int i = 0; i < allCards.size(); i++){
-        allCards[i].print();
-    }
+    std::cout << "Player Cards: " << this->playerCards << std::endl;
+    std::vector<ColorCard> tableCards = this->allCards.getDeck();
+    std::vector<ColorCard> playerCards = this->playerCards.getDeck();
+    tableCards.erase(remove_if( begin(tableCards),end(tableCards),
+    [&](auto x){return find(begin(playerCards),end(playerCards),x)!=end(playerCards);}), end(tableCards));
+    Deck<ColorCard> table = Deck<ColorCard>(tableCards);
+    std::cout << "Table Cards: " << table << std::endl;
+    std::cout << "Best Combo: " << std::endl;
+    this->bestCombo.print();
 }
 
-bool Combination::operator<(Combination& other){
-    if(this->combinationType < other.combinationType){
-        return true;
-    }
-    else if(this->combinationType == other.combinationType){
-        vector<ColorCard> otherCards = other.getUsedCards();
-        sort(usedCards.begin(), usedCards.end(), [](ColorCard a, ColorCard b){return a.getNumber() < b.getNumber();});
-        sort(otherCards.begin(), otherCards.end(), [](ColorCard a, ColorCard b){return a.getNumber() < b.getNumber();});
-        for(int i = 0; i < usedCards.size(); i++){
-            if(usedCards[i].value() < otherCards[i].value()){
-                return true;
+Combination::Combo Combination::getBestCombo(){
+    Combo bestCombo;
+    std::vector<ColorCard> cards = this->allCards.getDeck();
+    do{
+        Combo combo = Combo(cards);
+        if(combo >= bestCombo && combo.useOneOf(this->playerCards)){
+            if(combo > bestCombo){
+                bestCombo = combo;
             }
-            else if(usedCards[i].value() > otherCards[i].value()){
-                return false;
+            else if(combo == bestCombo){
+                if(combo.getHighestCardIntersection(this->playerCards) > bestCombo.getHighestCardIntersection(this->playerCards)){
+                    bestCombo = combo;
+                }
             }
         }
-    }
-    return false;
+    } while(prev_permutation(cards.begin(), cards.end()));
+    return bestCombo;
 }
 
-bool Combination::operator>(Combination& other){
-    if(this->combinationType > other.combinationType){
-                return true;
-    }
-    else if(this->combinationType == other.combinationType){
-        vector<ColorCard> otherCards = other.getUsedCards();
-        sort(usedCards.begin(), usedCards.end(), [](ColorCard a, ColorCard b){return a.getNumber() < b.getNumber();});
-        sort(otherCards.begin(), otherCards.end(), [](ColorCard a, ColorCard b){return a.getNumber() < b.getNumber();});
-        for(int i = 0; i < usedCards.size(); i++){
-            if(usedCards[i].value() > otherCards[i].value()){
-                return true;
-            }
-            else if(usedCards[i].value() < otherCards[i].value()){
-                return false;
-            }
+ColorCard Combination::getHighestPlayerCard(){
+    std::vector<ColorCard> cards = this->playerCards.getDeck();
+    ColorCard bestCard = cards[0];
+    for(int i = 1; i < cards.size(); i++){
+        if(cards[i] > bestCard){
+            bestCard = cards[i];
         }
     }
-    return false;
+    return bestCard;
 }
 
-bool Combination::operator==(Combination& other){
-    if(this->combinationType == other.combinationType){
-        vector<ColorCard> otherCards = other.getUsedCards();
-        sort(usedCards.begin(), usedCards.end(), [](ColorCard a, ColorCard b){return a.getNumber() < b.getNumber();});
-        sort(otherCards.begin(), otherCards.end(), [](ColorCard a, ColorCard b){return a.getNumber() < b.getNumber();});
-        for(int i = 0; i < usedCards.size(); i++){
-            if(usedCards[i].value() != otherCards[i].value()){
-                return false;
-            }
-        }
-        return true;
-    }
-    return false;
+bool Combination::operator==(Combination rhs){
+    return this->bestCombo == rhs.getBestCombo();
+}
+
+bool Combination::operator<(Combination rhs){
+    return this->bestCombo < rhs.getBestCombo();
+}
+
+bool Combination::operator>(Combination rhs){
+    return this->bestCombo > rhs.getBestCombo();
+}
+
+bool Combination::operator<=(Combination rhs){
+    return (*this < rhs) || (*this == rhs);
+}
+
+bool Combination::operator>=(Combination rhs){
+    return (*this > rhs) || (*this == rhs);
 }
