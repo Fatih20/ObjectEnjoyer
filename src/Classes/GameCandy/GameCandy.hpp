@@ -15,7 +15,7 @@ private:
     PlayerInGameCandy players;     // pemain
     DeckGame<ColorCard> deckGame;  // deck game
     DeckGame<ColorCard> tableCard; // table card
-    // DeckGame<AbilityCard> abilityCard;
+    DeckGame<AbilityCard> abilityCard;
     int round;        // ronde
     double giftPoint; // point hadiah tiap akhir game
     void multiplyGiftPoint(double multiplier);
