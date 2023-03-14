@@ -148,5 +148,7 @@ int main()
 
     // cout << deckD << deckB << deckC << endl;
     GameCandy game;
+
+    cout << "test finished!" << endl;
     return 0;
 }
