@@ -42,6 +42,11 @@ void GameCandy::start()
                 cout << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn\n";
                 cmd = inputCommand();
                 playerAction(cmd);
+                while(cmd == "gamestat"){
+                    cout << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn\n";
+                    cmd = inputCommand();
+                    playerAction(cmd);                    
+                }
                 players.nextTurn();
             }
             nextRound();
