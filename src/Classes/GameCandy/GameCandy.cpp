@@ -29,6 +29,7 @@ GameCandy::GameCandy()
 void GameCandy::start()
 {
     cout << "\nNew game start\n";
+    string cmd;
     while (!isWinning())
     {
         // inisialisasi game baru -> player sama, deckCard baru
@@ -39,13 +40,14 @@ void GameCandy::start()
             while (!isRoundOver())
             {
                 cout << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn\n";
-                inputCommand();
+                cmd = inputCommand();
+                playerAction(cmd);
                 players.nextTurn();
             }
             nextRound();
             players.resetRound();
         }
-        
+
     }
 
     
@@ -96,15 +98,16 @@ void GameCandy::startRound()
 
 void GameCandy::playerAction(string cmd)
 {
-    // switch (cmd)
-    // {
-    // case 1:
-    //     nextCommand();
-    //     break;
-
-    // default:
-    //     break;
-    // }
+    if (cmd == "next"){
+        cout << "Giliran dilanjut ke pemain selanjutnya\n";
+    } else if (cmd == "double"){
+        changeGiftPoinMessage(cmd,2);
+        doublePoint();
+    } else if (cmd == "half"){
+        changeGiftPoinMessage(cmd,0.5);
+        halvesPoint();
+    } else {
+    }
 }
 
 string GameCandy::inputCommand()
@@ -177,7 +180,9 @@ void GameCandy::splashScreen()
 
 void GameCandy::multiplyGiftPoint(double multiplier)
 {
-    giftPoint *= multiplier;
+    if (giftPoint>1){
+        giftPoint *= multiplier;
+    }
 }
 
 void GameCandy::operator*=(double multiplier)
@@ -282,4 +287,15 @@ void GameCandy::roundAction()
 void GameCandy::nextRound()
 {
     round = (round + 1) % 6;
+}
+
+void GameCandy::changeGiftPoinMessage(string cmd,double multiplier){
+    cout << endl << players.getPlayerWithTurn().getUsername() << " melakukan " << cmd << "!\n";
+    if (giftPoint*multiplier < 1){
+        cout << "Sayangnya poin hadiah sudah bernilai 1.\n";
+        cout << "Poin hadiah tidak berubah.. Giliran dilanjut!\n\n";
+    } else {
+        string status = multiplier<1? "turun":"naik";
+        cout << "Poin hadiah " << status << " dari " << giftPoint << " menjadi " << giftPoint*multiplier << "!\n";
+    }
 }

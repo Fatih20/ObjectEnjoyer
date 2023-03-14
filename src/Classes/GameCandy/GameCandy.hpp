@@ -143,6 +143,8 @@ public:
     // vector<AbilityCard> initilizeAbilityDeck();
 
     // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
+
+    void changeGiftPoinMessage(string,double);
 };
 
 #endif
