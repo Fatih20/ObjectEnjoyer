@@ -182,33 +182,7 @@ string GameCandy::isCommandValid(string userCommand)
 
 void GameCandy::splashScreen()
 {
-    cout << "\033[1m\033[35m";
-    cout << "       _..._                                                       " << endl;
-    cout << "    .-'_..._''.                      _______                       " << endl;
-    cout << "  .' .'      '.\\             _..._   \\  ___ `'.                  " << endl;
-    cout << " / .'                      .'     '.  ' |--.\\  \\.-.          .-  " << endl;
-    cout << ". '                       .   .-.   . | |    \\  '\\ \\        / / " << endl;
-    cout << "| |                 __    |  '   '  | | |     |  '\\ \\      / /   " << endl;
-    cout << "| |              .:--.'.  |  |   |  | | |     |  | \\ \\    / /    " << endl;
-    cout << ". '             / |   \\ | |  |   |  | | |     ' .'  \\ \\  / /    " << endl;
-    cout << " \\ '.          .`\" __ | | |  |   |  | | |___.' /'    \\ `  /     " << endl;
-    cout << "  '. `._____.-'/ .'.''| | |  |   |  |/_______.'/      \\  /        "<< endl;
-    cout << "    `-.______ / / /   | |_|  |   |  |\\_______|/       / /         " << endl;
-    cout << "             `  \\ \\._,\\ '/|  |   |  |             |`-' /        " << endl;
-    cout << "                 `--'  `\" '--'   '--'              '..'           " << endl;                                                 
-    cout << "                    __  __   ___         __.....__               " << endl;                
-    cout << "  .--./)           |  |/  `.'   `.   .-\'\'         '.             " << endl;     
-    cout << " /.\'\'\\\\            |   .-.  .-.   \' /     .-''\"'-.  `.           " << endl;       
-    cout << "| |  | |      __   |  |  |  |  |  |/     /________\\   \\          " << endl;
-    cout << " \\`-\' /    .:--.\'. |  |  |  |  |  ||                  |          " << endl;
-    cout << " /(\"\'`    / |   \\ ||  |  |  |  |  |\\    .-------------\'          " << endl;
-    cout << " \\ \'---.  `\" __ | ||  |  |  |  |  | \\    \'-.____...---.          " << endl;
-    cout << "  /\'\"\"\'.\\  .\'.\'\'| ||__|  |__|  |__|  `.             .\'           " << endl;
-    cout << " ||     ||/ /   | |_                   `\'\'-...... -\'             " << endl;
-    cout << " \'.  __// \\ \\._,\\ \'/                                             " << endl;
-    cout << "  `'---'   `--' `\"                                              " << endl;
-    cout << "\033[0m";
-    cout << "\033[1m\033[32m" << "\nGame starting...\n\n" << "\033[0m";
+    SplashScreen::splashScreenGameCandy();
 }
 
 void GameCandy::multiplyGiftPoint(double multiplier)

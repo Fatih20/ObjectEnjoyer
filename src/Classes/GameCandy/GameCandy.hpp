@@ -5,6 +5,7 @@
 #include "../PlayerInGameCandy/PlayerInGameCandy.hpp"
 #include "../DeckGame/DeckGame.hpp"
 #include "../GameCandyException/GameCandyException.hpp"
+#include "../Classes/SplashScreen/SplashScreen.hpp"
 #include <vector>
 using namespace std;
 
