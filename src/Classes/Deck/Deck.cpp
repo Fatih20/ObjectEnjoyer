@@ -165,6 +165,7 @@ bool Deck<T>::operator<(const Deck<T> &other)
             return false;
         }
     }
+    return false;
 }
 
 template <typename T>
@@ -238,6 +239,7 @@ bool Deck<T>::operator>(const Deck<T> &other)
             return true;
         }
     }
+    return false;
 }
 
 template <typename T>
