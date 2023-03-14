@@ -1,11 +1,21 @@
 #include "PlayerException.hpp"
 
+PlayerException::PlayerException()
+{
+    message = "";
+}
+
+string PlayerException::getMessage()
+{
+    return message;
+}
+
 UsernameEmpty::UsernameEmpty()
 {
     message = "Username cannot be empty!";
 };
 
-string UsernameEmpty::getMessage()
+AbilityNotOwned::AbilityNotOwned()
 {
-    return message;
+    message = "You don't have that ability!";
 }

@@ -5,9 +5,9 @@
 
 using namespace std;
 
-vector<string> commandOption {"next","doubble","half",
-                    "re-roll","quadruple","quarter",
-                    "reverse","swap", "switch","abilityless" };
+vector<string> commandOption{"next", "doubble", "half",
+                             "re-roll", "quadruple", "quarter",
+                             "reverse", "swap", "switch", "abilityless"};
 
 GameCandy::GameCandy()
 {
@@ -25,7 +25,7 @@ GameCandy::GameCandy()
 
     DeckGame<ColorCard> playerDeck;
     // draw playerDeck from deckGame
-    
+
     PlayerInGameCandy players(playerDeck, 7);
     this->players = players;
 
@@ -54,13 +54,11 @@ bool GameCandy::isWinning()
     return false;
 }
 
-
 bool GameCandy::isRoundOver()
 {
     // true jika semua player telah mendapat giliran
     return players.getIsRoundComplete();
 }
-
 
 void GameCandy::newGame()
 {
@@ -93,7 +91,6 @@ void GameCandy::startRound()
     }
 }
 
-
 void GameCandy::playerAction(string cmd)
 {
     // switch (cmd)
@@ -106,7 +103,6 @@ void GameCandy::playerAction(string cmd)
     //     break;
     // }
 }
-
 
 string GameCandy::inputCommand()
 {
@@ -130,7 +126,6 @@ string GameCandy::inputCommand()
     return cmd;
 }
 
-
 string GameCandy::isCommandValid(string userCommand)
 {
 
@@ -138,7 +133,7 @@ string GameCandy::isCommandValid(string userCommand)
     transform(userCommand.begin(), userCommand.end(), userCommand.begin(), ::tolower);
 
     vector<string>::iterator it;
-    it = find(commandOption.begin(),commandOption.end(),userCommand);
+    it = find(commandOption.begin(), commandOption.end(), userCommand);
 
     if (it != commandOption.end())
     {
@@ -152,8 +147,8 @@ string GameCandy::isCommandValid(string userCommand)
     }
 }
 
-
-void GameCandy::splashScreen(){
+void GameCandy::splashScreen()
+{
 
     cout << "       _..._                                                                                                                     " << endl;
     cout << "    .-'_..._''.                      _______                                                                                     " << endl;
@@ -164,13 +159,14 @@ void GameCandy::splashScreen(){
     cout << "| |              .:--.'.  |  |   |  | | |     |  | \\ \\    / /             \\`-' /    .:--.'. |  |  |  |  |  ||                  | " << endl;
     cout << ". '             / |   \\ | |  |   |  | | |     ' .'  \\ \\  / /              /(\"'`    / |   \\ ||  |  |  |  |  |\\    .-------------' " << endl;
     cout << " \\ '.          .`\" __ | | |  |   |  | | |___.' /'    \\ `  /               \\ '---.  `\" __ | ||  |  |  |  |  | \\    '-.____...---. " << endl;
-    cout << "  '. `._____.-'/ .'.''| | |  |   |  |/_______.'/      \\  /                 /'""'.\\  .'.''| ||__|  |__|  |__|  `.             .'  " << endl;
+    cout << "  '. `._____.-'/ .'.''| | |  |   |  |/_______.'/      \\  /                 /'"
+            "'.\\  .'.''| ||__|  |__|  |__|  `.             .'  "
+         << endl;
     cout << "    `-.______ / / /   | |_|  |   |  |\\_______|/       / /                 ||     ||/ /   | |_                   `''-...... -'    " << endl;
     cout << "             `  \\ \\._,\\ '/|  |   |  |             |`-' /                  \'. __// \\ \\._,\\ '/                                    " << endl;
     cout << "                 `--'  `\" '--'   '--'              '..'                    `'---'   `--'  `\"                                     " << endl;
     cout << "/nGame starting...\n";
 }
-
 
 void GameCandy::multiplyGiftPoint(double multiplier)
 {
@@ -182,12 +178,34 @@ void GameCandy::operator*=(double multiplier)
     multiplyGiftPoint(multiplier);
 }
 
+void GameCandy::doublePoint()
+{
+    multiplyGiftPoint(2);
+}
+
+void GameCandy::halvesPoint()
+{
+    multiplyGiftPoint(0.5);
+}
+
+void GameCandy::quarterPoint()
+{
+    multiplyGiftPoint(0.25);
+}
+
+void GameCandy::quadruplePoint()
+{
+    multiplyGiftPoint(4);
+}
+
 vector<ColorCard> GameCandy::initilizeDeckGame()
 {
     vector<ColorCard> vec;
     Color color;
-    for(int i=0; i<4; i++){
-        for (int j=1; i<=13; j++){
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 1; j <= 13; j++)
+        {
             switch (i)
             {
             case 0:
@@ -203,7 +221,7 @@ vector<ColorCard> GameCandy::initilizeDeckGame()
                 color = RED;
                 break;
             }
-            ColorCard colorCard(j,color);
+            ColorCard colorCard(j, color);
             vec.push_back(colorCard);
         }
     }
@@ -230,15 +248,16 @@ vector<ColorCard> GameCandy::initilizeDeckGame()
 //     }
 // }
 
-DeckGame<ColorCard> GameCandy::newDeck1(){
+DeckGame<ColorCard> GameCandy::newDeck1()
+{
     cout << "How do you want to generate Deck?\n";
     cout << "1. Random\n";
     cout << "2. From File\n";
     int option = inputOption(2);
     // if(option==1){
-        DeckGame<ColorCard> deck(initilizeDeckGame());
-        // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
-        return deck;
+    DeckGame<ColorCard> deck(initilizeDeckGame());
+    // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
+    return deck;
     // } else {
     //     // file reader
     // }
