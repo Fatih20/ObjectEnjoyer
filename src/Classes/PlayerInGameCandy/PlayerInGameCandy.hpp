@@ -129,7 +129,7 @@ public:
      * @param threshold
      * @return std::vector<PlayerCandy>
      */
-    std::vector<string> getWinner();
+    string getWinner();
 
     /**
      * @brief Return whether there's a winner

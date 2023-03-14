@@ -196,24 +196,27 @@ int PlayerInGameCandy::correctedIndexCustom(int rawIndex, vector<int> exceptedIn
     return resultIndex;
 };
 
-std::vector<string> PlayerInGameCandy::getWinner()
+string PlayerInGameCandy::getWinner()
 {
-    vector<string> winnerUsernames;
-    int limit = pow(2, 32);
-    for (auto playerIterator = players.begin(); playerIterator != players.end(); playerIterator++)
+    unsigned int limit = pow(2, 32);
+    bool found = false;
+    string winnerUsername;
+    for (auto playerIterator = players.begin(); playerIterator != players.end() && !found; playerIterator++)
     {
         double score = playerIterator->getScore();
         if (score == limit || score < limit)
         {
-            winnerUsernames.push_back(playerIterator->getUsername());
+            winnerUsername = (playerIterator->getUsername());
+            found = true;
         }
     }
-    return winnerUsernames;
+    return winnerUsername;
 };
 bool PlayerInGameCandy::winnerExist()
 {
-    return players.end() != find_if(players.begin(), players.end(), [](PlayerCandy p) -> bool
-                                    { return p.getScore() > pow(2, 32) || p.getScore() < 0; });
+    unsigned int limit = pow(2, 32);
+    return players.end() != find_if(players.begin(), players.end(), [limit](PlayerCandy p) -> bool
+                                    { return p.getScore() > limit || p.getScore() < 0; });
 };
 
 void PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
