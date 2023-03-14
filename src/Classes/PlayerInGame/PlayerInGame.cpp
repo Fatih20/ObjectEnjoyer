@@ -64,6 +64,12 @@ int PlayerInGame<T>::getCurrentTurn()
 };
 
 template <typename T>
+vector<int> PlayerInGame<T>::getTurns()
+{
+    return turns;
+};
+
+template <typename T>
 int PlayerInGame<T>::getIndexOfCurrentTurn()
 {
     return turns.at(currentTurn);

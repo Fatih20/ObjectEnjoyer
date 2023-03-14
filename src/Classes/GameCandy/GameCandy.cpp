@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<string> commandOption{"next", "double", "half",
+vector<string> commandOption{"gamestat", "next", "double", "half",
                              "re-roll", "quadruple", "quarter",
                              "reverse", "swap", "switch", "abilityless"};
 
@@ -106,7 +106,40 @@ void GameCandy::playerAction(string cmd)
     } else if (cmd == "half"){
         changeGiftPoinMessage(cmd,0.5);
         halvesPoint();
-    } else {
+    } else if (cmd == "gamestat"){
+        cout << "\033[1m\033[34m" << "-----------" << endl;
+        cout << "GAME STATUS" << endl;
+        cout << "-----------" << "\033[0m" << endl;
+        cout << "\033[1m\033[37m" << "Gift Point: " << "\033[1m\033[33m" << this->giftPoint << "\033[0m" << endl;
+        cout << "\033[1m\033[37m" << "Turns: " << endl;
+        vector<int> turnsVec = players.getTurns();
+        for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i){
+            if(*i == players.getIndexOfCurrentTurn()) cout << "\033[1m\033[32m" << "p" << (*i) + 1 << " " << "\033[0m";
+            else cout << "p" << (*i) + 1<< " ";
+        }
+        cout << endl;
+        for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i){
+            if(*i == players.getIndexOfCurrentTurn()) cout << "\033[1m\033[32m" << "^   " << "\033[0m";
+            else cout << "   ";
+        }
+        cout << endl << "\033[1m\033[37m" << "Table Card: " << "\033[0m" << endl << endl << "|  ";
+        vector<ColorCard> deckVec = tableCard.getDeck();
+        for (auto i = deckVec.begin(); i != deckVec.end(); ++i){
+            if((*i).getColor() == GREEN){
+                cout << "\033[1m\033[32m";
+            }
+            else if((*i).getColor() == RED){
+                cout << "\033[1m\033[31m";
+            }
+            else if((*i).getColor() == YELLOW){
+                cout << "\033[1m\033[33m";
+            }
+            else if((*i).getColor() == BLUE){
+                cout << "\033[1m\033[34m";
+            }
+            cout << (*i).getColorAsString() << " " << (*i).getNumber() << "\033[0m" << "  |  ";
+        }
+        cout << endl << endl << "\033[1m\033[34m" << "-----------" << "\033[0m" << endl;
     }
 }
 
@@ -146,7 +179,7 @@ string GameCandy::isCommandValid(string userCommand)
         // userCommand valid
         return userCommand;
     }
-    else if (round == 1 && it - commandOption.begin() < 3)
+    else if (round == 1 && it - commandOption.begin() < 4)
     {
         return userCommand;
     }

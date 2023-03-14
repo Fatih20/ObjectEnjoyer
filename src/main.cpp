@@ -157,6 +157,5 @@ int main()
     splashScreenMain();
     GameCandy game;
     game.start();
-
     return 0;
 }
