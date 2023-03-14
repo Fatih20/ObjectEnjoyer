@@ -82,7 +82,7 @@ void PlayerInGameCandy::reverseTurn()
 void PlayerInGameCandy::resetRound()
 {
     PlayerInGame::resetRound();
-    cout << "Resetting round at pigc" << endl;
+    // cout << "Resetting round at pigc" << endl;
     rotate(turns.begin(), turns.begin() + 1, turns.end());
 }
 
@@ -211,6 +211,7 @@ std::vector<string> PlayerInGameCandy::getWinner()
     }
     return winnerUsernames;
 };
+
 bool PlayerInGameCandy::winnerExist()
 {
     return players.end() != find_if(players.begin(), players.end(), [](PlayerCandy p) -> bool

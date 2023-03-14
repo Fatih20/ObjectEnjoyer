@@ -45,14 +45,15 @@ void GameCandy::start()
             nextRound();
             players.resetRound();
         }
+        
     }
+
     
 }
 
 bool GameCandy::isWinning()
 {
-    // return (winningPlayer()!=0)
-    return false;
+    return players.winnerExist();
 }
 
 bool GameCandy::isRoundOver()
@@ -69,7 +70,7 @@ void GameCandy::newGame()
 
 void GameCandy::endOfGame()
 {
-    // i = winningPlayer();
+    vector<string> winner = players.getWinner();
     // players.at(i).addScore(giftPoint);
     giftPoint = 64;
 }
