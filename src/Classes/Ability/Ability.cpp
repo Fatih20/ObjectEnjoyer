@@ -22,16 +22,18 @@ Ability::Ability()
 {
     abilityName = "";
     abilityDescription = "";
+    power = 0;
 }
 
-Ability::Ability(const Ability &ability) : Ability(ability.abilityName, ability.abilityDescription)
+Ability::Ability(const Ability &ability) : Ability(ability.abilityName, ability.abilityDescription, ability.power)
 {
 }
 
-Ability::Ability(string name, string description)
+Ability::Ability(string name, string description, int power)
 {
     abilityName = name;
     abilityDescription = description;
+    this->power = power;
 }
 
 std::string Ability::getDescription()
@@ -43,3 +45,17 @@ std::string Ability::getName()
 {
     return abilityName;
 }
+
+bool Ability::operator<=(const Ability &ability) { return this->power <= ability.power; }
+
+bool Ability::operator==(const Ability &ability) { return this->power == ability.power; }
+
+bool Ability::operator>=(const Ability &ability) { return this->power >= ability.power; }
+
+bool Ability::operator>(const Ability &ability) { return this->power > ability.power; }
+
+bool Ability::operator<(const Ability &ability) { return this->power < ability.power; }
+
+bool Ability::operator!=(const Ability &ability) { return this->power != ability.power; }
+
+// bool Ability::operator<=(const Ability &ability) { return this->power > ability.power; }

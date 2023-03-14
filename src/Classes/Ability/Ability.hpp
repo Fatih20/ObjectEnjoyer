@@ -27,8 +27,9 @@ protected:
     // static const std::map<Abi, std::string> abilityName;
     string abilityName;
     string abilityDescription;
+    int power;
 
-    Ability(string name, string description);
+    Ability(string name, string description, int power);
 
 public:
     /**
@@ -56,10 +57,24 @@ public:
      *
      */
     virtual void activateAbility(GameCandy &gC) = 0;
+
+    bool operator>(const Ability &ability);
+
+    bool operator<(const Ability &ability);
+
+    bool operator==(const Ability &ability);
+
+    bool operator>=(const Ability &ability);
+
+    bool operator<=(const Ability &ability);
+
+    bool operator!=(const Ability &ability);
 };
 
 class BlankAbility : public Ability
 {
+public:
+    BlankAbility() : Ability(){};
     void activateAbility(GameCandy &gC){};
 };
 

@@ -42,12 +42,6 @@ public:
     void splashScreen();
 
     /**
-     * @brief Spash Screen
-     *
-     */
-    void splashScreen();
-
-    /**
      * @brief winning condition : one of the players has 2^32>= points
      *
      * @return true
@@ -113,8 +107,6 @@ public:
 
     DeckGame<ColorCard> newDeck1();
 
-    void splashScreen();
-
     /**
      * @brief Double the gift point
      *
@@ -143,13 +135,10 @@ public:
      * @brief
      *
      */
-    vector<ColorCard> initilizeDeckGame();
 
     // vector<AbilityCard> initilizeAbilityDeck();
 
     // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
-
-    DeckGame<ColorCard> newDeck1();
 };
 
 #endif
