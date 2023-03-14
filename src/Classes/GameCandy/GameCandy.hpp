@@ -107,7 +107,11 @@ public:
 
     // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
 
-    DeckGame<ColorCard> newDeck1();
+    void newDeck1();
+
+    void roundAction();
+
+    void nextRound();
 
 };
 

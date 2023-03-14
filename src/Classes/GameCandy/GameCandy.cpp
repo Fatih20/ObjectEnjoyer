@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<string> commandOption {"next","doubble","half",
+vector<string> commandOption {"next","double","half",
                     "re-roll","quadruple","quarter",
                     "reverse","swap", "switch","abilityless" };
 
@@ -14,22 +14,14 @@ GameCandy::GameCandy()
     splashScreen();
 
     // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> deck = newDeck();
-    DeckGame<ColorCard> deck = newDeck1();
-    this->deckGame = deck;
-    cout << deckGame;
-    // this->deckGame = deck.first;
-    // this->abilityCard = deck.second;
+    newDeck1();
 
     DeckGame<ColorCard> tableCard;
     this->tableCard = tableCard;
-    // empty
+    // table card empty
 
-    cout << "player\n";
     PlayerInGameCandy players(deckGame, 7);
-    cout << "player2\n";
     this->players = players;
-    cout << deckGame;
-
 
     round = 1;
     giftPoint = 64;
@@ -37,16 +29,20 @@ GameCandy::GameCandy()
 
 void GameCandy::start()
 {
-    cout << "New game start\n";
+    cout << "\nNew game start\n";
     while (!isWinning())
     {
         // inisialisasi game baru -> player sama, deckCard baru
-        cout << "Round " << round << " begin\n";
         newGame();
+        cout << "\nRound " << round << " begin\n\n";
         while (!isRoundOver())
         {
+            roundAction();
             inputCommand();
+            players.nextTurn();
         }
+        nextRound();
+        players.resetRound();
     }
 }
 
@@ -120,13 +116,13 @@ string GameCandy::inputCommand()
         {
             cout << "> ";
             cin >> cmd;
-            cout << isCommandValid(cmd) << endl;
+            // cout << isCommandValid(cmd) << endl;
             isCommandValid(cmd);
             isValid = true;
         }
         catch (CommandInvalid e)
         {
-            cout << "Command '" << e.getInvalidCommand() << "' is invalid\n\n";
+            cout << "\nCommand '" << e.getInvalidCommand() << "' is invalid\n";
         }
     }
     return cmd;
@@ -142,9 +138,12 @@ string GameCandy::isCommandValid(string userCommand)
     vector<string>::iterator it;
     it = find(commandOption.begin(),commandOption.end(),userCommand);
 
-    if (it != commandOption.end())
+    if (it != commandOption.end() && round != 1)
     {
         // userCommand valid
+        return userCommand;
+    }
+    else if (round==1 && it-commandOption.begin()<3){
         return userCommand;
     }
     else
@@ -170,7 +169,7 @@ void GameCandy::splashScreen(){
     cout << "    `-.______ / / /   | |_|  |   |  |\\_______|/       / /                 ||     ||/ /   | |_                   `''-...... -'    " << endl;
     cout << "             `  \\ \\._,\\ '/|  |   |  |             |`-' /                  \'. __// \\ \\._,\\ '/                                    " << endl;
     cout << "                 `--'  `\" '--'   '--'              '..'                    `'---'   `--'  `\"                                     " << endl;
-    cout << "\nGame starting...\n";
+    cout << "\nGame starting...\n\n";
 }
 
 
@@ -232,7 +231,7 @@ vector<ColorCard> GameCandy::initilizeDeckGame()
 //     }
 // }
 
-DeckGame<ColorCard> GameCandy::newDeck1(){
+void GameCandy::newDeck1(){
     cout << "How do you want to generate Deck?\n";
     cout << "1. Random\n";
     cout << "2. From File\n";
@@ -240,8 +239,19 @@ DeckGame<ColorCard> GameCandy::newDeck1(){
     // if(option==1){
     DeckGame<ColorCard> deck(initilizeDeckGame());
         // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
-    return deck;
     // } else {
     //     // file reader
     // }
+    this->deckGame = deck;
+}
+
+void GameCandy::roundAction(){
+    cout << "Player " << players.getCurrentTurn()+1 << " turn\n";
+    if (round==1){
+
+    }
+}
+
+void GameCandy::nextRound(){
+    round = (round+1)%6;
 }

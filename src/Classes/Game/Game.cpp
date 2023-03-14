@@ -30,7 +30,7 @@ int Game::inputOption(int optionRange){
         }
         catch(OptionInvalid e)
         {
-            cout << "Invalid input, please enter a number from 1-" << e.getValidOption() <<endl;
+            cout << "\nInvalid input, please enter a number from 1-" << e.getValidOption() <<endl;
         }
         
     }

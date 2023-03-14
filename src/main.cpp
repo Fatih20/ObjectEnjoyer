@@ -70,7 +70,7 @@ void splashScreenMain()
 
 int main()
 {
-    // // cout << "[deckA]" << endl;
+    // cout << "[deckA]" << endl;
     // ColorCard cc1(1, GREEN);
     // ColorCard cc2(2, RED);
     // ColorCard cc3(3, BLUE);
