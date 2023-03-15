@@ -27,7 +27,7 @@ void FileReader<T1, T2>::read(){
     f.open(this->filePath);
     if(!f) throw FileNotFoundExp();
     int pos = 0, i, value;
-    while(getline(f, temp) && !stop) {
+    while(!stop && getline(f, temp)) {
         if(temp == "-") stop = true;
         else{
             i = 0;
@@ -65,8 +65,7 @@ void FileReader<T1, T2>::read(){
     if(deckVec.size() > 52) throw NumberExp(DECK_TOO_MUCH);
     else if(deckVec.size() < 21) throw NumberExp(DECK_NOT_ENOUGH);
     deckOrder.setDeck(deckVec);
-    //getline(f, temp);
-    while(getline(f, temp, '\n')){
+    while(getline(f, temp)){
         if(temp == "REROLL") {
             shared_ptr<Reroll> abi = make_shared<Reroll>();
             AbilityCard abilityCard(abi);
@@ -108,8 +107,6 @@ void FileReader<T1, T2>::read(){
             abiVec.push_back(abilityCard);
         }
         else throw FormatExp(TYPE_ABILITY);
-        for (auto i = abiVec.begin(); i != abiVec.end(); ++i)
-            cout << *i << endl;
     }
     if(abiVec.size() > 7) throw NumberExp(ABILITY_TOO_MUCH);
     else if(abiVec.size() < 7) throw NumberExp(ABILITY_NOT_ENOUGH);

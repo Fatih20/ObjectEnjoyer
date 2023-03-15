@@ -1,6 +1,5 @@
 #include "PlayerCandy.hpp"
 #include "../PlayerException/PlayerException.hpp"
-#include "../GameCandy/GameCandy.hpp"
 #include "../Combination/Combination.hpp"
 
 PlayerCandy::PlayerCandy(int id) : Player<ColorCard>(id){};
