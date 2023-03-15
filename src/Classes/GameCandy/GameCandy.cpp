@@ -141,7 +141,7 @@ bool GameCandy::playerAction(string cmd)
             cout << e.getMessage() << endl;
             return false;
         } catch (AbilityNotOwned e){
-            cout << e.getMessage() << endl;
+            cout << e.getMessage()<< cmd << endl;
             return false;
         }
     }
@@ -230,16 +230,19 @@ void GameCandy::doublePoint()
 
 void GameCandy::halvesPoint()
 {
+    changeGiftPoinMessage("quadruple",0.5);
     multiplyGiftPoint(0.5);
 }
 
 void GameCandy::quarterPoint()
 {
+    changeGiftPoinMessage("quarter",0.25);
     multiplyGiftPoint(0.25);
 }
 
 void GameCandy::quadruplePoint()
 {
+    changeGiftPoinMessage("quadruple",4);
     multiplyGiftPoint(4);
 }
 
@@ -573,24 +576,4 @@ void GameCandy::displayHelp(){
     cout << "- \"SWITCH\": Switch your hand cards with other player's hand card. Only available when you have SWITCH Ability Card.\n";
     cout << "- \"ABILITYLESS\": BLock other player's Abilty. If all player has already used their ability, this command will be useless.\n    Only available when you have ABILITYLESS Ability Card.\n";
     cout << "* Commands are case insensitive.\n";
-}
-
-void GameCandy::useAbility(string cmd){
-    if (cmd == "re-roll" ){
-        rerollAbility();
-    } else if (cmd == "quadruple"){
-        changeGiftPoinMessage(cmd,4);
-        quadruplePoint();
-    } else if (cmd == "quarter"){
-        changeGiftPoinMessage(cmd,0.25);
-        quarterPoint();
-    } else if (cmd == "reverse"){
-        reverseAbility();
-    } else if (cmd == "swap"){
-        swapAbility();
-    } else if (cmd == "switch"){
-        switchAbility();
-    } else if (cmd == "abilityless"){
-        abilitylessAbility();
-    }
 }
