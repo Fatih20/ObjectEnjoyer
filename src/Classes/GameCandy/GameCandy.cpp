@@ -75,10 +75,10 @@ void GameCandy::newGame()
 
 void GameCandy::endOfGame()
 {
-    // vector<string> winner = players.getWinner();
-    // players.at(i).addScore(giftPoint);
+    players.rewardHighestCombination(giftPoint,tableCard);
     cout << "\nRonde 6 selesai.\n";
     cout << "Pemenang babak ini adalah \n" << endl;
+    cout << "mendapatkan " << giftPoint << " poin!\n";
     players.showLeaderboard();
     if (isWinning()){
         giftPoint = 64;
