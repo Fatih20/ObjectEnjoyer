@@ -1,17 +1,20 @@
 #include "GameCangkul.hpp"
 
 GameCangkul::GameCangkul() {
-
+    DeckGame<ColorCard> deckGame(initializeDeckGame());
+    deckGame.shuffle();
+    this->drawPile = deckGame;
 }
 
 void GameCangkul::start() {
 //    this->deckGame =
 //
 //    this->deckTable.clear();
+    cout << "Game Cangkul" << endl;
 }
 
 bool GameCangkul::isWinning() {
-
+    return true;
 }
 
 void GameCangkul::newGame() {
@@ -23,11 +26,11 @@ void GameCangkul::endOfGame() {
 }
 
 std::string GameCangkul::inputCommand() {
-
+    return "oke\n";
 }
 
 std::string GameCangkul::isCommandValid(std::string command) {
-
+    return "oke\n";
 }
 
 void GameCangkul::splashScreen() {
@@ -35,7 +38,7 @@ void GameCangkul::splashScreen() {
 }
 
 int GameCangkul::inputOption(int opt) {
-
+    return 0;
 }
 
 std::vector<ColorCard> GameCangkul::initializeDeckGame() {
