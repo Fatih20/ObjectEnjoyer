@@ -261,7 +261,7 @@ std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
     int i = 1;
     for (auto elmt : deck.vec)
     {
-        os << i << ". " << elmt;
+        os << i << ". " << elmt << endl;
         i++;
     }
 
