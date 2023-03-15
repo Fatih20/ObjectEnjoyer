@@ -20,16 +20,16 @@ private:
      *
      * @param deckAbility
      */
-    void drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility);
+    void drawColorCardAll(DeckGame<ColorCard> &deckColor);
 
+public:
     /**
      * @brief Construct a new draw Ability Card object
      *
      * @param deckAbility
      */
-    void drawColorCardAll(DeckGame<ColorCard> &deckColor);
-
-public:
+    void drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility);
+    
     /**
      * @brief Construct a new Player In Game Candy object
      *
@@ -182,9 +182,9 @@ public:
 
     /**
      * @brief return true if all players except current player already use their ability
-     * 
-     * @return true 
-     * @return false 
+     *
+     * @return true
+     * @return false
      */
     bool isAllAbilityDisable();
 
@@ -201,9 +201,9 @@ public:
      *
      * @param reward
      * @param tableCard
-     * @return string
+     * @return PlayerCandy
      */
-    string rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard);
+    PlayerCandy &rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard);
 };
 
 #endif
