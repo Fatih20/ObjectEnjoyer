@@ -67,10 +67,12 @@ void PlayerInGameCandy::showLeaderboard()
     sort(sortedPlayers.begin(), sortedPlayers.end(), [](Player<ColorCard> p1, Player<ColorCard> p2) -> bool
          { return p1 > p2; });
     int numberOfPlayer = getNumberOfPlayer();
+    cout  << "\033[1m\033[37m" << "Leaderboard: " << "\033[0m" << endl;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        cout << i + 1 << ".";
-        sortedPlayers.at(i).getScore();
+        cout <<"  "<< i + 1 << ". Player " << sortedPlayers.at(i).getGameID() << "  : ";
+        printf("%.2f",sortedPlayers.at(i).getScore());
+        cout << endl;
     }
 }
 
@@ -109,6 +111,14 @@ int PlayerInGameCandy::correctedIndexCurrent(int rawIndex)
 void PlayerInGameCandy::redrawCardForCurrentPlayer(DeckGame<ColorCard> &deckGame)
 {
     getPlayerWithTurn().redrawCard(deckGame);
+};
+
+void PlayerInGameCandy::redrawAll(DeckGame<ColorCard> &deckGame)
+{
+    for (int i = 0; i < getNumberOfPlayer(); i++)
+    {
+        players.at(turns.at(i)).redrawCard(deckGame);
+    }
 };
 
 void PlayerInGameCandy::showPlayerExcept(vector<int> exceptedIndex)
@@ -197,23 +207,40 @@ int PlayerInGameCandy::correctedIndexCustom(int rawIndex, vector<int> exceptedIn
     return resultIndex;
 };
 
-std::vector<string> PlayerInGameCandy::getWinner()
+string PlayerInGameCandy::getWinner()
 {
-    vector<string> winnerUsernames;
-    int limit = pow(2, 32);
-    for (auto playerIterator = players.begin(); playerIterator != players.end(); playerIterator++)
+    unsigned int limit = pow(2, 32);
+    bool found = false;
+    string winnerUsername;
+    for (auto playerIterator = players.begin(); playerIterator != players.end() && !found; playerIterator++)
     {
         double score = playerIterator->getScore();
-        if (score == limit || score < limit)
+        if (score == limit || score < 0)
         {
-            winnerUsernames.push_back(playerIterator->getUsername());
+            winnerUsername = (playerIterator->getUsername());
+            found = true;
         }
     }
-    return winnerUsernames;
+    return winnerUsername;
 };
 
 bool PlayerInGameCandy::winnerExist()
 {
-    return players.end() != find_if(players.begin(), players.end(), [](PlayerCandy p) -> bool
-                                    { return p.getScore() > pow(2, 32) || p.getScore() < 0; });
+    unsigned int limit = pow(2, 32);
+    return players.end() != find_if(players.begin(), players.end(), [limit](PlayerCandy p) -> bool
+                                    { return p.getScore() > limit || p.getScore() < 0; });
 };
+
+void PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
+{
+    int indexOfHighest = 0;
+    int numberOfPlayer = getNumberOfPlayer();
+    for (int i = 1; i < numberOfPlayer; i++)
+    {
+        if (players.at(i).higherCombinationWeight(players.at(indexOfHighest), tableCard))
+        {
+            indexOfHighest = i;
+        }
+    }
+    players.at(indexOfHighest) += reward;
+}

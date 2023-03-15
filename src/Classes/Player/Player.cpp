@@ -101,25 +101,25 @@ double Player<T>::getScore()
 };
 
 template <typename T>
-void Player<T>::addScore(double addedScore)
+void Player<T>::addScore(unsigned int addedScore)
 {
     score += addedScore;
 };
 
 template <typename T>
-void Player<T>::subtractScore(double subtractedScore)
+void Player<T>::subtractScore(unsigned int subtractedScore)
 {
     score -= subtractedScore;
 };
 
 template <typename T>
-void Player<T>::operator+=(double addedScore)
+void Player<T>::operator+=(unsigned int addedScore)
 {
     addScore(addedScore);
 };
 
 template <typename T>
-void Player<T>::operator-=(double subtractedScore)
+void Player<T>::operator-=(unsigned int subtractedScore)
 {
     subtractScore(subtractedScore);
 };

@@ -49,12 +49,8 @@ void GameCandy::start()
             nextRound();
             players.resetRound();
         }
-        players.showLeaderboard();
-        // vector<string> winner = players.getWinner();
-        // for (int i=0; i<winner.size(); i++){
-        //     cout << winner.at(i) << endl;
-        // }
-        // cout << "Player";
+        endOfGame();
+        cout << "\033[1m\033[32m" << "\nNew game starting..\n\n" << "\033[0m";
         newDeck1();
     }
 
@@ -79,9 +75,19 @@ void GameCandy::newGame()
 
 void GameCandy::endOfGame()
 {
-    vector<string> winner = players.getWinner();
-    // players.at(i).addScore(giftPoint);
-    giftPoint = 64;
+    players.rewardHighestCombination(giftPoint,tableCard);
+    cout << "\nRonde 6 selesai.\n";
+    cout << "Pemenang babak ini adalah \n" << endl;
+    cout << "mendapatkan " << giftPoint << " poin!\n";
+    players.showLeaderboard();
+    if (isWinning()){
+        giftPoint = 64;
+        cout << "\nPermainan berakhir.\n";
+        cout << "Permainan dimenangkan oleh " << endl;
+    } else {
+        cout << "\nBelum terdapat pemenang permainan.\n";
+        cout << "Permainan dilanjutkan.\n";
+    }
 }
 
 
@@ -250,6 +256,7 @@ void GameCandy::newDeck1()
     if(option==1){
         DeckGame<ColorCard> deck(initilizeDeckGame());
         this->deckGame = deck;
+        deckGame.shuffle();
         // newDeck1();
     // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
     } else {
