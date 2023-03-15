@@ -437,14 +437,17 @@ void GameCandy::abilitylessAbility()
 
 void GameCandy::reverseAbility()
 {
-    vector<int> turnsVec1 = players.getTurns();
-    for (auto i = turnsVec1.begin(); i != turnsVec1.end(); ++i)
-        cout << "p" << (*i) + 1 << " ";
     players.reverseTurnInitial();
     cout << players.getPlayerWithTurn().getUsername() << " melakukan reverse!\n";
-    cout << "Sisa urutan eksekusi giliran ini : ";
+    cout << "Sisa urutan eksekusi round ini : ";
     vector<int> turnsVec = players.getTurns();
-    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i)
+    for (auto i = turnsVec.begin() + players.getIndexOfCurrentTurn(); i != turnsVec.end(); ++i)
+        cout << "p" << (*i) + 1 << " ";
+    cout << endl;
+    cout << "Urutan eksekusi round berikutnya : ";
+    for (auto i = turnsVec.rbegin() + players.getNumberOfPlayer() - players.getIndexOfCurrentTurn() + 1; i != turnsVec.rend(); ++i)
+        cout << "p" << (*i) + 1 << " ";
+    for (auto i = turnsVec.rbegin(); i != turnsVec.rend() - players.getNumberOfPlayer() + players.getIndexOfCurrentTurn(); ++i)
         cout << "p" << (*i) + 1 << " ";
     cout << endl;
 }
