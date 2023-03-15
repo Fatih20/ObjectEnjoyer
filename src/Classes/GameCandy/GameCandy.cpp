@@ -126,7 +126,7 @@ bool GameCandy::playerAction(string cmd)
         displayGameStat();
     } else if (cmd == "mycard"){
         players.getPlayerWithTurn().printCard();
-        if (round!=1){
+        if(round != 1){
             cout  << "\033[1m\033[37m" << "Your Ability Card: ";
             cout << players.getPlayerWithTurn().getAbilityName() << "\033[0m" << endl;
         }
@@ -471,10 +471,17 @@ void GameCandy::swapAbility()
 
 void GameCandy::switchAbility()
 {
+    cout << endl
+         << players.getPlayerWithTurn().getUsername() << " melakukan switch!" << endl;
+    cout << "Your card:\n";
+    players.getPlayerWithTurn().printCard();
+    cout << "Choose other player to switch:\n";
     players.showPlayerExceptCurrent();
-    int rawIndex;
-    cin >> rawIndex;
+    int rawIndex = inputOption(6);
     players.swapDeckOfCurrentWith(rawIndex);
+    cout << "Both of " << players.getPlayerWithTurn().getUsername() << "'s cards has been switched with " << players.getNthPlayer(players.correctedIndexCurrent(rawIndex)).getUsername() << endl;
+    cout << "Your card now:\n";
+    players.getPlayerWithTurn().printCard();
 
 }
 void GameCandy::changeGiftPoinMessage(string cmd, double multiplier)
