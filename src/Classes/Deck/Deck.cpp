@@ -79,6 +79,12 @@ void Deck<T>::addCard(const T &card)
 };
 
 template <typename T>
+void Deck<T>::addCardBack(const T &card)
+{
+    this->vec.insert(vec.begin(), card);
+};
+
+template <typename T>
 void Deck<T>::operator+=(const T &card)
 {
     this->addCard(card);
