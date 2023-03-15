@@ -152,6 +152,12 @@ void PlayerInGame<T>::showPlayer()
 // };
 
 template <typename T>
+Player<T> &PlayerInGame<T>::getNthPlayer(int index)
+{
+    return players.at(index);
+}
+
+template <typename T>
 void PlayerInGame<T>::remove(int index)
 {
     remove_if(turns.begin(), turns.end(), [index](int element) -> bool

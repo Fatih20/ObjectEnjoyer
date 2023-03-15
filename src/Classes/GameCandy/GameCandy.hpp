@@ -158,12 +158,11 @@ public:
 
     void displayGameStat();
 
-    void displayPlayerCard();
-
     void displayHelp();
 
+    void displayCombiInfo();
+
     void useAbility(string);
-    
 };
 
 #endif
