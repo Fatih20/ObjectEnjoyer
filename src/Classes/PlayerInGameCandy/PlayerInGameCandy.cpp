@@ -296,7 +296,7 @@ bool PlayerInGameCandy::playerIndexInRange(int index)
 {
     return index >= 0 && index < getNumberOfPlayer();
 }
-void PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
+string PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
 {
     int indexOfHighest = 0;
     int numberOfPlayer = getNumberOfPlayer();
@@ -308,4 +308,5 @@ void PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<C
         }
     }
     players.at(indexOfHighest) += reward;
+    return players.at(indexOfHighest).getUsername();
 }
