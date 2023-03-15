@@ -13,13 +13,7 @@ GameCandy::GameCandy()
 {
     splashScreen();
 
-    // pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> deck = newDeck();
-    // this->deckGame = deck.first;
-    // this->deckAbility = deck.second;
-
     newDeck1();
-
-    // cout << this->deckAbility << endl;
 
     DeckGame<ColorCard> tableCard;
     this->tableCard = tableCard;
@@ -585,11 +579,11 @@ void GameCandy::useAbility(string cmd){
     if (cmd == "re-roll" ){
         rerollAbility();
     } else if (cmd == "quadruple"){
-        quadruplePoint();
         changeGiftPoinMessage(cmd,4);
+        quadruplePoint();
     } else if (cmd == "quarter"){
-        quarterPoint();
         changeGiftPoinMessage(cmd,0.25);
+        quarterPoint();
     } else if (cmd == "reverse"){
         reverseAbility();
     } else if (cmd == "swap"){
