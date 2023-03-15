@@ -48,7 +48,7 @@ bool PlayerInGameCandy::usernameExist(string username)
     bool found = false;
     for (int i = 0; i < players.size() && !found; i++)
     {
-        found = players.at(i).getUsername() == username;
+        found = getNthPlayer(i).getUsername() == username;
     }
     return found;
 }
@@ -58,7 +58,7 @@ bool PlayerInGameCandy::usernameExist(string username, int gameID)
     bool found = false;
     for (int i = 0; i < players.size() && !found; i++)
     {
-        found = players.at(i).getUsername() == username;
+        found = getNthPlayer(i).getUsername() == username;
     }
     return found;
 }
@@ -147,7 +147,7 @@ void PlayerInGameCandy::redrawAll(DeckGame<ColorCard> &deckGame)
 {
     for (int i = 0; i < getNumberOfPlayer(); i++)
     {
-        players.at(turns.at(i)).redrawCard(deckGame);
+        getPlayerAtTurn(i).redrawCard(deckGame);
     }
 };
 
@@ -161,7 +161,7 @@ void PlayerInGameCandy::showPlayerExcept(vector<int> exceptedIndex)
         if (exceptedIndex.end() == find(exceptedIndex.begin(), exceptedIndex.end(), i))
         {
             cout << numbering + 1 << ". "
-                 << "Player " << players.at(i).getGameID() << endl;
+                 << "Player " << getNthPlayer(i).getGameID() << endl;
             numbering++;
         }
     }
@@ -177,14 +177,14 @@ void PlayerInGameCandy::swapDeckOfCurrentWith(int rawTargetIndex)
 {
     int index = correctedIndexCurrent(rawTargetIndex);
     PlayerCandy &playerSource = getPlayerWithTurn();
-    PlayerCandy &playerTarget = players.at(index);
+    PlayerCandy &playerTarget = getNthPlayer(index);
     playerSource.swapDeck(playerTarget);
 };
 
 void PlayerInGameCandy::swapCardOfPlayer(int sourceIndex, int targetIndex, bool firstLeft, bool secondLeft)
 {
-    PlayerCandy &playerSource = players.at(sourceIndex);
-    PlayerCandy &playerTarget = players.at(targetIndex);
+    PlayerCandy &playerSource = getNthPlayer(sourceIndex);
+    PlayerCandy &playerTarget = getNthPlayer(targetIndex);
     ColorCard firstRightCard = playerSource.ejectCard();
     ColorCard firstLeftCard = playerSource.ejectCard();
 
@@ -278,8 +278,8 @@ void PlayerInGameCandy::drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility)
     // cout << deckAbility << endl;
     for (int i = 0; i < getNumberOfPlayer(); i++)
     {
-        players.at(turns.at(i)).drawAbility(deckAbility);
-        players.at(turns.at(i)).test();
+        getPlayerAtTurn(i).drawAbility(deckAbility);
+        getPlayerAtTurn(i).test();
     }
 };
 
@@ -288,7 +288,7 @@ void PlayerInGameCandy::drawColorCardAll(DeckGame<ColorCard> &deckColor)
     // cout << "Drawing color card" << endl;
     for (int i = 0; i < getNumberOfPlayer(); i++)
     {
-        players.at(turns.at(i)).drawCard(deckColor, 2);
+        getPlayerAtTurn(i).drawCard(deckColor, 2);
         // cout << "Deck of " << turns.at(i) << "'th player" << endl;
         // players.at(turns.at(i)).printCard();
     }
@@ -298,20 +298,22 @@ void PlayerInGameCandy::drawColorCardAll(DeckGame<ColorCard> &deckColor)
 
 bool PlayerInGameCandy::disablePlayerAbility(int index)
 {
-    bool succesful = players.at(index).getAbilityAvailable();
-    players.at(index).disableAbility();
+    bool succesful = getNthPlayer(index).getAbilityAvailable();
+    getNthPlayer(index).disableAbility();
     return succesful;
 }
 
 bool PlayerInGameCandy::isAllAbilityDisable()
 {
-    int count=0;
-    for (int i = 0; i < getNumberOfPlayer(); i++){
-        if (!players.at(i).getAbilityAvailable()){
+    int count = 0;
+    for (int i = 0; i < getNumberOfPlayer(); i++)
+    {
+        if (!getNthPlayer(i).getAbilityAvailable())
+        {
             count++;
         }
     }
-    return count==6;
+    return count == 6;
 }
 
 bool PlayerInGameCandy::playerIndexInRange(int index)
@@ -319,17 +321,17 @@ bool PlayerInGameCandy::playerIndexInRange(int index)
     return index >= 0 && index < getNumberOfPlayer();
 }
 
-string PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
+PlayerCandy &PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
 {
     int indexOfHighest = 0;
     int numberOfPlayer = getNumberOfPlayer();
     for (int i = 1; i < numberOfPlayer; i++)
     {
-        if (players.at(i).higherCombinationWeight(players.at(indexOfHighest), tableCard))
+        if (getNthPlayer(i).higherCombinationWeight(getNthPlayer(i), tableCard))
         {
             indexOfHighest = i;
         }
     }
-    players.at(indexOfHighest) += reward;
-    return players.at(indexOfHighest).getUsername();
+    getNthPlayer(indexOfHighest) += reward;
+    return getNthPlayer(indexOfHighest);
 }

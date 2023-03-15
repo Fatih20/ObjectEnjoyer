@@ -147,5 +147,13 @@ public:
      * @return false
      */
     virtual bool usernameExist(string username, int gameID) = 0;
+
+    /**
+     * @brief Get the Player At Turn object
+     *
+     * @param turn
+     * @return T&
+     */
+    T &getPlayerAtTurn(int turn);
 };
 // Kurang retake deck dan re-roll

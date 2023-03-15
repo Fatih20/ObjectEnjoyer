@@ -85,7 +85,7 @@ int PlayerInGame<T>::getIndexOfCurrentTurn()
 template <typename T>
 T &PlayerInGame<T>::getPlayerWithTurn()
 {
-    return this->players.at(turns.at(currentTurn));
+    return getPlayerAtTurn(currentTurn);
 };
 
 template <typename T>
@@ -123,7 +123,7 @@ void PlayerInGame<T>::showPlayer()
 {
     for (int i = 0; i < this->players.size(); i++)
     {
-        cout << i + 1 << ". " << this->players.at(i) << endl;
+        cout << i + 1 << ". " << getNthPlayer(i) << endl;
     }
 };
 
@@ -135,6 +135,12 @@ void PlayerInGame<T>::remove(int index)
 
     PlayerCollection<T>::remove(index);
 }
+
+template <typename T>
+T &PlayerInGame<T>::getPlayerAtTurn(int turn)
+{
+    getNthPlayer(turns.at(i));
+};
 
 template class PlayerInGame<Player<ColorCard>>;
 template class PlayerInGame<PlayerCandy>;
