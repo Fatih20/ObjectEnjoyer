@@ -1,6 +1,7 @@
 #include "PlayerInGame.hpp"
 #include "Classes/PlayerInGameException/PlayerInGameException.hpp"
 #include "Classes/PlayerCandy/PlayerCandy.hpp"
+#include "Classes/PlayerCangkul/PlayerCangkul.hpp"
 #include <iostream>
 #include <algorithm>
 
@@ -181,3 +182,5 @@ void PlayerInGame<T>::remove(int index)
 
 template class PlayerInGame<Player<ColorCard>>;
 template class PlayerInGame<PlayerCandy>;
+template class PlayerInGame<PlayerCangkul>;
+

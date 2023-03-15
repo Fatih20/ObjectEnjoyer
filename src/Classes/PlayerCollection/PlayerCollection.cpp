@@ -1,6 +1,7 @@
 #include "PlayerCollection.hpp"
 #include "Classes/ColorCard/ColorCard.hpp"
 #include "Classes/PlayerCandy/PlayerCandy.hpp"
+#include "Classes/PlayerCangkul/PlayerCangkul.hpp"
 #include <iostream>
 
 using namespace std;
@@ -49,3 +50,4 @@ void PlayerCollection<T>::operator-=(int index)
 
 template class PlayerCollection<Player<ColorCard>>;
 template class PlayerCollection<PlayerCandy>;
+template class PlayerCollection<PlayerCangkul>;
