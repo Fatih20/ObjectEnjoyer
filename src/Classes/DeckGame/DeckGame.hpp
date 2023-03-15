@@ -1,11 +1,12 @@
 #include <vector>
-#include "Classes/Deck/Deck.hpp"
-#include "Classes/Card/Card.hpp"
+#include "../Deck/Deck.hpp"
+#include "../Card/Card.hpp"
 
 #ifndef _DECKGAME_HPP_
 #define _DECKGAME_HPP_
 
 // TODO : make this ABC
+// ^put on hold
 template <class T>
 class DeckGame : public Deck<T>
 {
@@ -30,11 +31,9 @@ public:
     DeckGame(const Deck<T> &other);
 
     /**
-     * @brief draw a card from this deck
+     * @brief get the combination value of this deck against deckplayer
      */
-    T drawCard();
-
-    int getCombinationValueWith(const Deck<T> &deckPlayer) const;
+    int getCombinationValueWith(const Deck<T> &deckPlayer) const; // NOTE: we use Deck as param to avoid circular dependency with DeckPlayer
 
 };
 

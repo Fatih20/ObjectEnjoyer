@@ -1,12 +1,10 @@
 #ifndef _DECKPLAYER_HPP_
 #define _DECKPLAYER_HPP_
-
-#include "Classes/Deck/Deck.hpp"
-#include "Classes/DeckGame/DeckGame.hpp"
-#include "Classes/Card/Card.hpp"
-#include "Classes/ColorCard/ColorCard.hpp"
-
-#include "Classes/DeckException/DeckException.hpp"
+#include "../Deck/Deck.hpp"
+#include "../DeckGame/DeckGame.hpp"
+#include "../Card/Card.hpp"
+#include "../ColorCard/ColorCard.hpp"
+#include "../DeckException/DeckException.hpp"
 
 template <class T>
 class DeckPlayer : public Deck<T>
@@ -45,13 +43,6 @@ public:
      *
      */
     void drawCard(DeckGame<T> &, int);
-
-    /**
-     * @brief Delete a card from the deck and then return it from this function
-     *
-     * @return T
-     */
-    T ejectCard();
 };
 
 #endif

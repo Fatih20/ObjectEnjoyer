@@ -12,13 +12,22 @@ PlayerInGame<T>::PlayerInGame() : PlayerInGame<T>(0){};
 template <typename T>
 PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection<T>(numberOfPlayer)
 {
-    vector<int> turns(numberOfPlayer);
+    vector<int> turnsCreated;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        turns[i] = i + 1;
+        turnsCreated.push_back(i);
     }
+    this->turns = turnsCreated;
     currentTurn = 0;
     roundComplete = false;
+};
+
+template <typename T>
+PlayerInGame<T>::PlayerInGame(const PlayerInGame &playerInGame) : PlayerCollection<T>(playerInGame)
+{
+    this->turns = playerInGame.turns;
+    this->currentTurn = playerInGame.currentTurn;
+    this->roundComplete = playerInGame.roundComplete;
 };
 
 // template <typename T>

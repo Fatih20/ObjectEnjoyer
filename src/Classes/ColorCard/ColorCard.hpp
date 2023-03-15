@@ -13,22 +13,27 @@ typedef enum
     RED
 } Color;
 
-class ColorCard : public Card<int>
-{
-protected:
-    Color color;
-    static const std::map<std::pair<int, Color>, int> cardWeight;
+class ColorCard: public Card<int> {
+    protected:  
+        Color color;
+        static const std::map<std::pair<int, Color>, int> cardWeight;
+        
+    public:
+        /**
+         * @brief Construct a new Color Card object with default value and color (0, GREEN)
+         * 
+         */
+        ColorCard();
 
-public:
-    /**
-     * @brief Construct a new Color Card object with given value and color
-     *
-     * @param value The face value of the card
-     * @param color The color of the card (GREEN, BLUE, YELLOW, RED)
-     */
-    ColorCard(int value, Color color);
-    // CCtor dan assignment operator tidak perlu karena tidak ada pointer
-    // Dtor tidak perlu karena hanya menyimpan data sederhana
+        /**
+         * @brief Construct a new Color Card object with given value and color
+         * 
+         * @param value The face value of the card
+         * @param color The color of the card (GREEN, BLUE, YELLOW, RED)
+         */
+        ColorCard(int value, Color color);
+        // CCtor dan assignment operator tidak perlu karena tidak ada pointer
+        // Dtor tidak perlu karena hanya menyimpan data sederhana
 
     /**
      * @brief Get the color of the card
@@ -36,11 +41,19 @@ public:
      */
     Color getColor();
 
-    /**
-     * @brief Get the card weight based on the value and color relative to other color cards
-     *
-     */
-    virtual int value() const;
+    std::string getColorAsString() const;
+
+        /**
+         * @brief Get the Face Value of the card
+         * 
+         */
+        int getNumber();
+
+        /**
+         * @brief Get the card weight based on the value and color relative to other color cards
+         * 
+         */
+        virtual int value();
 
     /**
      * @brief Set the color of the card
@@ -56,6 +69,8 @@ public:
      */
     void setValue(int value, Color color);
 
+    static std::string colorAsString(Color col);
+
     /**
      * @brief Assign the value and color of another color card to this color card
      *
@@ -64,11 +79,17 @@ public:
 
     /**
      * @brief Compare if two color cards have the same value and color
-     *
+     * 
      */
     bool operator==(ColorCard other);
 
+    friend bool operator<(ColorCard a, ColorCard b);
+
+    friend bool operator>(ColorCard a, ColorCard b);
+    
     friend std::ostream &operator<<(std::ostream &os, const ColorCard &card);
+
+    void print();
 };
 
 /**

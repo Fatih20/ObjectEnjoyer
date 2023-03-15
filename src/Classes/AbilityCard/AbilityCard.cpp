@@ -1,26 +1,37 @@
 #include "AbilityCard.hpp"
 
-AbilityCard::AbilityCard(int ability) : Card<int>(ability) {}
+BlankAbility AbilityCard::blankAbility = *(new BlankAbility());
 
-Abi AbilityCard::getAbility() const
+AbilityCard::AbilityCard() : Card<Ability &>(this->blankAbility)
 {
-    return Abi(value());
+}
+
+AbilityCard::AbilityCard(Ability &ability) : Card<Ability &>(ability)
+{
+}
+
+AbilityCard::AbilityCard(const AbilityCard &aC) : Card<Ability &>(aC)
+{
+}
+
+std::string AbilityCard::getName() const
+{
+    return value().getName();
 }
 
 std::string AbilityCard::getDescription() const
 {
-    return Ability(this->getAbility()).getDescription();
+    return value().getDescription();
 }
 
-void AbilityCard::activateAbility()
+void AbilityCard::activateAbility(GameCandy &gC)
 {
-    Ability temp(this->getAbility());
-    temp.activateAbility();
+    value().activateAbility(gC);
 }
 
-int AbilityCard::value() const
+Ability &AbilityCard::value() const
 {
-    return this->Card::val;
+    return val;
 }
 
 std::ostream &operator<<(std::ostream &os, const AbilityCard &card)

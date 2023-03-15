@@ -1,5 +1,9 @@
+#ifndef _PLAYER_IN_GAME_CANDY_HPP
+#define _PLAYER_IN_GAME_CANDY_HPP
+
 #include "../PlayerInGame/PlayerInGame.hpp"
-#include "Classes/PlayerCandy/PlayerCandy.hpp"
+#include "../PlayerCandy/PlayerCandy.hpp"
+#include "../AbilityCard/AbilityCard.hpp"
 
 #include <iostream>
 
@@ -7,15 +11,35 @@ using namespace std;
 
 class PlayerInGameCandy : public PlayerInGame<PlayerCandy>
 {
-private:
 public:
+    /**
+     * @brief Construct a new Player In Game Candy object
+     *
+     */
+    PlayerInGameCandy();
     /**
      * @brief Construct a new Player In Game Candy object
      *
      * @param numberOfPlayer
      * @param currentTurn starts at 0
      */
-    PlayerInGameCandy(DeckGame<ColorCard> deckGame, int numberOfPlayer);
+    PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer);
+
+    /**
+     * @brief Construct a new Player In Game Candy object.
+     *
+     * @param deckGame
+     * @param deckAbility
+     * @param numberOfPlayer
+     */
+    PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer);
+
+    /**
+     * @brief Construct a new Player In Game Candy object
+     *
+     * @param playerInGameCandy
+     */
+    PlayerInGameCandy(const PlayerInGameCandy &playerInGameCandy);
 
     /**
      * @brief Print the leaderboard of players in the collection
@@ -38,6 +62,8 @@ public:
     void createAndAddPlayer(int gameID);
 
     bool usernameExist(string username);
+
+    bool usernameExist(string username, int gameID);
 
     /**
      * @brief Show player except for the current player
@@ -64,6 +90,13 @@ public:
      * @param deckGame
      */
     void redrawCardForCurrentPlayer(DeckGame<ColorCard> &deckGame);
+
+    /**
+     * @brief Redraw the cards for all player
+     *
+     * @param deckGame
+     */
+    void redrawAll(DeckGame<ColorCard> &deckGame);
 
     /**
      * @brief Swap the deck of the current player with another player given by index
@@ -96,4 +129,29 @@ public:
      * @return int
      */
     int correctedIndexCustom(int rawIndex, vector<int> exceptedIndexes);
+
+    /**
+     * @brief Get the winner of the game, if there's any
+     *
+     * @param threshold
+     * @return std::vector<PlayerCandy>
+     */
+    string getWinner();
+
+    /**
+     * @brief Return whether there's a winner
+     *
+     * @return true
+     * @return false
+     */
+    bool winnerExist();
+
+    /**
+     * @brief Give reward to the highest combination
+     *
+     * @param reward
+     */
+    void rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard);
 };
+
+#endif

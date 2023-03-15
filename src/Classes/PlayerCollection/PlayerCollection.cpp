@@ -5,9 +5,18 @@
 
 using namespace std;
 template <typename T>
+PlayerCollection<T>::PlayerCollection() : PlayerCollection<T>(5){};
+
+template <typename T>
 PlayerCollection<T>::PlayerCollection(int numberOfPlayer)
 {
     vector<T> players(0);
+};
+
+template <typename T>
+PlayerCollection<T>::PlayerCollection(const PlayerCollection &pC)
+{
+    this->players = pC.players;
 };
 
 template <typename T>

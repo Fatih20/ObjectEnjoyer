@@ -7,13 +7,19 @@
 #include <algorithm>
 #include <random>
 #include <time.h>
-#include "Classes/Card/Card.hpp"
-#include "Classes/InventoryHolder/InventoryHolder.hpp"
+#include "../Card/Card.hpp"
+#include "../InventoryHolder/InventoryHolder.hpp"
 
 template <class T>
 class Deck : InventoryHolder<T>
 {
 protected:
+    /**
+     * Deck holds a vector of cards
+     *  How we interact with deck should follow these rules :
+     *      - index with higher values should hold Card that is being on topmost of the Deck stack
+     *      - Game should only be able to add Card to and/or draw from the topmost of the Deck stack
+     */
     std::vector<T> vec;
 
 public:
@@ -42,16 +48,6 @@ public:
     ~Deck();
 
     /**
-     * @brief swap contents with another deck
-     */
-    void swap(Deck &other);
-
-    /**
-     * @brief shuffle deck
-     */
-    void shuffle();
-
-    /**
      * @brief set a vector of cards as the content of Deck
      */
     void setDeck(std::vector<T> vec);
@@ -69,16 +65,9 @@ public:
     int getNumberOfCards();
 
     /**
-     * @brief swap the content of two separate Decks
+     * @brief get the sum of the face values of all Cards held in this Deck
      */
-    static void swapDeck(Deck &deck1, Deck &deck2);
-
-    /**
-     * @brief print
-     */
-    template <typename Y>
-    friend std::ostream &operator<<(std::ostream &os, const Deck<Y> &deck);
-
+    int getValueSum();
 
     /**
      * @brief add a card into the deck
@@ -91,9 +80,80 @@ public:
     void operator+=(const T &);
 
     /**
-     * @brief sort deck by value
+     * @brief shorthand for addCard()
      */
-     void sort();
+    Deck<T> &operator<<(const T &card);
+
+    /**
+     * @brief Delete a card from the deck and then return it from this function
+     *
+     * @return T
+     */
+    T ejectCard();
+
+    /**
+     * @brief shorthand for ejectCard()
+     *
+     * return is void as we should not chain ejectCard()
+     */
+    void operator>>(Deck<T> &deck);
+
+    /**
+     * @brief sort deck by value in an ascending manner
+     */
+    void sort();
+
+    /**
+     * @brief sort deck by value in the given order
+     */
+    void sort(bool descending);
+
+    /**
+     * @brief swap contents with another deck
+     */
+    void swap(Deck &other);
+
+    /**
+     * @brief swap the content of two separate Decks
+     */
+    static void swapDeck(Deck &deck1, Deck &deck2);
+
+    /**
+     * @brief shuffle deck
+     */
+    void shuffle();
+
+    /**
+     * @brief compare Card Value Sum (not necessarily true sum)
+     * @return true if left operand has smaller sum
+     * @return false if left operand has larger sum
+     */
+    bool operator<(const Deck<T> &other);
+
+    /**
+     * @brief compare Card Value Sum (not necessarily true sum)
+     * @return true if both operand has the same sum
+     * @return false if neither operand has the same sum
+     */
+    bool operator==(const Deck<T> &other);
+
+    /**
+     * @brief compare Card Value Sum (not necessarily true sum)
+     * @return true if left operand has larger sum
+     * @return false if left operand has smaller sum
+     */
+    bool operator>(const Deck<T> &other);
+
+    /**
+     * @brief add two Deck and return a new deck which consists of cards held by both Deck
+     */
+    Deck<T> &operator+(Deck<T> &other);
+
+    /**
+     * @brief print
+     */
+    template <typename Tc>
+    friend std::ostream &operator<<(std::ostream &os, const Deck<Tc> &deck);
 };
 
 #endif
