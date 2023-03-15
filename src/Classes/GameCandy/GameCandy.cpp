@@ -320,25 +320,6 @@ vector<AbilityCard> GameCandy::initializeAbilityDeck()
     return abilityCards;
 }
 
-pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> GameCandy::newDeck()
-{
-    cout << "How do you want to generate Deck?\n";
-    cout << "1. Random\n";
-    cout << "2. From File\n";
-    int option = inputOption(2);
-    if (option == 1)
-    {
-        DeckGame<ColorCard> deck(initilizeDeckGame());
-        DeckGame<AbilityCard> abilityCard(initializeAbilityDeck());
-
-        return make_pair(deck, abilityCard);
-    }
-    else
-    {
-        // file reader
-    }
-}
-
 void GameCandy::newDeck1()
 {
     cout << "How do you want to generate Deck?\n";
@@ -369,6 +350,7 @@ void GameCandy::newDeck1()
                 FileReader<ColorCard, AbilityCard> f(path);
                 f.read();
                 this->deckGame = f.getDeckOrder();
+                this->deckAbility = f.getAbilityCardOrder();
                 validPath = true;
             }
             catch (FileNotFoundExp err)

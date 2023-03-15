@@ -211,43 +211,6 @@ bool Player<T>::operator==(const Player<T> &otherPlayer)
 };
 
 template <typename T>
-int Player<T>::compareCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
-{
-    int ourScore = deckGame.getCombinationValueWith(this->handCards);
-    int theirScore = deckGame.getCombinationValueWith(otherPlayer.handCards);
-    if (ourScore > theirScore)
-    {
-        return 1;
-    }
-    else if (ourScore == theirScore)
-    {
-        return 0;
-    }
-    else
-    {
-        return -1;
-    }
-};
-
-template <typename T>
-bool Player<T>::higherCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
-{
-    return compareCombinationWeight(otherPlayer, deckGame) == 1;
-};
-
-template <typename T>
-bool Player<T>::equalCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
-{
-    return compareCombinationWeight(otherPlayer, deckGame) == 0;
-};
-
-template <typename T>
-bool Player<T>::lowerCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
-{
-    return compareCombinationWeight(otherPlayer, deckGame) == -1;
-};
-
-template <typename T>
 void Player<T>::redrawCard(DeckGame<T> &deckGame, int newNumberOfCards)
 {
     int currentNumberOfCards = handCards.getNumberOfCards();
