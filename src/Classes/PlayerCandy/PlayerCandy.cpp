@@ -2,11 +2,15 @@
 #include "../PlayerException/PlayerException.hpp"
 #include "../Combination/Combination.hpp"
 
-PlayerCandy::PlayerCandy(int id) : Player<ColorCard>(id){};
+PlayerCandy::PlayerCandy(int id) : Player<ColorCard>(id)
+{
+    abilityUsed = false;
+};
 
 PlayerCandy::PlayerCandy(int id, DeckGame<AbilityCard> &deckGame) : Player<ColorCard>(id)
 {
     drawAbility(deckGame);
+    abilityUsed = false;
     // this->abilityHand = deckGame.ejectCard();
 };
 
@@ -16,7 +20,10 @@ PlayerCandy::PlayerCandy(const PlayerCandy &p) : Player<ColorCard>(p)
     abilityHand = p.abilityHand;
 }
 
-PlayerCandy::PlayerCandy() : Player<ColorCard>(){};
+PlayerCandy::PlayerCandy() : Player<ColorCard>()
+{
+    abilityUsed = false;
+};
 
 void PlayerCandy::disableAbility()
 {
