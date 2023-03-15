@@ -33,6 +33,7 @@ Player<T>::Player(const Player<T> &other)
     this->gameID = other.gameID;
     this->username = other.getUsername();
     this->score = other.getScore();
+    this->handCards = other.handCards;
 };
 
 template <typename T>
@@ -89,8 +90,9 @@ string Player<T>::getUsername() const
 template <typename T>
 Player<T> &Player<T>::operator=(const Player<T> &givenPlayer)
 {
-    username = givenPlayer.getUsername();
-    gameID = givenPlayer.gameID;
+    this->username = givenPlayer.getUsername();
+    this->gameID = givenPlayer.gameID;
+    this->handCards = givenPlayer.handCards;
     return *this;
 };
 

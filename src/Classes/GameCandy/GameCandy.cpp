@@ -5,9 +5,21 @@
 
 using namespace std;
 
-vector<string> commandOption{"next", "double", "half","gamestat","help","mycard",
-                             "re-roll", "quadruple", "quarter",
-                             "reverse", "swap", "switch", "abilityless",};
+vector<string> commandOption{
+    "next",
+    "double",
+    "half",
+    "gamestat",
+    "help",
+    "mycard",
+    "re-roll",
+    "quadruple",
+    "quarter",
+    "reverse",
+    "swap",
+    "switch",
+    "abilityless",
+};
 
 GameCandy::GameCandy()
 {
@@ -35,14 +47,6 @@ GameCandy::GameCandy()
     // cout << deckGame;
     round = 1;
     giftPoint = 64;
-    cout << "First player's deck " << endl;
-    players.getPlayerWithTurn().printCard();
-    cout << players.getPlayerWithTurn().getAbilityName() << endl;
-
-    cout << "Second player's deck " << endl;
-    players.nextTurn();
-    players.getPlayerWithTurn().printCard();
-    cout << players.getPlayerWithTurn().getAbilityName() << endl;
 }
 
 void GameCandy::start()
@@ -64,8 +68,11 @@ void GameCandy::start()
                      << "\033[0m" << endl;
                 cmd = inputCommand();
                 playerAction(cmd);
-                while(cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse"){
-                    cout << "\033[1m\033[37m" << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn" << "\033[0m" << endl;
+                while (cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse")
+                {
+                    cout << "\033[1m\033[37m"
+                         << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn"
+                         << "\033[0m" << endl;
                     cmd = inputCommand();
                     playerAction(cmd);
                 }
@@ -121,7 +128,8 @@ void GameCandy::endOfGame()
 void GameCandy::playerAction(string cmd)
 {
     transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
-    if (cmd == "next"){
+    if (cmd == "next")
+    {
         cout << "Giliran dilanjut ke pemain selanjutnya\n";
     }
     else if (cmd == "double")
@@ -137,10 +145,14 @@ void GameCandy::playerAction(string cmd)
     else if (cmd == "gamestat")
     {
         displayGameStat();
-    } else if (cmd == "mycard"){
+    }
+    else if (cmd == "mycard")
+    {
         // players.getPlayerWithTurn().printColorCard();
         displayPlayerCard();
-    } else if (cmd == "help"){
+    }
+    else if (cmd == "help")
+    {
         displayHelp();
     }
     cout << endl
@@ -534,34 +546,40 @@ void GameCandy::displayGameStat()
     printTableCard();
 }
 
-void GameCandy::displayPlayerCard(){
-    //players.getPlayerWithTurn().printColorCard();
-    // cout  << "\033[1m\033[37m" << "Your Hand Card: " << "\033[0m" << endl;
-    // cout << "|  ";
-    // vector<ColorCard> handVec = players.getPlayerWithTurn().getHandCards().getDeck();
-    // for (auto i = handVec.begin(); i != handVec.end(); ++i){
-    //     if((*i).getColor() == GREEN){
-    //         cout << "\033[1m\033[32m";
-    //     }
-    //     else if((*i).getColor() == RED){
-    //         cout << "\033[1m\033[31m";
-    //     }
-    //     else if((*i).getColor() == YELLOW){
-    //         cout << "\033[1m\033[33m";
-    //     }
-    //     else if((*i).getColor() == BLUE){
-    //         cout << "\033[1m\033[34m";
-    //     }
-    //     cout << (*i).getColorAsString() << " " << (*i).getNumber() << "\033[0m" << "  |  ";
-    // }
-    // cout << endl;
+void GameCandy::displayPlayerCard()
+{
+    // players.getPlayerWithTurn().printColorCard();
+    //  cout  << "\033[1m\033[37m" << "Your Hand Card: " << "\033[0m" << endl;
+    //  cout << "|  ";
+    //  vector<ColorCard> handVec = players.getPlayerWithTurn().getHandCards().getDeck();
+    //  for (auto i = handVec.begin(); i != handVec.end(); ++i){
+    //      if((*i).getColor() == GREEN){
+    //          cout << "\033[1m\033[32m";
+    //      }
+    //      else if((*i).getColor() == RED){
+    //          cout << "\033[1m\033[31m";
+    //      }
+    //      else if((*i).getColor() == YELLOW){
+    //          cout << "\033[1m\033[33m";
+    //      }
+    //      else if((*i).getColor() == BLUE){
+    //          cout << "\033[1m\033[34m";
+    //      }
+    //      cout << (*i).getColorAsString() << " " << (*i).getNumber() << "\033[0m" << "  |  ";
+    //  }
+    //  cout << endl;
 }
 
-void GameCandy::displayHelp(){
-    cout << "\033[1m\033[35m" << "---------------------------------" << endl;
+void GameCandy::displayHelp()
+{
+    cout << "\033[1m\033[35m"
+         << "---------------------------------" << endl;
     cout << "              HELP" << endl;
-    cout << "---------------------------------" << "\033[0m" << endl;
-    cout << "\033[1m\033[37m" << "Command: " << "\033[0m" << endl;
+    cout << "---------------------------------"
+         << "\033[0m" << endl;
+    cout << "\033[1m\033[37m"
+         << "Command: "
+         << "\033[0m" << endl;
     cout << "- \"NEXT\":  Do nothing this round. Turn will be handed over to the next player.\n";
     cout << "- \"REROLL\":  Discard your hand cards then takes two new cards from main deck. Only available when you have REROLL Ability Card.\n";
     cout << "- \"DOUBLE\":  Double gift points.\n";
