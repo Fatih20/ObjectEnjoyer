@@ -230,7 +230,7 @@ void Player<T>::redrawCard(DeckGame<T> &deckGame)
     {
         deckGame += handCards.ejectCard();
     }
-    drawCard(deckGame, handCards.getNumberOfCards());
+    drawCard(deckGame, numberOfCards);
 };
 
 template <typename T>
