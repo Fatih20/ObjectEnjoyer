@@ -287,6 +287,8 @@ void PlayerInGameCandy::drawColorCardAll(DeckGame<ColorCard> &deckColor)
         cout << "Deck of " << turns.at(i) << "'th player" << endl;
         players.at(turns.at(i)).printCard();
     }
+    cout << "Outside the loop" << endl;
+    players.at(turns.at(1)).printCard();
 };
 
 bool PlayerInGameCandy::disablePlayerAbility(int index)
