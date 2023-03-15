@@ -8,7 +8,6 @@
 #include <algorithm>
 
 using namespace std;
-
 template <typename T>
 Player<T>::Player()
 {
@@ -155,7 +154,7 @@ void Player<T>::swapDeck(Player<T> &givenPlayer)
 };
 
 template <typename T>
-void Player<T>::printColorCard()
+void Player<T>::printCard()
 {
     cout << handCards;
 };
@@ -262,6 +261,12 @@ void Player<T>::redrawCard(DeckGame<T> &deckGame)
 {
 
     drawCard(deckGame, handCards.getNumberOfCards());
+};
+
+template <typename T>
+T Player<T>::ejectCard()
+{
+    return handCards.ejectCard();
 };
 
 template <typename Y>

@@ -19,3 +19,8 @@ AbilityNotOwned::AbilityNotOwned()
 {
     message = "You don't have that ability!";
 }
+
+AbilityNotAvailable::AbilityNotAvailable()
+{
+    message = "You can't use ability!";
+}

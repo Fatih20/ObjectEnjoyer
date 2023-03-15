@@ -13,16 +13,36 @@ GameCandy::GameCandy()
 {
     splashScreen();
 
+    // pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> deck = newDeck();
+    // this->deckGame = deck.first;
+    // this->deckAbility = deck.second;
+
     newDeck1();
 
-    PlayerInGameCandy players(deckGame, 7);
-    this->players = players;
+    cout << this->deckAbility << endl;
 
     DeckGame<ColorCard> tableCard;
     this->tableCard = tableCard;
+    // table card empty
 
+    PlayerInGameCandy pIGC(this->deckGame, this->deckAbility, 7);
+    this->players = pIGC;
+    cout << "Deck Ability after drawing" << endl;
+    cout << this->deckAbility << endl;
+    cout << "Deck Color after drawing" << endl;
+    cout << this->deckGame << endl;
+
+    // cout << deckGame;
     round = 1;
     giftPoint = 64;
+    cout << "First player's deck " << endl;
+    players.getPlayerWithTurn().printCard();
+    cout << players.getPlayerWithTurn().getAbilityName() << endl;
+
+    cout << "Second player's deck " << endl;
+    players.nextTurn();
+    players.getPlayerWithTurn().printCard();
+    cout << players.getPlayerWithTurn().getAbilityName() << endl;
 }
 
 void GameCandy::start()
@@ -30,19 +50,24 @@ void GameCandy::start()
     string cmd;
     while (!isWinning())
     {
-        round=1;
-        while (round != 7){
-            cout << "\033[1m\033[32m" << "\nRound " << round << " begin \n\n" << "\033[0m";
+        round = 1;
+        while (round != 7)
+        {
+            cout << "\033[1m\033[32m"
+                 << "\nRound " << round << " begin \n\n"
+                 << "\033[0m";
             roundAction();
             while (!isRoundOver())
             {
-                cout << "\033[1m\033[37m" << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn" << "\033[0m" << endl;
+                cout << "\033[1m\033[37m"
+                     << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn"
+                     << "\033[0m" << endl;
                 cmd = inputCommand();
                 playerAction(cmd);
                 while(cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse"){
                     cout << "\033[1m\033[37m" << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn" << "\033[0m" << endl;
                     cmd = inputCommand();
-                    playerAction(cmd);                    
+                    playerAction(cmd);
                 }
                 players.nextTurn();
             }
@@ -50,11 +75,11 @@ void GameCandy::start()
             players.resetRound();
         }
         endOfGame();
-        cout << "\033[1m\033[32m" << "\nNew game starting..\n\n" << "\033[0m";
+        cout << "\033[1m\033[32m"
+             << "\nNew game starting..\n\n"
+             << "\033[0m";
         newDeck1();
     }
-
-    
 }
 
 bool GameCandy::isWinning()
@@ -70,40 +95,52 @@ bool GameCandy::isRoundOver()
 void GameCandy::newGame()
 {
     newDeck1();
-    
 }
 
 void GameCandy::endOfGame()
 {
-    players.rewardHighestCombination(giftPoint,tableCard);
+    players.rewardHighestCombination(giftPoint, tableCard);
     cout << "\nRonde 6 selesai.\n";
-    cout << "Pemenang babak ini adalah \n" << endl;
+    cout << "Pemenang babak ini adalah \n"
+         << endl;
     cout << "mendapatkan " << giftPoint << " poin!\n";
     players.showLeaderboard();
-    if (isWinning()){
+    if (isWinning())
+    {
         giftPoint = 64;
         cout << "\nPermainan berakhir.\n";
         cout << "Permainan dimenangkan oleh " << endl;
-    } else {
+    }
+    else
+    {
         cout << "\nBelum terdapat pemenang permainan.\n";
         cout << "Permainan dilanjutkan.\n";
     }
 }
 
-
-
 void GameCandy::playerAction(string cmd)
 {
+<<<<<<< HEAD
     transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
     if (cmd == "next"){
+=======
+    if (cmd == "next")
+    {
+>>>>>>> fbfa069e49ea5f93cf21a7b6683513ad48d75f10
         cout << "Giliran dilanjut ke pemain selanjutnya\n";
-    } else if (cmd == "double"){
-        changeGiftPoinMessage(cmd,2);
+    }
+    else if (cmd == "double")
+    {
+        changeGiftPoinMessage(cmd, 2);
         doublePoint();
-    } else if (cmd == "half"){
-        changeGiftPoinMessage(cmd,0.5);
+    }
+    else if (cmd == "half")
+    {
+        changeGiftPoinMessage(cmd, 0.5);
         halvesPoint();
-    } else if (cmd == "gamestat"){
+    }
+    else if (cmd == "gamestat")
+    {
         displayGameStat();
     } else if (cmd == "mycard"){
         players.getPlayerWithTurn().printColorCard();
@@ -111,7 +148,10 @@ void GameCandy::playerAction(string cmd)
     } else if (cmd == "help"){
         displayHelp();
     }
-    cout << endl << "\033[1m\033[35m" << "---------------------------------" << "\033[0m" << endl;
+    cout << endl
+         << "\033[1m\033[35m"
+         << "---------------------------------"
+         << "\033[0m" << endl;
 }
 
 string GameCandy::inputCommand()
@@ -167,7 +207,8 @@ void GameCandy::splashScreen()
 
 void GameCandy::multiplyGiftPoint(double multiplier)
 {
-    if (giftPoint>1){
+    if (giftPoint > 1)
+    {
         giftPoint *= multiplier;
     }
 }
@@ -227,25 +268,63 @@ vector<ColorCard> GameCandy::initilizeDeckGame()
     return vec;
 }
 
-// vector<AbilityCard> GameCandy::initilizeAbilityDeck()
-// {
+// vector<AbilityCard> &GameCandy::initializeAbilityDeck(vector<AbilityCard> &abilityDeckInitial)
+vector<AbilityCard> GameCandy::initializeAbilityDeck()
+{
+    cout << "Entered initialize ability deck" << endl;
 
-// }
+    shared_ptr<Quadruple> quad = make_shared<Quadruple>();
+    shared_ptr<Quarter> quarter = make_shared<Quarter>();
+    shared_ptr<Reroll> quad1 = make_shared<Reroll>();
+    shared_ptr<Reverse> quarter1 = make_shared<Reverse>();
+    shared_ptr<Swap> quad2 = make_shared<Swap>();
+    shared_ptr<Switch> quarter2 = make_shared<Switch>();
+    shared_ptr<Abilityless> quad3 = make_shared<Abilityless>();
 
-// pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> GameCandy::newDeck(){
-//     cout << "How do you want to generate Deck?\n";
-//     cout << "1. Random\n";
-//     cout << "2. From File\n";
-//     int option = inputOption(2);
-//     if(option==1){
-//         DeckGame<ColorCard> deck(initilizeDeckGame());
-//         DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
+    AbilityCard ac1(quad);
+    AbilityCard ac2(quad2);
+    AbilityCard ac3(quad3);
+    AbilityCard ac4(quarter);
+    AbilityCard ac5(quarter1);
+    AbilityCard ac6(quarter2);
+    AbilityCard ac7(quad1);
 
-//         return make_pair(deck,abilityCard);
-//     } else {
-//         // file reader
-//     }
-// }
+    cout << "Finished ability card initialization" << endl;
+    vector<AbilityCard>
+        abilityCards{ac1, ac2, ac3, ac4, ac5, ac6, ac7};
+
+    // cout << abilityCards.at(0).getName() << endl;
+    // cout << abilityCards.at(1).getName() << endl;
+    // cout << abilityCards.at(2).getName() << endl;
+    // cout << abilityCards.at(3).getName() << endl;
+    // cout << abilityCards.at(4).getName() << endl;
+    // cout << abilityCards.at(5).getName() << endl;
+    // cout << abilityCards.at(6).getName() << endl;
+
+    // cout << "Size of ability cards " << abilityCards.size() << endl;
+    cout << "Exited initialize ability deck" << endl;
+
+    return abilityCards;
+}
+
+pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> GameCandy::newDeck()
+{
+    cout << "How do you want to generate Deck?\n";
+    cout << "1. Random\n";
+    cout << "2. From File\n";
+    int option = inputOption(2);
+    if (option == 1)
+    {
+        DeckGame<ColorCard> deck(initilizeDeckGame());
+        DeckGame<AbilityCard> abilityCard(initializeAbilityDeck());
+
+        return make_pair(deck, abilityCard);
+    }
+    else
+    {
+        // file reader
+    }
+}
 
 void GameCandy::newDeck1()
 {
@@ -253,35 +332,48 @@ void GameCandy::newDeck1()
     cout << "1. Random\n";
     cout << "2. From File\n";
     int option = inputOption(2);
-    if(option==1){
+    if (option == 1)
+    {
         DeckGame<ColorCard> deck(initilizeDeckGame());
+        DeckGame<AbilityCard> deckAbility(initializeAbilityDeck());
         this->deckGame = deck;
-        deckGame.shuffle();
+        this->deckAbility = deckAbility;
+        this->deckGame.shuffle();
+        this->deckAbility.shuffle();
         // newDeck1();
-    // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
-    } else {
+        // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
+    }
+    else
+    {
         string path;
         bool validPath = false;
-        while(!validPath){
+        while (!validPath)
+        {
             cout << "Input File Path: ";
             cin >> path;
-            try{
+            try
+            {
                 FileReader<ColorCard> f(path);
                 f.read();
                 this->deckGame = f.getDeckOrder();
                 validPath = true;
-            } catch(FileNotFoundExp err){
+            }
+            catch (FileNotFoundExp err)
+            {
                 cout << err.what();
-            } catch(FormatExp err){
+            }
+            catch (FormatExp err)
+            {
                 cout << err.what();
-            } catch(NumberExp err){
+            }
+            catch (NumberExp err)
+            {
                 cout << err.what();
             }
         }
     }
     DeckGame<ColorCard> tablecard;
     this->tableCard = tablecard;
-    
 }
 
 void GameCandy::roundAction()
@@ -293,24 +385,33 @@ void GameCandy::roundAction()
     printTableCard();
 }
 
-void GameCandy::printTableCard(){
-    cout  << "\033[1m\033[37m" << "Table Card: " << "\033[0m" << endl;
+void GameCandy::printTableCard()
+{
+    cout << "\033[1m\033[37m"
+         << "Table Card: "
+         << "\033[0m" << endl;
     cout << "|  ";
     vector<ColorCard> tableVec = tableCard.getDeck();
-    for (auto i = tableVec.begin(); i != tableVec.end(); ++i){
-        if((*i).getColor() == GREEN){
+    for (auto i = tableVec.begin(); i != tableVec.end(); ++i)
+    {
+        if ((*i).getColor() == GREEN)
+        {
             cout << "\033[1m\033[32m";
         }
-        else if((*i).getColor() == RED){
+        else if ((*i).getColor() == RED)
+        {
             cout << "\033[1m\033[31m";
         }
-        else if((*i).getColor() == YELLOW){
+        else if ((*i).getColor() == YELLOW)
+        {
             cout << "\033[1m\033[33m";
         }
-        else if((*i).getColor() == BLUE){
+        else if ((*i).getColor() == BLUE)
+        {
             cout << "\033[1m\033[34m";
         }
-        cout << (*i).getColorAsString() << " " << (*i).getNumber() << "\033[0m" << "  |  ";
+        cout << (*i).getColorAsString() << " " << (*i).getNumber() << "\033[0m"
+             << "  |  ";
     }
     cout << endl;
 }
@@ -320,36 +421,124 @@ void GameCandy::nextRound()
     round++;
 }
 
-void GameCandy::changeGiftPoinMessage(string cmd,double multiplier){
-    cout << endl << players.getPlayerWithTurn().getUsername() << " melakukan " << cmd << "!\n";
-    if (giftPoint*multiplier < 1){
-        cout << "Sayangnya poin hadiah sudah bernilai 1.\n";
-        cout << "Poin hadiah tidak berubah.. Giliran dilanjut!\n\n";
-    } else {
-        string status = multiplier<1? "turun":"naik";
-        cout << "Poin hadiah " << status << " dari " << giftPoint << " menjadi " << giftPoint*multiplier << "!\n";
+void GameCandy::rerollAbility()
+{
+    players.redrawCardForCurrentPlayer(this->deckGame);
+    cout << "Melakukan pembuangan kartu yang sedang dimiliki" << endl;
+    cout << "Kamu mendapatkan 2 kartu baru yaitu: " << endl;
+    players.getPlayerWithTurn().printCard();
+}
+
+void GameCandy::abilitylessAbility()
+{
+    cout << "Silahkan pilih pemain yang kartu abilitynya ingin dimatikan: " << endl;
+    players.showPlayerExceptCurrent();
+    int rawIndex;
+    cin >> rawIndex;
+    int properIndex = players.correctedIndexCurrent(rawIndex);
+    bool disableUseful = players.disablePlayerAbility(properIndex);
+    if (disableUseful)
+    {
+        // Print the proper statement
+    }
+    else
+    {
+        // Print the proper statement
     }
 }
 
-void GameCandy::displayGameStat(){
-    cout << "\033[1m\033[35m" << "---------------------------------" << endl;
+void GameCandy::reverseAbility()
+{
+    players.reverseTurnInitial();
+}
+
+void GameCandy::swapAbility()
+{
+    // Except the current player
+    vector<int> exceptedIndex{players.getCurrentTurn()};
+    players.showPlayerExcept(exceptedIndex);
+    // Get the index of the first player to be switched
+    int rawFirstPlayerIndex;
+
+    cin >> rawFirstPlayerIndex;
+    // Bawah ini perlu exception handling
+    int properFirstIndex = players.correctedIndexCustom(rawFirstPlayerIndex, exceptedIndex);
+
+    // Except the index of the first player in the next choice
+    exceptedIndex.push_back(properFirstIndex);
+
+    // Get the index of the second player to be switched
+    int rawSecondPlayerIndex;
+    cin >> rawSecondPlayerIndex;
+
+    // Bawah ini perlu exception handling
+    int properSecondIndex = players.correctedIndexCustom(rawSecondPlayerIndex, exceptedIndex);
+
+    bool firstIsLeft;
+    bool secondIsLeft;
+    // Konvensi, ke kanan makin atas di deckPlayer
+    // Minta input kiri / kanan
+}
+
+void GameCandy::switchAbility()
+{
+    players.showPlayerExceptCurrent();
+    int rawIndex;
+    cin >> rawIndex;
+    players.swapDeckOfCurrentWith(rawIndex);
+}
+void GameCandy::changeGiftPoinMessage(string cmd, double multiplier)
+{
+    cout << endl
+         << players.getPlayerWithTurn().getUsername() << " melakukan " << cmd << "!\n";
+    if (giftPoint * multiplier < 1)
+    {
+        cout << "Sayangnya poin hadiah sudah bernilai 1.\n";
+        cout << "Poin hadiah tidak berubah.. Giliran dilanjut!\n\n";
+    }
+    else
+    {
+        string status = multiplier < 1 ? "turun" : "naik";
+        cout << "Poin hadiah " << status << " dari " << giftPoint << " menjadi " << giftPoint * multiplier << "!\n";
+    }
+}
+
+void GameCandy::displayGameStat()
+{
+    cout << "\033[1m\033[35m"
+         << "---------------------------------" << endl;
     cout << "           GAME STATUS" << endl;
-    cout << "---------------------------------" << "\033[0m" << endl;
-    cout << "\033[1m\033[37m" << "Gift Point: " << "\033[1m\033[33m" << this->giftPoint << "\033[0m" << endl;
-    cout << "\033[1m\033[37m" << "Turns: " << endl;
+    cout << "---------------------------------"
+         << "\033[0m" << endl;
+    cout << "\033[1m\033[37m"
+         << "Gift Point: "
+         << "\033[1m\033[33m" << this->giftPoint << "\033[0m" << endl;
+    cout << "\033[1m\033[37m"
+         << "Turns: " << endl;
     vector<int> turnsVec = players.getTurns();
-    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i){
-        if(*i == players.getIndexOfCurrentTurn()) cout << "\033[1m\033[32m" << "p" << (*i) + 1 << " " << "\033[0m";
-        else cout << "p" << (*i) + 1<< " ";
+    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i)
+    {
+        if (*i == players.getIndexOfCurrentTurn())
+            cout << "\033[1m\033[32m"
+                 << "p" << (*i) + 1 << " "
+                 << "\033[0m";
+        else
+            cout << "p" << (*i) + 1 << " ";
     }
     cout << endl;
-    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i){
-        if(*i == players.getIndexOfCurrentTurn()) cout << "\033[1m\033[32m" << "^   " << "\033[0m";
-        else cout << "   ";
+    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i)
+    {
+        if (*i == players.getIndexOfCurrentTurn())
+            cout << "\033[1m\033[32m"
+                 << "^   "
+                 << "\033[0m";
+        else
+            cout << "   ";
     }
     cout << endl;
     printTableCard();
 }
+<<<<<<< HEAD
 
 void GameCandy::displayPlayerCard(){
     players.getPlayerWithTurn().printColorCard();
@@ -391,3 +580,5 @@ void GameCandy::displayHelp(){
     cout << "- \"ABILITYLESS\":  BLock other player's Abilty. If all player has already used their ability, this command will be useless.\n    Only available when you have ABILITYLESS Ability Card.\n";
     cout << "* Commands are case insensitive.\n";
 }
+=======
+>>>>>>> fbfa069e49ea5f93cf21a7b6683513ad48d75f10

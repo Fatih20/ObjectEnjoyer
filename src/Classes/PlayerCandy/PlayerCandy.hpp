@@ -23,6 +23,15 @@ public:
     PlayerCandy(int gameID);
 
     /**
+     * @brief Construct a new Player Candy object with the given gameID and drawing a card from the deck game
+     *
+     * @param gameID
+     * @param deckGame
+     *
+     */
+    PlayerCandy(int gameID, DeckGame<AbilityCard> &deckGame);
+
+    /**
      * @brief Construct a new Player Candy object with 0 as gameID
      *
      */
@@ -62,6 +71,15 @@ public:
      *
      */
     bool getAbilityAvailable();
+
+    /**
+     * @brief Get the Ability Name object
+     *
+     * @return string
+     */
+    string getAbilityName();
+
+    void test();
 };
 
 #endif

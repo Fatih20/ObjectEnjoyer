@@ -5,6 +5,7 @@
 #include "../PlayerInGameCandy/PlayerInGameCandy.hpp"
 #include "../DeckGame/DeckGame.hpp"
 #include "../GameCandyException/GameCandyException.hpp"
+#include "../Abilities/Abilities.hpp"
 #include "../Classes/SplashScreen/SplashScreen.hpp"
 #include <vector>
 using namespace std;
@@ -16,14 +17,14 @@ private:
     PlayerInGameCandy players;     // pemain
     DeckGame<ColorCard> deckGame;  // deck game
     DeckGame<ColorCard> tableCard; // table card
-    DeckGame<AbilityCard> abilityCard;
+    DeckGame<AbilityCard> deckAbility;
     int round;        // ronde
     double giftPoint; // point hadiah tiap akhir game
     void multiplyGiftPoint(double multiplier);
     void operator*=(double multiplier);
     /**
      * @brief private method to firmat print tabke card
-     * 
+     *
      */
     void printTableCard();
 
@@ -66,14 +67,13 @@ public:
      *
      */
     void newGame();
-    // new deck card              
+    // new deck card
 
     /**
      * @brief akhir dari maks ronde (belum tentu mendapat pemenang)
      *
      */
     void endOfGame();
-
 
     /**
      * @brief mekanisme giliran pemain, currentPlayer akan input command dan command akan dijalankan
@@ -101,8 +101,6 @@ public:
      *
      */
     vector<ColorCard> initilizeDeckGame();
-
-    // vector<AbilityCard> initilizeAbilityDeck();
 
     // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
 
@@ -141,11 +139,21 @@ public:
      *
      */
 
-    // vector<AbilityCard> initilizeAbilityDeck();
+    vector<AbilityCard> initializeAbilityDeck();
 
-    // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
+    pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> newDeck();
 
-    void changeGiftPoinMessage(string,double);
+    void rerollAbility();
+
+    void abilitylessAbility();
+
+    void reverseAbility();
+
+    void switchAbility();
+
+    void swapAbility();
+
+    void changeGiftPoinMessage(string, double);
 
     void displayGameStat();
 

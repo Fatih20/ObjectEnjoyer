@@ -13,7 +13,7 @@ using namespace std;
 template <typename T>
 class Player : InventoryHolder<T>
 {
-private:
+protected:
     int gameID;
     string username;
     unsigned int score;
@@ -25,7 +25,6 @@ private:
      */
     string askForUsername();
 
-protected:
     /**
      * @brief Set the gameID of the player
      *
@@ -204,7 +203,7 @@ public:
      * @brief Print out the player's card
      *
      */
-    void printColorCard();
+    void printCard();
 
     /**
      * @brief Add card to player's hand
@@ -212,6 +211,13 @@ public:
      * @param card
      */
     void addCard(const T &card);
+
+    /**
+     * @brief Eject the card from the player's hand
+     *
+     * @return T
+     */
+    T ejectCard();
 
     /**
      * @brief Draw numberOfCard amount of card for the player from the given deck game.

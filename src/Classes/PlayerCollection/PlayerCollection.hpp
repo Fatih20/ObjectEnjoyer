@@ -41,12 +41,6 @@ public:
     virtual void addPlayer(T &addedPlayer);
 
     /**
-     * @brief Create a player and add it to the collection
-     *
-     */
-    virtual void createAndAddPlayer(int id) = 0;
-
-    /**
      * @brief Remove a player from the collection
      *
      * @param index starts at one

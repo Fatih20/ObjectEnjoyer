@@ -13,23 +13,34 @@
 
 using namespace std;
 
-
 int main()
 {
     // cout << "[deckA]" << endl;
-    // ColorCard cc1(1, GREEN);
-    // ColorCard cc2(2, RED);
-    // ColorCard cc3(3, BLUE);
-    // ColorCard cc4(4, YELLOW);
-    // vector<ColorCard> vec;
-    // vec.push_back(cc1);
-    // vec.push_back(cc2);
+    ColorCard cc1(1, GREEN);
+    ColorCard cc2(2, RED);
+    ColorCard cc3(3, BLUE);
+    ColorCard cc4(4, YELLOW);
+    ColorCard cc5(4, YELLOW);
+    ColorCard cc6(4, YELLOW);
+    ColorCard cc7(4, YELLOW);
+    ColorCard cc8(4, YELLOW);
+    ColorCard cc9(4, YELLOW);
 
-    // Deck<ColorCard> deckA(vec);
-    // deckA.addCard(cc1);
-    // deckA.addCard(cc2);
-    // deckA.addCard(cc3);
-    // deckA.addCard(cc4);
+    vector<ColorCard> vec;
+    vec.push_back(cc1);
+    vec.push_back(cc2);
+
+    Deck<ColorCard> deckA(vec);
+    deckA.addCard(cc1);
+    deckA.addCard(cc2);
+    deckA.addCard(cc3);
+    deckA.addCard(cc4);
+    deckA.addCard(cc5);
+    deckA.addCard(cc6);
+    deckA.addCard(cc7);
+    deckA.addCard(cc8);
+    deckA.addCard(cc9);
+
     // deckA.sort(true);
     // cout << deckA << endl;
     // // p5.printScore();
