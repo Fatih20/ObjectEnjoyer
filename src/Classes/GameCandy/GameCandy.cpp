@@ -125,6 +125,7 @@ bool GameCandy::playerAction(string cmd)
     {
         displayGameStat();
     } else if (cmd == "mycard"){
+        cout << endl;
         players.getPlayerWithTurn().printCard();
         if(round != 1){
             cout  << "\033[1m\033[37m" << "Your Ability Card: ";
@@ -450,30 +451,36 @@ void GameCandy::reverseAbility()
 
 void GameCandy::swapAbility()
 {
-    // Except the current player
-    vector<int> exceptedIndex{players.getCurrentTurn()};
-    players.showPlayerExcept(exceptedIndex);
-    // Get the index of the first player to be switched
-    int rawFirstPlayerIndex;
 
-    cin >> rawFirstPlayerIndex;
-    // Bawah ini perlu exception handling
+    vector<int> exceptedIndex{players.getCurrentTurn()};
+    cout << endl
+         << players.getPlayerWithTurn().getUsername() << " melakukan swap!" << endl;
+    cout << "Silahkan pilih pemain yang kartunya ingin anda tukar: \n";
+    players.showPlayerExcept(exceptedIndex);
+    int rawFirstPlayerIndex = inputOption(6);
+
     int properFirstIndex = players.correctedIndexCustom(rawFirstPlayerIndex, exceptedIndex);
 
-    // Except the index of the first player in the next choice
     exceptedIndex.push_back(properFirstIndex);
 
-    // Get the index of the second player to be switched
-    int rawSecondPlayerIndex;
-    cin >> rawSecondPlayerIndex;
+    cout << "Silahkan pilih pemain lain yang kartunya ingin anda tukar: \n";
+    players.showPlayerExcept(exceptedIndex);
+    int rawSecondPlayerIndex = inputOption(5);
 
-    // Bawah ini perlu exception handling
     int properSecondIndex = players.correctedIndexCustom(rawSecondPlayerIndex, exceptedIndex);
 
     bool firstIsLeft;
     bool secondIsLeft;
-    // Konvensi, ke kanan makin atas di deckPlayer
-    // Minta input kiri / kanan
+
+    cout << "Silahkan pilih kartu kanan/kiri " << players.getNthPlayer(properFirstIndex) << " :\n"
+         << "1. Kanan\n2.Kiri\n";
+    firstIsLeft = inputOption(2)==2? true:false;
+    cout << "Silahkan pilih kartu kanan/kiri " << players.getNthPlayer(properSecondIndex) << " :\n"
+         << "1. Kanan\n2.Kiri\n";
+    secondIsLeft = inputOption(2)==2? true:false;
+
+    players.swapCardOfPlayer(properFirstIndex,properSecondIndex,firstIsLeft,secondIsLeft);
+    
 }
 
 void GameCandy::switchAbility()

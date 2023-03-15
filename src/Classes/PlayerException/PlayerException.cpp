@@ -22,5 +22,5 @@ AbilityNotOwned::AbilityNotOwned()
 
 AbilityNotAvailable::AbilityNotAvailable()
 {
-    message = "Oops, kartu abilitymu telah dimatikan sebelumnya :(.\nSilahkan lakukan perintah lain.";
+    message = "Oops, kartu abilitymu telah dimatikan sebelumnya :(\nSilahkan lakukan perintah lain.";
 }
