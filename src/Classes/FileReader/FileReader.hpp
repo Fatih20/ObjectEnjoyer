@@ -4,19 +4,20 @@
 #include "../Classes/DeckGame/DeckGame.hpp"
 #include "../Classes/ColorCard/ColorCard.hpp"
 #include "../Classes/AbilityCard/AbilityCard.hpp"
+#include "../Classes/Abilities/Abilities.hpp"
+#include "../Classes/Ability/Ability.hpp"
 #include <iostream>
 #include <fstream>
 #include <vector>
 
 using namespace std;
 
-//template <class T1, class T2>
-template <class T>
+template <class T1, class T2>
 class FileReader{
     private:
         string filePath;
-        DeckGame<T> deckOrder;
-        // vector <T> abilityCardOrder;
+        DeckGame<T1> deckOrder;
+        DeckGame<T2> abilityCardOrder;
     public:
         /**
          * @brief User-defined constructor, defining filePath
@@ -29,13 +30,13 @@ class FileReader{
          * @brief Getter for DeckOrder
          * 
          */
-        DeckGame<T> getDeckOrder();
+        DeckGame<T1> getDeckOrder();
 
         /**
          * @brief Getter for AbilityCardOrder
          * 
          */
-        // vector< Card<int> > getAbilityCardOrder();
+        DeckGame<T2> getAbilityCardOrder();
 
         /**
          * @brief Method to read from file, defining all atributes (except filePath)

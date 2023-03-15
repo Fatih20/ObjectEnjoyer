@@ -348,7 +348,7 @@ void GameCandy::newDeck1()
             cin >> path;
             try
             {
-                FileReader<ColorCard> f(path);
+                FileReader<ColorCard, AbilityCard> f(path);
                 f.read();
                 this->deckGame = f.getDeckOrder();
                 validPath = true;
@@ -535,7 +535,7 @@ void GameCandy::displayGameStat()
 }
 
 void GameCandy::displayPlayerCard(){
-    players.getPlayerWithTurn().printColorCard();
+    //players.getPlayerWithTurn().printColorCard();
     // cout  << "\033[1m\033[37m" << "Your Hand Card: " << "\033[0m" << endl;
     // cout << "|  ";
     // vector<ColorCard> handVec = players.getPlayerWithTurn().getHandCards().getDeck();
