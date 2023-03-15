@@ -307,7 +307,6 @@ string PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame
             indexOfHighest = i;
         }
     }
-
     players.at(indexOfHighest) += reward;
     return players.at(indexOfHighest).getUsername();
 }
