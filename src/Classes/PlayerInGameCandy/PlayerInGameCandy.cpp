@@ -152,7 +152,7 @@ void PlayerInGameCandy::showPlayerExcept(vector<int> exceptedIndex)
     int numbering = 0;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        if (exceptedIndex.end() != find(exceptedIndex.begin(), exceptedIndex.end(), i))
+        if (exceptedIndex.end() == find(exceptedIndex.begin(), exceptedIndex.end(), i))
         {
             cout << numbering + 1 << ". " << "Player " << players.at(i).getGameID() << endl;
             numbering++;
