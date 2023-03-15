@@ -32,15 +32,6 @@ PlayerInGame<T>::PlayerInGame(const PlayerInGame &playerInGame) : PlayerCollecti
     this->roundComplete = playerInGame.roundComplete;
 };
 
-// template <typename T>
-// PlayerInGame<T>::PlayerInGame(DeckGame<T> deckGame, int numberOfCards, int numberOfPlayer) : PlayerInGame<T>(numberOfPlayer)
-// {
-//     for (int i = 0; i < numberOfPlayer; i++)
-//     {
-//         this->players.at(turns.at(i)).drawCard(deckGame, numberOfCards);
-//     }
-// };
-
 template <typename T>
 PlayerInGame<T>::PlayerInGame(int numberOfPlayer, int currentTurn) : PlayerInGame<T>(numberOfPlayer)
 {
@@ -136,27 +127,6 @@ void PlayerInGame<T>::showPlayer()
     }
 };
 
-// template <typename T, typename Func>
-// void PlayerInGame<T>::showPlayerIf(const Func &f)
-// {
-//     bool print = true;
-//     int index = 0;
-//     for (int i = 0; i < this->players.size(); i++)
-//     {
-//         if (this->players.at(i).getGameID() != unprintedID)
-//         {
-//             cout << index + 1 << ". " << this->players.at(i).getUsername() << endl;
-//             index++;
-//         }
-//     }
-// };
-
-template <typename T>
-T &PlayerInGame<T>::getNthPlayer(int index)
-{
-    return this->players.at(index);
-}
-
 template <typename T>
 void PlayerInGame<T>::remove(int index)
 {
@@ -165,33 +135,6 @@ void PlayerInGame<T>::remove(int index)
 
     PlayerCollection<T>::remove(index);
 }
-
-// template <typename T>
-// void PlayerInGame<T>::showPlayerExcept(int unprintedID)
-// {
-//     bool print = true;
-//     int index = 0;
-//     for (int i = 0; i < this->players.size(); i++)
-//     {
-//         if (this->players.at(i).getGameID() != unprintedID)
-//         {
-//             cout << index + 1 << ". " << this->players.at(i).getUsername() << endl;
-//             index++;
-//         }
-//     }
-// };
-
-// template <typename T>
-// void PlayerInGame<T>::redrawCardForNthPlayer(DeckGame<T> &deckGame, int n)
-// {
-//     this->players.at(n).redrawCard(deckGame);
-// };
-
-// template <typename T>
-// void PlayerInGame<T>::redrawCardForCurrentPlayer(DeckGame<T> &deckGame)
-// {
-//     redrawCardForNthPlayer(deckGame, getCurrentTurn());
-// };
 
 template class PlayerInGame<Player<ColorCard>>;
 template class PlayerInGame<PlayerCandy>;
