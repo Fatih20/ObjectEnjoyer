@@ -232,7 +232,6 @@ void GameCandy::doublePoint()
 
 void GameCandy::halvesPoint()
 {
-    changeGiftPoinMessage("quadruple",0.5);
     multiplyGiftPoint(0.5);
 }
 
