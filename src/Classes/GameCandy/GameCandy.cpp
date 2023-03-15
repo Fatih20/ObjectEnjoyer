@@ -452,7 +452,7 @@ void GameCandy::reverseAbility()
 {
     players.reverseTurnInitial();
     cout << players.getPlayerWithTurn().getUsername() << " melakukan reverse!\n";
-    cout << "Sisa urutan eksekusi giliran ini : " << 
+    cout << "Sisa urutan eksekusi giliran ini : ";
 }
 
 void GameCandy::swapAbility()
