@@ -447,9 +447,9 @@ void GameCandy::reverseAbility()
         cout << "p" << (*i) + 1 << " ";
     cout << endl;
     cout << "Urutan eksekusi round berikutnya : ";
-    for (auto i = turnsVec.rbegin() + players.getNumberOfPlayer() - players.getIndexOfCurrentTurn() + 1; i != turnsVec.rend(); ++i)
-        cout << "p" << (*i) + 1 << " ";
-    for (auto i = turnsVec.rbegin(); i != turnsVec.rend() - players.getNumberOfPlayer() + players.getIndexOfCurrentTurn(); ++i)
+    reverse(turnsVec.begin(), turnsVec.begin() + players.getCurrentTurn());
+    reverse(turnsVec.begin() + players.getCurrentTurn(), turnsVec.end());
+    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i)
         cout << "p" << (*i) + 1 << " ";
     cout << endl;
 }

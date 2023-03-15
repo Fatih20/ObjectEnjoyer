@@ -69,42 +69,42 @@ void FileReader<T1, T2>::read(){
         if(temp == "REROLL") {
             shared_ptr<Reroll> abi = make_shared<Reroll>();
             AbilityCard abilityCard(abi);
-            abiVec.push_back(abilityCard);
+            abiVec.insert(abiVec.begin(), abilityCard);
         }
         else if(temp == "QUADRUPLE"){
             shared_ptr<Quadruple> abi = make_shared<Quadruple>();
             AbilityCard abilityCard(abi);
-            abiVec.push_back(abilityCard);
+            abiVec.insert(abiVec.begin(), abilityCard);
         }
         else if(temp == "QUARTER"){
             shared_ptr<Quarter> abi = make_shared<Quarter>();
             AbilityCard abilityCard(abi);
-            abiVec.push_back(abilityCard);
+            abiVec.insert(abiVec.begin(), abilityCard);
         }
         else if(temp == "REROLL"){
             shared_ptr<Reroll> abi = make_shared<Reroll>();
             AbilityCard abilityCard(abi);
-            abiVec.push_back(abilityCard);
+            abiVec.insert(abiVec.begin(), abilityCard);
         }
         else if(temp == "REVERSE"){
             shared_ptr<Reverse> abi = make_shared<Reverse>();
             AbilityCard abilityCard(abi);
-            abiVec.push_back(abilityCard);
+            abiVec.insert(abiVec.begin(), abilityCard);
         }
         else if(temp == "SWAP"){
             shared_ptr<Swap> abi = make_shared<Swap>();
             AbilityCard abilityCard(abi);
-            abiVec.push_back(abilityCard);
+            abiVec.insert(abiVec.begin(), abilityCard);
         }
         else if(temp == "SWITCH"){
             shared_ptr<Switch> abi = make_shared<Switch>();
             AbilityCard abilityCard(abi);
-            abiVec.push_back(abilityCard);
+            abiVec.insert(abiVec.begin(), abilityCard);
         }
         else if(temp == "ABILITYLESS"){
             shared_ptr<Abilityless> abi = make_shared<Abilityless>();
             AbilityCard abilityCard(abi);
-            abiVec.push_back(abilityCard);
+            abiVec.insert(abiVec.begin(), abilityCard);
         }
         else throw FormatExp(TYPE_ABILITY);
     }
