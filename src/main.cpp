@@ -168,21 +168,16 @@ int main()
     game.start();
 
     cout << "Initialized" << endl;
-    Quadruple quad;
-    Quarter quarter;
-    Quadruple quad1;
-    Quarter quarter1;
-    Quadruple quad2;
-    Quarter quarter2;
-    Quadruple quad3;
+    shared_ptr<Quadruple> quad = make_shared<Quadruple>();
+    shared_ptr<Quarter> quarter = make_shared<Quarter>();
+    shared_ptr<Quadruple> quad1 = make_shared<Quadruple>();
+    shared_ptr<Quarter> quarter1 = make_shared<Quarter>();
+    shared_ptr<Quadruple> quad2 = make_shared<Quadruple>();
+    shared_ptr<Quarter> quarter2 = make_shared<Quarter>();
+    shared_ptr<Quadruple> quad3 = make_shared<Quadruple>();
     cout << "Ability created" << endl;
 
     AbilityCard ac1(quad);
-
-    AbilityCard ac12(ac1);
-    cout << ac1.value() << endl;
-    cout << ac12.value() << endl;
-
     AbilityCard ac2(quad2);
     AbilityCard ac3(quad3);
     AbilityCard ac4(quarter);
@@ -191,8 +186,8 @@ int main()
     AbilityCard ac7(quad1);
 
     AbilityCard ac22 = ac2;
-    cout << ac22.value() << endl;
-    cout << ac2.value() << endl;
+    cout << ac22.value().get() << endl;
+    cout << ac2.value().get() << endl;
     // cout << ac1 << endl;
     cout << ac2 << endl;
     cout << "Card created" << endl;

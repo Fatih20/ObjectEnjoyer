@@ -1,41 +1,56 @@
 #include "AbilityCard.hpp"
 
-BlankAbility AbilityCard::blankAbility = *(new BlankAbility());
+// BlankAbility AbilityCard::blankAbility = *(new BlankAbility());
 
-AbilityCard::AbilityCard() : Card<Ability &>(this->blankAbility)
+AbilityCard::AbilityCard() : Card<shared_ptr<Ability>>(shared_ptr<Ability>(new BlankAbility()))
 {
 }
 
-AbilityCard::AbilityCard(Ability &ability) : Card<Ability &>(ability)
+AbilityCard::~AbilityCard(){
+    // cout << "Destructor called" << endl;
+    // delete val;
+};
+
+// AbilityCard::AbilityCard(Ability *abilityPointer) : Card<shared_ptr<Ability>>(make_shared<Ability>(abilityPointer))
+// {
+// }
+
+AbilityCard::AbilityCard(shared_ptr<Ability> abilityPointer) : Card<shared_ptr<Ability>>(abilityPointer)
 {
 }
 
-AbilityCard::AbilityCard(const AbilityCard &aC) : Card<Ability &>(aC)
+// AbilityCard::AbilityCard(Ability &ability) : Card<shared_ptr<Ability>>(make_shared<Ability>(&ability))
+// {
+//     // *val = *(&ability);
+// }
+
+AbilityCard::AbilityCard(const AbilityCard &aC) : Card<shared_ptr<Ability>>(aC.value())
 {
+    // *val = *(aC.val);
 }
 
-std::string AbilityCard::getName() const
+string AbilityCard::getName() const
 {
-    return value().getName();
+    return value()->getName();
 }
 
-std::string AbilityCard::getDescription() const
+string AbilityCard::getDescription() const
 {
-    return value().getDescription();
+    return value()->getDescription();
 }
 
 void AbilityCard::activateAbility(GameCandy &gC)
 {
-    value().activateAbility(gC);
+    value()->activateAbility(gC);
 }
 
-Ability &AbilityCard::value() const
+shared_ptr<Ability> AbilityCard::value() const
 {
     return val;
 }
 
-std::ostream &operator<<(std::ostream &os, const AbilityCard &card)
+ostream &operator<<(std::ostream &os, const AbilityCard &card)
 {
-    os << card.val << " " << card.getDescription();
+    os << card.getName() << " " << card.getDescription();
     return os;
 }

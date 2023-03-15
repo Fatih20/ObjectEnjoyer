@@ -100,6 +100,7 @@ T Deck<T>::ejectCard()
         if (this->vec.size() <= 0)
             throw EmptyDeckException(); // untested
 
+        cout << "Card ejected" << endl;
         T ejectedCard = this->vec.back();
         this->vec.pop_back();
 
@@ -273,4 +274,4 @@ template class Deck<ColorCard>;
 template class Deck<AbilityCard>;
 template std::ostream &operator<<(std::ostream &os, const Deck<Card<int>> &deck);
 template std::ostream &operator<<(std::ostream &os, const Deck<ColorCard> &deck);
-// template std::ostream &operator<<(std::ostream &os, const Deck<AbilityCard> &deck);
+template std::ostream &operator<<(std::ostream &os, const Deck<AbilityCard> &deck);

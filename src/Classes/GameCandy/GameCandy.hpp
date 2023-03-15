@@ -139,7 +139,9 @@ public:
      *
      */
 
-    vector<AbilityCard> initializeAbilityDeck();
+        vector<AbilityCard> initializeAbilityDeck();
+
+    // vector<AbilityCard> &initializeAbilityDeck(vector<AbilityCard> &initialVector);
 
     pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> newDeck();
 };
