@@ -4,6 +4,8 @@
 #include "PlayerInGame/PlayerInGame.hpp"
 #include "PlayerCangkul/PlayerCangkul.hpp"
 
+using namespace std;
+
 class PlayerInGameCangkul : public PlayerInGame<PlayerCangkul> {
 public:
     PlayerInGameCangkul();
@@ -12,21 +14,25 @@ public:
 
     PlayerInGameCangkul(const PlayerInGameCangkul &playerInGameCangkul);
 
-    ~PlayerInGameCangkul();
+    void showLeaderboard();
 
-    void removePlayerOfID(int removeID);
+    void resetRound();
 
-    void createAndAddPlayer(int id);
+    void createAndAddPlayer(int gameID);
 
     bool usernameExist(std::string username);
 
     bool usernameExist(std::string username, int gameID);
 
+    void showPlayerExceptCurrent();
 
+    void showPlayerExcept(vector<int> exceptedIndex);
 
+    void removePlayerOfID(int removedID);
 
+    std::string getWinner();
 
-
+    bool winnerExist();
 
 };
 
