@@ -108,6 +108,7 @@ void GameCandy::endOfGame()
         giftPoint = 64;
         cout << "\nPermainan berakhir.\n";
         cout << "Permainan dimenangkan oleh " << endl;
+        SplashScreen::splashScreenWinning();
     }
     else
     {
