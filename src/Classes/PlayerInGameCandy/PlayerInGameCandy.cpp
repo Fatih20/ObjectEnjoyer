@@ -96,7 +96,7 @@ void PlayerInGameCandy::showLeaderboard()
 
 void PlayerInGameCandy::reverseTurnInitial()
 {
-    reversedThisRoundInfo = make_pair(true, getCurrentTurn());
+    this->reversedThisRoundInfo = make_pair(true, getCurrentTurn());
     reverse(turns.begin() + getCurrentTurn() + 1, turns.end());
 }
 
@@ -117,7 +117,7 @@ void PlayerInGameCandy::resetRound()
 
 void PlayerInGameCandy::reverseTurnPost(int pivotIndex)
 {
-    reverse(turns.begin(), turns.begin() + pivotIndex + 1);
+    reverse(turns.begin(), turns.begin() + pivotIndex);
     reverse(turns.begin() + pivotIndex, turns.end());
 }
 
