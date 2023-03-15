@@ -376,9 +376,9 @@ void GameCandy::displayPlayerCard(){
 
 void GameCandy::displayHelp(){
     cout << "\033[1m\033[35m" << "---------------------------------" << endl;
-    cout << "           HELP" << endl;
+    cout << "              HELP" << endl;
     cout << "---------------------------------" << "\033[0m" << endl;
-    cout << "\033[1m\033[37m" << "Command: " << "\033[1m\033[33m" << endl;
+    cout << "\033[1m\033[37m" << "Command: " << "\033[0m" << endl;
     cout << "- \"NEXT\":  Do nothing this round. Turn will be handed over to the next player.\n";
     cout << "- \"REROLL\":  Discard your hand cards then takes two new cards from main deck. Only available when you have REROLL Ability Card.\n";
     cout << "- \"DOUBLE\":  Double gift points.\n";
