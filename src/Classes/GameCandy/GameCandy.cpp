@@ -138,7 +138,7 @@ void GameCandy::playerAction(string cmd)
     {
         displayGameStat();
     } else if (cmd == "mycard"){
-        players.getPlayerWithTurn().printColorCard();
+        // players.getPlayerWithTurn().printColorCard();
         displayPlayerCard();
     } else if (cmd == "help"){
         displayHelp();
@@ -533,7 +533,6 @@ void GameCandy::displayGameStat()
     cout << endl;
     printTableCard();
 }
-<<<<<<< HEAD
 
 void GameCandy::displayPlayerCard(){
     players.getPlayerWithTurn().printColorCard();
@@ -575,5 +574,3 @@ void GameCandy::displayHelp(){
     cout << "- \"ABILITYLESS\":  BLock other player's Abilty. If all player has already used their ability, this command will be useless.\n    Only available when you have ABILITYLESS Ability Card.\n";
     cout << "* Commands are case insensitive.\n";
 }
-=======
->>>>>>> fbfa069e49ea5f93cf21a7b6683513ad48d75f10
