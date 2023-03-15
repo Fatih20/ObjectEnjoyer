@@ -225,7 +225,11 @@ void Player<T>::redrawCard(DeckGame<T> &deckGame, int newNumberOfCards)
 template <typename T>
 void Player<T>::redrawCard(DeckGame<T> &deckGame)
 {
-
+    int numberOfCards = handCards.getNumberOfCards();
+    for (int i = 0; i < numberOfCards; i++)
+    {
+        deckGame += handCards.ejectCard();
+    }
     drawCard(deckGame, handCards.getNumberOfCards());
 };
 
