@@ -152,9 +152,9 @@ void PlayerInGame<T>::showPlayer()
 // };
 
 template <typename T>
-Player<T> &PlayerInGame<T>::getNthPlayer(int index)
+T &PlayerInGame<T>::getNthPlayer(int index)
 {
-    return players.at(index);
+    return this->players.at(index);
 }
 
 template <typename T>

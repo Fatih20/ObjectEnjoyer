@@ -134,7 +134,7 @@ public:
      * @param index
      * @return Player<T>&
      */
-    Player<T> &getNthPlayer(int index);
+    T &getNthPlayer(int index);
 
     virtual void remove(int index);
 
