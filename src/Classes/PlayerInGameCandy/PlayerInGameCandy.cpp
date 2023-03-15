@@ -84,7 +84,7 @@ void PlayerInGameCandy::showLeaderboard()
          << "\033[0m" << endl;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        cout << "  " << i + 1 << ". " << sortedPlayers.at(i).getGameID() << "  : " << sortedPlayers.at(i).getScore() << endl;
+        cout << "  " << i + 1 << ". " << sortedPlayers.at(i).getUsername() << "  : " << sortedPlayers.at(i).getScore() << endl;
     }
 }
 
@@ -106,7 +106,7 @@ void PlayerInGameCandy::resetRound()
         rotate(turns.begin(), turns.begin() + 1, turns.end());
     }
     reversedThisRoundInfo = make_pair(false, -1);
-    cout << "Resetting round at pigc" << endl;
+    // cout << "Resetting round at pigc" << endl;
 }
 
 void PlayerInGameCandy::reverseTurnPost(int pivotIndex)
