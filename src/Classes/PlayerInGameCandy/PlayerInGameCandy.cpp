@@ -75,16 +75,13 @@ void PlayerInGameCandy::createAndAddPlayer(int gameID)
 
 void PlayerInGameCandy::showLeaderboard()
 {
-    vector<PlayerCandy> sortedPlayers = players;
-    sort(sortedPlayers.begin(), sortedPlayers.end(), [](PlayerCandy p1, PlayerCandy p2) -> bool
-         { return p1 > p2; });
     int numberOfPlayer = getNumberOfPlayer();
     cout << "\033[1m\033[37m"
          << "Leaderboard: "
          << "\033[0m" << endl;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        cout << "  " << i + 1 << ". " << sortedPlayers.at(i).getUsername() << "  : " << sortedPlayers.at(i).getScore() << endl;
+        cout << "  " << i + 1 << ". " << players.at(i).getUsername() << "  : " << players.at(i).getScore() << endl;
     }
 }
 
@@ -217,23 +214,27 @@ void PlayerInGameCandy::swapCardOfPlayer(int sourceIndex, int targetIndex, bool 
 
 int PlayerInGameCandy::correctedIndexCustom(int rawIndex, vector<int> exceptedIndexes)
 {
+    rawIndex--;
     if (rawIndex < 0 || rawIndex >= getNumberOfPlayer() - exceptedIndexes.size())
     {
         OutOfBoundIndex e;
         throw e;
     }
+    sort(exceptedIndexes.begin(), exceptedIndexes.end());
     auto exceptedIndexesIt = exceptedIndexes.begin();
     bool foundLimit = false;
     int resultIndex = rawIndex;
-    for (exceptedIndexesIt = exceptedIndexes.begin(); !foundLimit && exceptedIndexesIt != exceptedIndexes.end();
+    int numberOfExceptedUnder = 0;
+    for (auto exceptedIndexesIt = exceptedIndexes.begin(); !foundLimit && exceptedIndexesIt != exceptedIndexes.end();
          exceptedIndexesIt++)
     {
-        foundLimit = resultIndex > *exceptedIndexesIt;
+        foundLimit = resultIndex < *exceptedIndexesIt;
         if (!foundLimit)
         {
-            resultIndex++;
+            numberOfExceptedUnder++;
         }
     }
+    resultIndex += numberOfExceptedUnder;
     return resultIndex;
 };
 
@@ -274,15 +275,15 @@ void PlayerInGameCandy::drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility)
 
 void PlayerInGameCandy::drawColorCardAll(DeckGame<ColorCard> &deckColor)
 {
-    cout << "Drawing color card" << endl;
+    // cout << "Drawing color card" << endl;
     for (int i = 0; i < getNumberOfPlayer(); i++)
     {
         players.at(turns.at(i)).drawCard(deckColor, 2);
-        cout << "Deck of " << turns.at(i) << "'th player" << endl;
-        players.at(turns.at(i)).printCard();
+        // cout << "Deck of " << turns.at(i) << "'th player" << endl;
+        // players.at(turns.at(i)).printCard();
     }
-    cout << "Outside the loop" << endl;
-    players.at(turns.at(1)).printCard();
+    // cout << "Outside the loop" << endl;
+    // players.at(turns.at(1)).printCard();
 };
 
 bool PlayerInGameCandy::disablePlayerAbility(int index)
