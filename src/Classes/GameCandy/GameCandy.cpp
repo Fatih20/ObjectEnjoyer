@@ -451,7 +451,7 @@ void GameCandy::reverseAbility()
 
 void GameCandy::swapAbility()
 {
-    vector<int> exceptedIndex{players.getCurrentTurn() };
+    vector<int> exceptedIndex{players.getIndexOfCurrentTurn()};
     cout << endl
          << players.getPlayerWithTurn().getUsername() << " melakukan swap!" << endl;
     cout << "Silahkan pilih pemain yang kartunya ingin anda tukar: \n";
