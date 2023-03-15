@@ -68,6 +68,7 @@ void GameCandy::start()
              << "\033[0m";
         newDeck1();
         players.redrawAll(this->deckGame);
+        players.drawAbilityCardAll(this->deckAbility);
         giftPoint = 64;
     }
 }
@@ -91,6 +92,7 @@ void GameCandy::endOfGame()
 {
     cout << "\nRonde 6 selesai.\n";
     cout << "Pemenang babak ini adalah " << players.rewardHighestCombination(giftPoint, tableCard) << endl;
+    // printTableCard();
     cout << "Player mendapatkan " << giftPoint << " poin!\n";
     players.showLeaderboard();
     if (isWinning())
@@ -334,8 +336,6 @@ void GameCandy::newDeck1()
         this->deckGame.shuffle();
         this->deckAbility.shuffle();
         cout << deckAbility;
-        // newDeck1();
-        // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
     }
     else
     {
@@ -414,11 +414,11 @@ void GameCandy::rerollAbility()
 void GameCandy::abilitylessAbility()
 {
     if (players.isAllAbilityDisable()){
-        cout << "Eits, ternyata semua pemain sudah memakai kartu kemampuan. \n";
+        cout << "\nEits, ternyata semua pemain sudah memakai kartu kemampuan. \n";
         cout << "Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless. \n";
         cout << "Yah, pengunaan kartu ini sia-sia\n";
     } else {
-        cout << "Silahkan pilih pemain yang kartu abilitynya ingin dimatikan: " << endl;
+        cout << "\nSilahkan pilih pemain yang kartu abilitynya ingin dimatikan: " << endl;
         players.showPlayerExceptCurrent();
         int rawIndex;
         rawIndex = inputOption(6);

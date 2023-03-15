@@ -20,16 +20,16 @@ private:
      *
      * @param deckAbility
      */
-    void drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility);
+    void drawColorCardAll(DeckGame<ColorCard> &deckColor);
 
+public:
     /**
      * @brief Construct a new draw Ability Card object
      *
      * @param deckAbility
      */
-    void drawColorCardAll(DeckGame<ColorCard> &deckColor);
-
-public:
+    void drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility);
+    
     /**
      * @brief Construct a new Player In Game Candy object
      *
