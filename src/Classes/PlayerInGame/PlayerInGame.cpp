@@ -123,7 +123,7 @@ void PlayerInGame<T>::showPlayer()
 {
     for (int i = 0; i < this->players.size(); i++)
     {
-        cout << i + 1 << ". " << getNthPlayer(i) << endl;
+        cout << i + 1 << ". " << this->getNthPlayer(i) << endl;
     }
 };
 
@@ -139,7 +139,7 @@ void PlayerInGame<T>::remove(int index)
 template <typename T>
 T &PlayerInGame<T>::getPlayerAtTurn(int turn)
 {
-    getNthPlayer(turns.at(i));
+    return this->getNthPlayer(turns.at(turn));
 };
 
 template class PlayerInGame<Player<ColorCard>>;
