@@ -104,12 +104,11 @@ void PlayerInGameCandy::resetRound()
     PlayerInGame::resetRound();
     if (reversedThisRoundInfo.first)
     {
-
-        rotate(turns.begin(), turns.begin() + 1, turns.end());
+        reverseTurnPost(reversedThisRoundInfo.second);
     }
     else
     {
-        reverseTurnPost(reversedThisRoundInfo.second);
+        rotate(turns.begin(), turns.begin() + 1, turns.end());
     }
     reversedThisRoundInfo = make_pair(false, -1);
     cout << "Resetting round at pigc" << endl;
