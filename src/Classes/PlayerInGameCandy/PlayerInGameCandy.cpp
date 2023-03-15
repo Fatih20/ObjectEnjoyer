@@ -232,10 +232,12 @@ bool PlayerInGameCandy::winnerExist()
 
 void PlayerInGameCandy::drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility)
 {
-    cout << "Size of deck ability : " << deckAbility.getNumberOfCards() << endl;
+    // cout << "Entering the drawing of the cards" << endl;
+    // cout << deckAbility << endl;
     for (int i = 0; i < getNumberOfPlayer(); i++)
     {
         players.at(turns.at(i)).drawAbility(deckAbility);
+        players.at(turns.at(i)).test();
     }
 };
 

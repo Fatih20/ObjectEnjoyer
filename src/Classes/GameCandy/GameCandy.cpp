@@ -17,13 +17,15 @@ GameCandy::GameCandy()
     this->deckGame = deck.first;
     this->deckAbility = deck.second;
 
+    cout << this->deckAbility << endl;
+
     DeckGame<ColorCard> tableCard;
     this->tableCard = tableCard;
     // table card empty
 
-    PlayerInGameCandy pIGC(this->deckGame, deckAbility, 7);
+    PlayerInGameCandy pIGC(this->deckGame, this->deckAbility, 7);
     this->players = pIGC;
-    cout << deckGame;
+    // cout << deckGame;
     round = 1;
     giftPoint = 64;
 }
@@ -256,13 +258,13 @@ vector<AbilityCard> GameCandy::initializeAbilityDeck()
     vector<AbilityCard>
         abilityCards{ac1, ac2, ac3, ac4, ac5, ac6, ac7};
 
-    cout << abilityCards.at(0).getName() << endl;
-    cout << abilityCards.at(1).getName() << endl;
-    cout << abilityCards.at(2).getName() << endl;
-    cout << abilityCards.at(3).getName() << endl;
-    cout << abilityCards.at(4).getName() << endl;
-    cout << abilityCards.at(5).getName() << endl;
-    cout << abilityCards.at(6).getName() << endl;
+    // cout << abilityCards.at(0).getName() << endl;
+    // cout << abilityCards.at(1).getName() << endl;
+    // cout << abilityCards.at(2).getName() << endl;
+    // cout << abilityCards.at(3).getName() << endl;
+    // cout << abilityCards.at(4).getName() << endl;
+    // cout << abilityCards.at(5).getName() << endl;
+    // cout << abilityCards.at(6).getName() << endl;
 
     // cout << "Size of ability cards " << abilityCards.size() << endl;
     cout << "Exited initialize ability deck" << endl;

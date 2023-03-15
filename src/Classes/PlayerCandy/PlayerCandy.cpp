@@ -35,38 +35,47 @@ bool PlayerCandy::getAbilityAvailable()
 
 void PlayerCandy::drawAbility(DeckGame<AbilityCard> &deckAbility)
 {
-    cout << "Entered draw ability" << endl;
-    cout << "Initial ability" << endl
-         << abilityHand.getName() << endl;
-    cout << "Deck ability cards amount before drawn " << deckAbility.getNumberOfCards() << endl;
+    // cout << "Entered draw ability" << endl;
+    // cout << "Initial ability" << endl
+    //      << abilityHand.getName() << endl;
+    // cout << "Deck ability cards amount before drawn " << deckAbility.getNumberOfCards() << endl;
     AbilityCard drawnCard = deckAbility.ejectCard();
-    cout << "Deck ability cards amount after drawn " << deckAbility.getNumberOfCards() << endl;
-    cout << "Cards drawn" << endl;
-    cout << "Drawn ability" << endl
-         << drawnCard.getName() << endl;
+    // cout << "Deck ability cards amount after drawn " << deckAbility.getNumberOfCards() << endl;
+    // cout << "Cards drawn" << endl;
+    // cout << "Drawn ability" << endl
+    //      << drawnCard.getName() << endl;
 
-    bool success = false;
-    cout << "Entering try" << endl;
+    // bool success = false;
+    // cout << "Entering try" << endl;
     abilityHand = drawnCard;
-    cout << "Exited draw ability" << endl
-         << endl;
+    // cout << "Exited draw ability" << endl
+    //      << endl;
 }
 
 void PlayerCandy::useAbility(string abilityName, GameCandy &gC)
 {
-    if (abilityHand.getName() == abilityName)
-    {
-        abilityHand.activateAbility(gC);
-    }
-    else
+    if (abilityHand.getName() != abilityName)
     {
         AbilityNotOwned e;
         throw e;
     }
+
+    if (!abilityUsed)
+    {
+        AbilityNotAvailable e;
+        throw e;
+    }
+
+    abilityHand.activateAbility(gC);
 }
 
 void PlayerCandy::useAbility(GameCandy &gC)
 {
+    if (!abilityUsed)
+    {
+        AbilityNotAvailable e;
+        throw e;
+    }
     abilityHand.activateAbility(gC);
 }
 

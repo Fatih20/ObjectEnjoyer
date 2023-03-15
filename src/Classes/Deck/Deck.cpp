@@ -100,7 +100,6 @@ T Deck<T>::ejectCard()
         if (this->vec.size() <= 0)
             throw EmptyDeckException(); // untested
 
-        cout << "Card ejected" << endl;
         T ejectedCard = this->vec.back();
         this->vec.pop_back();
 
