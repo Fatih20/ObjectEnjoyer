@@ -1,6 +1,6 @@
 #include "Player.hpp"
-#include "Classes/InventoryHolder/InventoryHolder.hpp"
-#include "Classes/ColorCard/ColorCard.hpp"
+#include "../InventoryHolder/InventoryHolder.hpp"
+#include "../ColorCard/ColorCard.hpp"
 #include "../PlayerException/PlayerException.hpp"
 #include <iostream>
 #include <vector>

@@ -6,7 +6,7 @@
 #include "../DeckGame/DeckGame.hpp"
 #include "../GameCandyException/GameCandyException.hpp"
 #include "../Abilities/Abilities.hpp"
-#include "../Classes/SplashScreen/SplashScreen.hpp"
+#include "../SplashScreen/SplashScreen.hpp"
 #include "../PlayerException/PlayerException.hpp"
 #include <vector>
 using namespace std;

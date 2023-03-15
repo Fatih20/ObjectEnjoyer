@@ -1,7 +1,7 @@
 #include "PlayerCollection.hpp"
-#include "Classes/ColorCard/ColorCard.hpp"
-#include "Classes/PlayerCandy/PlayerCandy.hpp"
-#include "Classes/PlayerCangkul/PlayerCangkul.hpp"
+#include "../ColorCard/ColorCard.hpp"
+#include "../PlayerCandy/PlayerCandy.hpp"
+#include "../PlayerCangkul/PlayerCangkul.hpp"
 #include <iostream>
 
 using namespace std;

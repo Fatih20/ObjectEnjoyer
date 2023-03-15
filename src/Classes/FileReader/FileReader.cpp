@@ -1,5 +1,5 @@
 #include "FileReader.hpp"
-#include "../Classes/FileReaderException/FileReaderException.hpp"
+#include "../FileReaderException/FileReaderException.hpp"
 
 template <typename T1, typename T2>
 FileReader<T1, T2>::FileReader(string filePath){

@@ -1,7 +1,7 @@
 #include "PlayerInGame.hpp"
-#include "Classes/PlayerInGameException/PlayerInGameException.hpp"
-#include "Classes/PlayerCandy/PlayerCandy.hpp"
-#include "Classes/PlayerCangkul/PlayerCangkul.hpp"
+#include "../PlayerInGameException/PlayerInGameException.hpp"
+#include "../PlayerCandy/PlayerCandy.hpp"
+#include "../PlayerCangkul/PlayerCangkul.hpp"
 #include <iostream>
 #include <algorithm>
 
