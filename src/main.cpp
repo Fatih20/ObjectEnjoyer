@@ -23,11 +23,16 @@ int main()
         cout << "Select a game you want to play:\n"
              << "  1. Candy Game\n"
              << "  2. Cangkul\n"
-             << "  3. Exit\n"
-             << "> ";
+             << "  3. Exit\n";
         while(opt!=1&&opt!=2&&opt!=3){
             try {
+                cout << "> ";
                 cin >> opt;
+                if (cin.fail()){
+                    cin.clear();
+                    cin.ignore(1000,'\n');
+                    throw  505;
+                }
                 if (opt!=1 && opt !=2 && opt!=3){
                     throw 505;
                 }
@@ -48,7 +53,7 @@ int main()
     }
     
 
-    // GameCandy game;
+    // GameCandy game;o
     // game.start();
     return 0;
 }
