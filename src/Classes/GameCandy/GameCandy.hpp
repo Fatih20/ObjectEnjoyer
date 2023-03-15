@@ -146,6 +146,9 @@ public:
     // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
 
     void changeGiftPoinMessage(string,double);
+
+    void displayGameStat();
+    
 };
 
 #endif

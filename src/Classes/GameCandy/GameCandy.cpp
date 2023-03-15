@@ -5,9 +5,9 @@
 
 using namespace std;
 
-vector<string> commandOption{"gamestat", "next", "double", "half",
+vector<string> commandOption{"next", "double", "half","gamestat",
                              "re-roll", "quadruple", "quarter",
-                             "reverse", "swap", "switch", "abilityless"};
+                             "reverse", "swap", "switch", "abilityless",};
 
 GameCandy::GameCandy()
 {
@@ -20,7 +20,6 @@ GameCandy::GameCandy()
 
     DeckGame<ColorCard> tableCard;
     this->tableCard = tableCard;
-    // table card empty
 
     round = 1;
     giftPoint = 64;
@@ -28,22 +27,20 @@ GameCandy::GameCandy()
 
 void GameCandy::start()
 {
-    cout << "\nNew game start\n";
     string cmd;
     while (!isWinning())
     {
-        // inisialisasi game baru -> player sama, deckCard baru
-        newDeck1();
-        while (round != 6){
-            cout << "\nRound " << round << " begin\n\n";
+        round=1;
+        while (round != 7){
+            cout << "\033[1m\033[32m" << "\nRound " << round << " begin \n\n" << "\033[0m";
             roundAction();
             while (!isRoundOver())
             {
-                cout << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn\n";
+                cout << "\033[1m\033[37m" << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn" << "\033[0m" << endl;
                 cmd = inputCommand();
                 playerAction(cmd);
                 while(cmd == "gamestat"){
-                    cout << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn\n";
+                    cout << "\033[1m\033[37m" << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn" << "\033[0m" << endl;
                     cmd = inputCommand();
                     playerAction(cmd);                    
                 }
@@ -52,7 +49,13 @@ void GameCandy::start()
             nextRound();
             players.resetRound();
         }
-
+        players.showLeaderboard();
+        // vector<string> winner = players.getWinner();
+        // for (int i=0; i<winner.size(); i++){
+        //     cout << winner.at(i) << endl;
+        // }
+        // cout << "Player";
+        newDeck1();
     }
 
     
@@ -65,7 +68,6 @@ bool GameCandy::isWinning()
 
 bool GameCandy::isRoundOver()
 {
-    // true jika semua player telah mendapat giliran
     return players.getIsRoundComplete();
 }
 
@@ -95,24 +97,8 @@ void GameCandy::playerAction(string cmd)
         changeGiftPoinMessage(cmd,0.5);
         halvesPoint();
     } else if (cmd == "gamestat"){
-        cout << "\033[1m\033[35m" << "---------------------------------" << endl;
-        cout << "           GAME STATUS" << endl;
-        cout << "---------------------------------" << "\033[0m" << endl;
-        cout << "\033[1m\033[37m" << "Gift Point: " << "\033[1m\033[33m" << this->giftPoint << "\033[0m" << endl;
-        cout << "\033[1m\033[37m" << "Turns: " << endl;
-        vector<int> turnsVec = players.getTurns();
-        for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i){
-            if(*i == players.getIndexOfCurrentTurn()) cout << "\033[1m\033[32m" << "p" << (*i) + 1 << " " << "\033[0m";
-            else cout << "p" << (*i) + 1<< " ";
-        }
-        cout << endl;
-        for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i){
-            if(*i == players.getIndexOfCurrentTurn()) cout << "\033[1m\033[32m" << "^   " << "\033[0m";
-            else cout << "   ";
-        }
-        cout << endl << "\033[1m\033[37m" << "Table Card: " << "\033[0m" << endl;
-        printTableCard();
-        }
+        displayGameStat();
+    }
     cout << endl << "\033[1m\033[35m" << "---------------------------------" << "\033[0m" << endl;
 }
 
@@ -126,7 +112,6 @@ string GameCandy::inputCommand()
         {
             cout << "> ";
             cin >> cmd;
-            // cout << isCommandValid(cmd) << endl;
             isCommandValid(cmd);
             isValid = true;
         }
@@ -259,6 +244,7 @@ void GameCandy::newDeck1()
     if(option==1){
         DeckGame<ColorCard> deck(initilizeDeckGame());
         this->deckGame = deck;
+        // newDeck1();
     // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
     } else {
         string path;
@@ -280,6 +266,8 @@ void GameCandy::newDeck1()
             }
         }
     }
+    DeckGame<ColorCard> tablecard;
+    this->tableCard = tablecard;
     
 }
 
@@ -288,12 +276,13 @@ void GameCandy::roundAction()
     if (round <= 5)
     {
         deckGame >> tableCard;
-        printTableCard();
     }
+    printTableCard();
 }
 
 void GameCandy::printTableCard(){
-    cout << "Table card round "<< round << endl << "|  ";
+    cout  << "\033[1m\033[37m" << "Table Card: " << "\033[0m" << endl;
+    cout << "|  ";
     vector<ColorCard> tableVec = tableCard.getDeck();
     for (auto i = tableVec.begin(); i != tableVec.end(); ++i){
         if((*i).getColor() == GREEN){
@@ -312,9 +301,10 @@ void GameCandy::printTableCard(){
     }
     cout << endl;
 }
+
 void GameCandy::nextRound()
 {
-    round = (round + 1) % 6;
+    round++;
 }
 
 void GameCandy::changeGiftPoinMessage(string cmd,double multiplier){
@@ -326,4 +316,24 @@ void GameCandy::changeGiftPoinMessage(string cmd,double multiplier){
         string status = multiplier<1? "turun":"naik";
         cout << "Poin hadiah " << status << " dari " << giftPoint << " menjadi " << giftPoint*multiplier << "!\n";
     }
+}
+
+void GameCandy::displayGameStat(){
+    cout << "\033[1m\033[35m" << "---------------------------------" << endl;
+    cout << "           GAME STATUS" << endl;
+    cout << "---------------------------------" << "\033[0m" << endl;
+    cout << "\033[1m\033[37m" << "Gift Point: " << "\033[1m\033[33m" << this->giftPoint << "\033[0m" << endl;
+    cout << "\033[1m\033[37m" << "Turns: " << endl;
+    vector<int> turnsVec = players.getTurns();
+    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i){
+        if(*i == players.getIndexOfCurrentTurn()) cout << "\033[1m\033[32m" << "p" << (*i) + 1 << " " << "\033[0m";
+        else cout << "p" << (*i) + 1<< " ";
+    }
+    cout << endl;
+    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i){
+        if(*i == players.getIndexOfCurrentTurn()) cout << "\033[1m\033[32m" << "^   " << "\033[0m";
+        else cout << "   ";
+    }
+    cout << endl;
+    printTableCard();
 }
