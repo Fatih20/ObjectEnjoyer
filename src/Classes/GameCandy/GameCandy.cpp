@@ -88,6 +88,7 @@ void GameCandy::endOfGame()
 
 void GameCandy::playerAction(string cmd)
 {
+    transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
     if (cmd == "next"){
         cout << "Giliran dilanjut ke pemain selanjutnya\n";
     } else if (cmd == "double"){

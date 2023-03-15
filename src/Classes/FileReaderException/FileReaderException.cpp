@@ -27,7 +27,7 @@ const char* FormatExp::what() const throw(){
         case 0:
             return "Fomat masukan anda untuk deck card salah!\nFormat masukan yang valid adalah \"<warna><spasi><angka>\"\nContoh: \"G 1\"\n";
         case 1:
-            return "Format masukan anda untuk warna deck card salah!\nFormat masukan yang valid adalah:\nHijau = G\nBiru = B\nKuning = K\nMerah = M\n";
+            return "Format masukan anda untuk warna deck card salah!\nFormat masukan yang valid adalah:\nHijau = G\nBiru = B\nKuning = Y\nMerah = R\n";
         case 2:
             return "Format masukan anda untuk angka deck kard salah!\nFormat masukan ynag valid adalah angka antara 1 sampai 13\n";
         case 3:
