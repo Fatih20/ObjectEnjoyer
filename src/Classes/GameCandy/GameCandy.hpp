@@ -162,7 +162,6 @@ public:
 
     void displayCombiInfo();
 
-    void useAbility(string);
 };
 
 #endif
