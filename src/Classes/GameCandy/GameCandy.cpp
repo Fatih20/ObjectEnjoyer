@@ -77,24 +77,7 @@ void GameCandy::endOfGame()
     giftPoint = 64;
 }
 
-void GameCandy::startRound()
-{
-    //     switch (round)
-    //     {
-    //     case 1:
-    //         //bagi color card
-    //         break;
-    //     case 2:
-    //         //bagi ability card
-    //     }
 
-    for (int i = 0; i < 7; i++)
-    {
-        string cmd = inputCommand();
-        playerAction(cmd);
-        // nextTurn();
-    }
-}
 
 void GameCandy::playerAction(string cmd)
 {
@@ -107,6 +90,7 @@ void GameCandy::playerAction(string cmd)
         changeGiftPoinMessage(cmd,0.5);
         halvesPoint();
     } else {
+
     }
 }
 

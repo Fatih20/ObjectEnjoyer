@@ -68,11 +68,6 @@ public:
      */
     void endOfGame();
 
-    /**
-     * @brief menjalankan game 1 ronde
-     *
-     */
-    void startRound();
 
     /**
      * @brief mekanisme giliran pemain, currentPlayer akan input command dan command akan dijalankan
