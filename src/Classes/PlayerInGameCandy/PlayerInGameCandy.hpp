@@ -188,12 +188,14 @@ public:
      */
     bool playerIndexInRange(int index);
 
-    /*
-     * @brief Give reward to the highest combination
+    /**
+     * @brief Give reward to the highest combination and return the newest
      *
      * @param reward
+     * @param tableCard
+     * @return string
      */
-    void rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard);
+    string rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard);
 };
 
 #endif
