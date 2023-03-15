@@ -39,7 +39,7 @@ void GameCandy::start()
     while (!isWinning())
     {
         round = 1;
-        while (round != 4)
+        while (round != 7)
         {
             cout << "\033[1m\033[32m"
                  << "\nRound " << round << " begin \n\n"
@@ -67,6 +67,7 @@ void GameCandy::start()
              << "\nNew game starting..\n\n"
              << "\033[0m";
         newDeck1();
+        players.redrawAll(this->deckGame);
     }
 }
 
