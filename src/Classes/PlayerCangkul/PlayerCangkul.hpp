@@ -9,6 +9,12 @@ class PlayerCangkul : public Player<ColorCard> {
 
     public:
         PlayerCangkul();
+
+        bool isWinner();
+
+        void printCards();
+
+        void playCard(int index);
 };
 
 #endif
