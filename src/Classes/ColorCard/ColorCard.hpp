@@ -7,10 +7,10 @@
 
 typedef enum
 {
-    GREEN,  //diamond
-    BLUE,   //club
-    YELLOW, //heart
-    RED     //spade
+    GREEN,
+    BLUE,
+    YELLOW,
+    RED
 } Color;
 
 class ColorCard: public Card<int> {
