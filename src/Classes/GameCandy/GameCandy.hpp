@@ -6,6 +6,7 @@
 #include "../DeckGame/DeckGame.hpp"
 #include "../GameCandyException/GameCandyException.hpp"
 #include "../Abilities/Abilities.hpp"
+#include "../Classes/SplashScreen/SplashScreen.hpp"
 #include <vector>
 using namespace std;
 
@@ -21,6 +22,11 @@ private:
     double giftPoint; // point hadiah tiap akhir game
     void multiplyGiftPoint(double multiplier);
     void operator*=(double multiplier);
+    /**
+     * @brief private method to firmat print tabke card
+     *
+     */
+    void printTableCard();
 
 public:
     /**
@@ -68,12 +74,6 @@ public:
      *
      */
     void endOfGame();
-
-    /**
-     * @brief menjalankan game 1 ronde
-     *
-     */
-    void startRound();
 
     /**
      * @brief mekanisme giliran pemain, currentPlayer akan input command dan command akan dijalankan
@@ -141,8 +141,6 @@ public:
 
     vector<AbilityCard> initializeAbilityDeck();
 
-    // vector<AbilityCard> &initializeAbilityDeck(vector<AbilityCard> &initialVector);
-
     pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> newDeck();
 
     void rerollAbility();
@@ -154,6 +152,10 @@ public:
     void switchAbility();
 
     void swapAbility();
+
+    void changeGiftPoinMessage(string, double);
+
+    void displayGameStat();
 };
 
 #endif

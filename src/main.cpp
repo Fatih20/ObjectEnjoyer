@@ -6,67 +6,12 @@
 // #include "Classes/AbilityCard/AbilityCard.hpp"
 #include "Classes/GameCandy/GameCandy.hpp"
 #include "Classes/Combination/Combination.hpp"
+#include "Classes/SplashScreen/SplashScreen.hpp"
 
 #include <vector>
 #include <iostream>
 
 using namespace std;
-
-void splashScreenMain()
-{
-    cout << "                  __                                _" << endl;
-    cout << "                 [  |                              | | " << endl;
-    cout << " _   _   __ .---. | | .---.  .--.  _ .--..--. .---.| | " << endl;
-    cout << "[ \\ [ \\ [  / /__\\| |/ /'`\\/ .'`\\ [ `.-. .-. / /__\\| | " << endl;
-    cout << " \\ \\/\\ \\/ /| \\__.,| || \\__.| \\__. || | | | | | \\__.|_| " << endl;
-    cout << "  \\__/\\__/  '.__.[___'.___.''.__.'[___||__||__'.__.(_) " << endl;
-    cout << "                                     ____                                         " << endl;
-    cout << "                              .-\"    `-.      ,                               " << endl;
-    cout << "                            .'          '.   /j\\                              " << endl;
-    cout << "                           /              \\,/:/#\\                /\\           " << endl;
-    cout << "                          ;              ,//' '/#\\              //#\\          " << endl;
-    cout << "                          |             /' :   '/#\\            /  /#\\         " << endl;
-    cout << "                          :         ,  /' /'    '/#\\__..--\"\"\"\"/    /#\\__      " << endl;
-    cout << "                           \\       /'\'-._:__    '/#\\        ;      /#, \"\"\"---" << endl;
-    cout << "                            `-.   / ;#\']\" ; \"\"\"--./#J       ':____...!     " << endl;
-    cout << "                               `-/   /#\\  J  [;[;[;Y]         |      ;        " << endl;
-    cout << "\"\"\"\"\"\"---....             __.--\"/    '/#\\ ;   "
-            "  |     !    |   #! |        "
-         << endl;
-    cout << "             "
-            "--.. _.--"
-            "     /      ,/#\'-..____.;_,   |    |   '  |        "
-         << endl;
-    cout << "                   \"-.        :_....___,/#} \"####\" | '_.-\",   | #['  |        " << endl;
-    cout << "                      '-._      |[;[;[;[;|         |.;'  /;\\  |      |        " << endl;
-    cout << "                      ,   `-.   |        :     _   .;'    /;\\ |   #\" |        " << endl;
-    cout << "                      !      `._:      _  ;   ##' .;'      /;\\|  _,  |        " << endl;
-    cout << "                     .#\""
-            "---..._    ';, |      .;{___     /;\\  ]#' |__....--"
-         << endl;
-    cout << "          .--.      ;'/#\\         \\    ]! |       \"| , \"\"\"--./_J    /         " << endl;
-    cout << "         /  '%;    /  '/#\\         \\   !' :        |!# #! #! #|    :`.__      " << endl;
-    cout << "        i__..'%] _:_   ;##J         \\      :\"#...._!   '  \"  \"|__  |    `--.._" << endl;
-    cout << "         | .--\"\"\" !|\"\"\"\"  |\"\"\"----...J     | '##\"\" `-._       |  \"\"\"---.._    " << endl;
-    cout << "     ____: |      #|      |         #|     |          \"]      ;   ___...-\"T,  " << endl;
-    cout << "    /   :  :      !|      |   _______!_    |           |__..--;\"\"\"     ,;MM;  " << endl;
-    cout << "   :____| :    .-.#|      |  /\\      /#\\   |          /'               ''MM;  " << endl;
-    cout << "    |\"\"\": |   /   \\|   .----+  ;      /#\\  :___..--\"\";                  ,'MM; " << endl;
-    cout << "   _Y--:  |  ;     ;.-'      ;  \\______/#: /         ;                  ''MM; " << endl;
-    cout << "  /    |  | ;_______;     ____!  |\"##\"\"\"MM!         ;                    ,'MM;" << endl;
-    cout << " !_____|  |  |\"#\"#\"|____.'\"\"##\"  |       :         ;                     ''MM  " << endl;
-    cout << "  | \"\"\"\"--!._|     |##\"\"         !       !         :____.....-------\"\"\"\"\"\" |'" << endl;
-    cout << "  |          :     |______                        ___!_ \"#\"\"#\"\"#\"\"\"#\"\"\"#\"\"\"|  " << endl;
-    cout << "__|          ;     |MM\"MM\"\"\"\"\"---..._______...--\"\"MM\"MM]                   |   " << endl;
-    cout << "  \"\\-.      :      |#                                  :                   |  " << endl;
-    cout << "    /#'.    |      /##,                                !                   |  " << endl;
-    cout << "   .',/'\\   |       #:#,                                ;       .==.       |  " << endl;
-    cout << "  /\"\\'#\"\\',.|       ##;#,                               !     ,'||||',     |  " << endl;
-    cout << "        /;/`:       ######,          ____             _ :     M||||||M     |  " << endl;
-    cout << "       ###          /;\"\\.__\"-._   \"\"\"                   |===..M!!!!!!M_____|  " << endl;
-    cout << "                           `--..`--.._____             _!_                    " << endl;
-    cout << "                                          `--...____,=\"_.'`-.____        " << endl;
-}
 
 int main()
 {
@@ -164,59 +109,8 @@ int main()
     // // cout << "drawed card  : " << ccdraw << endl;
 
     // cout << deckD << deckB << deckC << endl;
+    SplashScreen::splashScreenMain();
     GameCandy game;
     game.start();
-
-    cout << "Initialized" << endl;
-    shared_ptr<Quadruple> quad = make_shared<Quadruple>();
-    shared_ptr<Quarter> quarter = make_shared<Quarter>();
-    shared_ptr<Quadruple> quad1 = make_shared<Quadruple>();
-    shared_ptr<Quarter> quarter1 = make_shared<Quarter>();
-    shared_ptr<Quadruple> quad2 = make_shared<Quadruple>();
-    shared_ptr<Quarter> quarter2 = make_shared<Quarter>();
-    shared_ptr<Quadruple> quad3 = make_shared<Quadruple>();
-    cout << "Ability created" << endl;
-
-    AbilityCard ac1(quad);
-    AbilityCard ac2(quad2);
-    AbilityCard ac3(quad3);
-    AbilityCard ac4(quarter);
-    AbilityCard ac5(quarter1);
-    AbilityCard ac6(quarter2);
-    AbilityCard ac7(quad1);
-
-    AbilityCard ac22 = ac2;
-    cout << ac22.value().get() << endl;
-    cout << ac2.value().get() << endl;
-    // cout << ac1 << endl;
-    cout << ac2 << endl;
-    cout << "Card created" << endl;
-
-    vector<AbilityCard>
-        abilityCards{ac5, ac6, ac1, ac2, ac3, ac4, ac7};
-    cout << "Vector created" << endl;
-    DeckGame<AbilityCard> deckAbility(abilityCards);
-    cout << "First Deck created" << endl;
-
-    DeckGame<ColorCard> deckA2 = deckA;
-
-    cout << "Decks created" << endl;
-    PlayerInGameCandy pigc(deckA2, deckAbility, 4);
-
-    PlayerCandy p(9);
-    cout << p.getAbilityName() << endl;
-    p.drawAbility(deckAbility);
-    p.test();
-
-    PlayerCandy p2(10);
-    cout << p2.getAbilityName() << endl;
-
-    p2.drawAbility(deckAbility);
-    p2.test();
-
-    PlayerCandy p3(11);
-    cout << p2.getAbilityName() << endl;
-    p3.drawAbility(deckAbility);
-    p3.test();
     return 0;
 }

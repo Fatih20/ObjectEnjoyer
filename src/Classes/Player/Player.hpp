@@ -16,7 +16,7 @@ class Player : InventoryHolder<T>
 protected:
     int gameID;
     string username;
-    double score;
+    unsigned int score;
     DeckPlayer<T> handCards;
 
     /**
@@ -88,14 +88,14 @@ public:
      *
      * @param addedScore
      */
-    void operator+=(double addedScore);
+    void operator+=(unsigned int addedScore);
 
     /**
      * @brief Subtract the player's score
      *
      * @param subtractedScore
      */
-    void operator-=(double subtractedScore);
+    void operator-=(unsigned int subtractedScore);
 
     /**
      * @brief Add card to the player
@@ -157,14 +157,14 @@ public:
      *
      * @param subtractedScore
      */
-    void subtractScore(double subtractedScore);
+    void subtractScore(unsigned int subtractedScore);
 
     /**
      * @brief Add score to the player
      *
      * @param addedScore
      */
-    void addScore(double addedScore);
+    void addScore(unsigned int addedScore);
 
     /**
      * @brief Reset the player's score to 0
