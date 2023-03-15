@@ -7,7 +7,7 @@ using namespace std;
 
 vector<string> commandOption{"next", "double", "half","gamestat","help","mycard", "combination",
                              "re-roll", "quadruple", "quarter",
-                             "reverse", "swap", "switch", "abilityless",};
+                             "reverse", "swap", "switch", "abilityless"};
 
 GameCandy::GameCandy()
 {
@@ -69,12 +69,6 @@ void GameCandy::start()
                      << "\033[0m" << endl;
                     cmd = inputCommand();
                 }
-                // playerAction(cmd);
-                // while(cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse"){
-                //     cout << "\033[1m\033[37m" << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn" << "\033[0m" << endl;
-                //     cmd = inputCommand();
-                //     playerAction(cmd);
-                // }
                 players.nextTurn();
             }
             nextRound();
@@ -105,12 +99,10 @@ void GameCandy::newGame()
 
 void GameCandy::endOfGame()
 {
-    players.rewardHighestCombination(giftPoint, tableCard);
     cout << "\nRonde 6 selesai.\n";
-    cout << "Pemenang babak ini adalah \n"
-         << endl;
-    cout << "mendapatkan " << giftPoint << " poin!\n";
-    // players.showLeaderboard();
+    cout << "Pemenang babak ini adalah " << players.rewardHighestCombination(giftPoint, tableCard) << endl;
+    cout << "Player mendapatkan " << giftPoint << " poin!\n";
+    players.showLeaderboard();
     if (isWinning())
     {
         giftPoint = 64;
@@ -153,7 +145,9 @@ bool GameCandy::playerAction(string cmd)
         displayCombiInfo();
     } else {
         try {
+            transform(cmd.begin(), cmd.end(), cmd.begin(), ::toupper);
             players.getPlayerWithTurn().useAbility(cmd,*this);
+            transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
         } catch (AbilityNotAvailable e){
             cout << e.getMessage() << endl;
             return false;
@@ -585,3 +579,22 @@ void GameCandy::displayHelp(){
     cout << "* Commands are case insensitive.\n";
 }
 
+void GameCandy::useAbility(string cmd){
+    if (cmd == "re-roll" ){
+        rerollAbility();
+    } else if (cmd == "quadruple"){
+        quadruplePoint();
+        changeGiftPoinMessage(cmd,4);
+    } else if (cmd == "quarter"){
+        quarterPoint();
+        changeGiftPoinMessage(cmd,0.25);
+    } else if (cmd == "reverse"){
+        reverseAbility();
+    } else if (cmd == "swap"){
+        swapAbility();
+    } else if (cmd == "switch"){
+        switchAbility();
+    } else if (cmd == "abilityless"){
+        abilitylessAbility();
+    }
+}

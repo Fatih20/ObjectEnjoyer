@@ -241,43 +241,6 @@ public:
      * @param deckGame
      */
     void redrawCard(DeckGame<T> &deckGame);
-    /**
-     * @brief Return 1 if this player is higher, 0 if same, -1 if this player is lower
-     *
-     * @param otherPlayer
-     * @param deckGame
-     * @return int
-     */
-    int compareCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame);
-
-    /**
-     * @brief Return true if we have equal combination weight
-     *
-     * @param otherPlayer
-     * @param deckGame
-     * @return int
-     */
-    bool equalCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame);
-
-    /**
-     * @brief Return true if this player have lower combination weight
-     *
-     * @param otherPlayer
-     * @param deckGame
-     * @return true
-     * @return false
-     */
-    bool lowerCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame);
-
-    /**
-     * @brief Return true if this player have bigger combination weight
-     *
-     * @param otherPlayer
-     * @param deckGame
-     * @return true
-     * @return false
-     */
-    bool higherCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame);
 
     // Overloading untuk ngurusin deck nggak diimplementasikan dulu karena urusannya sama deck
     /*

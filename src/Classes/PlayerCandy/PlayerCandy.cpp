@@ -1,12 +1,16 @@
 #include "PlayerCandy.hpp"
 #include "../PlayerException/PlayerException.hpp"
-// #include "../GameCandy/GameCandy.hpp"
+#include "../Combination/Combination.hpp"
 
-PlayerCandy::PlayerCandy(int id) : Player<ColorCard>(id){};
+PlayerCandy::PlayerCandy(int id) : Player<ColorCard>(id)
+{
+    abilityUsed = false;
+};
 
 PlayerCandy::PlayerCandy(int id, DeckGame<AbilityCard> &deckGame) : Player<ColorCard>(id)
 {
     drawAbility(deckGame);
+    abilityUsed = false;
     // this->abilityHand = deckGame.ejectCard();
 };
 
@@ -16,7 +20,10 @@ PlayerCandy::PlayerCandy(const PlayerCandy &p) : Player<ColorCard>(p)
     abilityHand = p.abilityHand;
 }
 
-PlayerCandy::PlayerCandy() : Player<ColorCard>(){};
+PlayerCandy::PlayerCandy() : Player<ColorCard>()
+{
+    abilityUsed = false;
+};
 
 void PlayerCandy::disableAbility()
 {
@@ -60,7 +67,7 @@ void PlayerCandy::useAbility(string abilityName, GameCandy &gC)
         throw e;
     }
 
-    if (!abilityUsed)
+    if (abilityUsed)
     {
         AbilityNotAvailable e;
         throw e;
@@ -83,3 +90,37 @@ void PlayerCandy::test()
 {
     abilityHand.value()->test();
 }
+
+bool PlayerCandy::higherCombinationWeight(const PlayerCandy &otherPlayer, const DeckGame<ColorCard> &deckGame)
+{
+    return compareCombinationWeight(otherPlayer, deckGame) == 1;
+};
+
+bool PlayerCandy::equalCombinationWeight(const PlayerCandy &otherPlayer, const DeckGame<ColorCard> &deckGame)
+{
+    return compareCombinationWeight(otherPlayer, deckGame) == 0;
+};
+
+bool PlayerCandy::lowerCombinationWeight(const PlayerCandy &otherPlayer, const DeckGame<ColorCard> &deckGame)
+{
+    return compareCombinationWeight(otherPlayer, deckGame) == -1;
+};
+
+int PlayerCandy::compareCombinationWeight(const PlayerCandy &otherPlayer, const DeckGame<ColorCard> &deckGame)
+{
+    Combination ourCombination((this->handCards), deckGame);
+    Combination theirCombination((otherPlayer.handCards), deckGame);
+
+    if (ourCombination > theirCombination)
+    {
+        return 1;
+    }
+    else if (ourCombination == theirCombination)
+    {
+        return 0;
+    }
+    else
+    {
+        return -1;
+    }
+};

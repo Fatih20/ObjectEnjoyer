@@ -19,7 +19,7 @@ void Quarter::activateAbility(GameCandy &gC)
     gC.quarterPoint();
 }
 
-Reroll::Reroll() : Ability("REROLL", "Reroll all hand cards of this player", 2){};
+Reroll::Reroll() : Ability("RE-ROLL", "Reroll all hand cards of this player", 2){};
 
 Reroll::Reroll(const Reroll &q) : Ability(q){};
 
