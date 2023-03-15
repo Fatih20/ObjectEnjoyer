@@ -1,5 +1,6 @@
 #include "PlayerInGameCandy.hpp"
 #include "../PlayerInGameException/PlayerInGameException.hpp"
+#include "../PlayerMini/PlayerMini.hpp"
 #include <algorithm>
 
 using namespace std;
@@ -75,13 +76,21 @@ void PlayerInGameCandy::createAndAddPlayer(int gameID)
 
 void PlayerInGameCandy::showLeaderboard()
 {
+    vector<PlayerMini<ColorCard>> vectorOfPMini;
     int numberOfPlayer = getNumberOfPlayer();
+    for (int i = 0; i < numberOfPlayer; i++)
+    {
+        PlayerMini<ColorCard> pM(players.at(i));
+        vectorOfPMini.push_back(pM);
+    }
+    sort(vectorOfPMini.begin(), vectorOfPMini.end(), [](PlayerMini<ColorCard> p1, PlayerMini<ColorCard> p2) -> bool
+         { return p1 > p2; });
     cout << "\033[1m\033[37m"
          << "Leaderboard: "
          << "\033[0m" << endl;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        cout << "  " << i + 1 << ". " << players.at(i).getUsername() << "  : " << players.at(i).getScore() << endl;
+        cout << "  " << i + 1 << ". " << vectorOfPMini.at(i).getUsername() << "  : " << vectorOfPMini.at(i).getScore() << endl;
     }
 }
 
