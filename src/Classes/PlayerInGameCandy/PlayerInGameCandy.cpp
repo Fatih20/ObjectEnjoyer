@@ -305,13 +305,15 @@ bool PlayerInGameCandy::disablePlayerAbility(int index)
 
 bool PlayerInGameCandy::isAllAbilityDisable()
 {
-    int count=0;
-    for (int i = 0; i < getNumberOfPlayer(); i++){
-        if (!players.at(i).getAbilityAvailable()){
+    int count = 0;
+    for (int i = 0; i < getNumberOfPlayer(); i++)
+    {
+        if (!players.at(i).getAbilityAvailable())
+        {
             count++;
         }
     }
-    return count==6;
+    return count == 6;
 }
 
 bool PlayerInGameCandy::playerIndexInRange(int index)
@@ -319,7 +321,7 @@ bool PlayerInGameCandy::playerIndexInRange(int index)
     return index >= 0 && index < getNumberOfPlayer();
 }
 
-string PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
+PlayerCandy &PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
 {
     int indexOfHighest = 0;
     int numberOfPlayer = getNumberOfPlayer();
@@ -330,6 +332,6 @@ string PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame
             indexOfHighest = i;
         }
     }
-    players.at(indexOfHighest) += reward;
-    return players.at(indexOfHighest).getUsername();
+    getNthPlayer(indexOfHighest) += reward;
+    return getNthPlayer(indexOfHighest);
 }
