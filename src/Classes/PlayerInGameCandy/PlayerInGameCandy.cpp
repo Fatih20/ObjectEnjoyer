@@ -75,16 +75,13 @@ void PlayerInGameCandy::createAndAddPlayer(int gameID)
 
 void PlayerInGameCandy::showLeaderboard()
 {
-    vector<PlayerCandy> sortedPlayers = players;
-    sort(sortedPlayers.begin(), sortedPlayers.end(), [](PlayerCandy p1, PlayerCandy p2) -> bool
-         { return p1 > p2; });
     int numberOfPlayer = getNumberOfPlayer();
     cout << "\033[1m\033[37m"
          << "Leaderboard: "
          << "\033[0m" << endl;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        cout << "  " << i + 1 << ". " << sortedPlayers.at(i).getUsername() << "  : " << sortedPlayers.at(i).getScore() << endl;
+        cout << "  " << i + 1 << ". " << players.at(i).getUsername() << "  : " << players.at(i).getScore() << endl;
     }
 }
 
