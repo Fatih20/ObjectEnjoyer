@@ -92,6 +92,13 @@ public:
     void redrawCardForCurrentPlayer(DeckGame<ColorCard> &deckGame);
 
     /**
+     * @brief Redraw the cards for all player
+     *
+     * @param deckGame
+     */
+    void redrawAll(DeckGame<ColorCard> &deckGame);
+
+    /**
      * @brief Swap the deck of the current player with another player given by index
      *
      * @param rawTargetIndex
@@ -129,7 +136,7 @@ public:
      * @param threshold
      * @return std::vector<PlayerCandy>
      */
-    std::vector<string> getWinner();
+    string getWinner();
 
     /**
      * @brief Return whether there's a winner
@@ -138,6 +145,13 @@ public:
      * @return false
      */
     bool winnerExist();
+
+    /**
+     * @brief Give reward to the highest combination
+     *
+     * @param reward
+     */
+    void rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard);
 };
 
 #endif
