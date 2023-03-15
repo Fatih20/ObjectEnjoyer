@@ -36,25 +36,20 @@ bool PlayerCandy::getAbilityAvailable()
 void PlayerCandy::drawAbility(DeckGame<AbilityCard> &deckAbility)
 {
     cout << "Entered draw ability" << endl;
+    cout << "Initial ability" << endl
+         << abilityHand.getName() << endl;
     cout << "Deck ability cards amount before drawn " << deckAbility.getNumberOfCards() << endl;
     AbilityCard drawnCard = deckAbility.ejectCard();
     cout << "Deck ability cards amount after drawn " << deckAbility.getNumberOfCards() << endl;
     cout << "Cards drawn" << endl;
-    bool success = false;
-    while (!success)
-    {
-        try
-        {
-            cout << "Entering try" << endl;
-            this->abilityHand = drawnCard;
+    cout << "Drawn ability" << endl
+         << drawnCard.getName() << endl;
 
-            success = true;
-        }
-        catch (bad_alloc e)
-        {
-        }
-    }
-    cout << "Exited draw ability" << endl;
+    bool success = false;
+    cout << "Entering try" << endl;
+    abilityHand = drawnCard;
+    cout << "Exited draw ability" << endl
+         << endl;
 }
 
 void PlayerCandy::useAbility(string abilityName, GameCandy &gC)
@@ -73,4 +68,9 @@ void PlayerCandy::useAbility(string abilityName, GameCandy &gC)
 void PlayerCandy::useAbility(GameCandy &gC)
 {
     abilityHand.activateAbility(gC);
+}
+
+void PlayerCandy::test()
+{
+    abilityHand.value()->test();
 }

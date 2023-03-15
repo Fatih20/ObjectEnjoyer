@@ -78,6 +78,8 @@ public:
      * @return string
      */
     string getAbilityName();
+
+    void test();
 };
 
 #endif

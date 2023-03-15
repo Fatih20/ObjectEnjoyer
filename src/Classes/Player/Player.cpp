@@ -8,7 +8,6 @@
 #include <algorithm>
 
 using namespace std;
-
 template <typename T>
 Player<T>::Player()
 {

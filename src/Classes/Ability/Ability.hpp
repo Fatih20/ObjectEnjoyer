@@ -40,6 +40,9 @@ public:
     Ability();
 
     Ability(const Ability &ability);
+
+    Ability &operator=(const Ability &ability);
+
     /**
      * @brief Get the description of the card (for example, REROLL: reroll all hand cards)
      */
@@ -57,6 +60,8 @@ public:
      *
      */
     virtual void activateAbility(GameCandy &gC) = 0;
+
+    virtual void test() = 0;
 
     bool operator>(const Ability &ability);
 
@@ -80,6 +85,7 @@ class BlankAbility : public Ability
 public:
     BlankAbility() : Ability(){};
     void activateAbility(GameCandy &gC){};
+    void test(){};
 };
 
 #endif

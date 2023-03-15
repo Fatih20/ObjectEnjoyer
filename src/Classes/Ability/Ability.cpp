@@ -25,8 +25,20 @@ Ability::Ability()
     power = 0;
 }
 
-Ability::Ability(const Ability &ability) : Ability(ability.abilityName, ability.abilityDescription, ability.power)
+Ability::Ability(const Ability &ability)
 {
+    cout << "Ability ctor called" << endl;
+    this->abilityName = ability.abilityName;
+    this->abilityDescription = ability.abilityDescription;
+    this->power = ability.power;
+}
+
+Ability &Ability::operator=(const Ability &ability)
+{
+    this->abilityName = ability.abilityName;
+    this->abilityDescription = ability.abilityDescription;
+    this->power = ability.power;
+    return *this;
 }
 
 Ability::Ability(string name, string description, int power)
@@ -57,7 +69,6 @@ bool Ability::operator>(const Ability &ability) { return this->power > ability.p
 bool Ability::operator<(const Ability &ability) { return this->power < ability.power; }
 
 bool Ability::operator!=(const Ability &ability) { return this->power != ability.power; }
-
 // Ability &Ability::operator=(const Ability &ability) : Ability(ability){
 //                                                           return *this};
 

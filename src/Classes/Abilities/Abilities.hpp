@@ -11,6 +11,7 @@ public:
     Quadruple(const Quadruple &q);
 
     void activateAbility(GameCandy &gC);
+    void test() { cout << "Test quadruple" << endl; };
 };
 
 class Quarter : public Ability
@@ -19,6 +20,7 @@ public:
     Quarter();
     Quarter(const Quarter &q);
     void activateAbility(GameCandy &gC);
+    void test() { cout << "Test quarter" << endl; };
 };
 
 #endif

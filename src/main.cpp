@@ -167,6 +167,7 @@ int main()
     GameCandy game;
     game.start();
 
+    cout << "Initialized" << endl;
     Quadruple quad;
     Quarter quarter;
     Quadruple quad1;
@@ -174,8 +175,14 @@ int main()
     Quadruple quad2;
     Quarter quarter2;
     Quadruple quad3;
+    cout << "Ability created" << endl;
 
     AbilityCard ac1(quad);
+
+    AbilityCard ac12(ac1);
+    cout << ac1.value() << endl;
+    cout << ac12.value() << endl;
+
     AbilityCard ac2(quad2);
     AbilityCard ac3(quad3);
     AbilityCard ac4(quarter);
@@ -183,12 +190,38 @@ int main()
     AbilityCard ac6(quarter2);
     AbilityCard ac7(quad1);
 
+    AbilityCard ac22 = ac2;
+    cout << ac22.value() << endl;
+    cout << ac2.value() << endl;
+    // cout << ac1 << endl;
+    cout << ac2 << endl;
+    cout << "Card created" << endl;
+
     vector<AbilityCard>
-        abilityCards{ac1, ac2, ac3, ac4, ac5, ac6, ac7};
+        abilityCards{ac5, ac6, ac1, ac2, ac3, ac4, ac7};
+    cout << "Vector created" << endl;
     DeckGame<AbilityCard> deckAbility(abilityCards);
+    cout << "First Deck created" << endl;
 
     DeckGame<ColorCard> deckA2 = deckA;
 
+    cout << "Decks created" << endl;
     PlayerInGameCandy pigc(deckA2, deckAbility, 4);
+
+    PlayerCandy p(9);
+    cout << p.getAbilityName() << endl;
+    p.drawAbility(deckAbility);
+    p.test();
+
+    PlayerCandy p2(10);
+    cout << p2.getAbilityName() << endl;
+
+    p2.drawAbility(deckAbility);
+    p2.test();
+
+    PlayerCandy p3(11);
+    cout << p2.getAbilityName() << endl;
+    p3.drawAbility(deckAbility);
+    p3.test();
     return 0;
 }
