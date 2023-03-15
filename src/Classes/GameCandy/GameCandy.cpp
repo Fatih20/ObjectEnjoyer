@@ -436,9 +436,16 @@ void GameCandy::abilitylessAbility()
 
 void GameCandy::reverseAbility()
 {
+    vector<int> turnsVec1 = players.getTurns();
+    for (auto i = turnsVec1.begin(); i != turnsVec1.end(); ++i)
+        cout << "p" << (*i) + 1 << " ";
     players.reverseTurnInitial();
     cout << players.getPlayerWithTurn().getUsername() << " melakukan reverse!\n";
     cout << "Sisa urutan eksekusi giliran ini : ";
+    vector<int> turnsVec = players.getTurns();
+    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i)
+        cout << "p" << (*i) + 1 << " ";
+    cout << endl;
 }
 
 void GameCandy::swapAbility()

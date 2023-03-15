@@ -128,14 +128,6 @@ public:
      */
     void stopRound();
 
-    /**
-     * @brief Get the Nth Player
-     *
-     * @param index
-     * @return Player<T>&
-     */
-    T &getNthPlayer(int index);
-
     virtual void remove(int index);
 
     /**

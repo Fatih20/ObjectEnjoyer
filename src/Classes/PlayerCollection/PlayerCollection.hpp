@@ -54,6 +54,14 @@ public:
      */
 
     void operator-=(int index);
+
+    /**
+     * @brief Get the Nth Player
+     *
+     * @param index
+     * @return T&
+     */
+    T &getNthPlayer(int index);
 };
 
 #endif
