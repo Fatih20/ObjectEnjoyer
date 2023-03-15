@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<string> commandOption{"next", "double", "half","gamestat","help","mycard",
+vector<string> commandOption{"next", "double", "half","gamestat","help","mycard", "combination",
                              "re-roll", "quadruple", "quarter",
                              "reverse", "swap", "switch", "abilityless"};
 
@@ -136,10 +136,13 @@ bool GameCandy::playerAction(string cmd)
     {
         displayGameStat();
     } else if (cmd == "mycard"){
-        // players.getPlayerWithTurn().printColorCard();
-        displayPlayerCard();
+        players.getPlayerWithTurn().printCard();
+        cout  << "\033[1m\033[37m" << "Your Ability Card: ";
+        cout << players.getPlayerWithTurn().getAbilityName() << "\033[0m" << endl;
     } else if (cmd == "help"){
         displayHelp();
+    } else if(cmd == "combination"){
+        displayCombiInfo();
     } else {
         try {
             transform(cmd.begin(), cmd.end(), cmd.begin(), ::toupper);
@@ -159,7 +162,7 @@ bool GameCandy::playerAction(string cmd)
          << "---------------------------------"
          << "\033[0m" << endl;
 
-    if (cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse"){
+    if (cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse" || cmd == "combination"){
         return false;
     } else {
         return true;
@@ -202,7 +205,7 @@ string GameCandy::isCommandValid(string userCommand)
         // userCommand valid
         return userCommand;
     }
-    else if (round == 1 && it - commandOption.begin() < 6)
+    else if (round == 1 && it - commandOption.begin() < 7)
     {
         return userCommand;
     }
@@ -538,27 +541,21 @@ void GameCandy::displayGameStat()
     printTableCard();
 }
 
-void GameCandy::displayPlayerCard(){
-    //players.getPlayerWithTurn().printColorCard();
-    // cout  << "\033[1m\033[37m" << "Your Hand Card: " << "\033[0m" << endl;
-    // cout << "|  ";
-    // vector<ColorCard> handVec = players.getPlayerWithTurn().getHandCards().getDeck();
-    // for (auto i = handVec.begin(); i != handVec.end(); ++i){
-    //     if((*i).getColor() == GREEN){
-    //         cout << "\033[1m\033[32m";
-    //     }
-    //     else if((*i).getColor() == RED){
-    //         cout << "\033[1m\033[31m";
-    //     }
-    //     else if((*i).getColor() == YELLOW){
-    //         cout << "\033[1m\033[33m";
-    //     }
-    //     else if((*i).getColor() == BLUE){
-    //         cout << "\033[1m\033[34m";
-    //     }
-    //     cout << (*i).getColorAsString() << " " << (*i).getNumber() << "\033[0m" << "  |  ";
-    // }
-    // cout << endl;
+void GameCandy::displayCombiInfo(){
+    cout << "\033[1m\033[35m" << "---------------------------------" << endl;
+    cout << "       AVAILABLE COMBINATION" << endl;
+    cout << "---------------------------------" << "\033[0m" << endl;
+    cout << "* 13 > 12 > ... > 1 *" << endl << "* Red > Yellow > Blue > Green *" << endl;
+    cout << "Combination below written in low priority to high priority order." << endl;
+    cout << "- HIGH CARD: Higest value & color card win (compare by value first, then color).\n";
+    cout << "- PAIR: A pair of same value card.\n";
+    cout << "- TWO PAIR: Two Pair of same value card.\n";
+    cout << "- THREE OF A KIND: Triple card of same value.\n";
+    cout << "- STRAIGHT: 5 cards of ascending value (highest value win).\n";
+    cout << "- FLUSH: 5 cards of same color (highest value win).\n";
+    cout << "- FULL HOUSE: 3 same value cards + 2 same value cards (highest value win, 3 cards value checked first).\n";
+    cout << "- FOUR OF A KIND: 4 cards of sama value.\n";
+    cout << "- STRAIGHT FLUSH: 5 cards of ascending value and same color (highest value win).\n";
 }
 
 void GameCandy::displayHelp(){
@@ -566,16 +563,19 @@ void GameCandy::displayHelp(){
     cout << "              HELP" << endl;
     cout << "---------------------------------" << "\033[0m" << endl;
     cout << "\033[1m\033[37m" << "Command: " << "\033[0m" << endl;
-    cout << "- \"NEXT\":  Do nothing this round. Turn will be handed over to the next player.\n";
-    cout << "- \"REROLL\":  Discard your hand cards then takes two new cards from main deck. Only available when you have REROLL Ability Card.\n";
-    cout << "- \"DOUBLE\":  Double gift points.\n";
-    cout << "- \"QUADRUPLE\":  Multiple gift points 4 times.\n";
-    cout << "- \"HALF\":  Divide gift points by the factor of 2.\n";
-    cout << "- \"QUARTER\":  Divide gift points by the factor of 4.\n";
-    cout << "- \"REVERSE\":  Reverse player turns, players who have already taken action on that turn will be skipped.\n    Only available when you have REROLL Ability Card. You have one more command available after this command.\n";
-    cout << "- \"SWAPCARD\":  Swap one other player's hand cards with one other. Choose 2 players, then swap each one of their hand cards.\n    Only available when you have SWAPCARD Ability Card.\n";
-    cout << "- \"SWITCH\":  Switch your hand cards with other player's hand card. Only available when you have SWITCH Ability Card.\n";
-    cout << "- \"ABILITYLESS\":  BLock other player's Abilty. If all player has already used their ability, this command will be useless.\n    Only available when you have ABILITYLESS Ability Card.\n";
+    cout << "- \"GAMESTAT\": Check game status(turns, current gift points, table card).\n";
+    cout << "- \"MYCARD\": Check your hand cards and ability card.\n";
+    cout << "- \"COMBINATION\": Check available combination (to plan your move!).\n";
+    cout << "- \"NEXT\": Do nothing this round. Turn will be handed over to the next player.\n";
+    cout << "- \"REROLL\": Discard your hand cards then takes two new cards from main deck. Only available when you have REROLL Ability Card.\n";
+    cout << "- \"DOUBLE\": Double gift points.\n";
+    cout << "- \"QUADRUPLE\": Multiple gift points 4 times.\n";
+    cout << "- \"HALF\": Divide gift points by the factor of 2.\n";
+    cout << "- \"QUARTER\": Divide gift points by the factor of 4.\n";
+    cout << "- \"REVERSE\": Reverse player turns, players who have already taken action on that turn will be skipped.\n    Only available when you have REROLL Ability Card. You have one more command available after this command.\n";
+    cout << "- \"SWAPCARD\": Swap one other player's hand cards with one other. Choose 2 players, then swap each one of their hand cards.\n    Only available when you have SWAPCARD Ability Card.\n";
+    cout << "- \"SWITCH\": Switch your hand cards with other player's hand card. Only available when you have SWITCH Ability Card.\n";
+    cout << "- \"ABILITYLESS\": BLock other player's Abilty. If all player has already used their ability, this command will be useless.\n    Only available when you have ABILITYLESS Ability Card.\n";
     cout << "* Commands are case insensitive.\n";
 }
 
