@@ -35,14 +35,14 @@ GameCandy::GameCandy()
     // cout << deckGame;
     round = 1;
     giftPoint = 64;
-    cout << "First player's deck " << endl;
-    players.getPlayerWithTurn().printCard();
-    cout << players.getPlayerWithTurn().getAbilityName() << endl;
+    // cout << "First player's deck " << endl;
+    // players.getPlayerWithTurn().printCard();
+    // cout << players.getPlayerWithTurn().getAbilityName() << endl;
 
-    cout << "Second player's deck " << endl;
-    players.nextTurn();
-    players.getPlayerWithTurn().printCard();
-    cout << players.getPlayerWithTurn().getAbilityName() << endl;
+    // cout << "Second player's deck " << endl;
+    // players.nextTurn();
+    // players.getPlayerWithTurn().printCard();
+    // cout << players.getPlayerWithTurn().getAbilityName() << endl;
 }
 
 void GameCandy::start()
@@ -51,7 +51,7 @@ void GameCandy::start()
     while (!isWinning())
     {
         round = 1;
-        while (round != 7)
+        while (round != 3)
         {
             cout << "\033[1m\033[32m"
                  << "\nRound " << round << " begin \n\n"
@@ -63,12 +63,18 @@ void GameCandy::start()
                      << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn"
                      << "\033[0m" << endl;
                 cmd = inputCommand();
-                playerAction(cmd);
-                while(cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse"){
-                    cout << "\033[1m\033[37m" << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn" << "\033[0m" << endl;
+                while (!playerAction(cmd)){
+                    cout << "\033[1m\033[37m"
+                     << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn"
+                     << "\033[0m" << endl;
                     cmd = inputCommand();
-                    playerAction(cmd);
                 }
+                // playerAction(cmd);
+                // while(cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse"){
+                //     cout << "\033[1m\033[37m" << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn" << "\033[0m" << endl;
+                //     cmd = inputCommand();
+                //     playerAction(cmd);
+                // }
                 players.nextTurn();
             }
             nextRound();
@@ -104,7 +110,7 @@ void GameCandy::endOfGame()
     cout << "Pemenang babak ini adalah \n"
          << endl;
     cout << "mendapatkan " << giftPoint << " poin!\n";
-    players.showLeaderboard();
+    // players.showLeaderboard();
     if (isWinning())
     {
         giftPoint = 64;
@@ -118,7 +124,7 @@ void GameCandy::endOfGame()
     }
 }
 
-void GameCandy::playerAction(string cmd)
+bool GameCandy::playerAction(string cmd)
 {
     transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
     if (cmd == "next"){
@@ -142,11 +148,29 @@ void GameCandy::playerAction(string cmd)
         displayPlayerCard();
     } else if (cmd == "help"){
         displayHelp();
+    } else {
+        try {
+            players.getPlayerWithTurn().useAbility(cmd,*this);
+        } catch (AbilityNotAvailable e){
+            cout << e.getMessage() << endl;
+            return false;
+        } catch (AbilityNotOwned e){
+            cout << e.getMessage() << endl;
+            return false;
+        }
     }
+
     cout << endl
          << "\033[1m\033[35m"
          << "---------------------------------"
          << "\033[0m" << endl;
+
+    if (cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse"){
+        return false;
+    } else {
+        return true;
+    }
+
 }
 
 string GameCandy::inputCommand()
@@ -422,6 +446,7 @@ void GameCandy::rerollAbility()
     cout << "Melakukan pembuangan kartu yang sedang dimiliki" << endl;
     cout << "Kamu mendapatkan 2 kartu baru yaitu: " << endl;
     players.getPlayerWithTurn().printCard();
+    players.nextTurn();
 }
 
 void GameCandy::abilitylessAbility()
@@ -440,6 +465,7 @@ void GameCandy::abilitylessAbility()
     {
         // Print the proper statement
     }
+    players.nextTurn();
 }
 
 void GameCandy::reverseAbility()
@@ -473,6 +499,7 @@ void GameCandy::swapAbility()
     bool secondIsLeft;
     // Konvensi, ke kanan makin atas di deckPlayer
     // Minta input kiri / kanan
+    players.nextTurn();
 }
 
 void GameCandy::switchAbility()
@@ -481,6 +508,7 @@ void GameCandy::switchAbility()
     int rawIndex;
     cin >> rawIndex;
     players.swapDeckOfCurrentWith(rawIndex);
+    players.nextTurn();
 }
 void GameCandy::changeGiftPoinMessage(string cmd, double multiplier)
 {
@@ -535,7 +563,7 @@ void GameCandy::displayGameStat()
 }
 
 void GameCandy::displayPlayerCard(){
-    players.getPlayerWithTurn().printColorCard();
+    // players.getPlayerWithTurn().printColorCard();
     // cout  << "\033[1m\033[37m" << "Your Hand Card: " << "\033[0m" << endl;
     // cout << "|  ";
     // vector<ColorCard> handVec = players.getPlayerWithTurn().getHandCards().getDeck();
@@ -574,3 +602,4 @@ void GameCandy::displayHelp(){
     cout << "- \"ABILITYLESS\":  BLock other player's Abilty. If all player has already used their ability, this command will be useless.\n    Only available when you have ABILITYLESS Ability Card.\n";
     cout << "* Commands are case insensitive.\n";
 }
+

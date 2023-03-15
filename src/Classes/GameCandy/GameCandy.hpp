@@ -7,6 +7,7 @@
 #include "../GameCandyException/GameCandyException.hpp"
 #include "../Abilities/Abilities.hpp"
 #include "../Classes/SplashScreen/SplashScreen.hpp"
+#include "../PlayerException/PlayerException.hpp"
 #include <vector>
 using namespace std;
 
@@ -79,7 +80,7 @@ public:
      * @brief mekanisme giliran pemain, currentPlayer akan input command dan command akan dijalankan
      *
      */
-    void playerAction(string action);
+    bool playerAction(string action);
 
     /**
      * @brief
@@ -160,6 +161,8 @@ public:
     void displayPlayerCard();
 
     void displayHelp();
+
+    void useAbility(string);
     
 };
 

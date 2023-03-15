@@ -309,6 +309,5 @@ void PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<C
             indexOfHighest = i;
         }
     }
-
     players.at(indexOfHighest) += reward;
 }
