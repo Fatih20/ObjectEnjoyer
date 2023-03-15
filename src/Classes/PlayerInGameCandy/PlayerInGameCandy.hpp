@@ -11,7 +11,25 @@ using namespace std;
 
 class PlayerInGameCandy : public PlayerInGame<PlayerCandy>
 {
+
+private:
+    pair<bool, int> reversedThisRoundInfo;
+
+    /**
+     * @brief Construct a new draw Ability Card object
+     *
+     * @param deckAbility
+     */
+    void drawColorCardAll(DeckGame<ColorCard> &deckColor);
+
 public:
+    /**
+     * @brief Construct a new draw Ability Card object
+     *
+     * @param deckAbility
+     */
+    void drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility);
+    
     /**
      * @brief Construct a new Player In Game Candy object
      *
@@ -51,7 +69,13 @@ public:
      * @brief Reverse the turn of the game for players after the one currently holding the turn
      *
      */
-    void reverseTurn();
+    void reverseTurnInitial();
+
+    /**
+     * @brief Reverse the turns of the game for players for the round after reverse is invoked
+     * @param The index of the turn from which the turn was reversed
+     */
+    void reverseTurnPost(int pivotIndex);
 
     /**
      * @brief Reset roundComplete to true and rearrange the turn according to the rules
@@ -60,6 +84,8 @@ public:
     void resetRound();
 
     void createAndAddPlayer(int gameID);
+
+    // void createAndAddPlayer(int gameID, int nthPlayer);
 
     bool usernameExist(string username);
 
@@ -108,10 +134,12 @@ public:
     /**
      * @brief Swap the deck between the player of the given index
      *
-     * @param rawSourceIndex
-     * @param rawTargetIndex
+     * @param sourceIndex
+     * @param targetIndex
+     * @param firstLeft
+     * @param secondLeft
      */
-    void swapDeckOfPlayer(int rawSourceIndex, int rawTargetIndex);
+    void swapCardOfPlayer(int sourceIndex, int targetIndex, bool firstLeft, bool secondLeft);
 
     /**
      * @brief Correct the index of the player with the rawIndex excepted
@@ -147,11 +175,35 @@ public:
     bool winnerExist();
 
     /**
-     * @brief Give reward to the highest combination
+     * @brief Disable the ability the player with the given index. Return whether ability disabling is succesfull
+     *
+     */
+    bool disablePlayerAbility(int);
+
+    /**
+     * @brief return true if all players except current player already use their ability
+     *
+     * @return true
+     * @return false
+     */
+    bool isAllAbilityDisable();
+
+    /**
+     * @brief Return whether the index of a player is within range
+     * @param index
+     * @return true
+     * @return false
+     */
+    bool playerIndexInRange(int index);
+
+    /**
+     * @brief Give reward to the highest combination and return the newest
      *
      * @param reward
+     * @param tableCard
+     * @return PlayerCandy
      */
-    void rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard);
+    PlayerCandy &rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard);
 };
 
 #endif

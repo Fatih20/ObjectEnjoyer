@@ -79,6 +79,12 @@ void Deck<T>::addCard(const T &card)
 };
 
 template <typename T>
+void Deck<T>::addCardBack(const T &card)
+{
+    this->vec.insert(vec.begin(), card);
+};
+
+template <typename T>
 void Deck<T>::operator+=(const T &card)
 {
     this->addCard(card);
@@ -256,12 +262,12 @@ Deck<T> &Deck<T>::operator+(Deck<T> &other)
 template <typename T>
 std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
 {
-    os << "\nsize : " << deck.vec.size() << "\nmembers : \n";
+    // os << "\nsize : " << deck.vec.size() << "\nmembers : \n";
 
     int i = 1;
     for (auto elmt : deck.vec)
     {
-        os << i << ". " << elmt;
+        os << i << ". " << elmt << endl;
         i++;
     }
 
@@ -273,4 +279,4 @@ template class Deck<ColorCard>;
 template class Deck<AbilityCard>;
 template std::ostream &operator<<(std::ostream &os, const Deck<Card<int>> &deck);
 template std::ostream &operator<<(std::ostream &os, const Deck<ColorCard> &deck);
-// template std::ostream &operator<<(std::ostream &os, const Deck<AbilityCard> &deck);
+template std::ostream &operator<<(std::ostream &os, const Deck<AbilityCard> &deck);

@@ -20,12 +20,17 @@ int Game::inputOption(int optionRange){
         {
             cout << "> ";
             cin >> option;
+            if (cin.fail()){
+                cin.clear();
+                cin.ignore(1000,'\n');
+                throw  OptionInvalid(optionRange);
+            }
             isOptionValid(option, optionRange);
             isValid = true;
         }
         catch(OptionInvalid e)
         {
-            cout << "Input number 1-" << e.getValidOption() <<endl;
+            cout << "\nInvalid input, please enter a number from 1-" << e.getValidOption() <<endl;
         }
         
     }

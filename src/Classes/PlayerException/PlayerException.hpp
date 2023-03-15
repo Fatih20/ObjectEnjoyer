@@ -5,7 +5,7 @@ using namespace std;
 
 class PlayerException : public exception
 {
-private:
+protected:
     string message;
 
 public:
@@ -15,8 +15,6 @@ public:
 
 class UsernameEmpty : public PlayerException
 {
-private:
-    string message;
 
 public:
     UsernameEmpty();
@@ -24,9 +22,12 @@ public:
 
 class AbilityNotOwned : public PlayerException
 {
-private:
-    string message;
-
 public:
     AbilityNotOwned();
+};
+
+class AbilityNotAvailable : public PlayerException
+{
+public:
+    AbilityNotAvailable();
 };

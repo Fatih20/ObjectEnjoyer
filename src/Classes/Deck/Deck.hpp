@@ -70,9 +70,15 @@ public:
     int getValueSum();
 
     /**
-     * @brief add a card into the deck
+     * @brief Add a card into the deck
      */
     void addCard(const T &);
+
+    /**
+     * @brief Add a card into the deck but into the bottom of the pile
+     *
+     */
+    void addCardBack(const T &);
 
     /**
      * @brief shorthand for addCard()

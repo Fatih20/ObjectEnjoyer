@@ -106,8 +106,25 @@ bool operator>(ColorCard a, ColorCard b){
 
 std::ostream &operator<<(std::ostream &os, const ColorCard &card)
 {
-    os << card.Card::val << " " << card.getColorAsString() << std::endl;
-
+    // os << card.Card::val << " " << card.getColorAsString() << std::endl;
+    if (card.color == GREEN)
+        {
+            os << "\033[1m\033[32m";
+        }
+        else if (card.color == RED)
+        {
+            os << "\033[1m\033[31m";
+        }
+        else if (card.color == YELLOW)
+        {
+            os << "\033[1m\033[33m";
+        }
+        else if (card.color == BLUE)
+        {
+            os << "\033[1m\033[34m";
+        }
+        os << (card).getColorAsString() << " " << (card).val << "\033[0m"
+             << "  |  ";
     return os;
 };
 

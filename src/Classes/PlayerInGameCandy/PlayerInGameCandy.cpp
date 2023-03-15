@@ -1,10 +1,9 @@
 #include "PlayerInGameCandy.hpp"
 #include "../PlayerInGameException/PlayerInGameException.hpp"
+#include "../PlayerMini/PlayerMini.hpp"
 #include <algorithm>
 
 using namespace std;
-
-PlayerInGameCandy::PlayerInGameCandy() : PlayerInGame<PlayerCandy>(0){};
 
 PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
 {
@@ -12,22 +11,36 @@ PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOf
     {
         createAndAddPlayer(i + 1);
     }
-    for (int i = 0; i < numberOfPlayer; i++)
-    {
-        this->players.at(turns.at(i)).drawCard(deckGame, 2);
-    }
+    drawColorCardAll(deckGame);
 };
 
-PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGameCandy(deckGame, numberOfPlayer)
+// PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGameCandy(deckGame, numberOfPlayer)
+// {
+//     cout << "Entered deck ability involved constructor in pigc" << endl;
+//     for (int i = 0; i < numberOfPlayer; i++)
+//     {
+//         cout << "Player " << i << "th drawing ability cards" << endl;
+//         this->players.at(turns.at(i)).drawAbility(deckAbility);
+//     }
+//     cout << "Exited deck ability involved constructor in pigc" << endl;
+// };
+
+PlayerInGameCandy::PlayerInGameCandy() : PlayerInGame<PlayerCandy>(0){};
+
+PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
 {
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        this->players.at(turns.at(i)).drawAbility(deckAbility);
+        createAndAddPlayer(i + 1);
     }
+    this->drawColorCardAll(deckGame);
+    drawAbilityCardAll(deckAbility);
+    reversedThisRoundInfo = make_pair(false, -1);
 };
 
 PlayerInGameCandy::PlayerInGameCandy(const PlayerInGameCandy &playerInGameCandy) : PlayerInGame<PlayerCandy>(playerInGameCandy)
 {
+    reversedThisRoundInfo = make_pair(false, -1);
 }
 
 bool PlayerInGameCandy::usernameExist(string username)
@@ -35,7 +48,7 @@ bool PlayerInGameCandy::usernameExist(string username)
     bool found = false;
     for (int i = 0; i < players.size() && !found; i++)
     {
-        found = players.at(i).getUsername() == username;
+        found = getNthPlayer(i).getUsername() == username;
     }
     return found;
 }
@@ -45,7 +58,7 @@ bool PlayerInGameCandy::usernameExist(string username, int gameID)
     bool found = false;
     for (int i = 0; i < players.size() && !found; i++)
     {
-        found = players.at(i).getUsername() == username;
+        found = getNthPlayer(i).getUsername() == username;
     }
     return found;
 }
@@ -58,31 +71,54 @@ void PlayerInGameCandy::createAndAddPlayer(int gameID)
         cout << "Username itu sudah dipakai! Pilih yang lain." << endl;
         p.setValidUsername();
     }
-    players.push_back(p);
+    players.emplace_back(p);
 }
 
 void PlayerInGameCandy::showLeaderboard()
 {
-    vector<PlayerCandy> sortedPlayers = players;
-    sort(sortedPlayers.begin(), sortedPlayers.end(), [](Player<ColorCard> p1, Player<ColorCard> p2) -> bool
-         { return p1 > p2; });
+    vector<PlayerMini<ColorCard>> vectorOfPMini;
     int numberOfPlayer = getNumberOfPlayer();
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        cout << i + 1 << ".";
-        sortedPlayers.at(i).getScore();
+        PlayerMini<ColorCard> pM(players.at(i));
+        vectorOfPMini.push_back(pM);
+    }
+    sort(vectorOfPMini.begin(), vectorOfPMini.end(), [](PlayerMini<ColorCard> p1, PlayerMini<ColorCard> p2) -> bool
+         { return p1 > p2; });
+    cout << "\033[1m\033[37m"
+         << "Leaderboard: "
+         << "\033[0m" << endl;
+    for (int i = 0; i < numberOfPlayer; i++)
+    {
+        cout << "  " << i + 1 << ". " << vectorOfPMini.at(i).getUsername() << "  : " << vectorOfPMini.at(i).getScore() << endl;
     }
 }
 
-void PlayerInGameCandy::reverseTurn()
+void PlayerInGameCandy::reverseTurnInitial()
 {
-    reverse(players.begin() + getCurrentTurn(), players.end());
+    this->reversedThisRoundInfo = make_pair(true, getCurrentTurn());
+    reverse(turns.begin() + getCurrentTurn() + 1, turns.end());
 }
 
 void PlayerInGameCandy::resetRound()
 {
     PlayerInGame::resetRound();
-    rotate(turns.begin(), turns.begin() + 1, turns.end());
+    if (reversedThisRoundInfo.first)
+    {
+        reverseTurnPost(reversedThisRoundInfo.second);
+    }
+    else
+    {
+        rotate(turns.begin(), turns.begin() + 1, turns.end());
+    }
+    reversedThisRoundInfo = make_pair(false, -1);
+    // cout << "Resetting round at pigc" << endl;
+}
+
+void PlayerInGameCandy::reverseTurnPost(int pivotIndex)
+{
+    reverse(turns.begin(), turns.begin() + pivotIndex);
+    reverse(turns.begin() + pivotIndex, turns.end());
 }
 
 void PlayerInGameCandy::removePlayerOfID(int removedID)
@@ -100,9 +136,6 @@ int PlayerInGameCandy::correctedIndexCurrent(int rawIndex)
 {
     vector<int> exceptedIndex = {getIndexOfCurrentTurn()};
     return correctedIndexCustom(rawIndex, exceptedIndex);
-
-    // int indexOfCurrentPlayer = getIndexOfCurrentTurn();
-    // return rawIndex < indexOfCurrentPlayer ? rawIndex : rawIndex + 1;
 }
 
 void PlayerInGameCandy::redrawCardForCurrentPlayer(DeckGame<ColorCard> &deckGame)
@@ -114,7 +147,7 @@ void PlayerInGameCandy::redrawAll(DeckGame<ColorCard> &deckGame)
 {
     for (int i = 0; i < getNumberOfPlayer(); i++)
     {
-        players.at(turns.at(i)).redrawCard(deckGame);
+        getPlayerAtTurn(i).redrawCard(deckGame);
     }
 };
 
@@ -125,9 +158,10 @@ void PlayerInGameCandy::showPlayerExcept(vector<int> exceptedIndex)
     int numbering = 0;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        if (exceptedIndex.end() != find(exceptedIndex.begin(), exceptedIndex.end(), i))
+        if (exceptedIndex.end() == find(exceptedIndex.begin(), exceptedIndex.end(), i))
         {
-            cout << numbering + 1 << ". " << players.at(i) << endl;
+            cout << numbering + 1 << ". "
+                 << "Player " << getNthPlayer(i).getGameID() << endl;
             numbering++;
         }
     }
@@ -141,66 +175,76 @@ void PlayerInGameCandy::showPlayerExceptCurrent()
 
 void PlayerInGameCandy::swapDeckOfCurrentWith(int rawTargetIndex)
 {
-    // int targetIndex;
-    // try
-    // {
-    //     targetIndex = correctedIndexCurrent(rawTargetIndex);
-    // }
-    // catch (OutOfBoundIndex e)
-    // {
-    //     e.setMessage("Pilihan pemain sasaran ada di luar opsi!");
-    //     throw e;
-    // }
+    int index = correctedIndexCurrent(rawTargetIndex);
     PlayerCandy &playerSource = getPlayerWithTurn();
-    PlayerCandy &playerTarget = players.at(rawTargetIndex);
+    PlayerCandy &playerTarget = getNthPlayer(index);
     playerSource.swapDeck(playerTarget);
 };
 
-void PlayerInGameCandy::swapDeckOfPlayer(int rawSourceIndex, int rawTargetIndex)
+void PlayerInGameCandy::swapCardOfPlayer(int sourceIndex, int targetIndex, bool firstLeft, bool secondLeft)
 {
-    // int sourceIndex;
-    // try
-    // {
-    //     sourceIndex = correctedIndex(rawSourceIndex);
-    // }
-    // catch (OutOfBoundIndex e)
-    // {
-    //     e.setMessage("Pilihan pemain pertama ada di luar opsi!");
-    // }
-    // int targetIndex;
-    // try
-    // {
-    //     targetIndex = correctedIndex(rawTargetIndex);
-    // }
-    // catch (OutOfBoundIndex e)
-    // {
-    //     e.setMessage("Pilihan pemain kedua ada di luar opsi!");
-    //     throw e;
-    // }
-    PlayerCandy &playerSource = players.at(rawSourceIndex);
-    PlayerCandy &playerTarget = players.at(rawTargetIndex);
-    playerSource.swapDeck(playerTarget);
+    PlayerCandy &playerSource = getNthPlayer(sourceIndex);
+    PlayerCandy &playerTarget = getNthPlayer(targetIndex);
+    ColorCard firstRightCard = playerSource.ejectCard();
+    ColorCard firstLeftCard = playerSource.ejectCard();
+
+    ColorCard secondRightCard = playerTarget.ejectCard();
+    ColorCard secondLeftCard = playerTarget.ejectCard();
+
+    ColorCard temp;
+    if (firstLeft)
+    {
+        if (secondLeft)
+        {
+            swap(firstLeftCard, secondLeftCard);
+        }
+        else
+        {
+            swap(firstLeftCard, secondLeftCard);
+        }
+    }
+    else
+    {
+        if (secondLeft)
+        {
+            swap(firstRightCard, secondLeftCard);
+        }
+        else
+        {
+            swap(firstRightCard, secondRightCard);
+        }
+    }
+
+    playerSource += firstLeftCard;
+    playerSource += firstRightCard;
+
+    playerTarget += secondLeftCard;
+    playerTarget += secondRightCard;
 };
 
 int PlayerInGameCandy::correctedIndexCustom(int rawIndex, vector<int> exceptedIndexes)
 {
+    rawIndex--;
     if (rawIndex < 0 || rawIndex >= getNumberOfPlayer() - exceptedIndexes.size())
     {
         OutOfBoundIndex e;
         throw e;
     }
+    sort(exceptedIndexes.begin(), exceptedIndexes.end());
     auto exceptedIndexesIt = exceptedIndexes.begin();
     bool foundLimit = false;
     int resultIndex = rawIndex;
-    for (exceptedIndexesIt = exceptedIndexes.begin(); !foundLimit && exceptedIndexesIt != exceptedIndexes.end();
+    int numberOfExceptedUnder = 0;
+    for (auto exceptedIndexesIt = exceptedIndexes.begin(); !foundLimit && exceptedIndexesIt != exceptedIndexes.end();
          exceptedIndexesIt++)
     {
-        foundLimit = resultIndex > *exceptedIndexesIt;
+        foundLimit = resultIndex < *exceptedIndexesIt;
         if (!foundLimit)
         {
-            resultIndex++;
+            numberOfExceptedUnder++;
         }
     }
+    resultIndex += numberOfExceptedUnder;
     return resultIndex;
 };
 
@@ -220,6 +264,7 @@ string PlayerInGameCandy::getWinner()
     }
     return winnerUsername;
 };
+
 bool PlayerInGameCandy::winnerExist()
 {
     unsigned int limit = pow(2, 32);
@@ -227,16 +272,66 @@ bool PlayerInGameCandy::winnerExist()
                                     { return p.getScore() > limit || p.getScore() < 0; });
 };
 
-void PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
+void PlayerInGameCandy::drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility)
+{
+    // cout << "Entering the drawing of the cards" << endl;
+    // cout << deckAbility << endl;
+    for (int i = 0; i < getNumberOfPlayer(); i++)
+    {
+        getPlayerAtTurn(i).drawAbility(deckAbility);
+        getPlayerAtTurn(i).test();
+    }
+};
+
+void PlayerInGameCandy::drawColorCardAll(DeckGame<ColorCard> &deckColor)
+{
+    // cout << "Drawing color card" << endl;
+    for (int i = 0; i < getNumberOfPlayer(); i++)
+    {
+        getPlayerAtTurn(i).drawCard(deckColor, 2);
+        // cout << "Deck of " << turns.at(i) << "'th player" << endl;
+        // players.at(turns.at(i)).printCard();
+    }
+    // cout << "Outside the loop" << endl;
+    // players.at(turns.at(1)).printCard();
+};
+
+bool PlayerInGameCandy::disablePlayerAbility(int index)
+{
+    bool succesful = getNthPlayer(index).getAbilityAvailable();
+    getNthPlayer(index).disableAbility();
+    return succesful;
+}
+
+bool PlayerInGameCandy::isAllAbilityDisable()
+{
+    int count = 0;
+    for (int i = 0; i < getNumberOfPlayer(); i++)
+    {
+        if (!getNthPlayer(i).getAbilityAvailable())
+        {
+            count++;
+        }
+    }
+    return count == 6;
+}
+
+bool PlayerInGameCandy::playerIndexInRange(int index)
+{
+    return index >= 0 && index < getNumberOfPlayer();
+}
+
+PlayerCandy &PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
 {
     int indexOfHighest = 0;
     int numberOfPlayer = getNumberOfPlayer();
     for (int i = 1; i < numberOfPlayer; i++)
     {
-        if (players.at(i).higherCombinationWeight(players.at(indexOfHighest), tableCard))
+        if (getNthPlayer(i).higherCombinationWeight(getNthPlayer(i), tableCard))
         {
             indexOfHighest = i;
         }
     }
-    players.at(indexOfHighest) += reward;
+    getNthPlayer(indexOfHighest) += reward;
+    return getNthPlayer(indexOfHighest);
 }

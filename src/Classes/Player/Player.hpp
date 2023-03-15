@@ -13,7 +13,7 @@ using namespace std;
 template <typename T>
 class Player : InventoryHolder<T>
 {
-private:
+protected:
     int gameID;
     string username;
     unsigned int score;
@@ -25,7 +25,6 @@ private:
      */
     string askForUsername();
 
-protected:
     /**
      * @brief Set the gameID of the player
      *
@@ -47,16 +46,16 @@ public:
     Player(int gameID);
 
     /**
+     * @brief Construct a new player object from another player
+     *
+     */
+    Player(const Player<T> &p);
+
+    /**
      * @brief Destroy the Player object
      *
      */
     ~Player();
-
-    /**
-     * @brief Construct a new player object from another player
-     *
-     */
-    Player(const Player &);
 
     /**
      * @brief Assign a player to another player with the assignment operator
@@ -70,6 +69,14 @@ public:
      * @return string
      */
     string getUsername() const;
+
+    // /**
+    //  * @brief Get the handCards attribute
+    //  *
+    //  * @return DeckPlayer<T>
+    //  */
+    // DeckPlayer<T> getHandCards() const;
+
     /**
      * @brief Return the gameID of the object
      *
@@ -82,7 +89,7 @@ public:
      *
      * @return int
      */
-    double getScore();
+    unsigned int getScore() const;
 
     /**
      * @brief Add score to the player
@@ -196,7 +203,7 @@ public:
      * @brief Print out the player's card
      *
      */
-    void printColorCard();
+    void printCard();
 
     /**
      * @brief Add card to player's hand
@@ -204,6 +211,13 @@ public:
      * @param card
      */
     void addCard(const T &card);
+
+    /**
+     * @brief Eject the card from the player's hand
+     *
+     * @return T
+     */
+    T ejectCard();
 
     /**
      * @brief Draw numberOfCard amount of card for the player from the given deck game.
@@ -227,43 +241,6 @@ public:
      * @param deckGame
      */
     void redrawCard(DeckGame<T> &deckGame);
-    /**
-     * @brief Return 1 if this player is higher, 0 if same, -1 if this player is lower
-     *
-     * @param otherPlayer
-     * @param deckGame
-     * @return int
-     */
-    int compareCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame);
-
-    /**
-     * @brief Return true if we have equal combination weight
-     *
-     * @param otherPlayer
-     * @param deckGame
-     * @return int
-     */
-    bool equalCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame);
-
-    /**
-     * @brief Return true if this player have lower combination weight
-     *
-     * @param otherPlayer
-     * @param deckGame
-     * @return true
-     * @return false
-     */
-    bool lowerCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame);
-
-    /**
-     * @brief Return true if this player have bigger combination weight
-     *
-     * @param otherPlayer
-     * @param deckGame
-     * @return true
-     * @return false
-     */
-    bool higherCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame);
 
     // Overloading untuk ngurusin deck nggak diimplementasikan dulu karena urusannya sama deck
     /*
