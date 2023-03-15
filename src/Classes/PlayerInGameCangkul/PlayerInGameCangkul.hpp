@@ -14,6 +14,11 @@ public:
 
     bool winnerExist();
 
+    void removePlayerOfID(int removedID);
+
+    bool usernameExist(std::string username);
+
+    bool usernameExist(std::string username, int gameID);
 };
 
 #endif

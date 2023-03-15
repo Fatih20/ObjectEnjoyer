@@ -26,3 +26,29 @@ bool PlayerInGameCangkul::winnerExist(){
         }
     }
 }
+
+void PlayerInGameCangkul::removePlayerOfID(int removedID) {
+    for(int i = 0; i < this->players.size(); i++) {
+        if (this->players[i].getGameID() == removedID) {
+            this->players.erase(this->players.begin() + i);
+        }
+    }
+}
+
+bool PlayerInGameCangkul::usernameExist(std::string username) {
+    for(int i = 0; i < this->players.size(); i++) {
+        if (this->players[i].getUsername() == username) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool PlayerInGameCangkul::usernameExist(std::string username, int gameID) {
+    for(int i = 0; i < this->players.size(); i++) {
+        if (this->players[i].getUsername() == username && this->players[i].getGameID() == gameID) {
+            return true;
+        }
+    }
+    return false;
+}
