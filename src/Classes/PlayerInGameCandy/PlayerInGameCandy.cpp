@@ -4,17 +4,14 @@
 
 using namespace std;
 
-// PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
-// {
-//     for (int i = 0; i < numberOfPlayer; i++)
-//     {
-//         createAndAddPlayer(i + 1);
-//     }
-//     for (int i = 0; i < numberOfPlayer; i++)
-//     {
-//         this->players.at(turns.at(i)).drawCard(deckGame, 2);
-//     }
-// };
+PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
+{
+    for (int i = 0; i < numberOfPlayer; i++)
+    {
+        createAndAddPlayer(i + 1);
+    }
+    drawColorCardAll(deckGame);
+};
 
 // PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGameCandy(deckGame, numberOfPlayer)
 // {
@@ -35,7 +32,7 @@ PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<Abi
     {
         createAndAddPlayer(i + 1);
     }
-    drawColorCardAll(deckGame);
+    this->drawColorCardAll(deckGame);
     drawAbilityCardAll(deckAbility);
     reversedThisRoundInfo = make_pair(false, -1);
 };
@@ -79,7 +76,7 @@ void PlayerInGameCandy::createAndAddPlayer(int gameID)
 void PlayerInGameCandy::showLeaderboard()
 {
     vector<PlayerCandy> sortedPlayers = players;
-    sort(sortedPlayers.begin(), sortedPlayers.end(), [](Player<ColorCard> p1, Player<ColorCard> p2) -> bool
+    sort(sortedPlayers.begin(), sortedPlayers.end(), [](PlayerCandy p1, PlayerCandy p2) -> bool
          { return p1 > p2; });
     int numberOfPlayer = getNumberOfPlayer();
     cout << "\033[1m\033[37m"
@@ -104,12 +101,11 @@ void PlayerInGameCandy::resetRound()
     PlayerInGame::resetRound();
     if (reversedThisRoundInfo.first)
     {
-
-        rotate(turns.begin(), turns.begin() + 1, turns.end());
+        reverseTurnPost(reversedThisRoundInfo.second);
     }
     else
     {
-        reverseTurnPost(reversedThisRoundInfo.second);
+        rotate(turns.begin(), turns.begin() + 1, turns.end());
     }
     reversedThisRoundInfo = make_pair(false, -1);
     cout << "Resetting round at pigc" << endl;
@@ -313,5 +309,6 @@ void PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<C
             indexOfHighest = i;
         }
     }
+
     players.at(indexOfHighest) += reward;
 }

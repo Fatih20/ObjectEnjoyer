@@ -41,7 +41,7 @@ public:
      * @param numberOfPlayer
      * @param currentTurn starts at 0
      */
-    // PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer);
+    PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer);
 
     /**
      * @brief Construct a new Player In Game Candy object.
@@ -84,6 +84,8 @@ public:
     void resetRound();
 
     void createAndAddPlayer(int gameID);
+
+    // void createAndAddPlayer(int gameID, int nthPlayer);
 
     bool usernameExist(string username);
 
