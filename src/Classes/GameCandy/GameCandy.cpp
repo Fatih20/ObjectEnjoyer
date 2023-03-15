@@ -451,8 +451,7 @@ void GameCandy::reverseAbility()
 
 void GameCandy::swapAbility()
 {
-
-    vector<int> exceptedIndex{players.getCurrentTurn()};
+    vector<int> exceptedIndex{players.getCurrentTurn() };
     cout << endl
          << players.getPlayerWithTurn().getUsername() << " melakukan swap!" << endl;
     cout << "Silahkan pilih pemain yang kartunya ingin anda tukar: \n";
@@ -473,10 +472,10 @@ void GameCandy::swapAbility()
     bool secondIsLeft;
 
     cout << "Silahkan pilih kartu kanan/kiri " << players.getNthPlayer(properFirstIndex) << " :\n"
-         << "1. Kanan\n2.Kiri\n";
+         << "1. Kanan\n2. Kiri\n";
     firstIsLeft = inputOption(2)==2? true:false;
     cout << "Silahkan pilih kartu kanan/kiri " << players.getNthPlayer(properSecondIndex) << " :\n"
-         << "1. Kanan\n2.Kiri\n";
+         << "1. Kanan\n2. Kiri\n";
     secondIsLeft = inputOption(2)==2? true:false;
 
     players.swapCardOfPlayer(properFirstIndex,properSecondIndex,firstIsLeft,secondIsLeft);
