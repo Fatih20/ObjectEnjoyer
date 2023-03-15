@@ -373,7 +373,7 @@ void GameCandy::roundAction()
 {
     if (round==2){
         cout << "Kartu ability telah dibagikan.\n";
-        cout << "Anda dapat menggunakan ability anda mulai sekarang!\n"
+        cout << "Anda dapat menggunakan ability anda mulai sekarang!\n";
     }
     if (round <= 5)
     {
