@@ -1,6 +1,7 @@
 #include "PlayerCandy.hpp"
 #include "../PlayerException/PlayerException.hpp"
 #include "../GameCandy/GameCandy.hpp"
+#include "../Combination/Combination.hpp"
 
 PlayerCandy::PlayerCandy(int id) : Player<ColorCard>(id){};
 
@@ -83,3 +84,37 @@ void PlayerCandy::test()
 {
     abilityHand.value()->test();
 }
+
+bool PlayerCandy::higherCombinationWeight(const PlayerCandy &otherPlayer, const DeckGame<ColorCard> &deckGame)
+{
+    return compareCombinationWeight(otherPlayer, deckGame) == 1;
+};
+
+bool PlayerCandy::equalCombinationWeight(const PlayerCandy &otherPlayer, const DeckGame<ColorCard> &deckGame)
+{
+    return compareCombinationWeight(otherPlayer, deckGame) == 0;
+};
+
+bool PlayerCandy::lowerCombinationWeight(const PlayerCandy &otherPlayer, const DeckGame<ColorCard> &deckGame)
+{
+    return compareCombinationWeight(otherPlayer, deckGame) == -1;
+};
+
+int PlayerCandy::compareCombinationWeight(const PlayerCandy &otherPlayer, const DeckGame<ColorCard> &deckGame)
+{
+    Combination ourCombination((this->handCards), deckGame);
+    Combination theirCombination((otherPlayer.handCards), deckGame);
+
+    if (ourCombination > theirCombination)
+    {
+        return 1;
+    }
+    else if (ourCombination == theirCombination)
+    {
+        return 0;
+    }
+    else
+    {
+        return -1;
+    }
+};
