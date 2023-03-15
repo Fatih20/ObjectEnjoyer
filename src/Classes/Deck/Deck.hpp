@@ -98,6 +98,12 @@ public:
     T ejectCard();
 
     /**
+     * @brief Delete a card from the deck in the given index and then return it from this function
+     * 
+     */
+    T ejectCardIndex(int index);
+
+    /**
      * @brief shorthand for ejectCard()
      *
      * return is void as we should not chain ejectCard()

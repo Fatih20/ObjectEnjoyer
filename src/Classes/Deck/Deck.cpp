@@ -118,6 +118,25 @@ T Deck<T>::ejectCard()
 }
 
 template <typename T>
+T Deck<T>::ejectCardIndex(int index)
+{
+    try
+    {
+        if (this->vec.size() <= 0)
+            throw EmptyDeckException(); // untested
+
+        T ejectedCard = this->vec[index];
+        this->vec.erase(this->vec.begin() + index);
+
+        return ejectedCard;
+    }
+    catch (EmptyDeckException &e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+}
+
+template <typename T>
 void Deck<T>::operator>>(Deck<T> &deck)
 {
     deck.addCard(this->ejectCard());
