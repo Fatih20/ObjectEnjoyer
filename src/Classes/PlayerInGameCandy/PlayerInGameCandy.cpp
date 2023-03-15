@@ -303,6 +303,16 @@ bool PlayerInGameCandy::disablePlayerAbility(int index)
     return succesful;
 }
 
+bool PlayerInGameCandy::isAllAbilityDisable(int id)
+{
+    for (int i = 0; i < getNumberOfPlayer(); i++){
+        if (!players.at(i).getAbilityAvailable() && i!=id){
+            return false;
+        }
+    }
+    return true;
+}
+
 bool PlayerInGameCandy::playerIndexInRange(int index)
 {
     return index >= 0 && index < getNumberOfPlayer();
