@@ -178,7 +178,15 @@ public:
      * @brief Disable the ability the player with the given index. Return whether ability disabling is succesfull
      *
      */
-    bool disablePlayerAbility(int index);
+    bool disablePlayerAbility(int);
+
+    /**
+     * @brief return true if all players except current player already use their ability
+     * 
+     * @return true 
+     * @return false 
+     */
+    bool isAllAbilityDisable(int);
 
     /**
      * @brief Return whether the index of a player is within range

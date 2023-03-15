@@ -410,25 +410,26 @@ void GameCandy::rerollAbility()
 
 void GameCandy::abilitylessAbility()
 {
-    cout << "Silahkan pilih pemain yang kartu abilitynya ingin dimatikan: " << endl;
-    players.showPlayerExceptCurrent();
-    int rawIndex;
-    rawIndex = inputOption(6);
-    int properIndex = players.correctedIndexCurrent(rawIndex);
-    bool disableUseful = players.disablePlayerAbility(properIndex);
-    if (disableUseful)
-    {
-        cout << "Kartu ability player " << players.getNthPlayer(properIndex) << " telah dimatikan.\n";
-    } 
-    else if (players.getTurns().at(6) == players.getPlayerWithTurn().getGameID()){
+    if (players.isAllAbilityDisable(players.getPlayerWithTurn().getGameID())){
         cout << "Eits, ternyata semua pemain sudah memakai kartu kemampuan. \n";
         cout << "Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless. \n";
         cout << "Yah, pengunaan kartu ini sia-sia\n";
-    }
-    else
-    {
-        cout << "Kartu ability player " << players.getNthPlayer(properIndex) << " telah dipakai sebelumnya.\n";
-        cout << "Yah, sayang penggunaan kartu ini sia-sia\n";
+    } else {
+        cout << "Silahkan pilih pemain yang kartu abilitynya ingin dimatikan: " << endl;
+        players.showPlayerExceptCurrent();
+        int rawIndex;
+        rawIndex = inputOption(6);
+        int properIndex = players.correctedIndexCurrent(rawIndex);
+        bool disableUseful = players.disablePlayerAbility(properIndex);
+        if (disableUseful)
+        {
+            cout << "Kartu ability player " << players.getNthPlayer(properIndex) << " telah dimatikan.\n";
+        } 
+        else
+        {
+            cout << "Kartu ability player " << players.getNthPlayer(properIndex) << " telah dipakai sebelumnya.\n";
+            cout << "Yah, sayang penggunaan kartu ini sia-sia\n";
+        }
     }
 
 }
