@@ -19,12 +19,12 @@ GameCandy::GameCandy()
     this->tableCard = tableCard;
     // table card empty
 
-    cout << "\nDeck Ability before drawing" << endl;
-    cout << this->deckAbility << endl;
+    // cout << "\nDeck Ability before drawing" << endl;
+    // cout << this->deckAbility << endl;
     PlayerInGameCandy pIGC(this->deckGame, this->deckAbility, 7);
     this->players = pIGC;
     // cout << "Deck Ability after drawing" << endl;
-    cout << this->deckAbility << endl;
+    // cout << this->deckAbility << endl;
     // cout << "Deck Color after drawing" << endl;
     // cout << this->deckGame << endl;
 
@@ -285,7 +285,7 @@ vector<ColorCard> GameCandy::initilizeDeckGame()
 // vector<AbilityCard> &GameCandy::initializeAbilityDeck(vector<AbilityCard> &abilityDeckInitial)
 vector<AbilityCard> GameCandy::initializeAbilityDeck()
 {
-    cout << "Entered initialize ability deck" << endl;
+    //cout << "Entered initialize ability deck" << endl;
 
     shared_ptr<Quadruple> quad = make_shared<Quadruple>();
     shared_ptr<Quarter> quarter = make_shared<Quarter>();
@@ -303,7 +303,7 @@ vector<AbilityCard> GameCandy::initializeAbilityDeck()
     AbilityCard ac6(quarter2);
     AbilityCard ac7(quad1);
 
-    cout << "Finished ability card initialization" << endl;
+    //cout << "Finished ability card initialization" << endl;
     vector<AbilityCard>
         abilityCards{ac1, ac2, ac3, ac4, ac5, ac6, ac7};
 
@@ -316,7 +316,7 @@ vector<AbilityCard> GameCandy::initializeAbilityDeck()
     // cout << abilityCards.at(6).getName() << endl;
 
     // cout << "Size of ability cards " << abilityCards.size() << endl;
-    cout << "Exited initialize ability deck" << endl;
+    //cout << "Exited initialize ability deck" << endl;
 
     return abilityCards;
 }
