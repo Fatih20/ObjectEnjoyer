@@ -68,6 +68,7 @@ void GameCandy::start()
              << "\033[0m";
         newDeck1();
         players.redrawAll(this->deckGame);
+        giftPoint = 64;
     }
 }
 
@@ -405,14 +406,14 @@ void GameCandy::nextRound()
 void GameCandy::rerollAbility()
 {
     players.redrawCardForCurrentPlayer(this->deckGame);
-    cout << "Melakukan pembuangan kartu yang sedang dimiliki" << endl;
+    cout << "\nMelakukan pembuangan kartu yang sedang dimiliki" << endl;
     cout << "Kamu mendapatkan 2 kartu baru yaitu: " << endl;
     players.getPlayerWithTurn().printCard();
 }
 
 void GameCandy::abilitylessAbility()
 {
-    if (players.isAllAbilityDisable(players.getPlayerWithTurn().getGameID())){
+    if (players.isAllAbilityDisable()){
         cout << "Eits, ternyata semua pemain sudah memakai kartu kemampuan. \n";
         cout << "Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless. \n";
         cout << "Yah, pengunaan kartu ini sia-sia\n";
@@ -466,7 +467,7 @@ void GameCandy::swapAbility()
 
     exceptedIndex.push_back(properFirstIndex);
 
-    cout << "Silahkan pilih pemain lain yang kartunya ingin anda tukar: \n";
+    cout << "\nSilahkan pilih pemain lain yang kartunya ingin anda tukar: \n";
     players.showPlayerExcept(exceptedIndex);
     int rawSecondPlayerIndex = inputOption(5);
 
@@ -475,10 +476,10 @@ void GameCandy::swapAbility()
     bool firstIsLeft;
     bool secondIsLeft;
 
-    cout << "Silahkan pilih kartu kanan/kiri " << players.getNthPlayer(properFirstIndex) << " :\n"
+    cout << "\nSilahkan pilih kartu kanan/kiri " << players.getNthPlayer(properFirstIndex) << " :\n"
          << "1. Kanan\n2. Kiri\n";
     firstIsLeft = inputOption(2)==2? true:false;
-    cout << "Silahkan pilih kartu kanan/kiri " << players.getNthPlayer(properSecondIndex) << " :\n"
+    cout << "\nSilahkan pilih kartu kanan/kiri " << players.getNthPlayer(properSecondIndex) << " :\n"
          << "1. Kanan\n2. Kiri\n";
     secondIsLeft = inputOption(2)==2? true:false;
 
@@ -492,11 +493,11 @@ void GameCandy::switchAbility()
          << players.getPlayerWithTurn().getUsername() << " melakukan switch!" << endl;
     cout << "Your card:\n";
     players.getPlayerWithTurn().printCard();
-    cout << "Choose other player to switch:\n";
+    cout << "\nChoose other player to switch:\n";
     players.showPlayerExceptCurrent();
     int rawIndex = inputOption(6);
     players.swapDeckOfCurrentWith(rawIndex);
-    cout << "Both of " << players.getPlayerWithTurn().getUsername() << "'s cards has been switched with " << players.getNthPlayer(players.correctedIndexCurrent(rawIndex)).getUsername() << endl;
+    cout << "\nBoth of " << players.getPlayerWithTurn().getUsername() << "'s cards has been switched with " << players.getNthPlayer(players.correctedIndexCurrent(rawIndex)).getUsername() << endl;
     cout << "Your card now:\n";
     players.getPlayerWithTurn().printCard();
 

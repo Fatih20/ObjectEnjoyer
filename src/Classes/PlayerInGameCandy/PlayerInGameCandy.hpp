@@ -186,7 +186,7 @@ public:
      * @return true 
      * @return false 
      */
-    bool isAllAbilityDisable(int);
+    bool isAllAbilityDisable();
 
     /**
      * @brief Return whether the index of a player is within range
