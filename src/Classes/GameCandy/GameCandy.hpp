@@ -139,11 +139,21 @@ public:
      *
      */
 
-        vector<AbilityCard> initializeAbilityDeck();
+    vector<AbilityCard> initializeAbilityDeck();
 
     // vector<AbilityCard> &initializeAbilityDeck(vector<AbilityCard> &initialVector);
 
     pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> newDeck();
+
+    void rerollAbility();
+
+    void abilitylessAbility();
+
+    void reverseAbility();
+
+    void switchAbility();
+
+    void swapAbility();
 };
 
 #endif

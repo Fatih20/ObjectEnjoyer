@@ -240,11 +240,11 @@ vector<AbilityCard> GameCandy::initializeAbilityDeck()
 
     shared_ptr<Quadruple> quad = make_shared<Quadruple>();
     shared_ptr<Quarter> quarter = make_shared<Quarter>();
-    shared_ptr<Quadruple> quad1 = make_shared<Quadruple>();
-    shared_ptr<Quarter> quarter1 = make_shared<Quarter>();
-    shared_ptr<Quadruple> quad2 = make_shared<Quadruple>();
-    shared_ptr<Quarter> quarter2 = make_shared<Quarter>();
-    shared_ptr<Quadruple> quad3 = make_shared<Quadruple>();
+    shared_ptr<Reroll> quad1 = make_shared<Reroll>();
+    shared_ptr<Reverse> quarter1 = make_shared<Reverse>();
+    shared_ptr<Swap> quad2 = make_shared<Swap>();
+    shared_ptr<Switch> quarter2 = make_shared<Switch>();
+    shared_ptr<Abilityless> quad3 = make_shared<Abilityless>();
 
     AbilityCard ac1(quad);
     AbilityCard ac2(quad2);
@@ -320,4 +320,71 @@ void GameCandy::roundAction()
 void GameCandy::nextRound()
 {
     round = (round + 1) % 6;
+}
+
+void GameCandy::rerollAbility()
+{
+    players.redrawCardForCurrentPlayer(this->deckGame);
+    cout << "Melakukan pembuangan kartu yang sedang dimiliki" << endl;
+    cout << "Kamu mendapatkan 2 kartu baru yaitu: " << endl;
+    players.getPlayerWithTurn().printCard();
+}
+
+void GameCandy::abilitylessAbility()
+{
+    cout << "Silahkan pilih pemain yang kartu abilitynya ingin dimatikan: " << endl;
+    players.showPlayerExceptCurrent();
+    int rawIndex;
+    cin >> rawIndex;
+    int properIndex = players.correctedIndexCurrent(rawIndex);
+    bool disableUseful = players.disablePlayerAbility(properIndex);
+    if (disableUseful)
+    {
+        // Print the proper statement
+    }
+    else
+    {
+        // Print the proper statement
+    }
+}
+
+void GameCandy::reverseAbility()
+{
+    players.reverseTurnInitial();
+}
+
+void GameCandy::swapAbility()
+{
+    // Except the current player
+    vector<int> exceptedIndex{players.getCurrentTurn()};
+    players.showPlayerExcept(exceptedIndex);
+    // Get the index of the first player to be switched
+    int rawFirstPlayerIndex;
+
+    cin >> rawFirstPlayerIndex;
+    // Bawah ini perlu exception handling
+    int properFirstIndex = players.correctedIndexCustom(rawFirstPlayerIndex, exceptedIndex);
+
+    // Except the index of the first player in the next choice
+    exceptedIndex.push_back(properFirstIndex);
+
+    // Get the index of the second player to be switched
+    int rawSecondPlayerIndex;
+    cin >> rawSecondPlayerIndex;
+
+    // Bawah ini perlu exception handling
+    int properSecondIndex = players.correctedIndexCustom(rawSecondPlayerIndex, exceptedIndex);
+
+    bool firstIsLeft;
+    bool secondIsLeft;
+    // Konvensi, ke kanan makin atas di deckPlayer
+    // Minta input kiri / kanan
+}
+
+void GameCandy::switchAbility()
+{
+    players.showPlayerExceptCurrent();
+    int rawIndex;
+    cin >> rawIndex;
+    players.swapDeckOfCurrentWith(rawIndex);
 }

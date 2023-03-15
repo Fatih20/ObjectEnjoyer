@@ -4,8 +4,6 @@
 
 using namespace std;
 
-PlayerInGameCandy::PlayerInGameCandy() : PlayerInGame<PlayerCandy>(0){};
-
 // PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
 // {
 //     for (int i = 0; i < numberOfPlayer; i++)
@@ -18,16 +16,6 @@ PlayerInGameCandy::PlayerInGameCandy() : PlayerInGame<PlayerCandy>(0){};
 //     }
 // };
 
-PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
-{
-    for (int i = 0; i < numberOfPlayer; i++)
-    {
-        createAndAddPlayer(i + 1);
-    }
-    drawColorCardAll(deckGame);
-    drawAbilityCardAll(deckAbility);
-};
-
 // PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGameCandy(deckGame, numberOfPlayer)
 // {
 //     cout << "Entered deck ability involved constructor in pigc" << endl;
@@ -39,8 +27,22 @@ PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<Abi
 //     cout << "Exited deck ability involved constructor in pigc" << endl;
 // };
 
+PlayerInGameCandy::PlayerInGameCandy() : PlayerInGame<PlayerCandy>(0){};
+
+PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
+{
+    for (int i = 0; i < numberOfPlayer; i++)
+    {
+        createAndAddPlayer(i + 1);
+    }
+    drawColorCardAll(deckGame);
+    drawAbilityCardAll(deckAbility);
+    reversedThisRoundInfo = make_pair(false, -1);
+};
+
 PlayerInGameCandy::PlayerInGameCandy(const PlayerInGameCandy &playerInGameCandy) : PlayerInGame<PlayerCandy>(playerInGameCandy)
 {
+    reversedThisRoundInfo = make_pair(false, -1);
 }
 
 bool PlayerInGameCandy::usernameExist(string username)
@@ -87,16 +89,32 @@ void PlayerInGameCandy::showLeaderboard()
     }
 }
 
-void PlayerInGameCandy::reverseTurn()
+void PlayerInGameCandy::reverseTurnInitial()
 {
-    reverse(players.begin() + getCurrentTurn(), players.end());
+    reversedThisRoundInfo = make_pair(true, getCurrentTurn());
+    reverse(players.begin() + getCurrentTurn() + 1, players.end());
 }
 
 void PlayerInGameCandy::resetRound()
 {
     PlayerInGame::resetRound();
+    if (reversedThisRoundInfo.first)
+    {
+
+        rotate(turns.begin(), turns.begin() + 1, turns.end());
+    }
+    else
+    {
+        reverseTurnPost(reversedThisRoundInfo.second);
+    }
+    reversedThisRoundInfo = make_pair(false, -1);
     cout << "Resetting round at pigc" << endl;
-    rotate(turns.begin(), turns.begin() + 1, turns.end());
+}
+
+void PlayerInGameCandy::reverseTurnPost(int pivotIndex)
+{
+    reverse(turns.begin(), turns.begin() + pivotIndex + 1);
+    reverse(turns.begin() + pivotIndex, turns.end());
 }
 
 void PlayerInGameCandy::removePlayerOfID(int removedID)
@@ -114,9 +132,6 @@ int PlayerInGameCandy::correctedIndexCurrent(int rawIndex)
 {
     vector<int> exceptedIndex = {getIndexOfCurrentTurn()};
     return correctedIndexCustom(rawIndex, exceptedIndex);
-
-    // int indexOfCurrentPlayer = getIndexOfCurrentTurn();
-    // return rawIndex < indexOfCurrentPlayer ? rawIndex : rawIndex + 1;
 }
 
 void PlayerInGameCandy::redrawCardForCurrentPlayer(DeckGame<ColorCard> &deckGame)
@@ -147,45 +162,51 @@ void PlayerInGameCandy::showPlayerExceptCurrent()
 
 void PlayerInGameCandy::swapDeckOfCurrentWith(int rawTargetIndex)
 {
-    // int targetIndex;
-    // try
-    // {
-    //     targetIndex = correctedIndexCurrent(rawTargetIndex);
-    // }
-    // catch (OutOfBoundIndex e)
-    // {
-    //     e.setMessage("Pilihan pemain sasaran ada di luar opsi!");
-    //     throw e;
-    // }
+    int index = correctedIndexCurrent(rawTargetIndex);
     PlayerCandy &playerSource = getPlayerWithTurn();
-    PlayerCandy &playerTarget = players.at(rawTargetIndex);
+    PlayerCandy &playerTarget = players.at(index);
     playerSource.swapDeck(playerTarget);
 };
 
-void PlayerInGameCandy::swapDeckOfPlayer(int rawSourceIndex, int rawTargetIndex)
+void PlayerInGameCandy::swapCardOfPlayer(int sourceIndex, int targetIndex, bool firstLeft, bool secondLeft)
 {
-    // int sourceIndex;
-    // try
-    // {
-    //     sourceIndex = correctedIndex(rawSourceIndex);
-    // }
-    // catch (OutOfBoundIndex e)
-    // {
-    //     e.setMessage("Pilihan pemain pertama ada di luar opsi!");
-    // }
-    // int targetIndex;
-    // try
-    // {
-    //     targetIndex = correctedIndex(rawTargetIndex);
-    // }
-    // catch (OutOfBoundIndex e)
-    // {
-    //     e.setMessage("Pilihan pemain kedua ada di luar opsi!");
-    //     throw e;
-    // }
-    PlayerCandy &playerSource = players.at(rawSourceIndex);
-    PlayerCandy &playerTarget = players.at(rawTargetIndex);
-    playerSource.swapDeck(playerTarget);
+    PlayerCandy &playerSource = players.at(sourceIndex);
+    PlayerCandy &playerTarget = players.at(targetIndex);
+    ColorCard firstRightCard = playerSource.ejectCard();
+    ColorCard firstLeftCard = playerSource.ejectCard();
+
+    ColorCard secondRightCard = playerTarget.ejectCard();
+    ColorCard secondLeftCard = playerTarget.ejectCard();
+
+    ColorCard temp;
+    if (firstLeft)
+    {
+        if (secondLeft)
+        {
+            swap(firstLeftCard, secondLeftCard);
+        }
+        else
+        {
+            swap(firstLeftCard, secondLeftCard);
+        }
+    }
+    else
+    {
+        if (secondLeft)
+        {
+            swap(firstRightCard, secondLeftCard);
+        }
+        else
+        {
+            swap(firstRightCard, secondRightCard);
+        }
+    }
+
+    playerSource += firstLeftCard;
+    playerSource += firstRightCard;
+
+    playerTarget += secondLeftCard;
+    playerTarget += secondRightCard;
 };
 
 int PlayerInGameCandy::correctedIndexCustom(int rawIndex, vector<int> exceptedIndexes)
@@ -248,3 +269,15 @@ void PlayerInGameCandy::drawColorCardAll(DeckGame<ColorCard> &deckColor)
         players.at(turns.at(i)).drawCard(deckColor, 2);
     }
 };
+
+bool PlayerInGameCandy::disablePlayerAbility(int index)
+{
+    bool succesful = players.at(index).getAbilityAvailable();
+    players.at(index).disableAbility();
+    return succesful;
+}
+
+bool PlayerInGameCandy::playerIndexInRange(int index)
+{
+    return index >= 0 && index < getNumberOfPlayer();
+}

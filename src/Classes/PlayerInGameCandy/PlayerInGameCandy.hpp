@@ -13,6 +13,8 @@ class PlayerInGameCandy : public PlayerInGame<PlayerCandy>
 {
 
 private:
+    pair<bool, int> reversedThisRoundInfo;
+
     /**
      * @brief Construct a new draw Ability Card object
      *
@@ -67,15 +69,19 @@ public:
      * @brief Reverse the turn of the game for players after the one currently holding the turn
      *
      */
-    void reverseTurn();
+    void reverseTurnInitial();
+
+    /**
+     * @brief Reverse the turns of the game for players for the round after reverse is invoked
+     * @param The index of the turn from which the turn was reversed
+     */
+    void reverseTurnPost(int pivotIndex);
 
     /**
      * @brief Reset roundComplete to true and rearrange the turn according to the rules
      *
      */
     void resetRound();
-
-    void createAndAddPlayer(int gameID, DeckGame<AbilityCard> &deckGame);
 
     void createAndAddPlayer(int gameID);
 
@@ -119,10 +125,12 @@ public:
     /**
      * @brief Swap the deck between the player of the given index
      *
-     * @param rawSourceIndex
-     * @param rawTargetIndex
+     * @param sourceIndex
+     * @param targetIndex
+     * @param firstLeft
+     * @param secondLeft
      */
-    void swapDeckOfPlayer(int rawSourceIndex, int rawTargetIndex);
+    void swapCardOfPlayer(int sourceIndex, int targetIndex, bool firstLeft, bool secondLeft);
 
     /**
      * @brief Correct the index of the player with the rawIndex excepted
@@ -156,6 +164,20 @@ public:
      * @return false
      */
     bool winnerExist();
+
+    /**
+     * @brief Disable the ability the player with the given index. Return whether ability disabling is succesfull
+     *
+     */
+    bool disablePlayerAbility(int index);
+
+    /**
+     * @brief Return whether the index of a player is within range
+     * @param index
+     * @return true
+     * @return false
+     */
+    bool playerIndexInRange(int index);
 };
 
 #endif

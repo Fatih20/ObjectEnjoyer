@@ -80,6 +80,8 @@ public:
     string getAbilityName();
 
     void test();
+
+    ColorCard &ejectCard();
 };
 
 #endif
