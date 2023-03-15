@@ -74,6 +74,7 @@ void PlayerCandy::useAbility(string abilityName, GameCandy &gC)
     }
 
     abilityHand.activateAbility(gC);
+    abilityUsed = true;
 }
 
 void PlayerCandy::useAbility(GameCandy &gC)

@@ -317,6 +317,7 @@ bool PlayerInGameCandy::playerIndexInRange(int index)
 {
     return index >= 0 && index < getNumberOfPlayer();
 }
+
 string PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
 {
     int indexOfHighest = 0;
