@@ -22,7 +22,7 @@ typedef enum{
 class NumberExp: public exception{
     public:
         NumberExp(NumberException);
-        const string msg();
+        const char* what() const throw();
     private:
         NumberException expType;
 };
@@ -30,7 +30,12 @@ class NumberExp: public exception{
 class FormatExp: public exception{
     public:
         FormatExp(FormatException);
-        const string msg();
+        const char* what() const throw();
     private:
         FormatException expType;
+};
+
+class FileNotFoundExp: public exception{
+    public:
+        const char* what() const throw();
 };

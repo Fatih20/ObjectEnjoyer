@@ -97,6 +97,13 @@ public:
     int getIndexOfCurrentTurn();
 
     /**
+     * @brief Get the turns atribute
+     * 
+     * @return vector<int> 
+     */
+    vector<int> getTurns();
+
+    /**
      * @brief Change the turn to the next person in line
      *
      */

@@ -5,6 +5,7 @@
 #include "../PlayerInGameCandy/PlayerInGameCandy.hpp"
 #include "../DeckGame/DeckGame.hpp"
 #include "../GameCandyException/GameCandyException.hpp"
+#include "../Classes/SplashScreen/SplashScreen.hpp"
 #include <vector>
 using namespace std;
 
@@ -20,6 +21,11 @@ private:
     double giftPoint; // point hadiah tiap akhir game
     void multiplyGiftPoint(double multiplier);
     void operator*=(double multiplier);
+    /**
+     * @brief private method to firmat print tabke card
+     * 
+     */
+    void printTableCard();
 
 public:
     /**

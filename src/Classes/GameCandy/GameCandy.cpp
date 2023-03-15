@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<string> commandOption{"next", "double", "half",
+vector<string> commandOption{"gamestat", "next", "double", "half",
                              "re-roll", "quadruple", "quarter",
                              "reverse", "swap", "switch", "abilityless"};
 
@@ -42,6 +42,11 @@ void GameCandy::start()
                 cout << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn\n";
                 cmd = inputCommand();
                 playerAction(cmd);
+                while(cmd == "gamestat"){
+                    cout << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn\n";
+                    cmd = inputCommand();
+                    playerAction(cmd);                    
+                }
                 players.nextTurn();
             }
             nextRound();
@@ -89,9 +94,26 @@ void GameCandy::playerAction(string cmd)
     } else if (cmd == "half"){
         changeGiftPoinMessage(cmd,0.5);
         halvesPoint();
-    } else {
-
-    }
+    } else if (cmd == "gamestat"){
+        cout << "\033[1m\033[35m" << "---------------------------------" << endl;
+        cout << "           GAME STATUS" << endl;
+        cout << "---------------------------------" << "\033[0m" << endl;
+        cout << "\033[1m\033[37m" << "Gift Point: " << "\033[1m\033[33m" << this->giftPoint << "\033[0m" << endl;
+        cout << "\033[1m\033[37m" << "Turns: " << endl;
+        vector<int> turnsVec = players.getTurns();
+        for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i){
+            if(*i == players.getIndexOfCurrentTurn()) cout << "\033[1m\033[32m" << "p" << (*i) + 1 << " " << "\033[0m";
+            else cout << "p" << (*i) + 1<< " ";
+        }
+        cout << endl;
+        for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i){
+            if(*i == players.getIndexOfCurrentTurn()) cout << "\033[1m\033[32m" << "^   " << "\033[0m";
+            else cout << "   ";
+        }
+        cout << endl << "\033[1m\033[37m" << "Table Card: " << "\033[0m" << endl;
+        printTableCard();
+        }
+    cout << endl << "\033[1m\033[35m" << "---------------------------------" << "\033[0m" << endl;
 }
 
 string GameCandy::inputCommand()
@@ -130,7 +152,7 @@ string GameCandy::isCommandValid(string userCommand)
         // userCommand valid
         return userCommand;
     }
-    else if (round == 1 && it - commandOption.begin() < 3)
+    else if (round == 1 && it - commandOption.begin() < 4)
     {
         return userCommand;
     }
@@ -143,22 +165,7 @@ string GameCandy::isCommandValid(string userCommand)
 
 void GameCandy::splashScreen()
 {
-    cout << "\033[1m\033[35m";
-    cout << "       _..._                                                                                                                     " << endl;
-    cout << "    .-'_..._''.                      _______                                                                                     " << endl;
-    cout << "  .' .'      '.\\             _..._   \\  ___ `'.                                              __  __   ___         __.....__      " << endl;
-    cout << " / .'                      .'     '.  ' |--.\\  \\.-.          .-            .--./)           |  |/  `.'   `.   .-''         '.    " << endl;
-    cout << ". '                       .   .-.   . | |    \\  '\\ \\        / /           /.''\\            |   .-.  .-.   ' /     .-''\"'-.  `.  " << endl;
-    cout << "| |                 __    |  '   '  | | |     |  '\\ \\      / /           | |  | |      __   |  |  |  |  |  |/     /________\\   \\ " << endl;
-    cout << "| |              .:--.'.  |  |   |  | | |     |  | \\ \\    / /             \\`-' /    .:--.'. |  |  |  |  |  ||                  | " << endl;
-    cout << ". '             / |   \\ | |  |   |  | | |     ' .'  \\ \\  / /              /(\"'`    / |   \\ ||  |  |  |  |  |\\    .-------------' " << endl;
-    cout << " \\ '.          .`\" __ | | |  |   |  | | |___.' /'    \\ `  /               \\ '---.  `\" __ | ||  |  |  |  |  | \\    '-.____...---. " << endl;
-    cout << "  '. `._____.-'/ .'.''| | |  |   |  |/_______.'/      \\  /                 /'" "'.\\   .'.'' | ||__|  |__|  |__|  `.             .'  "<< endl;
-    cout << "    `-.______ / / /   | |_|  |   |  |\\_______|/       / /                 ||    || / /   | |_                   `''-...... -'    " << endl;
-    cout << "             `  \\ \\._,\\ '/|  |   |  |             |`-' /                  \'. __// \\ \\._,\\ '/                                    " << endl;
-    cout << "                 `--'  `\" '--'   '--'              '..'                    `'---'  `--'  `\"                                     " << endl;
-    cout << "\033[0m";
-    cout << "\033[1m\033[32m" << "\nGame starting...\n\n" << "\033[0m";
+    SplashScreen::splashScreenGameCandy();
 }
 
 void GameCandy::multiplyGiftPoint(double multiplier)
@@ -249,13 +256,31 @@ void GameCandy::newDeck1()
     cout << "1. Random\n";
     cout << "2. From File\n";
     int option = inputOption(2);
-    // if(option==1){
-    DeckGame<ColorCard> deck(initilizeDeckGame());
+    if(option==1){
+        DeckGame<ColorCard> deck(initilizeDeckGame());
+        this->deckGame = deck;
     // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
-    // } else {
-    //     // file reader
-    // }
-    this->deckGame = deck;
+    } else {
+        string path;
+        bool validPath = false;
+        while(!validPath){
+            cout << "Input File Path: ";
+            cin >> path;
+            try{
+                FileReader<ColorCard> f(path);
+                f.read();
+                this->deckGame = f.getDeckOrder();
+                validPath = true;
+            } catch(FileNotFoundExp err){
+                cout << err.what();
+            } catch(FormatExp err){
+                cout << err.what();
+            } catch(NumberExp err){
+                cout << err.what();
+            }
+        }
+    }
+    
 }
 
 void GameCandy::roundAction()
@@ -263,10 +288,30 @@ void GameCandy::roundAction()
     if (round <= 5)
     {
         deckGame >> tableCard;
-        cout << "Table card round "<< round << endl << tableCard;
+        printTableCard();
     }
 }
 
+void GameCandy::printTableCard(){
+    cout << "Table card round "<< round << endl << "|  ";
+    vector<ColorCard> tableVec = tableCard.getDeck();
+    for (auto i = tableVec.begin(); i != tableVec.end(); ++i){
+        if((*i).getColor() == GREEN){
+            cout << "\033[1m\033[32m";
+        }
+        else if((*i).getColor() == RED){
+            cout << "\033[1m\033[31m";
+        }
+        else if((*i).getColor() == YELLOW){
+            cout << "\033[1m\033[33m";
+        }
+        else if((*i).getColor() == BLUE){
+            cout << "\033[1m\033[34m";
+        }
+        cout << (*i).getColorAsString() << " " << (*i).getNumber() << "\033[0m" << "  |  ";
+    }
+    cout << endl;
+}
 void GameCandy::nextRound()
 {
     round = (round + 1) % 6;
