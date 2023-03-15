@@ -71,7 +71,13 @@ template <typename T>
 string Player<T>::getUsername() const
 {
     return username;
-};
+}
+
+// template <typename T>
+// DeckPlayer<T> Player<T>::getHandCards() const
+// {
+//     return handCards;
+// }
 
 template <typename T>
 Player<T>::Player(const Player &givenPlayer)

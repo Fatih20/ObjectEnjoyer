@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<string> commandOption{"next", "double", "half","gamestat",
+vector<string> commandOption{"next", "double", "half","gamestat","help","mycard",
                              "re-roll", "quadruple", "quarter",
                              "reverse", "swap", "switch", "abilityless",};
 
@@ -39,7 +39,7 @@ void GameCandy::start()
                 cout << "\033[1m\033[37m" << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn" << "\033[0m" << endl;
                 cmd = inputCommand();
                 playerAction(cmd);
-                while(cmd == "gamestat"){
+                while(cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse"){
                     cout << "\033[1m\033[37m" << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn" << "\033[0m" << endl;
                     cmd = inputCommand();
                     playerAction(cmd);                    
@@ -99,6 +99,11 @@ void GameCandy::playerAction(string cmd)
         halvesPoint();
     } else if (cmd == "gamestat"){
         displayGameStat();
+    } else if (cmd == "mycard"){
+        players.getPlayerWithTurn().printColorCard();
+        displayPlayerCard();
+    } else if (cmd == "help"){
+        displayHelp();
     }
     cout << endl << "\033[1m\033[35m" << "---------------------------------" << "\033[0m" << endl;
 }
@@ -138,7 +143,7 @@ string GameCandy::isCommandValid(string userCommand)
         // userCommand valid
         return userCommand;
     }
-    else if (round == 1 && it - commandOption.begin() < 4)
+    else if (round == 1 && it - commandOption.begin() < 6)
     {
         return userCommand;
     }
@@ -337,4 +342,45 @@ void GameCandy::displayGameStat(){
     }
     cout << endl;
     printTableCard();
+}
+
+void GameCandy::displayPlayerCard(){
+    players.getPlayerWithTurn().printColorCard();
+    // cout  << "\033[1m\033[37m" << "Your Hand Card: " << "\033[0m" << endl;
+    // cout << "|  ";
+    // vector<ColorCard> handVec = players.getPlayerWithTurn().getHandCards().getDeck();
+    // for (auto i = handVec.begin(); i != handVec.end(); ++i){
+    //     if((*i).getColor() == GREEN){
+    //         cout << "\033[1m\033[32m";
+    //     }
+    //     else if((*i).getColor() == RED){
+    //         cout << "\033[1m\033[31m";
+    //     }
+    //     else if((*i).getColor() == YELLOW){
+    //         cout << "\033[1m\033[33m";
+    //     }
+    //     else if((*i).getColor() == BLUE){
+    //         cout << "\033[1m\033[34m";
+    //     }
+    //     cout << (*i).getColorAsString() << " " << (*i).getNumber() << "\033[0m" << "  |  ";
+    // }
+    // cout << endl;
+}
+
+void GameCandy::displayHelp(){
+    cout << "\033[1m\033[35m" << "---------------------------------" << endl;
+    cout << "           HELP" << endl;
+    cout << "---------------------------------" << "\033[0m" << endl;
+    cout << "\033[1m\033[37m" << "Command: " << "\033[1m\033[33m" << endl;
+    cout << "- \"NEXT\":  Do nothing this round. Turn will be handed over to the next player.\n";
+    cout << "- \"REROLL\":  Discard your hand cards then takes two new cards from main deck. Only available when you have REROLL Ability Card.\n";
+    cout << "- \"DOUBLE\":  Double gift points.\n";
+    cout << "- \"QUADRUPLE\":  Multiple gift points 4 times.\n";
+    cout << "- \"HALF\":  Divide gift points by the factor of 2.\n";
+    cout << "- \"QUARTER\":  Divide gift points by the factor of 4.\n";
+    cout << "- \"REVERSE\":  Reverse player turns, players who have already taken action on that turn will be skipped.\n    Only available when you have REROLL Ability Card. You have one more command available after this command.\n";
+    cout << "- \"SWAPCARD\":  Swap one other player's hand cards with one other. Choose 2 players, then swap each one of their hand cards.\n    Only available when you have SWAPCARD Ability Card.\n";
+    cout << "- \"SWITCH\":  Switch your hand cards with other player's hand card. Only available when you have SWITCH Ability Card.\n";
+    cout << "- \"ABILITYLESS\":  BLock other player's Abilty. If all player has already used their ability, this command will be useless.\n    Only available when you have ABILITYLESS Ability Card.\n";
+    cout << "* Commands are case insensitive.\n";
 }

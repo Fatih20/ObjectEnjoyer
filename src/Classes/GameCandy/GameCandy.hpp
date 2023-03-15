@@ -148,6 +148,10 @@ public:
     void changeGiftPoinMessage(string,double);
 
     void displayGameStat();
+
+    void displayPlayerCard();
+
+    void displayHelp();
     
 };
 
