@@ -159,7 +159,13 @@ void Player<T>::swapDeck(Player<T> &givenPlayer)
 template <typename T>
 void Player<T>::printCard()
 {
-    cout << handCards;
+    vector<ColorCard> handCardVec = handCards.getDeck();
+    cout << "|  ";
+    for (auto i = handCardVec.begin(); i != handCardVec.end(); ++i)
+    {
+        cout << *i;
+    }
+    cout << endl;
 };
 
 template <typename T>

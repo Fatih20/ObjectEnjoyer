@@ -39,7 +39,7 @@ void GameCandy::start()
     while (!isWinning())
     {
         round = 1;
-        while (round != 6)
+        while (round != 4)
         {
             cout << "\033[1m\033[32m"
                  << "\nRound " << round << " begin \n\n"
@@ -232,7 +232,6 @@ void GameCandy::doublePoint()
 
 void GameCandy::halvesPoint()
 {
-    changeGiftPoinMessage("quadruple",0.5);
     multiplyGiftPoint(0.5);
 }
 
@@ -373,7 +372,7 @@ void GameCandy::roundAction()
 {
     if (round==2){
         cout << "Kartu ability telah dibagikan.\n";
-        cout << "Anda dapat menggunakan ability anda mulai sekarang!\n";
+        cout << "Anda dapat menggunakan ability anda mulai sekarang!\n\n";
     }
     if (round <= 5)
     {
@@ -391,24 +390,7 @@ void GameCandy::printTableCard()
     vector<ColorCard> tableVec = tableCard.getDeck();
     for (auto i = tableVec.begin(); i != tableVec.end(); ++i)
     {
-        if ((*i).getColor() == GREEN)
-        {
-            cout << "\033[1m\033[32m";
-        }
-        else if ((*i).getColor() == RED)
-        {
-            cout << "\033[1m\033[31m";
-        }
-        else if ((*i).getColor() == YELLOW)
-        {
-            cout << "\033[1m\033[33m";
-        }
-        else if ((*i).getColor() == BLUE)
-        {
-            cout << "\033[1m\033[34m";
-        }
-        cout << (*i).getColorAsString() << " " << (*i).getNumber() << "\033[0m"
-             << "  |  ";
+        cout << *i;
     }
     cout << endl;
 }
