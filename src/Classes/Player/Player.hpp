@@ -46,16 +46,16 @@ public:
     Player(int gameID);
 
     /**
+     * @brief Construct a new player object from another player
+     *
+     */
+    Player(const Player<T> &p);
+
+    /**
      * @brief Destroy the Player object
      *
      */
     ~Player();
-
-    /**
-     * @brief Construct a new player object from another player
-     *
-     */
-    Player(const Player &);
 
     /**
      * @brief Assign a player to another player with the assignment operator
@@ -72,8 +72,8 @@ public:
 
     /**
      * @brief Get the handCards attribute
-     * 
-     * @return DeckPlayer<T> 
+     *
+     * @return DeckPlayer<T>
      */
     DeckPlayer<T> getHandCards() const;
 
@@ -89,7 +89,7 @@ public:
      *
      * @return int
      */
-    double getScore();
+    unsigned int getScore() const;
 
     /**
      * @brief Add score to the player

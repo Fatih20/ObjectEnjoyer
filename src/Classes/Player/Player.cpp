@@ -28,6 +28,14 @@ template <typename T>
 Player<T>::~Player(){};
 
 template <typename T>
+Player<T>::Player(const Player<T> &other)
+{
+    this->gameID = other.gameID;
+    this->username = other.getUsername();
+    this->score = other.getScore();
+};
+
+template <typename T>
 void Player<T>::setValidUsername()
 {
     bool validUsername = false;
@@ -79,13 +87,6 @@ string Player<T>::getUsername() const
 // }
 
 template <typename T>
-Player<T>::Player(const Player &givenPlayer)
-{
-    username = givenPlayer.getUsername();
-    gameID = givenPlayer.gameID;
-};
-
-template <typename T>
 Player<T> &Player<T>::operator=(const Player<T> &givenPlayer)
 {
     username = givenPlayer.getUsername();
@@ -94,27 +95,27 @@ Player<T> &Player<T>::operator=(const Player<T> &givenPlayer)
 };
 
 template <typename T>
-double Player<T>::getScore()
+unsigned int Player<T>::getScore() const
 {
-    return score;
+    return this->score;
 };
 
 template <typename T>
 void Player<T>::addScore(unsigned int addedScore)
 {
-    score += addedScore;
+    this->score += addedScore;
 };
 
 template <typename T>
 void Player<T>::subtractScore(unsigned int subtractedScore)
 {
-    score -= subtractedScore;
+    this->score -= subtractedScore;
 };
 
 template <typename T>
 void Player<T>::operator+=(unsigned int addedScore)
 {
-    addScore(addedScore);
+    this->addScore(addedScore);
 };
 
 template <typename T>
@@ -126,7 +127,7 @@ void Player<T>::operator-=(unsigned int subtractedScore)
 template <typename T>
 void Player<T>::resetScore()
 {
-    score = 0;
+    this->score = 0;
 };
 
 template <typename T>

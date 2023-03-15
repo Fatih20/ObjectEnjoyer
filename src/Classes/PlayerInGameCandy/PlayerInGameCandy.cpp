@@ -70,7 +70,7 @@ void PlayerInGameCandy::createAndAddPlayer(int gameID)
         cout << "Username itu sudah dipakai! Pilih yang lain." << endl;
         p.setValidUsername();
     }
-    players.push_back(p);
+    players.emplace_back(p);
 }
 
 void PlayerInGameCandy::showLeaderboard()
@@ -84,9 +84,7 @@ void PlayerInGameCandy::showLeaderboard()
          << "\033[0m" << endl;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        cout << "  " << i + 1 << ". Player " << sortedPlayers.at(i).getGameID() << "  : ";
-        printf("%.2f", sortedPlayers.at(i).getScore());
-        cout << endl;
+        cout << "  " << i + 1 << ". " << sortedPlayers.at(i).getGameID() << "  : " << sortedPlayers.at(i).getScore() << endl;
     }
 }
 
