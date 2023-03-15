@@ -49,12 +49,10 @@ void GameCandy::start()
             nextRound();
             players.resetRound();
         }
+        cout << "Permainan berakhir\n";
         players.showLeaderboard();
-        // vector<string> winner = players.getWinner();
-        // for (int i=0; i<winner.size(); i++){
-        //     cout << winner.at(i) << endl;
-        // }
-        // cout << "Player";
+        cout << "\n";
+        
         newDeck1();
     }
 
@@ -244,6 +242,7 @@ void GameCandy::newDeck1()
     if(option==1){
         DeckGame<ColorCard> deck(initilizeDeckGame());
         this->deckGame = deck;
+        deckGame.shuffle();
         // newDeck1();
     // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
     } else {

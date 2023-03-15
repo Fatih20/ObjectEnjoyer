@@ -67,10 +67,12 @@ void PlayerInGameCandy::showLeaderboard()
     sort(sortedPlayers.begin(), sortedPlayers.end(), [](Player<ColorCard> p1, Player<ColorCard> p2) -> bool
          { return p1 > p2; });
     int numberOfPlayer = getNumberOfPlayer();
+    cout  << "\033[1m\033[37m" << "Leaderboard: " << "\033[0m" << endl;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        cout << i + 1 << ".";
-        sortedPlayers.at(i).getScore();
+        cout <<"  "<< i + 1 << ". Player " << sortedPlayers.at(i).getGameID() << "    : ";
+        printf("%.2f",sortedPlayers.at(i).getScore());
+        cout << endl;
     }
 }
 
