@@ -280,9 +280,12 @@ void PlayerInGameCandy::drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility)
 
 void PlayerInGameCandy::drawColorCardAll(DeckGame<ColorCard> &deckColor)
 {
+    cout << "Drawing color card" << endl;
     for (int i = 0; i < getNumberOfPlayer(); i++)
     {
         players.at(turns.at(i)).drawCard(deckColor, 2);
+        cout << "Deck of " << turns.at(i) << "'th player" << endl;
+        players.at(turns.at(i)).printCard();
     }
 };
 

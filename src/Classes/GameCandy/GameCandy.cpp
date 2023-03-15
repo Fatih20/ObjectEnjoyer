@@ -23,9 +23,11 @@ GameCandy::GameCandy()
 {
     splashScreen();
 
-    pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> deck = newDeck();
-    this->deckGame = deck.first;
-    this->deckAbility = deck.second;
+    // pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> deck = newDeck();
+    // this->deckGame = deck.first;
+    // this->deckAbility = deck.second;
+
+    newDeck1();
 
     cout << this->deckAbility << endl;
 
@@ -35,9 +37,22 @@ GameCandy::GameCandy()
 
     PlayerInGameCandy pIGC(this->deckGame, this->deckAbility, 7);
     this->players = pIGC;
+    cout << "Deck Ability after drawing" << endl;
+    cout << this->deckAbility << endl;
+    cout << "Deck Color after drawing" << endl;
+    cout << this->deckGame << endl;
+
     // cout << deckGame;
     round = 1;
     giftPoint = 64;
+    cout << "First player's deck " << endl;
+    players.getPlayerWithTurn().printCard();
+    cout << players.getPlayerWithTurn().getAbilityName() << endl;
+
+    cout << "Second player's deck " << endl;
+    players.nextTurn();
+    players.getPlayerWithTurn().printCard();
+    cout << players.getPlayerWithTurn().getAbilityName() << endl;
 }
 
 void GameCandy::start()
@@ -326,8 +341,8 @@ void GameCandy::newDeck1()
         DeckGame<AbilityCard> deckAbility(initializeAbilityDeck());
         this->deckGame = deck;
         this->deckAbility = deckAbility;
-        deckGame.shuffle();
-        deckAbility.shuffle();
+        this->deckGame.shuffle();
+        this->deckAbility.shuffle();
         // newDeck1();
         // DeckGame<AbilityCard> abilityCard(initilizeAbilityDeck());
     }
