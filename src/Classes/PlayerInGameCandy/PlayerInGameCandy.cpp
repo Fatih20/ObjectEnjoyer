@@ -97,7 +97,7 @@ void PlayerInGameCandy::showLeaderboard()
 void PlayerInGameCandy::reverseTurnInitial()
 {
     reversedThisRoundInfo = make_pair(true, getCurrentTurn());
-    reverse(players.begin() + getCurrentTurn() + 1, players.end());
+    reverse(turns.begin() + getCurrentTurn() + 1, turns.end());
 }
 
 void PlayerInGameCandy::resetRound()
@@ -160,7 +160,8 @@ void PlayerInGameCandy::showPlayerExcept(vector<int> exceptedIndex)
     {
         if (exceptedIndex.end() == find(exceptedIndex.begin(), exceptedIndex.end(), i))
         {
-            cout << numbering + 1 << ". " << "Player " << players.at(i).getGameID() << endl;
+            cout << numbering + 1 << ". "
+                 << "Player " << players.at(i).getGameID() << endl;
             numbering++;
         }
     }
