@@ -433,20 +433,26 @@ void GameCandy::abilitylessAbility()
     bool disableUseful = players.disablePlayerAbility(properIndex);
     if (disableUseful)
     {
-        cout << "Kartu ability player " << properIndex << " telah dimatikan.\n";
+        cout << "Kartu ability player " << players.getNthPlayer(properIndex) << " telah dimatikan.\n";
     } 
+    else if (players.getTurns().at(6) == players.getPlayerWithTurn().getGameID()){
+        cout << "Eits, ternyata semua pemain sudah memakai kartu kemampuan. \n";
+        cout << "Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless. \n";
+        cout << "Yah, pengunaan kartu ini sia-sia\n";
+    }
     else
     {
-        cout << "Kartu ability player " << properIndex << " telah dipakai sebelumnya.\n";
+        cout << "Kartu ability player " << players.getNthPlayer(properIndex) << " telah dipakai sebelumnya.\n";
         cout << "Yah, sayang penggunaan kartu ini sia-sia\n";
     }
+
 }
 
 void GameCandy::reverseAbility()
 {
     players.reverseTurnInitial();
     cout << players.getPlayerWithTurn().getUsername() << " melakukan reverse!\n";
-    cout << "Sisa urutan eksekusi giliran ini : " << 
+    cout << "Sisa urutan eksekusi giliran ini : ";
 }
 
 void GameCandy::swapAbility()
