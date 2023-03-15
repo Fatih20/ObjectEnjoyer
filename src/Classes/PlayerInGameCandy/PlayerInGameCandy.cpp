@@ -70,7 +70,7 @@ void PlayerInGameCandy::showLeaderboard()
     cout  << "\033[1m\033[37m" << "Leaderboard: " << "\033[0m" << endl;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        cout <<"  "<< i + 1 << ". Player " << sortedPlayers.at(i).getGameID() << "    : ";
+        cout <<"  "<< i + 1 << ". Player " << sortedPlayers.at(i).getGameID() << "  : ";
         printf("%.2f",sortedPlayers.at(i).getScore());
         cout << endl;
     }
