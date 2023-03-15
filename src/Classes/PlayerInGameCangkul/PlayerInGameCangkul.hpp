@@ -1,8 +1,8 @@
 #ifndef _PLAYERINGAME_CANGKUL_HPP_
 #define _PLAYERINGAME_CANGKUL_HPP_
 
-#include "PlayerInGame/PlayerInGame.hpp"
-#include "PlayerCangkul/PlayerCangkul.hpp"
+#include "../PlayerInGame/PlayerInGame.hpp"
+#include "../PlayerCangkul/PlayerCangkul.hpp"
 
 using namespace std;
 

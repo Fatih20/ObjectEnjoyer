@@ -2,10 +2,10 @@
 #define _GAME_CANGKUL_HPP_
 
 #include <string>
-#include "Game/Game.hpp"
-#include "PlayerInGameCangkul/PlayerInGameCangkul.hpp"
-#include "DeckGame/DeckGame.hpp"
-#include "ColorCard/ColorCard.hpp"
+#include "../Game/Game.hpp"
+#include "../PlayerInGameCangkul/PlayerInGameCangkul.hpp"
+#include "../DeckGame/DeckGame.hpp"
+#include "../ColorCard/ColorCard.hpp"
 
 class GameCangkul : public Game {
 private:
