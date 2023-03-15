@@ -70,12 +70,12 @@ public:
      */
     string getUsername() const;
 
-    /**
-     * @brief Get the handCards attribute
-     *
-     * @return DeckPlayer<T>
-     */
-    DeckPlayer<T> getHandCards() const;
+    // /**
+    //  * @brief Get the handCards attribute
+    //  *
+    //  * @return DeckPlayer<T>
+    //  */
+    // DeckPlayer<T> getHandCards() const;
 
     /**
      * @brief Return the gameID of the object
