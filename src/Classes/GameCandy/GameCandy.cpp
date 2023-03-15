@@ -126,8 +126,10 @@ bool GameCandy::playerAction(string cmd)
         displayGameStat();
     } else if (cmd == "mycard"){
         players.getPlayerWithTurn().printCard();
-        cout  << "\033[1m\033[37m" << "Your Ability Card: ";
-        cout << players.getPlayerWithTurn().getAbilityName() << "\033[0m" << endl;
+        if (round!=1){
+            cout  << "\033[1m\033[37m" << "Your Ability Card: ";
+            cout << players.getPlayerWithTurn().getAbilityName() << "\033[0m" << endl;
+        }
     } else if (cmd == "help"){
         displayHelp();
     } else if(cmd == "combination"){
@@ -369,6 +371,10 @@ void GameCandy::newDeck1()
 
 void GameCandy::roundAction()
 {
+    if (round==2){
+        cout << "Kartu ability telah dibagikan.\n";
+        cout << "Anda dapat menggunakan ability anda mulai sekarang!\n"
+    }
     if (round <= 5)
     {
         deckGame >> tableCard;
