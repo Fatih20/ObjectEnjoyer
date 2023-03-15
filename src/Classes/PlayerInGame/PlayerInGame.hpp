@@ -98,8 +98,8 @@ public:
 
     /**
      * @brief Get the turns atribute
-     * 
-     * @return vector<int> 
+     *
+     * @return vector<int>
      */
     vector<int> getTurns();
 
@@ -127,6 +127,14 @@ public:
      *
      */
     void stopRound();
+
+    /**
+     * @brief Get the Nth Player
+     *
+     * @param index
+     * @return Player<T>&
+     */
+    Player<T> &getNthPlayer(int index);
 
     virtual void remove(int index);
 
