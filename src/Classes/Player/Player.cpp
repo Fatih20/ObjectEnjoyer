@@ -228,7 +228,7 @@ void Player<T>::redrawCard(DeckGame<T> &deckGame)
     int numberOfCards = handCards.getNumberOfCards();
     for (int i = 0; i < numberOfCards; i++)
     {
-        deckGame += handCards.ejectCard();
+        deckGame.addCardBack(handCards.ejectCard());
     }
     drawCard(deckGame, numberOfCards);
 };
