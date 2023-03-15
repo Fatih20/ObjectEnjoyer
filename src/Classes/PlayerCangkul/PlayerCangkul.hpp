@@ -4,15 +4,11 @@
 #include "../Player/Player.hpp"
 
 class PlayerCangkul : public Player<ColorCard> {
-private:
-    bool hasWon; // to mark deck empty? may be useful may be erased in the future
+    private:
+        static int num_player;
 
-public:
-    PlayerCangkul();
-    PlayerCangkul(int id);
-    PlayerCangkul(const PlayerCangkul& p);
-
-
+    public:
+        PlayerCangkul();
 };
 
 #endif

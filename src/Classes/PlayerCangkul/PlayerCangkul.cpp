@@ -1,11 +1,7 @@
 #include "PlayerCangkul.hpp"
 
-PlayerCangkul::PlayerCangkul() : Player<ColorCard>() {}
+int PlayerCangkul::num_player = 0;
 
-PlayerCangkul::PlayerCangkul(int id) : Player<ColorCard>(id) {}
-
-PlayerCangkul::PlayerCangkul(const PlayerCangkul &p) : Player<ColorCard>(p) {
-    // belum ada private attribute
-    this->hasWon = p.hasWon;
+PlayerCangkul::PlayerCangkul() : Player(num_player) {
+    PlayerCangkul::num_player++;
 }
-
