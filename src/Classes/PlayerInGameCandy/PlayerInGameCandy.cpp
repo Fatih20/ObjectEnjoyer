@@ -8,7 +8,6 @@ using namespace std;
 
 PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
 {
-    cout << "fdfvfedb\n";
     for (int i = 0; i < numberOfPlayer; i++)
     {
         createAndAddPlayer(i + 1);
