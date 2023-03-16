@@ -277,7 +277,6 @@ void PlayerInGameCandy::drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility)
     for (int i = 0; i < getNumberOfPlayer(); i++)
     {
         getPlayerAtTurn(i).drawAbility(deckAbility);
-        getPlayerAtTurn(i).test();
     }
 };
 
@@ -326,29 +325,6 @@ pair<PlayerCandy, Combination> PlayerInGameCandy::rewardHighestCombination(long 
             indexOfHighest = i;
         }
     }
-
-    // DeckPlayer<ColorCard> playerHand;
-    // playerHand = getNthPlayer(0).getHand();
-    // Deck<ColorCard> *player = &playerHand;
-    // Deck<ColorCard> tableCopy(tableCard);
-    // Deck<ColorCard> *table = &tableCopy;
-
-    // Combination highestCombination(*player, *table);
-    // for (int i = 1; i < numberOfPlayer; i++)
-    // {
-    //     cout << "Player " << i + 1 << endl;
-    //     DeckPlayer<ColorCard> playerHandInner;
-    //     playerHandInner = getNthPlayer(i).getHand();
-    //     Deck<ColorCard> *player = &playerHandInner;
-    //     Deck<ColorCard> *table = &tableCard;
-    //     Combination c(*player, *table);
-    //     if (c > highestCombination)
-    //     {
-    //         cout << "COMPARING WITH HIGHEST\n";
-    //         highestCombination = c;
-    //         indexOfHighest = i;
-    //     }
-    // }
     PlayerCandy &highestPlayer = getNthPlayer(indexOfHighest);
     Deck<ColorCard> winningHand = highestPlayer.getHand();
     Deck<ColorCard> tableCardCopy(tableCard);
