@@ -20,7 +20,7 @@ UsernameEmpty::UsernameEmpty()
     message = "Username cannot be empty!";
 };
 
-AbilityNotOwned::AbilityNotOwned() : PlayerException("Ets, tidak bisa. Kamu tidak punya kartu Ability ")
+AbilityNotOwned::AbilityNotOwned() : PlayerException("Oops you dont have ability card! ")
 {
 }
 

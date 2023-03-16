@@ -57,7 +57,7 @@ void PlayerInGameCandy::createAndAddPlayer(int gameID)
     PlayerCandy p(gameID);
     while (usernameExist(p.getUsername()))
     {
-        cout << "Username itu sudah dipakai! Pilih yang lain." << endl;
+        cout << "Username already used, use other username." << endl;
         p.setValidUsername();
     }
     players.emplace_back(p);

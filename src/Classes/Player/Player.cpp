@@ -59,7 +59,7 @@ void Player<T>::setValidUsername()
 template <typename T>
 string Player<T>::askForUsername()
 {
-    cout << "Masukkan username player ke-" << this->gameID << " : ";
+    cout << "Input username player " << this->gameID << " : ";
     string askedUsername;
     cin >> askedUsername;
     if (askedUsername == "")
