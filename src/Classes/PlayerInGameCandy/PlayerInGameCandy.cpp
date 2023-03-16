@@ -338,21 +338,24 @@ PlayerCandy &PlayerInGameCandy::rewardHighestCombination(unsigned int reward, De
 {
 
     int numberOfPlayer = getNumberOfPlayer();
-    // vector<Combination> cv;
-    // for (int i = 0; i < numberOfPlayer; i++) {
-    //     Combination c(getNthPlayer(i));
-    // }
     int indexOfHighest = 0;
+    DeckPlayer<ColorCard> playerHand;
+    playerHand = getNthPlayer(0).getHand();
+
     Deck<ColorCard> dummyDeck;
     ColorCard dummy(0, GREEN);
     dummyDeck += dummy;
-    Combination highestCombination(dummyDeck);
-    for (int i = 0; i < numberOfPlayer; i++)
+    Deck<ColorCard> *player = &playerHand;
+    Deck<ColorCard> tableCopy(tableCard);
+    Deck<ColorCard> *table = &tableCopy;
+
+    Combination highestCombination(*player, *table);
+    for (int i = 1; i < numberOfPlayer; i++)
     {
         cout << "Player " << i + 1 << endl;
-        DeckPlayer<ColorCard> playerHand;
-        playerHand = getNthPlayer(i).getHand();
-        Deck<ColorCard> *player = &playerHand;
+        DeckPlayer<ColorCard> playerHandInner;
+        playerHandInner = getNthPlayer(i).getHand();
+        Deck<ColorCard> *player = &playerHandInner;
         Deck<ColorCard> *table = &tableCard;
         Combination c(*player, *table);
         if (c > highestCombination)
