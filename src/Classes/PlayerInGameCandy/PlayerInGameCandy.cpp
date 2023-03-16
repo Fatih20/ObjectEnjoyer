@@ -256,7 +256,7 @@ string PlayerInGameCandy::getWinner()
     for (int i = 0; i < getNumberOfPlayer() && !found; i++)
     {
         long long score = getNthPlayer(i).getScore();
-        if (score > limit)
+        if (score >= limit)
         {
             winnerUsername = (getNthPlayer(i).getUsername());
             found = true;
