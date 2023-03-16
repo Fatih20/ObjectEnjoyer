@@ -10,6 +10,8 @@ class PlayerInGameCangkul : public PlayerInGame<PlayerCangkul> {
 public:
     PlayerInGameCangkul();
 
+    PlayerInGameCangkul(int numPlayers);
+
     std::string getWinner();
 
     bool winnerExist();
@@ -19,6 +21,8 @@ public:
     bool usernameExist(std::string username);
 
     bool usernameExist(std::string username, int gameID);
+
+    void createAndAddPlayer(int gameID);
 };
 
 #endif

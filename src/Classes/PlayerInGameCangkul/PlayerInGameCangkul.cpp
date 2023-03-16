@@ -1,10 +1,12 @@
 #include "PlayerInGameCangkul.hpp"
 
-PlayerInGameCangkul::PlayerInGameCangkul() : PlayerInGame<PlayerCangkul>() {
-    PlayerCangkul p1;
-    PlayerCangkul p2;
-    this->addPlayer(p1);
-    this->addPlayer(p2);
+PlayerInGameCangkul::PlayerInGameCangkul() : PlayerInGame<PlayerCangkul>(0) {
+}
+
+PlayerInGameCangkul::PlayerInGameCangkul(int playerNum) :PlayerInGame<PlayerCangkul>(playerNum) {
+    for(int i = 0; i < playerNum; i++){
+        createAndAddPlayer(i + 1);
+    }
 }
 
 std::string PlayerInGameCangkul::getWinner() {
@@ -51,4 +53,14 @@ bool PlayerInGameCangkul::usernameExist(std::string username, int gameID) {
         }
     }
     return false;
+}
+
+void PlayerInGameCangkul::createAndAddPlayer(int gameID) {
+    PlayerCangkul p(gameID);
+    while (PlayerInGameCangkul::usernameExist(p.getUsername()))
+    {
+        cout << "Username itu sudah dipakai! Pilih yang lain." << endl;
+        p.setValidUsername();
+    }
+    players.emplace_back(p);
 }

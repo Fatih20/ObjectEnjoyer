@@ -1,9 +1,11 @@
 #include "PlayerCangkul.hpp"
 
-int PlayerCangkul::num_player = 0;
+PlayerCangkul::PlayerCangkul() : Player<ColorCard>() {
 
-PlayerCangkul::PlayerCangkul() : Player(num_player + 1) {
-    PlayerCangkul::num_player++;
+}
+
+PlayerCangkul::PlayerCangkul(int id) : Player<ColorCard>(id) {
+
 }
 
 bool PlayerCangkul::isWinner() {
@@ -11,7 +13,8 @@ bool PlayerCangkul::isWinner() {
 }
 
 void PlayerCangkul::printCards() {
-    cout << this->handCards;
+    cout << "trying print" << endl;
+    cout << this->Player::handCards.getNumberOfCards();
 }
 
 void PlayerCangkul::playCard(int index) {

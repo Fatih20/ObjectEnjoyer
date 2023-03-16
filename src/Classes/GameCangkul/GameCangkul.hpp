@@ -14,7 +14,8 @@ private:
      DeckGame<ColorCard> deckGame;
      DeckGame<ColorCard> deckTable;
 
-     vector<string> commandOption;
+     bool gameStarted; // to avoid game accidentally register itself as finished when card has not yet shared
+     int round;
 
 public:
     /**
@@ -59,6 +60,13 @@ public:
 
     int inputOption(int);
 
+    void playerAction(string cmd);
+
+    int getRoundNumber();
+
+    bool isRoundOver();
+
+    void nextRound();
 
     // TODO: nantinya akan dibuat method di deckgame
     std::vector<ColorCard> initializeDeckGame();

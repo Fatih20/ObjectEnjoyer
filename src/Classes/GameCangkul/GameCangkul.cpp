@@ -3,21 +3,42 @@
 vector<string> commandOptionCangkul = {
     "play",     //play a card
     "cangkul",  //cangkul deckGame
-    "ambil"     //take a card from deckTable
+    "ambil",    //take a card from deckTable
+    "gamestat", //show current game stat
+    "mycard",   //show current card on hands
+    "help"      //help options
 };
 
 GameCangkul::GameCangkul() {
     DeckGame<ColorCard> deckGame(initializeDeckGame());
     deckGame.shuffle();
 
+    PlayerInGameCangkul pIGC(2);
+    this->players = pIGC;
+
     this->deckGame = deckGame;
+    this->gameStarted = false; // may even be not needed
 }
 
 void GameCangkul::start() {
     string cmd;
-    while(!isWinning()){
-        cmd = GameCangkul::inputCommand();
-        cout << cmd;
+
+    GameCangkul::newGame();
+    while(!isWinning() && gameStarted){
+        cout << "Round " << GameCangkul::getRoundNumber() << endl;
+        while(!GameCangkul::isRoundOver()){
+
+            cout << "\033[1m\033[37m"
+                 << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn"
+                 << "\033[0m" << endl;
+
+            cmd = GameCangkul::inputCommand();
+            GameCangkul::playerAction(cmd);
+
+            players.nextTurn();
+        }
+        GameCangkul::nextRound();
+        players.resetRound();
     }
 }
 
@@ -27,11 +48,17 @@ bool GameCangkul::isWinning() {
 }
 
 void GameCangkul::newGame() {
+    //NOTE : game candy doesnt init player deck from this method
+    for(int i = 0; i < players.getNumberOfPlayer(); i++){
+        players.getNthPlayer(i).drawCard(this->deckGame, 7);
+    }
 
+    this->gameStarted = true;
 }
 
 void GameCangkul::endOfGame() {
 
+    this->gameStarted = false;
 }
 
 std::string GameCangkul::inputCommand() {
@@ -42,7 +69,7 @@ std::string GameCangkul::inputCommand() {
         try{
             cout << "> ";
             cin >> cmd;
-            GameCangkul::isCommandValid(cmd);
+            cmd = GameCangkul::isCommandValid(cmd);
 
             isValid = true;
         } catch(CangkulCommandInvalid& e) {
@@ -76,6 +103,37 @@ void GameCangkul::splashScreen() {
 
 int GameCangkul::inputOption(int opt) {
     return 0;
+}
+
+void GameCangkul::playerAction(string cmd) {
+
+    if(cmd == "play"){
+        cout << "playing a card" << endl;
+    } else if (cmd == "cangkul") {
+        cout << "player turn draw from deck";
+    } else if (cmd == "ambil") {
+        cout << "cek deck apakah kosong and can";
+    } else if (cmd == "gamestat") {
+        cout << "show gamestat";
+    } else if (cmd == "mycard") {
+        cout << players.getNumberOfPlayer() << endl;
+//        cout << players.getPlayerWithTurn().getGameID() << endl;
+        players.getPlayerWithTurn().printCard();
+    } else if (cmd == "help") {
+        cout << "show help messages";
+    }
+}
+
+int GameCangkul::getRoundNumber() {
+    return this->round + 1; // NOTE: be careful of this +1, useful on print
+}
+
+bool GameCangkul::isRoundOver(){
+    return players.getIsRoundComplete();
+}
+
+void GameCangkul::nextRound() {
+    this->round++;
 }
 
 std::vector<ColorCard> GameCangkul::initializeDeckGame() {

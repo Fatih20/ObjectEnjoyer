@@ -10,6 +10,8 @@ class PlayerCangkul : public Player<ColorCard> {
     public:
         PlayerCangkul();
 
+        PlayerCangkul(int gameID);
+
         bool isWinner();
 
         void printCards();
