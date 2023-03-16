@@ -4,6 +4,7 @@
 #include "../PlayerInGame/PlayerInGame.hpp"
 #include "../PlayerCandy/PlayerCandy.hpp"
 #include "../AbilityCard/AbilityCard.hpp"
+#include "../Combination/Combination.hpp"
 
 #include <iostream>
 
@@ -29,7 +30,7 @@ public:
      * @param deckAbility
      */
     void drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility);
-    
+
     /**
      * @brief Construct a new Player In Game Candy object
      *
@@ -203,7 +204,7 @@ public:
      * @param tableCard
      * @return PlayerCandy
      */
-    PlayerCandy &rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard);
+    pair<PlayerCandy, Combination> rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard);
 };
 
 #endif

@@ -91,10 +91,12 @@ void GameCandy::newGame()
 void GameCandy::endOfGame()
 {
     cout << "\nRonde 6 selesai.\n";
-    PlayerCandy winner = players.rewardHighestCombination(giftPoint, tableCard);
-    cout << "Pemenang babak ini adalah " << winner.getUsername() << endl;
+    pair<PlayerCandy,Combination> winner = players.rewardHighestCombination(giftPoint, tableCard);
+    cout << "Pemenang babak ini adalah " << winner.first.getUsername() << endl;
     printTableCard();
-    winner.printCard();
+    winner.first.printCard();
+    cout << "Combination :\n";
+    winner.second.print();
     cout << "\nPlayer mendapatkan " << giftPoint << " poin!\n";
     players.showLeaderboard();
     if (isWinning())

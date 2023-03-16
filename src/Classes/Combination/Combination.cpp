@@ -235,11 +235,15 @@ Combination::Combination(Deck<ColorCard> cards)
 
 Combination::Combination(Deck<ColorCard> player, Deck<ColorCard> table)
 {
+    std::cout << "Entering combination constructor" << std::endl;
     this->playerCards = player;
     this->allCards = table;
     this->allCards = this->allCards + player;
+    std::cout << "Initialized attributes. Now sorting cards." << std::endl;
     allCards.sort(true);
+    std::cout << "Sorting cards. Getting best combo." << std::endl;
     this->bestCombo = this->getBestCombo();
+    std::cout << "Got best combo. Exiting constructor." << std::endl;
 }
 
 void Combination::print()

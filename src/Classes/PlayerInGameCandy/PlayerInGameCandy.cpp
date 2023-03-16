@@ -1,7 +1,6 @@
 #include "PlayerInGameCandy.hpp"
 #include "../PlayerInGameException/PlayerInGameException.hpp"
 #include "../PlayerMini/PlayerMini.hpp"
-#include "../Combination/Combination.hpp"
 #include <algorithm>
 
 using namespace std;
@@ -162,7 +161,7 @@ void PlayerInGameCandy::showPlayerExcept(vector<int> exceptedIndex)
         if (exceptedIndex.end() == find(exceptedIndex.begin(), exceptedIndex.end(), i))
         {
             cout << numbering + 1 << ". "
-                 << "Player " << getNthPlayer(i).getGameID() << endl;
+                 << "Player " << getNthPlayer(i).getUsername() << endl;
             numbering++;
         }
     }
@@ -201,7 +200,7 @@ void PlayerInGameCandy::swapCardOfPlayer(int sourceIndex, int targetIndex, bool 
         }
         else
         {
-            swap(firstLeftCard, secondLeftCard);
+            swap(firstLeftCard, secondRightCard);
         }
     }
     else
@@ -334,36 +333,32 @@ bool PlayerInGameCandy::playerIndexInRange(int index)
     return index >= 0 && index < getNumberOfPlayer();
 }
 
-PlayerCandy &PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
+pair<PlayerCandy, Combination> PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
 {
 
     int numberOfPlayer = getNumberOfPlayer();
-    // vector<Combination> cv;
-    // for (int i = 0; i < numberOfPlayer; i++) {
-    //     Combination c(getNthPlayer(i));
-    // }
     int indexOfHighest = 0;
-    Deck<ColorCard> dummyDeck;
-    ColorCard dummy(0, GREEN);
-    dummyDeck+=dummy;
-    Combination highestCombination(dummyDeck);
-    for (int i = 0; i < numberOfPlayer; i++)
+    DeckPlayer<ColorCard> playerHand;
+    playerHand = getNthPlayer(0).getHand();
+    Deck<ColorCard> *player = &playerHand;
+    Deck<ColorCard> tableCopy(tableCard);
+    Deck<ColorCard> *table = &tableCopy;
+
+    Combination highestCombination(*player, *table);
+    for (int i = 1; i < numberOfPlayer; i++)
     {
-        cout<< "Player " << i+1 << endl;
-        DeckPlayer<ColorCard> playerHand = getNthPlayer(i).getHand();
-        Deck<ColorCard>* player = &playerHand;
-        Deck<ColorCard>* table = &tableCard;
+        cout << "Player " << i + 1 << endl;
+        DeckPlayer<ColorCard> playerHandInner;
+        playerHandInner = getNthPlayer(i).getHand();
+        Deck<ColorCard> *player = &playerHandInner;
+        Deck<ColorCard> *table = &tableCard;
         Combination c(*player, *table);
-        if(c>highestCombination){
+        if (c > highestCombination)
+        {
             highestCombination = c;
             indexOfHighest = i;
         }
-        // cout << "Comparing " << getNthPlayer(i).getUsername() << " and " << getNthPlayer(indexOfHighest).getUsername() << endl;
-        // if (getNthPlayer(i).higherCombinationWeight(getNthPlayer(indexOfHighest), tableCard))
-        // {
-        //     indexOfHighest = i;
-        // }
     }
     getNthPlayer(indexOfHighest) += reward;
-    return getNthPlayer(indexOfHighest);
+    return make_pair(getNthPlayer(indexOfHighest), highestCombination);
 }

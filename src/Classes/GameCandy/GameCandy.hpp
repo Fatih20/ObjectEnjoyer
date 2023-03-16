@@ -8,6 +8,7 @@
 #include "../Abilities/Abilities.hpp"
 #include "../SplashScreen/SplashScreen.hpp"
 #include "../PlayerException/PlayerException.hpp"
+#include "../Combination/Combination.hpp"
 #include <vector>
 using namespace std;
 
