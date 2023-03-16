@@ -10,3 +10,8 @@
 bin/*
 
 .DS_Store
+
+html/*
+latex/*
+test.txt
+Doxyfile
