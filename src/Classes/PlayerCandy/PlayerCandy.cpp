@@ -73,11 +73,6 @@ void PlayerCandy::useAbility(GameCandy &gC)
     abilityHand.activateAbility(gC);
 }
 
-void PlayerCandy::test()
-{
-    abilityHand.value()->test();
-}
-
 bool PlayerCandy::higherCombinationWeight(const PlayerCandy &otherPlayer, const DeckGame<ColorCard> &deckGame)
 {
     return compareCombinationWeight(otherPlayer, deckGame) == 1;
