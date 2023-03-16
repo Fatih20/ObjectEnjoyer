@@ -9,6 +9,16 @@ vector<string> commandOptionCangkul = {
     "help"      //help options
 };
 
+void GameCangkul::displayHelp(){
+    cout << "AVAILABLE COMMANDS\n";
+    cout << "1. play        - play a card\n";
+    cout << "2. cangkul     - take a card from the deck\n";
+    cout << "3. ambil       - take a card from the table cards\n";
+    cout << "4. gamestat    - show current game stat\n";
+    cout << "5. mycard      - show your current hand\n";
+    cout << "6. help        - show list of available commands\n";
+}
+
 GameCangkul::GameCangkul() {
     DeckGame<ColorCard> deckGame(initializeDeckGame());
     deckGame.shuffle();
@@ -53,6 +63,7 @@ bool GameCangkul::isWinning() {
 
 void GameCangkul::newGame() {
     //NOTE : game candy doesnt init player deck from this method
+    cout << "MARI KITA MULAI\n";
     for(int i = 0; i < players.getNumberOfPlayer(); i++){
         players.getNthPlayer(i).drawCard(this->deckGame, 7);
     }
@@ -61,7 +72,7 @@ void GameCangkul::newGame() {
 }
 
 void GameCangkul::endOfGame() {
-
+    cout << "GAME TAMAT YAH GES YAH\n";
     this->gameStarted = false;
 }
 
@@ -101,13 +112,9 @@ std::string GameCangkul::isCommandValid(std::string userCommand) {
     }
 }
 
-void GameCangkul::splashScreen() {
-
+int GameCangkul::inputOption(int opt) {
+    return 0;
 }
-
-//int GameCangkul::inputOption(int opt) {
-//    return 0;
-//}
 
 bool GameCangkul::playerAction(string cmd) {
 

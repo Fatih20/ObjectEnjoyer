@@ -61,9 +61,7 @@ public:
 
     std::string isCommandValid(std::string);
 
-    void splashScreen();
-
-//    int inputOption(int);
+    int inputOption(int);
 
     bool playerAction(string cmd);
 
@@ -82,6 +80,7 @@ public:
     bool playCard();
 
     Color getTableColor();
+    void displayHelp();
 
     // TODO: nantinya akan dibuat method di deckgame
     std::vector<ColorCard> initializeDeckGame();
