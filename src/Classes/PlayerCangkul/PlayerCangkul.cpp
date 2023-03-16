@@ -2,7 +2,7 @@
 
 int PlayerCangkul::num_player = 0;
 
-PlayerCangkul::PlayerCangkul() : Player(num_player) {
+PlayerCangkul::PlayerCangkul() : Player(num_player + 1) {
     PlayerCangkul::num_player++;
 }
 
