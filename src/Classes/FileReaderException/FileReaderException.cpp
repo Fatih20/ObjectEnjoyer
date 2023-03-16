@@ -15,6 +15,8 @@ const char* NumberExp::what() const throw(){
             return "Anda memasukan terlalu banyak ability card!\nBanyak masukan kartu yang valid adalah 7\n";
         case 3:
              return "Anda memasukan terlalu sedikit ability card!\nBanyak masukan kartu yang valid adalah 7\n";
+        default:
+            return " ";
     }
 }
 
@@ -32,6 +34,8 @@ const char* FormatExp::what() const throw(){
             return "Format masukan anda untuk angka deck kard salah!\nFormat masukan ynag valid adalah angka antara 1 sampai 13\n";
         case 3:
             return "Format masukan anda untuk tipe ability card salah!\nFormat masukan yang valid adalah:\nReroll = REROLL\nQuadruple = QUADRUPLE\nQuarter = QUARTER\nReverse = REVERSE\nSwap = SWAP\nSwitch = SWITCH\nAbilityless = ABILITYLESS\n";
+        default:
+            return " ";
     }
 }
 
