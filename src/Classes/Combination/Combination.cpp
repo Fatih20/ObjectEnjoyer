@@ -112,8 +112,8 @@ std::string Combination::Combo::getTypeString()
 void Combination::Combo::print()
 {
     std::cout << "Type: " << this->getTypeString() << std::endl;
-    std::cout << "Highest Card: " << this->highestCard << std::endl;
-    std::cout << this->cards;
+    // std::cout << "Highest Card: " << this->highestCard << std::endl;
+    // std::cout << this->cards;
 }
 
 Deck<ColorCard> Combination::Combo::getCards()
@@ -266,7 +266,7 @@ Combination::Combination(Deck<ColorCard> player, Deck<ColorCard> table)
 
 void Combination::print()
 {
-    std::cout << "Player Cards: " << this->playerCards << std::endl;
+    // std::cout << "Player Cards: " << this->playerCards << std::endl;
     std::vector<ColorCard> tableCards = this->allCards.getDeck();
     std::vector<ColorCard> playerCards = this->playerCards.getDeck();
     tableCards.erase(remove_if(begin(tableCards), end(tableCards),
@@ -274,8 +274,8 @@ void Combination::print()
                                { return find(begin(playerCards), end(playerCards), x) != end(playerCards); }),
                      end(tableCards));
     Deck<ColorCard> table = Deck<ColorCard>(tableCards);
-    std::cout << "Table Cards:\n" << table << std::endl;
-    std::cout << "Best Combo:\n" << std::endl;
+    // std::cout << "Table Cards:\n" << table << std::endl;
+    std::cout << "Best Combo:" << std::endl;
     this->bestCombo.print();
 }
 
