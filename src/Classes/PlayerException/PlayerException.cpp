@@ -17,5 +17,10 @@ UsernameEmpty::UsernameEmpty()
 
 AbilityNotOwned::AbilityNotOwned()
 {
-    message = "You don't have that ability!";
+    message = "Ets, tidak bisa. Kamu tidak punya kartu Ability ";
+}
+
+AbilityNotAvailable::AbilityNotAvailable()
+{
+    message = "Oops, kartu abilitymu telah dimatikan sebelumnya :(\nSilahkan lakukan perintah lain.";
 }

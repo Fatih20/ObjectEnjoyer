@@ -1,6 +1,6 @@
 #include "PlayerCollection.hpp"
-#include "Classes/ColorCard/ColorCard.hpp"
-#include "Classes/PlayerCandy/PlayerCandy.hpp"
+#include "../ColorCard/ColorCard.hpp"
+#include "../PlayerCandy/PlayerCandy.hpp"
 #include <iostream>
 
 using namespace std;
@@ -45,6 +45,12 @@ template <typename T>
 void PlayerCollection<T>::operator-=(int index)
 {
     remove(index);
+}
+
+template <typename T>
+T &PlayerCollection<T>::getNthPlayer(int index)
+{
+    return this->players.at(index);
 }
 
 template class PlayerCollection<Player<ColorCard>>;

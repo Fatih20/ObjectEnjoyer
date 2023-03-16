@@ -97,6 +97,13 @@ public:
     int getIndexOfCurrentTurn();
 
     /**
+     * @brief Get the turns atribute
+     *
+     * @return vector<int>
+     */
+    vector<int> getTurns();
+
+    /**
      * @brief Change the turn to the next person in line
      *
      */
@@ -140,5 +147,13 @@ public:
      * @return false
      */
     virtual bool usernameExist(string username, int gameID) = 0;
+
+    /**
+     * @brief Get the Player At Turn object
+     *
+     * @param turn
+     * @return T&
+     */
+    T &getPlayerAtTurn(int turn);
 };
 // Kurang retake deck dan re-roll

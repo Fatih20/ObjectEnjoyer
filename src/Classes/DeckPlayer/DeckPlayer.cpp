@@ -1,4 +1,4 @@
-#include "Classes/DeckPlayer/DeckPlayer.hpp"
+#include "../DeckPlayer/DeckPlayer.hpp"
 
 template <typename T>
 DeckPlayer<T>::DeckPlayer(DeckGame<T> &drawnDeck, int numberOfCards) : Deck<T>()
@@ -31,7 +31,7 @@ void DeckPlayer<T>::drawCard(DeckGame<T> &drawnDeck, int numberOfCards)
 {
     for (int i = 0; i < numberOfCards; i++)
     {
-        drawnDeck >> *this;
+        this->addCard(drawnDeck.ejectCard());
     }
 };
 

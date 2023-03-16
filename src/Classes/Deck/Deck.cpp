@@ -79,6 +79,12 @@ void Deck<T>::addCard(const T &card)
 };
 
 template <typename T>
+void Deck<T>::addCardBack(const T &card)
+{
+    this->vec.insert(vec.begin(), card);
+};
+
+template <typename T>
 void Deck<T>::operator+=(const T &card)
 {
     this->addCard(card);
@@ -177,10 +183,12 @@ void Deck<T>::sort()
 template <typename T>
 void Deck<T>::sort(bool descending)
 {
+    // std::cout << "Entering sort" << endl;
     std::sort(this->vec.begin(), this->vec.end(), [descending](T a, T b) { // sementara exclusive ColorCard
         bool result = a.value() < b.value();
         return descending ? !result : result;
     });
+    // std::cout << "Exiting sort" << endl;
 }
 
 template <typename T>
@@ -214,6 +222,7 @@ bool Deck<T>::operator==(const Deck<T> &other)
 template <typename T>
 bool Deck<T>::operator>(const Deck<T> &other)
 {
+    // cout << "Entering > of deck" << endl;
     // to avoid sorting the real deck
     //  we use pointer to retain derived Deck properties
     Deck<T> *a = new Deck(*this);
@@ -256,12 +265,12 @@ Deck<T> &Deck<T>::operator+(Deck<T> &other)
 template <typename T>
 std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
 {
-    os << "\nsize : " << deck.vec.size() << "\nmembers : \n";
+    // os << "\nsize : " << deck.vec.size() << "\nmembers : \n";
 
     int i = 1;
     for (auto elmt : deck.vec)
     {
-        os << i << ". " << elmt;
+        os << i << ". " << elmt << endl;
         i++;
     }
 
@@ -273,4 +282,4 @@ template class Deck<ColorCard>;
 template class Deck<AbilityCard>;
 template std::ostream &operator<<(std::ostream &os, const Deck<Card<int>> &deck);
 template std::ostream &operator<<(std::ostream &os, const Deck<ColorCard> &deck);
-// template std::ostream &operator<<(std::ostream &os, const Deck<AbilityCard> &deck);
+template std::ostream &operator<<(std::ostream &os, const Deck<AbilityCard> &deck);

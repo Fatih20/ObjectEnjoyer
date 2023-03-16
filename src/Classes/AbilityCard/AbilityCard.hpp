@@ -1,14 +1,17 @@
 #ifndef _ABILITYCARD_HPP_
 #define _ABILITYCARD_HPP_
 
+#include <memory>
 #include "../Card/Card.hpp"
 #include "../Ability/Ability.hpp"
 #include <string>
 
-class AbilityCard : public Card<Ability &>
+using namespace std;
+
+class AbilityCard : public Card<shared_ptr<Ability>>
 {
 private:
-    static BlankAbility blankAbility;
+    // static BlankAbility blankAbility;
 
 public:
     AbilityCard();
@@ -17,7 +20,11 @@ public:
      *
      * @param value The ability of the card (REROLL, QUADRUPLE, QUARTER, REVERSE, SWAP, SWITCH, ABILITYLESS)
      */
-    AbilityCard(Ability &ability);
+    // AbilityCard(Ability &ability);
+
+    AbilityCard(shared_ptr<Ability> ability);
+
+    ~AbilityCard();
 
     AbilityCard(const AbilityCard &aC);
 
@@ -26,19 +33,19 @@ public:
      *
      * @return int
      */
-    Ability &value() const;
+    shared_ptr<Ability> value() const;
 
     /**
      * @brief Get the name of the ability
      *
      * @return std::string
      */
-    std::string getName() const;
+    string getName() const;
 
     /**
      * @brief Get the description of the card (for example, REROLL: reroll all hand cards)
      */
-    std::string getDescription() const;
+    string getDescription() const;
 
     /**
      * @brief Activate the ability of the card
@@ -46,7 +53,7 @@ public:
      */
     void activateAbility(GameCandy &gC);
 
-    friend std::ostream &operator<<(std::ostream &os, const AbilityCard &card);
+    friend ostream &operator<<(std::ostream &os, const AbilityCard &card);
 };
 
 #endif

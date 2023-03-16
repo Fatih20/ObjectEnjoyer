@@ -5,6 +5,10 @@
 #include "../PlayerInGameCandy/PlayerInGameCandy.hpp"
 #include "../DeckGame/DeckGame.hpp"
 #include "../GameCandyException/GameCandyException.hpp"
+#include "../Abilities/Abilities.hpp"
+#include "../SplashScreen/SplashScreen.hpp"
+#include "../PlayerException/PlayerException.hpp"
+#include "../Combination/Combination.hpp"
 #include <vector>
 using namespace std;
 
@@ -15,11 +19,14 @@ private:
     PlayerInGameCandy players;     // pemain
     DeckGame<ColorCard> deckGame;  // deck game
     DeckGame<ColorCard> tableCard; // table card
-    DeckGame<AbilityCard> abilityCard;
-    int round;        // ronde
-    double giftPoint; // point hadiah tiap akhir game
-    void multiplyGiftPoint(double multiplier);
-    void operator*=(double multiplier);
+    DeckGame<AbilityCard> deckAbility;
+    int round;           // ronde
+    long long giftPoint; // point hadiah tiap akhir game
+    /**
+     * @brief private method to firmat print tabke card
+     *
+     */
+    void printTableCard();
 
 public:
     /**
@@ -30,13 +37,13 @@ public:
     // jumlah player 7, ronde = 1, giftpoin 64
 
     /**
-     * @brief
+     * @brief start game candy
      *
      */
     void start();
 
     /**
-     * @brief Spash Screen
+     * @brief Splash Screen
      *
      */
     void splashScreen();
@@ -69,16 +76,10 @@ public:
     void endOfGame();
 
     /**
-     * @brief menjalankan game 1 ronde
-     *
-     */
-    void startRound();
-
-    /**
      * @brief mekanisme giliran pemain, currentPlayer akan input command dan command akan dijalankan
      *
      */
-    void playerAction(string action);
+    bool playerAction(string action);
 
     /**
      * @brief
@@ -87,8 +88,7 @@ public:
     string inputCommand();
 
     /**
-     * @brief if command valid return enum value of the user input command,
-     * else throw exception
+     * @brief if command valid return command
      *
      * @param command
      * @return int
@@ -96,16 +96,28 @@ public:
     string isCommandValid(string command);
 
     /**
-     * @brief
+     * @brief create deck game of game candy
      *
      */
     vector<ColorCard> initilizeDeckGame();
 
-    // vector<AbilityCard> initilizeAbilityDeck();
+    /**
+     * @brief initiate deckgame, deckplayer, and playerability
+     * 
+     */
+    void newDeck1();
 
-    // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
+    /**
+     * @brief perform actions in specific round
+     * 
+     */
+    void roundAction();
 
-    DeckGame<ColorCard> newDeck1();
+    /**
+     * @brief increment round by 1
+     * 
+     */
+    void nextRound();
 
     /**
      * @brief Double the gift point
@@ -132,13 +144,64 @@ public:
     void quarterPoint();
 
     /**
-     * @brief
+     * @brief create ability deck of game candy
      *
      */
+    vector<AbilityCard> initializeAbilityDeck();
 
-    // vector<AbilityCard> initilizeAbilityDeck();
+    /**
+     * @brief performs reroll ability
+     * 
+     */
+    void rerollAbility();
 
-    // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
+    /**
+     * @brief performs abilityless ability
+     * 
+     */
+    void abilitylessAbility();
+
+    /**
+     * @brief performs reverse ability
+     * 
+     */
+    void reverseAbility();
+
+    /**
+     * @brief performs switch ability
+     * 
+     */
+    void switchAbility();
+
+    /**
+     * @brief performs swap ability
+     * 
+     */
+    void swapAbility();
+
+    /**
+     * @brief display a message if there is a change in gift points.
+     * 
+     */
+    void changeGiftPoinMessage(string, double);
+
+    /**
+     * @brief display game status
+     * 
+     */
+    void displayGameStat();
+
+    /**
+     * @brief display help
+     * 
+     */
+    void displayHelp();
+
+    /**
+     * @brief display combination info
+     * 
+     */
+    void displayCombiInfo();
 };
 
 #endif

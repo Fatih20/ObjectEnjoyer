@@ -1,6 +1,6 @@
 #include "Player.hpp"
-#include "Classes/InventoryHolder/InventoryHolder.hpp"
-#include "Classes/ColorCard/ColorCard.hpp"
+#include "../InventoryHolder/InventoryHolder.hpp"
+#include "../ColorCard/ColorCard.hpp"
 #include "../PlayerException/PlayerException.hpp"
 #include <iostream>
 #include <vector>
@@ -8,7 +8,6 @@
 #include <algorithm>
 
 using namespace std;
-
 template <typename T>
 Player<T>::Player()
 {
@@ -27,6 +26,15 @@ Player<T>::Player(int gameID)
 
 template <typename T>
 Player<T>::~Player(){};
+
+template <typename T>
+Player<T>::Player(const Player<T> &other)
+{
+    this->gameID = other.gameID;
+    this->username = other.getUsername();
+    this->score = other.getScore();
+    this->handCards = other.handCards;
+};
 
 template <typename T>
 void Player<T>::setValidUsername()
@@ -71,49 +79,50 @@ template <typename T>
 string Player<T>::getUsername() const
 {
     return username;
-};
+}
 
 template <typename T>
-Player<T>::Player(const Player &givenPlayer)
+DeckPlayer<T> Player<T>::getHand()
 {
-    username = givenPlayer.getUsername();
-    gameID = givenPlayer.gameID;
-};
+    DeckPlayer<T> handCardsCopy = this->handCards;
+    return handCardsCopy;
+}
 
 template <typename T>
 Player<T> &Player<T>::operator=(const Player<T> &givenPlayer)
 {
-    username = givenPlayer.getUsername();
-    gameID = givenPlayer.gameID;
+    this->username = givenPlayer.getUsername();
+    this->gameID = givenPlayer.gameID;
+    this->handCards = givenPlayer.handCards;
     return *this;
 };
 
 template <typename T>
-double Player<T>::getScore()
+long long Player<T>::getScore() const
 {
-    return score;
+    return this->score;
 };
 
 template <typename T>
-void Player<T>::addScore(unsigned int addedScore)
+void Player<T>::addScore(long long addedScore)
 {
-    score += addedScore;
+    this->score += addedScore;
 };
 
 template <typename T>
-void Player<T>::subtractScore(unsigned int subtractedScore)
+void Player<T>::subtractScore(long long subtractedScore)
 {
-    score -= subtractedScore;
+    this->score -= subtractedScore;
 };
 
 template <typename T>
-void Player<T>::operator+=(unsigned int addedScore)
+void Player<T>::operator+=(long long addedScore)
 {
-    addScore(addedScore);
+    this->addScore(addedScore);
 };
 
 template <typename T>
-void Player<T>::operator-=(unsigned int subtractedScore)
+void Player<T>::operator-=(long long subtractedScore)
 {
     subtractScore(subtractedScore);
 };
@@ -121,7 +130,7 @@ void Player<T>::operator-=(unsigned int subtractedScore)
 template <typename T>
 void Player<T>::resetScore()
 {
-    score = 0;
+    this->score = 0;
 };
 
 template <typename T>
@@ -149,9 +158,15 @@ void Player<T>::swapDeck(Player<T> &givenPlayer)
 };
 
 template <typename T>
-void Player<T>::printColorCard()
+void Player<T>::printCard()
 {
-    cout << handCards;
+    vector<ColorCard> handCardVec = handCards.getDeck();
+    cout << "|  ";
+    for (auto i = handCardVec.begin(); i != handCardVec.end(); ++i)
+    {
+        cout << *i;
+    }
+    cout << endl;
 };
 
 template <typename T>
@@ -203,43 +218,6 @@ bool Player<T>::operator==(const Player<T> &otherPlayer)
 };
 
 template <typename T>
-int Player<T>::compareCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
-{
-    int ourScore = deckGame.getCombinationValueWith(this->handCards);
-    int theirScore = deckGame.getCombinationValueWith(otherPlayer.handCards);
-    if (ourScore > theirScore)
-    {
-        return 1;
-    }
-    else if (ourScore == theirScore)
-    {
-        return 0;
-    }
-    else
-    {
-        return -1;
-    }
-};
-
-template <typename T>
-bool Player<T>::higherCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
-{
-    return compareCombinationWeight(otherPlayer, deckGame) == 1;
-};
-
-template <typename T>
-bool Player<T>::equalCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
-{
-    return compareCombinationWeight(otherPlayer, deckGame) == 0;
-};
-
-template <typename T>
-bool Player<T>::lowerCombinationWeight(const Player<T> &otherPlayer, const DeckGame<T> &deckGame)
-{
-    return compareCombinationWeight(otherPlayer, deckGame) == -1;
-};
-
-template <typename T>
 void Player<T>::redrawCard(DeckGame<T> &deckGame, int newNumberOfCards)
 {
     int currentNumberOfCards = handCards.getNumberOfCards();
@@ -254,8 +232,18 @@ void Player<T>::redrawCard(DeckGame<T> &deckGame, int newNumberOfCards)
 template <typename T>
 void Player<T>::redrawCard(DeckGame<T> &deckGame)
 {
+    int numberOfCards = handCards.getNumberOfCards();
+    for (int i = 0; i < numberOfCards; i++)
+    {
+        deckGame.addCardBack(handCards.ejectCard());
+    }
+    drawCard(deckGame, numberOfCards);
+};
 
-    drawCard(deckGame, handCards.getNumberOfCards());
+template <typename T>
+T Player<T>::ejectCard()
+{
+    return handCards.ejectCard();
 };
 
 template <typename Y>

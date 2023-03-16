@@ -1,20 +1,23 @@
 #ifndef _FILEREADER_HPP_
 #define _FILEREADER_HPP_
 
+#include "../DeckGame/DeckGame.hpp"
+#include "../ColorCard/ColorCard.hpp"
+#include "../AbilityCard/AbilityCard.hpp"
+#include "../Abilities/Abilities.hpp"
+#include "../Ability/Ability.hpp"
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
+template <class T1, class T2>
 class FileReader{
     private:
         string filePath;
-        string* handCardOrder; // ini nanti kyknya mending array of card (?)
-        string* abilityCardOrder;
-        string* tableCardOrder;
-        int handCardCap;
-        int abilityCardCap;
-        int tableCardCap;
+        DeckGame<T1> deckOrder;
+        DeckGame<T2> abilityCardOrder;
     public:
         /**
          * @brief User-defined constructor, defining filePath
@@ -24,46 +27,16 @@ class FileReader{
         FileReader(string filePath);
 
         /**
-         * @brief Destructor
+         * @brief Getter for DeckOrder
          * 
          */
-        ~FileReader();
+        DeckGame<T1> getDeckOrder();
 
         /**
-         * @brief Getter for handCardOrder capacity
+         * @brief Getter for AbilityCardOrder
          * 
          */
-        int getHandCardCap();
-
-        /**
-         * @brief Getter for abilityCardOrder capacity
-         * 
-         */
-        int getAbilityCardCap();
-
-        /**
-         * @brief Getter for tableCardOrder capacity
-         * 
-         */
-        int getTableCardCap();
-
-        /**
-         * @brief Getter for handCardOrder array
-         * 
-         */
-        string* getHandCardOrder();
-
-        /**
-         * @brief Getter for abilityCardOrder array
-         * 
-         */
-        string* getAbilityCardOrder();
-
-        /**
-         * @brief Getter for tableCardOrder array
-         * 
-         */
-        string* getTableCardOrder();
+        DeckGame<T2> getAbilityCardOrder();
 
         /**
          * @brief Method to read from file, defining all atributes (except filePath)
@@ -73,27 +46,3 @@ class FileReader{
 };
 
 #endif 
-
-/* Input File.txt format */
-/* 
-X X X X > numoftablecard numofplayer numofhandcard numofabilitycard
-A B -- (player 1) > player hand card
-A B        .      
-A B        .
-A B        .
-A B        .
-A B        .
-A B -- (player 7)
-C -- (player 1) > player ability card
-C       .      
-C       .
-C       .
-C       .
-C       .
-C -- (player 7)
-A -- (round 1) > table card
-B       .
-A       .
-B       .
-A -- (round 5)
-*/
