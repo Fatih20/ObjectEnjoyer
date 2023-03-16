@@ -201,7 +201,7 @@ void PlayerInGameCandy::swapCardOfPlayer(int sourceIndex, int targetIndex, bool 
         }
         else
         {
-            swap(firstLeftCard, secondLeftCard);
+            swap(firstLeftCard, secondRightCard);
         }
     }
     else
