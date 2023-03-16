@@ -65,7 +65,7 @@ void GameCangkul::start() {
     }
 
     cout << "\033[1m\033[37m"
-         << "\nGame selesai!
+         << "\nGame selesai!"
          << "\033[0m" << endl;
 }
 
