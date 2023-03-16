@@ -11,6 +11,7 @@ Combination::Combo::Combo()
 Combination::Combo::Combo(Deck<ColorCard> cards)
 {
     this->cards = cards;
+    this->type = setComboType();
     this->reduceCards(); // reduce cards to the number of cards needed for the combination
     this->highestCard = getHighestCardIntersection(this->cards);
 }
@@ -273,8 +274,8 @@ void Combination::print()
                                { return find(begin(playerCards), end(playerCards), x) != end(playerCards); }),
                      end(tableCards));
     Deck<ColorCard> table = Deck<ColorCard>(tableCards);
-    std::cout << "Table Cards: " << table << std::endl;
-    std::cout << "Best Combo: " << std::endl;
+    std::cout << "Table Cards:\n" << table << std::endl;
+    std::cout << "Best Combo:\n" << std::endl;
     this->bestCombo.print();
 }
 
