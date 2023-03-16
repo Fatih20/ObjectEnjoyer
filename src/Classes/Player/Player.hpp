@@ -242,6 +242,8 @@ public:
      */
     void redrawCard(DeckGame<T> &deckGame);
 
+    DeckPlayer<T> &getHand() const;
+
     // Overloading untuk ngurusin deck nggak diimplementasikan dulu karena urusannya sama deck
     /*
     void operator+(Card<CardValueType> addedCard);
