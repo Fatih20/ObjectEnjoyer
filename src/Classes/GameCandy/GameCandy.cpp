@@ -183,7 +183,7 @@ bool GameCandy::playerAction(string cmd)
 
     cout << endl
          << "\033[1m\033[35m"
-         << "---------------------------------"
+         << "-------------------------------------------------------"
          << "\033[0m" << endl;
 
     if (cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse" || cmd == "combination")
@@ -538,12 +538,12 @@ void GameCandy::changeGiftPoinMessage(string cmd, double multiplier)
 
 void GameCandy::displayGameStat()
 {
-    cout << "\033[1m\033[35m"
-         << "---------------------------------" << endl;
-    cout << "           GAME STATUS" << endl;
-    cout << "---------------------------------"
-         << "\033[0m" << endl;
-    cout << "\033[1m\033[37m"
+    // cout << "\033[1m\033[35m"
+    //      << "---------------------------------" << endl;
+    // cout << "           GAME STATUS" << endl;
+    // cout << "---------------------------------"
+        //  << "\033[0m" << endl;
+    cout << "\n\033[1m\033[37m"
          << "Gift Point: "
          << "\033[1m\033[33m" << this->giftPoint << "\033[0m" << endl;
     cout << "\033[1m\033[37m"
