@@ -48,8 +48,6 @@ void PlayerInGame<T>::setTurn(int newTurn)
 
 template <typename T>
 void PlayerInGame<T>::setTurnsHead(int offset) {
-    cout << "TURNING HEAD WIHT OFFSET " << offset << endl;
-
     vector<int> newTurns;
     for (int i = offset; i < this->getNumberOfPlayer(); i++)
     {
