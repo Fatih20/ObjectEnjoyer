@@ -14,17 +14,6 @@ PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, int numberOf
     drawColorCardAll(deckGame);
 };
 
-// PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGameCandy(deckGame, numberOfPlayer)
-// {
-//     cout << "Entered deck ability involved constructor in pigc" << endl;
-//     for (int i = 0; i < numberOfPlayer; i++)
-//     {
-//         cout << "Player " << i << "th drawing ability cards" << endl;
-//         this->players.at(turns.at(i)).drawAbility(deckAbility);
-//     }
-//     cout << "Exited deck ability involved constructor in pigc" << endl;
-// };
-
 PlayerInGameCandy::PlayerInGameCandy() : PlayerInGame<PlayerCandy>(0){};
 
 PlayerInGameCandy::PlayerInGameCandy(DeckGame<ColorCard> &deckGame, DeckGame<AbilityCard> &deckAbility, int numberOfPlayer) : PlayerInGame<PlayerCandy>(numberOfPlayer)
@@ -112,7 +101,6 @@ void PlayerInGameCandy::resetRound()
         rotate(turns.begin(), turns.begin() + 1, turns.end());
     }
     reversedThisRoundInfo = make_pair(false, -1);
-    // cout << "Resetting round at pigc" << endl;
 }
 
 void PlayerInGameCandy::reverseTurnPost(int pivotIndex)
@@ -286,8 +274,6 @@ bool PlayerInGameCandy::winnerExist()
 
 void PlayerInGameCandy::drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility)
 {
-    // cout << "Entering the drawing of the cards" << endl;
-    // cout << deckAbility << endl;
     for (int i = 0; i < getNumberOfPlayer(); i++)
     {
         getPlayerAtTurn(i).drawAbility(deckAbility);
@@ -297,15 +283,10 @@ void PlayerInGameCandy::drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility)
 
 void PlayerInGameCandy::drawColorCardAll(DeckGame<ColorCard> &deckColor)
 {
-    // cout << "Drawing color card" << endl;
     for (int i = 0; i < getNumberOfPlayer(); i++)
     {
         getPlayerAtTurn(i).drawCard(deckColor, 2);
-        // cout << "Deck of " << turns.at(i) << "'th player" << endl;
-        // players.at(turns.at(i)).printCard();
     }
-    // cout << "Outside the loop" << endl;
-    // players.at(turns.at(1)).printCard();
 };
 
 bool PlayerInGameCandy::disablePlayerAbility(int index)
