@@ -50,6 +50,7 @@ int main()
         } else {
             run=false;
         }
+        opt = 0;
     }
     
 
