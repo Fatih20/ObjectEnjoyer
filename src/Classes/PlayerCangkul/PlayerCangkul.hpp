@@ -2,17 +2,22 @@
 #define _PLAYER_CANGKUL_HPP_
 
 #include "../Player/Player.hpp"
+#include "../DeckPlayer/DeckPlayer.hpp"
+#include "../ColorCard/ColorCard.hpp"
 
 class PlayerCangkul : public Player<ColorCard> {
     private:
         static int num_player;
 
-//        DeckPlayer<ColorCard> playableDeck;
+        Deck<ColorCard> playableDeck;
+        //for some reason DeckPlayer wont work here
 
     public:
         PlayerCangkul();
 
         PlayerCangkul(int gameID);
+
+        void updatePlayableDeck();
 
         void updatePlayableDeck(Color color);
 
@@ -20,11 +25,11 @@ class PlayerCangkul : public Player<ColorCard> {
 
         int getNumberOfPlayableCard();
 
+        void printPlayableCard();
+
         bool isWinner();
 
         void playCard(int index);
-
-
 };
 
 #endif

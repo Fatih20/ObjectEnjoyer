@@ -214,15 +214,21 @@ bool GameCangkul::playCard() {
     while(!finished){
         count = 0;
 
-        if(GameCangkul::deckTable.getNumberOfCards() == 0){
-//            PlayerCangkul::printCard();
-//            count += PlayerCangkul::getNumberOfCard();
+        players.getPlayerWithTurn().resetPlayableDeck();
+
+        if(GameCangkul::deckTable.getNumberOfCards() != 0){
+            players.getPlayerWithTurn().updatePlayableDeck(deckTable.getDeck()[0].getColor());
         } else {
-//            PlayerCangkul::printCard(deckTable.getDeck()[0].getColor()); // TODO: modularize these
-//            count += PlayerCangkul::getNumberOfCard(deckTable.getDeck()[0].getColor());
+            players.getPlayerWithTurn().updatePlayableDeck();
         }
 
-        int choice = inputOption(count);
+        players.getPlayerWithTurn().printPlayableCard();
+
+        count += players.getPlayerWithTurn().getNumberOfPlayableCard();
+
+        int choice = Game::inputOption(count) - 1; // -1 since its an index
+
+
 
         finished = true;
     }

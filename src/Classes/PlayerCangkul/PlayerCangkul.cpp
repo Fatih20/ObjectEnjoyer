@@ -8,31 +8,61 @@ PlayerCangkul::PlayerCangkul(int id) : Player<ColorCard>(id) {
 
 }
 
+void PlayerCangkul::updatePlayableDeck() {
+    PlayerCangkul::resetPlayableDeck();
+
+    for (int i = PlayerCangkul::handCards.getNumberOfCards() - 1; i >= 0; i--){
+        PlayerCangkul::handCards >> PlayerCangkul::playableDeck;
+    }
+}
+
 void PlayerCangkul::updatePlayableDeck(Color color) {
+    PlayerCangkul::resetPlayableDeck();
+
     for (int i = PlayerCangkul::handCards.getNumberOfCards() - 1; i >= 0; i--){
         if(PlayerCangkul::handCards.getDeck()[i].getColor() == color){
-//            PlayerCangkul::handCards >> PlayerCangkul::playableDeck;
+            PlayerCangkul::handCards >> PlayerCangkul::playableDeck;
         }
     }
 }
 
 void PlayerCangkul::resetPlayableDeck() {
-//    for(int i = 0; i < PlayerCangkul::getNumberOfPlayableCard(); i++){
-//        PlayerCangkul::playableDeck >> PlayerCangkul::handCards;
-//    }
+    for(int i = 0; i < PlayerCangkul::getNumberOfPlayableCard(); i++){
+        PlayerCangkul::playableDeck >> PlayerCangkul::handCards;
+    }
+}
+
+void PlayerCangkul::printPlayableCard() {
+    bool printed = false;
+
+    vector<ColorCard> playableVec = PlayerCangkul::playableDeck.getDeck();
+    cout << "|  ";
+
+    int j = 1;
+    for (auto i = playableVec.begin(); i != playableVec.end(); ++i)
+    {
+        cout << j << ". " << *i;
+        printed = true;
+
+        j++;
+    }
+
+    if(!printed){
+        cout << "No card matched the color Filter!";
+    }
+
+    cout << endl;
 }
 
 bool PlayerCangkul::isWinner() {
-//    return Player::handCards.getNumberOfCards() + PlayerCangkul::playableDeck.getNumberOfCards() == 0;
-    return 0;
+    return Player::handCards.getNumberOfCards() + PlayerCangkul::playableDeck.getNumberOfCards() == 0;
 }
 
 // TODO : remove
-void PlayerCangkul::playCard(int index) {
-    this->Player::handCards.ejectCardIndex(index);
+ColorCard PlayerCangkul::playCard(int index) {
+    return PlayerCangkul::playableDeck.ejectCardIndex(index);
 }
 
 int PlayerCangkul::getNumberOfPlayableCard(){
-//    return PlayerCangkul::playableDeck.getNumberOfCards();
-    return 0;
+    return PlayerCangkul::playableDeck.getNumberOfCards();
 }
