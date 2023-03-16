@@ -45,4 +45,19 @@ class FileReader{
         void read();
 };
 
+/*
+FILE FORMAT
+
+  <color><space><value>
+  <color><space><value>
+  ...
+  -
+  <ability-type>
+
+  color format: G = green, B = blue, R = red, Y = yellow
+  value format: 1 - 13
+  ability-type format: REROLL, QUADRUPLE, QUARTER, REVERSE, SWAP, SWITCH, ABILITYLESS.
+  color card input must be between 21 - 52 cards
+  ability card input must be exactly 7
+*/
 #endif 
