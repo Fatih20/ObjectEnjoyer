@@ -337,7 +337,6 @@ void GameCandy::newDeck1()
         this->deckAbility = deckAbility;
         this->deckGame.shuffle();
         this->deckAbility.shuffle();
-        cout << deckAbility;
     }
     else
     {
