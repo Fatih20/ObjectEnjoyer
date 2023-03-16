@@ -212,7 +212,7 @@ bool GameCangkul::playCard() {
     bool finished = false;
     int count;
 
-    cout << "Pilih kartu yang akan dimainkan : ";
+    cout << "Pilih kartu yang akan dimainkan : " << endl;
 
     while(!finished){
         count = 0;
@@ -284,7 +284,7 @@ bool GameCangkul::cangkulCard() {
 
     players.getPlayerWithTurn().addCard(cangkuledCard);
 
-    return true;
+    return false;
 }
 
 Color GameCangkul::getTableColor() {
