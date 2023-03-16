@@ -171,9 +171,6 @@ public:
     template <typename Tc>
     friend std::ostream &operator<<(std::ostream &os, const Deck<Tc> &deck);
 
-    //TODO:operator=
-    //TODO:clear vector
-    //TODO: remove card
 };
 
 #endif

@@ -142,7 +142,6 @@ void Deck<T>::operator>>(Deck<T> &deck)
     deck.addCard(this->ejectCard());
 }
 
-// TODO: implement polymorphism
 // template <typename T>
 // void Deck<T>::sort()
 // {

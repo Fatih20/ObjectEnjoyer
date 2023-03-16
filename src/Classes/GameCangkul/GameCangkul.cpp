@@ -335,7 +335,7 @@ int GameCangkul::getRoundWinnerIndex() {
     }
 
     vector<ColorCard> emptyDeck;
-    this->deckTable.setDeck(emptyDeck); // TODO : make this empty()
+    this->deckTable.setDeck(emptyDeck);
 
     cout << "Pemenang ronde " << GameCangkul::getRoundNumber() << " adalah " << players.getPlayerAtTurn(highestIndex).getUsername() << endl;
 

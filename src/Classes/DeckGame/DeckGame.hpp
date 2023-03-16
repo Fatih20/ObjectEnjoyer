@@ -5,8 +5,6 @@
 #ifndef _DECKGAME_HPP_
 #define _DECKGAME_HPP_
 
-// TODO : make this ABC
-// ^put on hold
 template <class T>
 class DeckGame : public Deck<T>
 {

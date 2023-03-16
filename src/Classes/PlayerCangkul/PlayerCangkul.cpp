@@ -62,7 +62,6 @@ bool PlayerCangkul::isWinner() {
     return (Player::handCards.getNumberOfCards() + PlayerCangkul::playableDeck.getNumberOfCards()) == 0;
 }
 
-// TODO : remove
 ColorCard PlayerCangkul::playCard(int index) {
     return PlayerCangkul::playableDeck.ejectCardIndex(index);
 }

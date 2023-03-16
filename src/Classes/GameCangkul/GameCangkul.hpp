@@ -82,7 +82,6 @@ public:
 
     int getRoundWinnerIndex();
 
-    // TODO: nantinya akan dibuat method di deckgame
     std::vector<ColorCard> initializeDeckGame();
 
 
