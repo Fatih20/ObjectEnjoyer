@@ -80,7 +80,7 @@ void PlayerCandy::useAbility(string abilityName, GameCandy &gC)
 
 void PlayerCandy::useAbility(GameCandy &gC)
 {
-    if (!abilityUsed)
+    if (abilityUsed)
     {
         AbilityNotAvailable e;
         throw e;
