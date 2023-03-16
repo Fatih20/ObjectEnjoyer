@@ -11,3 +11,5 @@ run : build
 build :
 	$(CC) $(STD) $(CINCLUDES) $(OBJECTS) -o $(TARGET)
 
+run-only:
+	$(TARGET)
