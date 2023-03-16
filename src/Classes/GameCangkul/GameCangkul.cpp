@@ -63,11 +63,14 @@ void GameCangkul::start() {
         GameCangkul::nextRound();
         players.resetRound();
     }
+
+    cout << "\033[1m\033[37m"
+         << "\nGame selesai!
+         << "\033[0m" << endl;
 }
 
 bool GameCangkul::isWinning() {
-//    return players.winnerExist();
-    return false;
+    return players.winnerExist();
 }
 
 void GameCangkul::newGame() {
