@@ -21,7 +21,7 @@ private:
     DeckGame<ColorCard> tableCard; // table card
     DeckGame<AbilityCard> deckAbility;
     int round;        // ronde
-    double giftPoint; // point hadiah tiap akhir game
+    long long giftPoint; // point hadiah tiap akhir game
     void multiplyGiftPoint(double multiplier);
     void operator*=(double multiplier);
     /**

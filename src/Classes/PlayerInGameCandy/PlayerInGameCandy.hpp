@@ -204,7 +204,7 @@ public:
      * @param tableCard
      * @return PlayerCandy
      */
-    pair<PlayerCandy, Combination> rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard);
+    pair<PlayerCandy, Combination> rewardHighestCombination(long long reward, DeckGame<ColorCard> &tableCard);
 };
 
 #endif

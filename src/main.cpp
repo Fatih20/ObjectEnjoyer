@@ -52,7 +52,6 @@ int main()
         }
         opt = 0;
     }
-    
 
     // GameCandy game;o
     // game.start();

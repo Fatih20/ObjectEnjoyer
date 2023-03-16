@@ -63,13 +63,15 @@ void GameCandy::start()
             players.resetRound();
         }
         endOfGame();
-        cout << "\033[1m\033[32m"
+        if (!isWinning()){
+            cout << "\033[1m\033[32m"
              << "\nNew game starting..\n\n"
              << "\033[0m";
-        newDeck1();
-        players.redrawAll(this->deckGame);
-        players.drawAbilityCardAll(this->deckAbility);
-        giftPoint = 64;
+            newDeck1();
+            players.redrawAll(this->deckGame);
+            players.drawAbilityCardAll(this->deckAbility);
+            giftPoint = 64;
+        }
     }
 }
 
@@ -103,7 +105,7 @@ void GameCandy::endOfGame()
     {
         giftPoint = 64;
         cout << "\nPermainan berakhir.\n";
-        cout << "Permainan dimenangkan oleh " << endl;
+        cout << "Permainan dimenangkan oleh " << players.getWinner() << endl;
         SplashScreen::splashScreenWinning();
     }
     else
