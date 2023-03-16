@@ -21,7 +21,7 @@ void PlayerCangkul::updatePlayableDeck(Color color) {
 
     for (int i = PlayerCangkul::handCards.getNumberOfCards() - 1; i >= 0; i--){
         if(PlayerCangkul::handCards.getDeck()[i].getColor() == color){
-            PlayerCangkul::handCards >> PlayerCangkul::playableDeck;
+            PlayerCangkul::playableDeck << PlayerCangkul::handCards.ejectCardIndex(i); // baru
         }
     }
 }
@@ -52,6 +52,10 @@ void PlayerCangkul::printPlayableCard() {
     }
 
     cout << endl;
+}
+
+ColorCard PlayerCangkul::ejectPlayableDeck(int index) {
+    return PlayerCangkul::playableDeck.ejectCardIndex(index);
 }
 
 bool PlayerCangkul::isWinner() {

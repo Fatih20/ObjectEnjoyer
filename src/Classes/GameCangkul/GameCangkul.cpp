@@ -127,13 +127,11 @@ bool GameCangkul::playerAction(string cmd) {
         //bisa return false
         return true;
     } else if (cmd == "gamestat") {
-        cout << "show gamestat";
+        GameCangkul::displayGameStat();
 
         return false;
     } else if (cmd == "mycard") {
-        cout << players.getNumberOfPlayer() << endl;
-//        cout << players.getPlayerWithTurn().getGameID() << endl;
-        players.getPlayerWithTurn().printCard(true);
+        GameCangkul::displayMyCard();
 
         return false;
     } else if (cmd == "help") {
@@ -157,8 +155,16 @@ void GameCangkul::nextRound() {
     this->round++;
 }
 
+void GameCangkul::displayMyCard(){
+    GameCangkul::players.getPlayerWithTurn().resetPlayableDeck();
+
+    players.getPlayerWithTurn().printCard(true);
+}
+
 void GameCangkul::displayGameStat()
 {
+    GameCangkul::players.getPlayerWithTurn().resetPlayableDeck();
+
     cout << "\033[1m\033[35m"
          << "---------------------------------" << endl;
     cout << "           GAME STATUS" << endl;
@@ -213,11 +219,13 @@ bool GameCangkul::playCard() {
 
     while(!finished){
         count = 0;
+        ColorCard cardToPlay;
 
         players.getPlayerWithTurn().resetPlayableDeck();
 
         if(GameCangkul::deckTable.getNumberOfCards() != 0){
-            players.getPlayerWithTurn().updatePlayableDeck(deckTable.getDeck()[0].getColor());
+            cout << "color ->" << GameCangkul::getTableColor() << endl;
+            players.getPlayerWithTurn().updatePlayableDeck(GameCangkul::getTableColor());
         } else {
             players.getPlayerWithTurn().updatePlayableDeck();
         }
@@ -226,17 +234,30 @@ bool GameCangkul::playCard() {
 
         count += players.getPlayerWithTurn().getNumberOfPlayableCard();
 
-        int choice = Game::inputOption(count) - 1; // -1 since its an index
+        if(players.getPlayerWithTurn().getNumberOfPlayableCard() != 0){
+            int choice = Game::inputOption(count) - 1; // -1 since its an index
 
+            cardToPlay = players.getPlayerWithTurn().ejectPlayableDeck(choice);
+            GameCangkul::deckTable << cardToPlay;
 
+            cout << "Memainkan kartu : " << cardToPlay;
+        }
 
         finished = true;
     }
 
+    players.getPlayerWithTurn().resetPlayableDeck();
 
-    return false;
+    return true;
 }
 
+Color GameCangkul::getTableColor() {
+    if(GameCangkul::deckTable.getNumberOfCards() == 0){
+        throw EmptyDeckException();
+    }
+
+    return GameCangkul::deckTable.getDeck()[0].getColor();
+}
 
 
 std::vector<ColorCard> GameCangkul::initializeDeckGame() {

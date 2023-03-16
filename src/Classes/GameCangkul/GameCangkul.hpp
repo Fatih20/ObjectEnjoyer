@@ -73,11 +73,15 @@ public:
 
     void nextRound();
 
+    void displayMyCard();
+
     void displayGameStat();
 
     void printTableCard();
 
     bool playCard();
+
+    Color getTableColor();
 
     // TODO: nantinya akan dibuat method di deckgame
     std::vector<ColorCard> initializeDeckGame();

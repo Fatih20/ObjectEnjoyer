@@ -23,13 +23,15 @@ class PlayerCangkul : public Player<ColorCard> {
 
         void resetPlayableDeck();
 
+        ColorCard ejectPlayableDeck(int index);
+
         int getNumberOfPlayableCard();
 
         void printPlayableCard();
 
         bool isWinner();
 
-        void playCard(int index);
+        ColorCard playCard(int index);
 };
 
 #endif

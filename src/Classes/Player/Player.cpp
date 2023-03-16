@@ -172,7 +172,7 @@ template <typename T>
 void Player<T>::printCard(bool sorted) {
     if(sorted){
         DeckPlayer<T> tempDeck = handCards;
-        tempDeck.sort();
+//        tempDeck.sort();
 
         vector<ColorCard> handCardVec = tempDeck.getDeck();
 
