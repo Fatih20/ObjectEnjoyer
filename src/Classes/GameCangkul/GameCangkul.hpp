@@ -17,11 +17,6 @@ private:
      bool gameStarted; // to avoid game accidentally register itself as finished when card has not yet shared
      int round;
 
-
-     bool canPlay; // TODO: integrate
-     bool canCangkul;
-     bool canAmbil;
-
 public:
     /**
          * @brief Construct a new Game object
