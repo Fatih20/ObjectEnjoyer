@@ -269,7 +269,7 @@ bool PlayerInGameCandy::winnerExist()
 {
     long long limit = 4294967296;
     return players.end() != find_if(players.begin(), players.end(), [limit](PlayerCandy p) -> bool
-                                    { return p.getScore() > limit; });
+                                    { return p.getScore() >= limit; });
 };
 
 void PlayerInGameCandy::drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility)
