@@ -334,17 +334,13 @@ bool PlayerInGameCandy::playerIndexInRange(int index)
     return index >= 0 && index < getNumberOfPlayer();
 }
 
-PlayerCandy &PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
+pair<PlayerCandy, Combination> PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
 {
 
     int numberOfPlayer = getNumberOfPlayer();
     int indexOfHighest = 0;
     DeckPlayer<ColorCard> playerHand;
     playerHand = getNthPlayer(0).getHand();
-
-    Deck<ColorCard> dummyDeck;
-    ColorCard dummy(0, GREEN);
-    dummyDeck += dummy;
     Deck<ColorCard> *player = &playerHand;
     Deck<ColorCard> tableCopy(tableCard);
     Deck<ColorCard> *table = &tableCopy;
@@ -363,12 +359,7 @@ PlayerCandy &PlayerInGameCandy::rewardHighestCombination(unsigned int reward, De
             highestCombination = c;
             indexOfHighest = i;
         }
-        // cout << "Comparing " << getNthPlayer(i).getUsername() << " and " << getNthPlayer(indexOfHighest).getUsername() << endl;
-        // if (getNthPlayer(i).higherCombinationWeight(getNthPlayer(indexOfHighest), tableCard))
-        // {
-        //     indexOfHighest = i;
-        // }
     }
     getNthPlayer(indexOfHighest) += reward;
-    return getNthPlayer(indexOfHighest);
+    return make_pair(getNthPlayer(indexOfHighest), highestCombination);
 }
