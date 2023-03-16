@@ -81,11 +81,11 @@ string Player<T>::getUsername() const
     return username;
 }
 
-// template <typename T>
-// DeckPlayer<T> Player<T>::getHandCards() const
-// {
-//     return this->handCards;
-// }
+template <typename T>
+DeckPlayer<T> &Player<T>::getHand() const
+{
+    return this->handCards;
+}
 
 template <typename T>
 Player<T> &Player<T>::operator=(const Player<T> &givenPlayer)
