@@ -48,6 +48,8 @@ void PlayerCandy::drawAbility(DeckGame<AbilityCard> &deckAbility)
 {
     AbilityCard drawnCard = deckAbility.ejectCard();
     abilityHand = drawnCard;
+    abilityUsed = false;
+    abilityLessVictim = false;
 }
 
 void PlayerCandy::useAbility(string abilityName, GameCandy &gC)
