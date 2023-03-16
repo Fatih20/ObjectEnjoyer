@@ -94,10 +94,15 @@ void GameCandy::endOfGame()
          << "Player Cards: "
          << "\033[0m" << endl;
     winner.first.printCard();
-    cout << "\n";
+    cout << endl;
+    cout << "Combo : ";
     winner.second.print();
     cout << endl
-         << "Player mendapatkan " << giftPoint << " poin!" << endl
+         << "Player "
+         << "\033[1m\033[37m" << winner.first.getUsername() << "\033[0m"
+         << " mendapatkan "
+         << "\033[1m\033[37m" << giftPoint << "\033[0m"
+         << " poin!" << endl
          << endl;
     players.showLeaderboard();
     if (isWinning())

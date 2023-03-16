@@ -79,7 +79,7 @@ void PlayerInGameCandy::showLeaderboard()
          << "\033[0m" << endl;
     for (int i = 0; i < numberOfPlayer; i++)
     {
-        cout << "  " << i + 1 << ". " << vectorOfPMini.at(i).getUsername() << "  : " << vectorOfPMini.at(i).getScore() << endl;
+        cout << i + 1 << ". " << vectorOfPMini.at(i).getUsername() << "  : " << vectorOfPMini.at(i).getScore() << endl;
     }
 }
 
