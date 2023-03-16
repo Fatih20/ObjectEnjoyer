@@ -355,6 +355,7 @@ pair<PlayerCandy, Combination> PlayerInGameCandy::rewardHighestCombination(unsig
         Combination c(*player, *table);
         if (c > highestCombination)
         {
+            cout << "COMPARING WITH HIGHEST\n";
             highestCombination = c;
             indexOfHighest = i;
         }

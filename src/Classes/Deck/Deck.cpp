@@ -183,12 +183,12 @@ void Deck<T>::sort()
 template <typename T>
 void Deck<T>::sort(bool descending)
 {
-    std::cout << "Entering sort" << endl;
+    // std::cout << "Entering sort" << endl;
     std::sort(this->vec.begin(), this->vec.end(), [descending](T a, T b) { // sementara exclusive ColorCard
         bool result = a.value() < b.value();
         return descending ? !result : result;
     });
-    std::cout << "Exiting sort" << endl;
+    // std::cout << "Exiting sort" << endl;
 }
 
 template <typename T>
@@ -222,6 +222,7 @@ bool Deck<T>::operator==(const Deck<T> &other)
 template <typename T>
 bool Deck<T>::operator>(const Deck<T> &other)
 {
+    // cout << "Entering > of deck" << endl;
     // to avoid sorting the real deck
     //  we use pointer to retain derived Deck properties
     Deck<T> *a = new Deck(*this);
