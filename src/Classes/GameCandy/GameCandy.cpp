@@ -13,22 +13,16 @@ GameCandy::GameCandy()
 {
     splashScreen();
 
-    newDeck1();
+    // Initialize deck color and deck ability
+    newDeck();
 
+    // Initialize empty table cards
     DeckGame<ColorCard> tableCard;
     this->tableCard = tableCard;
-    // table card empty
 
-    // cout << "\nDeck Ability before drawing" << endl;
-    // cout << this->deckAbility << endl;
+    // Initialize players
     PlayerInGameCandy pIGC(this->deckGame, this->deckAbility, 7);
     this->players = pIGC;
-    // cout << "Deck Ability after drawing" << endl;
-    // cout << this->deckAbility << endl;
-    // cout << "Deck Color after drawing" << endl;
-    // cout << this->deckGame << endl;
-
-    // cout << deckGame;
     round = 1;
     giftPoint = 64;
 }
@@ -69,7 +63,7 @@ void GameCandy::start()
             cout << "\033[1m\033[32m"
                  << "\nNew game starting..\n\n"
                  << "\033[0m";
-            newDeck1();
+            newDeck();
             players.redrawAll(this->deckGame);
             players.drawAbilityCardAll(this->deckAbility);
             giftPoint = 64;
@@ -86,7 +80,6 @@ bool GameCandy::isRoundOver()
 {
     return players.getIsRoundComplete();
 }
-
 
 void GameCandy::endOfGame()
 {
@@ -334,7 +327,7 @@ vector<AbilityCard> GameCandy::initializeAbilityDeck()
     return abilityCards;
 }
 
-void GameCandy::newDeck1()
+void GameCandy::newDeck()
 {
     cout << "How do you want to generate Deck?\n";
     cout << "1. Random\n";
@@ -538,7 +531,7 @@ void GameCandy::displayGameStat()
     //      << "---------------------------------" << endl;
     // cout << "           GAME STATUS" << endl;
     // cout << "---------------------------------"
-        //  << "\033[0m" << endl;
+    //  << "\033[0m" << endl;
     cout << "\n\033[1m\033[37m"
          << "Gift Point: "
          << "\033[1m\033[33m" << this->giftPoint << "\033[0m" << endl;

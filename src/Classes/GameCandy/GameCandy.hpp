@@ -102,20 +102,20 @@ public:
     vector<ColorCard> initilizeDeckGame();
 
     /**
-     * @brief initiate deckgame, deckplayer, and playerability
-     * 
+     * @brief initiate deckgame, deckplayer, and player ability
+     *
      */
-    void newDeck1();
+    void newDeck();
 
     /**
      * @brief perform actions in specific round
-     * 
+     *
      */
     void roundAction();
 
     /**
      * @brief increment round by 1
-     * 
+     *
      */
     void nextRound();
 
@@ -151,55 +151,55 @@ public:
 
     /**
      * @brief performs reroll ability
-     * 
+     *
      */
     void rerollAbility();
 
     /**
      * @brief performs abilityless ability
-     * 
+     *
      */
     void abilitylessAbility();
 
     /**
      * @brief performs reverse ability
-     * 
+     *
      */
     void reverseAbility();
 
     /**
      * @brief performs switch ability
-     * 
+     *
      */
     void switchAbility();
 
     /**
      * @brief performs swap ability
-     * 
+     *
      */
     void swapAbility();
 
     /**
      * @brief display a message if there is a change in gift points.
-     * 
+     *
      */
     void changeGiftPoinMessage(string, double);
 
     /**
      * @brief display game status
-     * 
+     *
      */
     void displayGameStat();
 
     /**
      * @brief display help
-     * 
+     *
      */
     void displayHelp();
 
     /**
      * @brief display combination info
-     * 
+     *
      */
     void displayCombiInfo();
 };
