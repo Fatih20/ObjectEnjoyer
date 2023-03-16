@@ -29,7 +29,20 @@ sudo apt-get install gcc g++ clang -y
   % make run
   ```
 2. Enter commands/options as instructed
-3. Enter "help" for list of available commands and its description
+3. Enter "help" for list of available commands and its description (only available in Game Candy)
+4. If you wish to input deck from file follow this file format:
+  ```markdown
+  <color><space><value>
+  <color><space><value>
+  ...
+  -
+  <ability-type>
+  ```
+  color format: G = green, B = blue, R = red, Y = yellow
+  value format: 1 - 13
+  ability-type format: REROLL, QUADRUPLE, QUARTER, REVERSE, SWAP, SWITCH, ABILITYLESS.
+  color card input must be between 21 - 52 cards
+  ability card input must be exactly 7
 
 ## Author
 - 13521060 / Fatih Nararya Rashadyfa I.
