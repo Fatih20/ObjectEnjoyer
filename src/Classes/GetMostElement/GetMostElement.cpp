@@ -1,7 +1,7 @@
 #include "GetMostElement.hpp"
 
 template <typename T>
-GetMostElement::getHighest(T[] array)
+T GetMostElement<T>::getHighest(T array[])
 {
     T max = array[0];
 
@@ -16,7 +16,8 @@ GetMostElement::getHighest(T[] array)
     return max;
 };
 
-GetMostElement::getLowest(T[] array)
+template <typename T>
+T GetMostElement<T>::getLowest(T array[])
 {
     T min = array[0];
 
@@ -32,31 +33,32 @@ GetMostElement::getLowest(T[] array)
 };
 
 template <typename T>
-GetMostElement::getHighest(vector<T> vector)
+T GetMostElement<T>::getHighest(vector<T> vector)
 {
     T max = vector.at(0);
 
-    int length = array.size();
+    int length = vector.size();
     for (int i = 1; i < length; i++)
     {
-        if (array.at(i) > max)
+        if (vector.at(i) > max)
         {
-            max = array.at(i);
+            max = vector.at(i);
         }
     }
     return max;
 }
 
-GetMostElement::getLowest(vector<T> vector)
+template <typename T>
+T GetMostElement<T>::getLowest(vector<T> vector)
 {
     T min = vector.at(0);
 
-    int length = array.size();
+    int length = vector.size();
     for (int i = 1; i < length; i++)
     {
-        if (array.at(i) < min)
+        if (vector.at(i) < min)
         {
-            min = array.at(i);
+            min = vector.at(i);
         }
     }
     return min;

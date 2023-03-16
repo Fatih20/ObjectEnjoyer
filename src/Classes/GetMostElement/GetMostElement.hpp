@@ -3,17 +3,14 @@
 
 using namespace std;
 
+template <typename T>
 class GetMostElement
 {
-    template <typename T>
-    T static getHighest(T[]){};
+    static T getHighest(T[]);
 
-    template <typename T>
-    T static getLowest(T[]){};
+    static T getLowest(T[]);
 
-    template <typename T>
-    T static getHighest(vector<T>){};
+    static T getHighest(vector<T>);
 
-    template <typename T>
-    T static getLowest(vector<T>){};
+    static T getLowest(vector<T>);
 };
