@@ -1,6 +1,7 @@
 #include "PlayerInGameCandy.hpp"
 #include "../PlayerInGameException/PlayerInGameException.hpp"
 #include "../PlayerMini/PlayerMini.hpp"
+#include "../Combination/Combination.hpp"
 #include <algorithm>
 
 using namespace std;
@@ -335,11 +336,17 @@ bool PlayerInGameCandy::playerIndexInRange(int index)
 
 PlayerCandy &PlayerInGameCandy::rewardHighestCombination(unsigned int reward, DeckGame<ColorCard> &tableCard)
 {
-    int indexOfHighest = 0;
+
     int numberOfPlayer = getNumberOfPlayer();
+    // vector<Combination> cv;
+    // for (int i = 0; i < numberOfPlayer; i++) {
+    //     Combination c(getNthPlayer(i));
+    // }
+    int indexOfHighest = 0;
     for (int i = 1; i < numberOfPlayer; i++)
     {
-        if (getNthPlayer(i).higherCombinationWeight(getNthPlayer(i), tableCard))
+        // cout << "Comparing " << getNthPlayer(i).getUsername() << " and " << getNthPlayer(indexOfHighest).getUsername() << endl;
+        if (getNthPlayer(i).higherCombinationWeight(getNthPlayer(indexOfHighest), tableCard))
         {
             indexOfHighest = i;
         }
