@@ -3,6 +3,7 @@
 
 #include <string>
 #include "../Game/Game.hpp"
+#include "../GameCangkulException/GameCangkulException.hpp"
 #include "../PlayerInGameCangkul/PlayerInGameCangkul.hpp"
 #include "../DeckGame/DeckGame.hpp"
 #include "../ColorCard/ColorCard.hpp"
@@ -12,6 +13,8 @@ private:
      PlayerInGameCangkul players;
      DeckGame<ColorCard> deckGame;
      DeckGame<ColorCard> deckTable;
+
+     vector<string> commandOption;
 
 public:
     /**

@@ -5,6 +5,7 @@
 #include "Classes/ColorCard/ColorCard.hpp"
 // #include "Classes/AbilityCard/AbilityCard.hpp"
 #include "Classes/GameCandy/GameCandy.hpp"
+#include "Classes/GameCangkul/GameCangkul.hpp"
 #include "Classes/Combination/Combination.hpp"
 #include "Classes/SplashScreen/SplashScreen.hpp"
 
@@ -45,8 +46,8 @@ int main()
             game = new GameCandy();
             game->start();
         } else if (opt==2) {
-            // game = new GameCangkul();
-            // game->start();
+             game = new GameCangkul();
+             game->start();
         } else {
             run=false;
         }

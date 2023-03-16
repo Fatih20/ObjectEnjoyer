@@ -22,7 +22,7 @@ std::string PlayerInGameCangkul::getWinner() {
 bool PlayerInGameCangkul::winnerExist(){
     for(int i = 0; i < this->players.size(); i++) {
         if (this->players[i].isWinner()) {
-            return true;
+            return true; // we need to change this if we're going to make it >2 players in the future
         }
     }
 }

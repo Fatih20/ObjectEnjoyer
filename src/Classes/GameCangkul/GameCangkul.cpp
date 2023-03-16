@@ -1,20 +1,29 @@
 #include "GameCangkul.hpp"
 
+vector<string> commandOptionCangkul = {
+    "play",     //play a card
+    "cangkul",  //cangkul deckGame
+    "ambil"     //take a card from deckTable
+};
+
 GameCangkul::GameCangkul() {
     DeckGame<ColorCard> deckGame(initializeDeckGame());
     deckGame.shuffle();
-    this->drawPile = deckGame;
+
+    this->deckGame = deckGame;
 }
 
 void GameCangkul::start() {
-//    this->deckGame =
-//
-//    this->deckTable.clear();
-    cout << "Game Cangkul" << endl;
+    string cmd;
+    while(!isWinning()){
+        cmd = GameCangkul::inputCommand();
+        cout << cmd;
+    }
 }
 
 bool GameCangkul::isWinning() {
-    return true;
+//    return players.winnerExist();
+    return false;
 }
 
 void GameCangkul::newGame() {
@@ -26,11 +35,39 @@ void GameCangkul::endOfGame() {
 }
 
 std::string GameCangkul::inputCommand() {
-    return "oke\n";
+    string cmd;
+    bool isValid = false;
+
+    while(!isValid){
+        try{
+            cout << "> ";
+            cin >> cmd;
+            GameCangkul::isCommandValid(cmd);
+
+            isValid = true;
+        } catch(CangkulCommandInvalid& e) {
+            cout << e.what() << endl;
+        }
+    }
+
+    return cmd;
 }
 
-std::string GameCangkul::isCommandValid(std::string command) {
-    return "oke\n";
+std::string GameCangkul::isCommandValid(std::string userCommand) {
+    string temp = userCommand;
+
+    //lower sentence
+    transform(userCommand.begin(), userCommand.end(), userCommand.begin(), ::tolower);
+
+    //check if command exists
+    vector<string>::iterator it;
+    it = find(commandOptionCangkul.begin(), commandOptionCangkul.end(), userCommand);
+
+    if(it != commandOptionCangkul.end()){
+        return userCommand; //?
+    } else {
+        throw CangkulCommandInvalid(temp);
+    }
 }
 
 void GameCangkul::splashScreen() {

@@ -1,3 +1,6 @@
+#ifndef _PlayerInGame_HPP_
+#define _PlayerInGame_HPP_
+
 #include "../PlayerCollection/PlayerCollection.hpp"
 #include "../DeckGame/DeckGame.hpp"
 
@@ -157,3 +160,6 @@ public:
     T &getPlayerAtTurn(int turn);
 };
 // Kurang retake deck dan re-roll
+
+
+#endif
