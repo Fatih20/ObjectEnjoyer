@@ -8,3 +8,5 @@
 
 # binary files
 bin/*
+
+.DS_Store
