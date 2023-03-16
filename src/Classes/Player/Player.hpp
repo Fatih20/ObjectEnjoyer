@@ -242,7 +242,7 @@ public:
      */
     void redrawCard(DeckGame<T> &deckGame);
 
-    DeckPlayer<T> &getHand() const;
+    DeckPlayer<T> getHand();
 
     // Overloading untuk ngurusin deck nggak diimplementasikan dulu karena urusannya sama deck
     /*
