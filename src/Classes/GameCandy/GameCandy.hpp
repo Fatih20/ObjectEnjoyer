@@ -20,10 +20,8 @@ private:
     DeckGame<ColorCard> deckGame;  // deck game
     DeckGame<ColorCard> tableCard; // table card
     DeckGame<AbilityCard> deckAbility;
-    int round;        // ronde
+    int round;           // ronde
     long long giftPoint; // point hadiah tiap akhir game
-    void multiplyGiftPoint(double multiplier);
-    void operator*=(double multiplier);
     /**
      * @brief private method to firmat print tabke card
      *
@@ -162,7 +160,6 @@ public:
     void displayHelp();
 
     void displayCombiInfo();
-
 };
 
 #endif
