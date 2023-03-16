@@ -5,6 +5,7 @@ Combination::Combo::Combo()
     this->cards = Deck<ColorCard>();
     this->highestCard = ColorCard();
     this->cards += this->highestCard;
+    this->type = setComboType();
 }
 
 Combination::Combo::Combo(Deck<ColorCard> cards)
@@ -126,6 +127,13 @@ ColorCard Combination::Combo::getHighestCard()
 
 CombinationType Combination::Combo::getType()
 {
+    // std::cout << "getting type\n";
+    return this->type;
+}
+
+CombinationType Combination::Combo::setComboType()
+{
+    // std::cout << "setting type\n";
     if (this->isStraightFlush())
         return STRAIGHT_FLUSH;
     if (this->isFourOfAKind())
@@ -147,17 +155,20 @@ CombinationType Combination::Combo::getType()
 
 bool Combination::Combo::isStraightFlush()
 {
+    // std::cout << "isStraightFlush\n";
     return this->isStraight() && this->isFlush();
 }
 
 bool Combination::Combo::isFourOfAKind()
 {
+    // std::cout << "isFourOfAKind\n";
     std::vector<ColorCard> cards = this->cards.getDeck();
     return cards[0].getNumber() == cards[1].getNumber() && cards[1].getNumber() == cards[2].getNumber() && cards[2].getNumber() == cards[3].getNumber();
 }
 
 bool Combination::Combo::isFullHouse()
 {
+    // std::cout << "isFullHouse\n";
     std::vector<ColorCard> cards = this->cards.getDeck();
     if (cards[0].getNumber() == cards[1].getNumber() && cards[1].getNumber() == cards[2].getNumber() && cards[3].getNumber() == cards[4].getNumber())
     {
@@ -172,30 +183,35 @@ bool Combination::Combo::isFullHouse()
 
 bool Combination::Combo::isFlush()
 {
+    // std::cout << "isFlush\n";
     std::vector<ColorCard> cards = this->cards.getDeck();
     return cards[0].getColor() == cards[1].getColor() && cards[1].getColor() == cards[2].getColor() && cards[2].getColor() == cards[3].getColor() && cards[3].getColor() == cards[4].getColor();
 }
 
 bool Combination::Combo::isStraight()
 {
+    // std::cout << "isStraight\n";
     std::vector<ColorCard> cards = this->cards.getDeck();
     return cards[0].getNumber() == cards[1].getNumber() - 1 && cards[1].getNumber() == cards[2].getNumber() - 1 && cards[2].getNumber() == cards[3].getNumber() - 1 && cards[3].getNumber() == cards[4].getNumber() - 1;
 }
 
 bool Combination::Combo::isThreeOfAKind()
 {
+    // std::cout << "isThreeOfAKind\n";
     std::vector<ColorCard> cards = this->cards.getDeck();
     return cards[0].getNumber() == cards[1].getNumber() && cards[1].getNumber() == cards[2].getNumber();
 }
 
 bool Combination::Combo::isTwoPairs()
 {
+    // std::cout << "isTwoPairs\n";
     std::vector<ColorCard> cards = this->cards.getDeck();
     return cards[0].getNumber() == cards[1].getNumber() && cards[2].getNumber() == cards[3].getNumber();
 }
 
 bool Combination::Combo::isPair()
 {
+    // std::cout << "isPair\n";
     std::vector<ColorCard> cards = this->cards.getDeck();
     return cards[0].getNumber() == cards[1].getNumber();
 }
@@ -212,6 +228,7 @@ bool Combination::Combo::operator<(Combo rhs)
 
 bool Combination::Combo::operator>(Combo rhs)
 {
+    // std::cout << "Entering operator> for combo\n";
     return this->getType() > rhs.getType() || (this->getType() == rhs.getType() && this->cards > rhs.getCards());
 }
 
@@ -235,15 +252,15 @@ Combination::Combination(Deck<ColorCard> cards)
 
 Combination::Combination(Deck<ColorCard> player, Deck<ColorCard> table)
 {
-    std::cout << "Entering combination constructor" << std::endl;
+    // std::cout << "Entering combination constructor" << std::endl;
     this->playerCards = player;
     this->allCards = table;
     this->allCards = this->allCards + player;
-    std::cout << "Initialized attributes. Now sorting cards." << std::endl;
+    // std::cout << "Initialized attributes. Now sorting cards." << std::endl;
     allCards.sort(true);
-    std::cout << "Sorting cards. Getting best combo." << std::endl;
+    // std::cout << "Sorting cards. Getting best combo." << std::endl;
     this->bestCombo = this->getBestCombo();
-    std::cout << "Got best combo. Exiting constructor." << std::endl;
+    // std::cout << "Got best combo. Exiting constructor." << std::endl;
 }
 
 void Combination::print()
@@ -312,6 +329,7 @@ bool Combination::operator<(Combination rhs)
 
 bool Combination::operator>(Combination rhs)
 {
+    // std::cout<<"Compare combination\n";
     return this->bestCombo > rhs.getBestCombo();
 }
 

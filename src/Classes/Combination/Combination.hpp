@@ -26,6 +26,7 @@ class Combination{
             private:
                 Deck<ColorCard> cards; // cards used to make the combination
                 ColorCard highestCard; // highest card in the combination
+                CombinationType type; // type of the combination
 
                 /**
                  * @brief Convert the combination type to a string
@@ -86,6 +87,12 @@ class Combination{
                  * 
                  */
                 bool isStraightFlush();
+
+                /**
+                 * @brief set the combo type for efficiency
+                 * 
+                 */
+                CombinationType setComboType();
 
             public:
                 /**
