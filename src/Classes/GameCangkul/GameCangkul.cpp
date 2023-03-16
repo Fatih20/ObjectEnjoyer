@@ -28,6 +28,7 @@ GameCangkul::GameCangkul() {
 
     this->deckGame = deckGame;
     this->gameStarted = false; // may even be unneeded
+    this->round = 0;
 }
 
 void GameCangkul::start() {
@@ -35,7 +36,7 @@ void GameCangkul::start() {
 
     GameCangkul::newGame();
     while(!isWinning() && gameStarted){
-        cout << "Round " << GameCangkul::getRoundNumber() << endl;
+        cout << "\nRound " << GameCangkul::getRoundNumber() << endl;
         while(!GameCangkul::isRoundOver()){
 
             cout << "\033[1m\033[37m"
@@ -52,8 +53,10 @@ void GameCangkul::start() {
                 // loop while called command is command that wont progress the game
                 while(!GameCangkul::playerAction(cmd)){
                     cmd = GameCangkul::inputCommand();
+
                 }
             }
+            cout << endl << endl;
 
             players.nextTurn();
         }
@@ -75,7 +78,7 @@ bool GameCangkul::isWinning() {
 
 void GameCangkul::newGame() {
     //NOTE : game candy doesnt init player deck from this method
-    cout << "MARI KITA MULAI\n";
+    cout << "\nMARI KITA MULAI\n";
     for(int i = 0; i < players.getNumberOfPlayer(); i++){
         players.getNthPlayer(i).drawCard(this->deckGame, 7);
     }
@@ -84,7 +87,7 @@ void GameCangkul::newGame() {
 }
 
 void GameCangkul::endOfGame() {
-    cout << "GAME TAMAT YAH GES YAH\n";
+    cout << "\nGAME TAMAT YAH GES YAH\n";
     this->gameStarted = false;
 }
 
@@ -222,7 +225,7 @@ bool GameCangkul::playCard() {
     bool finished = false;
     int count;
 
-    cout << "Pilih kartu yang akan dimainkan : " << endl;
+    cout << "\nPilih kartu yang akan dimainkan : " << endl;
 
     while(!finished){
         count = 0;
@@ -246,7 +249,7 @@ bool GameCangkul::playCard() {
             cardToPlay = players.getPlayerWithTurn().ejectPlayableDeck(choice);
             GameCangkul::deckTable << cardToPlay;
 
-            cout << "Memainkan kartu : " << cardToPlay;
+            cout << "Memainkan kartu : |  " << cardToPlay;
         } else {
             players.getPlayerWithTurn().resetPlayableDeck();
 
@@ -305,7 +308,7 @@ bool GameCangkul::cangkulCard() {
 
     ColorCard cangkuledCard = this->deckGame.ejectCard();
 
-    cout << "Mendapatkan kartu " << cangkuledCard << endl;
+    cout << "Mendapatkan kartu |  " << cangkuledCard << endl;
 
     players.getPlayerWithTurn().addCard(cangkuledCard);
 
