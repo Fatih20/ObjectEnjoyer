@@ -85,10 +85,6 @@ bool GameCandy::isRoundOver()
     return players.getIsRoundComplete();
 }
 
-void GameCandy::newGame()
-{
-    newDeck1();
-}
 
 void GameCandy::endOfGame()
 {

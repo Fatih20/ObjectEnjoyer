@@ -39,13 +39,13 @@ public:
     // jumlah player 7, ronde = 1, giftpoin 64
 
     /**
-     * @brief
+     * @brief start game candy
      *
      */
     void start();
 
     /**
-     * @brief Spash Screen
+     * @brief Splash Screen
      *
      */
     void splashScreen();
@@ -90,8 +90,7 @@ public:
     string inputCommand();
 
     /**
-     * @brief if command valid return enum value of the user input command,
-     * else throw exception
+     * @brief if command valid return command
      *
      * @param command
      * @return int
@@ -99,17 +98,27 @@ public:
     string isCommandValid(string command);
 
     /**
-     * @brief
+     * @brief create deck game of game candy
      *
      */
     vector<ColorCard> initilizeDeckGame();
 
-    // pair<DeckGame<ColorCard>,DeckGame<AbilityCard>> newDeck();
-
+    /**
+     * @brief initiate deckgame, deckplayer, and playerability
+     * 
+     */
     void newDeck1();
 
+    /**
+     * @brief perform actions in specific round
+     * 
+     */
     void roundAction();
 
+    /**
+     * @brief increment round by 1
+     * 
+     */
     void nextRound();
 
     /**
@@ -137,30 +146,63 @@ public:
     void quarterPoint();
 
     /**
-     * @brief
+     * @brief create ability deck of game candy
      *
      */
-
     vector<AbilityCard> initializeAbilityDeck();
 
-    pair<DeckGame<ColorCard>, DeckGame<AbilityCard>> newDeck();
-
+    /**
+     * @brief performs reroll ability
+     * 
+     */
     void rerollAbility();
 
+    /**
+     * @brief performs abilityless ability
+     * 
+     */
     void abilitylessAbility();
 
+    /**
+     * @brief performs reverse ability
+     * 
+     */
     void reverseAbility();
 
+    /**
+     * @brief performs switch ability
+     * 
+     */
     void switchAbility();
 
+    /**
+     * @brief performs swap ability
+     * 
+     */
     void swapAbility();
 
+    /**
+     * @brief display a message if there is a change in gift points.
+     * 
+     */
     void changeGiftPoinMessage(string, double);
 
+    /**
+     * @brief display game status
+     * 
+     */
     void displayGameStat();
 
+    /**
+     * @brief display help
+     * 
+     */
     void displayHelp();
 
+    /**
+     * @brief display combination info
+     * 
+     */
     void displayCombiInfo();
 
 };

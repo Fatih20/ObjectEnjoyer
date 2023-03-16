@@ -23,7 +23,7 @@ class Game {
         virtual void start()=0;
 
         /**
-         * @brief winning condition : one of the players has 2^32>= points
+         * @brief return true if there is a winner
          * 
          * @return true 
          * @return false 
@@ -31,26 +31,44 @@ class Game {
         virtual bool isWinning()=0;
 
         /**
-         * @brief begin new game with same players, different deck card
-         * 
-         */
-        virtual void newGame()=0;
-        // new deck card
-
-        /**
          * @brief akhir dari maks ronde (belum tentu mendapat pemenang)
          * 
          */
         virtual void endOfGame()=0;
 
+        /**
+         * @brief input valid command
+         * 
+         * @return string 
+         */
         virtual string inputCommand()=0;
 
+        /**
+         * @brief return true if user command is valid
+         * 
+         * @return string 
+         */
         virtual string isCommandValid(string)=0;
 
+        /**
+         * @brief display splash screen
+         * 
+         */
         virtual void splashScreen();
 
+        /**
+         * @brief input valid option with range
+         * 
+         * @return int 
+         */
         int inputOption(int);
 
+        /**
+         * @brief true if option valid
+         * 
+         * @return true 
+         * @return false 
+         */
         bool isOptionValid(int,int);
 };
 
