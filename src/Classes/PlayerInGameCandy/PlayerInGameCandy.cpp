@@ -338,28 +338,41 @@ pair<PlayerCandy, Combination> PlayerInGameCandy::rewardHighestCombination(long 
 
     int numberOfPlayer = getNumberOfPlayer();
     int indexOfHighest = 0;
-    DeckPlayer<ColorCard> playerHand;
-    playerHand = getNthPlayer(0).getHand();
-    Deck<ColorCard> *player = &playerHand;
-    Deck<ColorCard> tableCopy(tableCard);
-    Deck<ColorCard> *table = &tableCopy;
-
-    Combination highestCombination(*player, *table);
     for (int i = 1; i < numberOfPlayer; i++)
     {
-        cout << "Player " << i + 1 << endl;
-        DeckPlayer<ColorCard> playerHandInner;
-        playerHandInner = getNthPlayer(i).getHand();
-        Deck<ColorCard> *player = &playerHandInner;
-        Deck<ColorCard> *table = &tableCard;
-        Combination c(*player, *table);
-        if (c > highestCombination)
+        if (getNthPlayer(i).higherCombinationWeight(getNthPlayer(indexOfHighest), tableCard))
         {
-            cout << "COMPARING WITH HIGHEST\n";
-            highestCombination = c;
             indexOfHighest = i;
         }
     }
-    getNthPlayer(indexOfHighest) += reward;
-    return make_pair(getNthPlayer(indexOfHighest), highestCombination);
+
+    // DeckPlayer<ColorCard> playerHand;
+    // playerHand = getNthPlayer(0).getHand();
+    // Deck<ColorCard> *player = &playerHand;
+    // Deck<ColorCard> tableCopy(tableCard);
+    // Deck<ColorCard> *table = &tableCopy;
+
+    // Combination highestCombination(*player, *table);
+    // for (int i = 1; i < numberOfPlayer; i++)
+    // {
+    //     cout << "Player " << i + 1 << endl;
+    //     DeckPlayer<ColorCard> playerHandInner;
+    //     playerHandInner = getNthPlayer(i).getHand();
+    //     Deck<ColorCard> *player = &playerHandInner;
+    //     Deck<ColorCard> *table = &tableCard;
+    //     Combination c(*player, *table);
+    //     if (c > highestCombination)
+    //     {
+    //         cout << "COMPARING WITH HIGHEST\n";
+    //         highestCombination = c;
+    //         indexOfHighest = i;
+    //     }
+    // }
+    PlayerCandy &highestPlayer = getNthPlayer(indexOfHighest);
+    Deck<ColorCard> winningHand = highestPlayer.getHand();
+    Deck<ColorCard> tableCardCopy(tableCard);
+    Combination highestCombination(winningHand, tableCard);
+
+    highestPlayer += reward;
+    return make_pair(highestPlayer, highestCombination);
 }
