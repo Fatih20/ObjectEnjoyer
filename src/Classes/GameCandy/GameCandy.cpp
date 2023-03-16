@@ -163,14 +163,13 @@ bool GameCandy::playerAction(string cmd)
             players.getPlayerWithTurn().useAbility(cmd, *this);
             transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
         }
+        catch (AbilityNotOwned e)
+        {
+            cout << e.getMessage(cmd) << endl;
+        }
         catch (AbilityNotAvailable e)
         {
             cout << e.getMessage() << endl;
-            return false;
-        }
-        catch (AbilityNotOwned e)
-        {
-            cout << e.getMessage() << cmd << endl;
             return false;
         }
     }

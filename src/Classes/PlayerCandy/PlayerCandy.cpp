@@ -5,28 +5,33 @@
 PlayerCandy::PlayerCandy(int id) : Player<ColorCard>(id)
 {
     abilityUsed = false;
+    abilityLessVictim = false;
 };
 
 PlayerCandy::PlayerCandy(int id, DeckGame<AbilityCard> &deckGame) : Player<ColorCard>(id)
 {
     drawAbility(deckGame);
     abilityUsed = false;
+    abilityLessVictim = false;
 };
 
 PlayerCandy::PlayerCandy(const PlayerCandy &p) : Player<ColorCard>(p)
 {
     abilityUsed = p.abilityUsed;
     abilityHand = p.abilityHand;
+    abilityLessVictim = p.abilityLessVictim;
 }
 
 PlayerCandy::PlayerCandy() : Player<ColorCard>()
 {
     abilityUsed = false;
+    abilityLessVictim = false;
 };
 
 void PlayerCandy::disableAbility()
 {
     abilityUsed = true;
+    abilityLessVictim = true;
 }
 
 string PlayerCandy::getAbilityName()
@@ -55,8 +60,16 @@ void PlayerCandy::useAbility(string abilityName, GameCandy &gC)
 
     if (abilityUsed)
     {
-        AbilityNotAvailable e;
-        throw e;
+        if (abilityLessVictim)
+        {
+            AbilityNotAvailable e("Oops, kartu abilitymu telah dimatikan sebelumnya :(\nSilahkan lakukan perintah lain.");
+            throw e;
+        }
+        else
+        {
+            AbilityNotAvailable e("Kamu sudah menggunakan kartu ability-mu sebelumnya");
+            throw e;
+        }
     }
 
     abilityHand.activateAbility(gC);

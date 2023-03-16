@@ -12,6 +12,7 @@ class PlayerCandy : public Player<ColorCard>
 {
 private:
     bool abilityUsed;
+    bool abilityLessVictim;
     AbilityCard abilityHand;
 
 public:

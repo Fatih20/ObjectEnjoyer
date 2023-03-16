@@ -5,6 +5,11 @@ PlayerException::PlayerException()
     message = "";
 }
 
+PlayerException::PlayerException(string message)
+{
+    this->message = message;
+}
+
 string PlayerException::getMessage()
 {
     return message;
@@ -15,12 +20,19 @@ UsernameEmpty::UsernameEmpty()
     message = "Username cannot be empty!";
 };
 
-AbilityNotOwned::AbilityNotOwned()
+AbilityNotOwned::AbilityNotOwned() : PlayerException("Ets, tidak bisa. Kamu tidak punya kartu Ability ")
 {
-    message = "Ets, tidak bisa. Kamu tidak punya kartu Ability ";
 }
 
-AbilityNotAvailable::AbilityNotAvailable()
+string AbilityNotOwned::getMessage(string abilityAttempted)
 {
-    message = "Oops, kartu abilitymu telah dimatikan sebelumnya :(\nSilahkan lakukan perintah lain.";
+    return this->message + abilityAttempted;
+}
+
+AbilityNotAvailable::AbilityNotAvailable() : PlayerException()
+{
+}
+
+AbilityNotAvailable::AbilityNotAvailable(string message) : PlayerException(message)
+{
 }
