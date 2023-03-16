@@ -6,9 +6,6 @@
 # Built Visual Studio Code Extensions
 *.vsix
 
-# binary files
-bin/*
-
 .DS_Store
 
 html/*
