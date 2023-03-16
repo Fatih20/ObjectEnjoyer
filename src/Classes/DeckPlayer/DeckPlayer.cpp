@@ -1,4 +1,4 @@
-#include "Classes/DeckPlayer/DeckPlayer.hpp"
+#include "../DeckPlayer/DeckPlayer.hpp"
 
 template <typename T>
 DeckPlayer<T>::DeckPlayer(DeckGame<T> &drawnDeck, int numberOfCards) : Deck<T>()

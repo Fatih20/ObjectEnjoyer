@@ -1,11 +1,11 @@
 #ifndef _FILEREADER_HPP_
 #define _FILEREADER_HPP_
 
-#include "../Classes/DeckGame/DeckGame.hpp"
-#include "../Classes/ColorCard/ColorCard.hpp"
-#include "../Classes/AbilityCard/AbilityCard.hpp"
-#include "../Classes/Abilities/Abilities.hpp"
-#include "../Classes/Ability/Ability.hpp"
+#include "../DeckGame/DeckGame.hpp"
+#include "../ColorCard/ColorCard.hpp"
+#include "../AbilityCard/AbilityCard.hpp"
+#include "../Abilities/Abilities.hpp"
+#include "../Ability/Ability.hpp"
 #include <iostream>
 #include <fstream>
 #include <vector>

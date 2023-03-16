@@ -86,7 +86,7 @@ public:
      * @param deckGame
      * @return int
      */
-    int compareCombinationWeight(const PlayerCandy &otherPlayer, const DeckGame<ColorCard> &deckGame);
+    int compareCombinationWeight(PlayerCandy otherPlayer, DeckGame<ColorCard> deckGame);
 
     /**
      * @brief Return true if we have equal combination weight

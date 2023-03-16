@@ -1,6 +1,6 @@
 #include "PlayerCollection.hpp"
-#include "Classes/ColorCard/ColorCard.hpp"
-#include "Classes/PlayerCandy/PlayerCandy.hpp"
+#include "../ColorCard/ColorCard.hpp"
+#include "../PlayerCandy/PlayerCandy.hpp"
 #include <iostream>
 
 using namespace std;

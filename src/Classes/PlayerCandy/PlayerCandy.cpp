@@ -107,8 +107,11 @@ bool PlayerCandy::lowerCombinationWeight(const PlayerCandy &otherPlayer, const D
     return compareCombinationWeight(otherPlayer, deckGame) == -1;
 };
 
-int PlayerCandy::compareCombinationWeight(const PlayerCandy &otherPlayer, const DeckGame<ColorCard> &deckGame)
+int PlayerCandy::compareCombinationWeight(PlayerCandy otherPlayer, DeckGame<ColorCard> deckGame)
 {
+    Deck<ColorCard> *our = &this->handCards;
+    Deck<ColorCard> *their = &otherPlayer.handCards;
+    Deck<ColorCard> *table = &deckGame;
     Combination ourCombination((this->handCards), deckGame);
     Combination theirCombination((otherPlayer.handCards), deckGame);
 
