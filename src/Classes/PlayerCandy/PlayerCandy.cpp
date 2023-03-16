@@ -129,8 +129,9 @@ void PlayerCandy::printCard()
 {
     if (abilityHand.getName() != "")
     {
-        cout << "\033[1m\033[37m"
-             << "|  " << getAbilityName() << "\033[0m"
+        cout << "|"
+             << "\033[1m\033[37m"
+             << "  " << getAbilityName() << "\033[0m"
              << "  ";
     }
     Player<ColorCard>::printCard();
