@@ -346,7 +346,7 @@ void GameCandy::newDeck1()
         {
             cout << "Input File Path: ";
             cin >> path;
-            cout << endl
+            cout << endl;
             try
             {
                 FileReader<ColorCard, AbilityCard> f(path);
