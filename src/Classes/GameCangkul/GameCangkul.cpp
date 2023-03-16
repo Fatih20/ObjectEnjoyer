@@ -17,7 +17,7 @@ GameCangkul::GameCangkul() {
     this->players = pIGC;
 
     this->deckGame = deckGame;
-    this->gameStarted = false; // may even be not needed
+    this->gameStarted = false; // may even be unneeded
 }
 
 void GameCangkul::start() {
@@ -33,7 +33,11 @@ void GameCangkul::start() {
                  << "\033[0m" << endl;
 
             cmd = GameCangkul::inputCommand();
-            GameCangkul::playerAction(cmd);
+
+            // loop while called command is command that wont progress the game
+            while(!GameCangkul::playerAction(cmd)){
+                cmd = GameCangkul::inputCommand();
+            }
 
             players.nextTurn();
         }
@@ -105,23 +109,38 @@ int GameCangkul::inputOption(int opt) {
     return 0;
 }
 
-void GameCangkul::playerAction(string cmd) {
+bool GameCangkul::playerAction(string cmd) {
 
     if(cmd == "play"){
         cout << "playing a card" << endl;
+        //bisa return false
+        return true;
     } else if (cmd == "cangkul") {
         cout << "player turn draw from deck";
+        //bisa return false
+        return true;
     } else if (cmd == "ambil") {
         cout << "cek deck apakah kosong and can";
+
+        //bisa return false
+        return true;
     } else if (cmd == "gamestat") {
         cout << "show gamestat";
+
+        return false;
     } else if (cmd == "mycard") {
         cout << players.getNumberOfPlayer() << endl;
 //        cout << players.getPlayerWithTurn().getGameID() << endl;
-        players.getPlayerWithTurn().printCard();
+        players.getPlayerWithTurn().printCard(true);
+
+        return false;
     } else if (cmd == "help") {
         cout << "show help messages";
+
+        return false;
     }
+
+    return false;
 }
 
 int GameCangkul::getRoundNumber() {

@@ -60,7 +60,7 @@ public:
 
     int inputOption(int);
 
-    void playerAction(string cmd);
+    bool playerAction(string cmd);
 
     int getRoundNumber();
 
