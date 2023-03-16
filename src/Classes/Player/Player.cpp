@@ -82,9 +82,10 @@ string Player<T>::getUsername() const
 }
 
 template <typename T>
-DeckPlayer<T> &Player<T>::getHand() const
+DeckPlayer<T> Player<T>::getHand()
 {
-    return this->handCards;
+    DeckPlayer<T> handCardsCopy = this->handCards;
+    return handCardsCopy;
 }
 
 template <typename T>

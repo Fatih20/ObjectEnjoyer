@@ -343,13 +343,25 @@ PlayerCandy &PlayerInGameCandy::rewardHighestCombination(unsigned int reward, De
     //     Combination c(getNthPlayer(i));
     // }
     int indexOfHighest = 0;
-    for (int i = 1; i < numberOfPlayer; i++)
+    Deck<ColorCard> dummyDeck;
+    ColorCard dummy(0, GREEN);
+    dummyDeck+=dummy;
+    Combination highestCombination(dummyDeck);
+    for (int i = 0; i < numberOfPlayer; i++)
     {
-        // cout << "Comparing " << getNthPlayer(i).getUsername() << " and " << getNthPlayer(indexOfHighest).getUsername() << endl;
-        if (getNthPlayer(i).higherCombinationWeight(getNthPlayer(indexOfHighest), tableCard))
-        {
+        cout<< "Player " << i+1 << endl;
+        Deck<ColorCard>* player = getNthPlayer(i).getDeck();
+        Deck<ColorCard>* table = &tableCard;
+        Combination c(*player, *table);
+        if(c>highestCombination){
+            highestCombination = c;
             indexOfHighest = i;
         }
+        // cout << "Comparing " << getNthPlayer(i).getUsername() << " and " << getNthPlayer(indexOfHighest).getUsername() << endl;
+        // if (getNthPlayer(i).higherCombinationWeight(getNthPlayer(indexOfHighest), tableCard))
+        // {
+        //     indexOfHighest = i;
+        // }
     }
     getNthPlayer(indexOfHighest) += reward;
     return getNthPlayer(indexOfHighest);
