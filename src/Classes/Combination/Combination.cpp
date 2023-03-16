@@ -29,10 +29,26 @@ void Combination::Combo::reduceCards()
         cards.erase(cards.begin() + 3, cards.end());
         break;
     case TWO_PAIRS:
+        cards.erase(cards.begin() + 4, cards.end());
+        break;
     case FOUR_OF_A_KIND:
         cards.erase(cards.begin() + 4, cards.end());
+        break;
+    case FULL_HOUSE:
+        cards.erase(cards.begin() + 5, cards.end());
+        break;
+    case STRAIGHT:
+        cards.erase(cards.begin() + 5, cards.end());
+        break;
+    case FLUSH:
+        cards.erase(cards.begin() + 5, cards.end());
+        break;
+    case STRAIGHT_FLUSH:
+        cards.erase(cards.begin() + 5, cards.end());
+        break;
     default:
         cards.erase(cards.begin() + 5, cards.end());
+        break;
     }
     this->cards.setDeck(cards);
 }
@@ -94,7 +110,7 @@ std::string Combination::Combo::getTypeString()
 void Combination::Combo::print()
 {
     std::cout << "Type: " << this->getTypeString() << std::endl;
-    std::cout << "Highest Card: " << this->highestCard;
+    std::cout << "Highest Card: " << this->highestCard << std::endl;
     std::cout << this->cards;
 }
 
