@@ -59,7 +59,7 @@ ColorCard PlayerCangkul::ejectPlayableDeck(int index) {
 }
 
 bool PlayerCangkul::isWinner() {
-    return Player::handCards.getNumberOfCards() + PlayerCangkul::playableDeck.getNumberOfCards() == 0;
+    return (Player::handCards.getNumberOfCards() + PlayerCangkul::playableDeck.getNumberOfCards()) == 0;
 }
 
 // TODO : remove
