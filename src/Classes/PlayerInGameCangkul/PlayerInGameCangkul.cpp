@@ -22,11 +22,15 @@ std::string PlayerInGameCangkul::getWinner() {
 }
 
 bool PlayerInGameCangkul::winnerExist(){
+    int numberOfNonWinner = 0;
+
     for(int i = 0; i < this->players.size(); i++) {
-        if (this->players[i].isWinner()) {
-            return true; // we need to change this if we're going to make it >2 players in the future
+        if (!this->players[i].isWinner()) {
+            numberOfNonWinner++;
         }
     }
+
+    return numberOfNonWinner == 1;
 }
 
 void PlayerInGameCangkul::removePlayerOfID(int removedID) {
