@@ -112,10 +112,6 @@ std::string GameCangkul::isCommandValid(std::string userCommand) {
     }
 }
 
-int GameCangkul::inputOption(int opt) {
-    return 0;
-}
-
 bool GameCangkul::playerAction(string cmd) {
 
     if(cmd == "play"){

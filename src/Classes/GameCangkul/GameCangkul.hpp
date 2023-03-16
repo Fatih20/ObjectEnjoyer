@@ -61,8 +61,6 @@ public:
 
     std::string isCommandValid(std::string);
 
-    int inputOption(int);
-
     bool playerAction(string cmd);
 
     int getRoundNumber();
