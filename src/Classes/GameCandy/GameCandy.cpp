@@ -86,7 +86,8 @@ void GameCandy::endOfGame()
     cout << endl
          << "Ronde 6 selesai." << endl;
     pair<PlayerCandy, Combination> winner = players.rewardHighestCombination(giftPoint, tableCard);
-    cout << "Pemenang babak ini adalah " << winner.first.getUsername() << endl
+    cout << "Pemenang babak ini adalah "
+         << "\033[1m\033[37m" << winner.first.getUsername() << "\033[0m" << endl
          << endl;
     printTableCard();
     cout << "\033[1m\033[37m"
@@ -371,7 +372,8 @@ void GameCandy::roundAction()
     if (round == 2)
     {
         cout << "Kartu ability telah dibagikan." << endl;
-        cout << "Anda dapat menggunakan ability anda mulai sekarang!" << endl;
+        cout << "Anda dapat menggunakan ability anda mulai sekarang!" << endl
+             << endl;
     }
     if (round <= 5)
     {
@@ -404,7 +406,10 @@ void GameCandy::rerollAbility()
     players.redrawCardForCurrentPlayer(this->deckGame);
     cout << endl
          << "Melakukan pembuangan kartu yang sedang dimiliki" << endl;
-    cout << "Kamu mendapatkan 2 kartu baru yaitu: " << endl;
+    cout << "Kamu mendapatkan \033[1m\033[37m"
+         << "2 kartu baru "
+         << "\033[0m"
+         << "yaitu: " << endl;
     players.getPlayerWithTurn().printCard();
 }
 
@@ -428,11 +433,15 @@ void GameCandy::abilitylessAbility()
         bool disableUseful = players.disablePlayerAbility(properIndex);
         if (disableUseful)
         {
-            cout << "Kartu ability player " << players.getNthPlayer(properIndex) << " telah dimatikan." << endl;
+            cout << "Kartu ability player "
+                 << "\033[1m\033[37m" << players.getNthPlayer(properIndex) << "\033[0m"
+                 << " telah dimatikan." << endl;
         }
         else
         {
-            cout << "Kartu ability player " << players.getNthPlayer(properIndex) << " telah dipakai sebelumnya." << endl;
+            cout << "Kartu ability player "
+                 << "\033[1m\033[37m" << players.getNthPlayer(properIndex) << " telah dipakai sebelumnya."
+                 << "\033[0m" << endl;
             cout << "Yah, sayang penggunaan kartu ini sia-sia" << endl;
         }
     }
@@ -441,25 +450,33 @@ void GameCandy::abilitylessAbility()
 void GameCandy::reverseAbility()
 {
     players.reverseTurnInitial();
-    cout << players.getPlayerWithTurn().getUsername() << " melakukan reverse!" << endl;
-    cout << "Sisa urutan eksekusi round ini : ";
+    cout << players.getPlayerWithTurn().getUsername() << " melakukan "
+         << "\033[1m\033[37m"
+         << "reverse"
+         << "\033[0m" << endl;
+    cout << "Sisa urutan eksekusi round ini : "
+         << "\033[1m\033[37m";
     vector<int> turnsVec = players.getTurns();
     for (auto i = turnsVec.begin() + players.getIndexOfCurrentTurn(); i != turnsVec.end(); ++i)
         cout << "p" << (*i) + 1 << " ";
-    cout << endl;
-    cout << "Urutan eksekusi round berikutnya : ";
+    cout << "\033[0m" << endl;
+    cout << "Urutan eksekusi round berikutnya : "
+         << "\033[1m\033[37m";
     reverse(turnsVec.begin(), turnsVec.begin() + players.getCurrentTurn());
     reverse(turnsVec.begin() + players.getCurrentTurn(), turnsVec.end());
     for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i)
         cout << "p" << (*i) + 1 << " ";
-    cout << endl;
+    cout << "\033[0m" << endl;
 }
 
 void GameCandy::swapAbility()
 {
     vector<int> exceptedIndex{players.getIndexOfCurrentTurn()};
     cout << endl
-         << players.getPlayerWithTurn().getUsername() << " melakukan swap!" << endl;
+         << players.getPlayerWithTurn().getUsername() << " melakukan "
+         << "\033[1m\033[37m"
+         << "swap"
+         << "\033[0m" << endl;
     cout << "Silahkan pilih pemain yang kartunya ingin anda tukar: " << endl;
     players.showPlayerExcept(exceptedIndex);
     int rawFirstPlayerIndex = inputOption(6);
@@ -493,7 +510,10 @@ void GameCandy::swapAbility()
 void GameCandy::switchAbility()
 {
     cout << endl
-         << players.getPlayerWithTurn().getUsername() << " melakukan switch!" << endl;
+         << players.getPlayerWithTurn().getUsername() << " melakukan "
+         << "\033[1m\033[37m"
+         << "switch"
+         << "\033[0m" << endl;
     cout << "Your card:" << endl;
     players.getPlayerWithTurn().printCard();
     cout << endl
@@ -502,14 +522,20 @@ void GameCandy::switchAbility()
     int rawIndex = inputOption(6);
     players.swapDeckOfCurrentWith(rawIndex);
     cout << endl
-         << "Both of " << players.getPlayerWithTurn().getUsername() << "'s cards has been switched with " << players.getNthPlayer(players.correctedIndexCurrent(rawIndex)).getUsername() << endl;
+         << "Both of "
+         << "\033[1m\033[37m" << players.getPlayerWithTurn().getUsername() << "'s"
+         << "\033[0m"
+         << " cards has been switched with "
+         << "\033[1m\033[37m" << players.getNthPlayer(players.correctedIndexCurrent(rawIndex)).getUsername() << "\033[0m" << endl;
     cout << "Your card now:" << endl;
     players.getPlayerWithTurn().printCard();
 }
 void GameCandy::changeGiftPoinMessage(string cmd, double multiplier)
 {
     cout << endl
-         << players.getPlayerWithTurn().getUsername() << " melakukan " << cmd << "!" << endl;
+         << players.getPlayerWithTurn().getUsername() << " melakukan "
+         << "\033[1m\033[37m" << cmd << "\033[0m"
+         << "!" << endl;
     if (giftPoint * multiplier < 1)
     {
         cout << "Sayangnya poin hadiah sudah bernilai 1." << endl;
@@ -519,7 +545,11 @@ void GameCandy::changeGiftPoinMessage(string cmd, double multiplier)
     else
     {
         string status = multiplier < 1 ? "turun" : "naik";
-        cout << "Poin hadiah " << status << " dari " << giftPoint << " menjadi " << giftPoint * multiplier << "!" << endl;
+        cout << "Poin hadiah " << status << " dari "
+             << "\033[1m\033[37m" << giftPoint << "\033[0m"
+             << " menjadi "
+             << "\033[1m\033[37m" << giftPoint * multiplier << "\033[0m"
+             << "!" << endl;
     }
 }
 
