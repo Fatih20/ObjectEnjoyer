@@ -70,7 +70,6 @@ void GameCandy::start()
                  << "\033[0m";
             newDeck();
             players.redrawAll(this->deckGame);
-            players.drawAbilityCardAll(this->deckAbility);
             giftPoint = 64;
         }
     }
