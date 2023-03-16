@@ -282,6 +282,20 @@ Deck<T> &Deck<T>::operator+(Deck<T> &other)
     return *this;
 }
 
+template<typename T>
+Deck<T> &Deck<T>::operator+(const T &card) {
+    addCard(card);
+
+    return *this;
+}
+
+template <typename T>
+Deck<T> &Deck<T>::operator-(T &card) {
+    card = ejectCard();
+
+    return *this;
+}
+
 template <typename T>
 std::ostream &operator<<(std::ostream &os, const Deck<T> &deck)
 {

@@ -161,11 +161,19 @@ public:
      */
     Deck<T> &operator+(Deck<T> &other);
 
+    Deck<T> &operator+(const T &card);
+
+    Deck<T> &operator-(T &card);
+
     /**
      * @brief print
      */
     template <typename Tc>
     friend std::ostream &operator<<(std::ostream &os, const Deck<Tc> &deck);
+
+    //TODO:operator=
+    //TODO:clear vector
+    //TODO: remove card
 };
 
 #endif
