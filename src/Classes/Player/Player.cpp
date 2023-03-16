@@ -188,6 +188,28 @@ void Player<T>::printCard(bool sorted) {
 }
 
 template <typename T>
+void Player<T>::printCard(Color colorFilter)
+{
+    bool printed = false;
+
+    vector<ColorCard> handCardVec = handCards.getDeck();
+    cout << "|  ";
+    for (auto i = handCardVec.begin(); i != handCardVec.end(); ++i)
+    {
+        if((*i).getColor() == colorFilter){
+            cout << *i;
+            printed = true;
+        }
+    }
+
+    if(!printed){
+        cout << "No card matched the color Filter!";
+    }
+
+    cout << endl;
+};
+
+template <typename T>
 void Player<T>::drawCard(DeckGame<T> &deckGame, int numberOfCards)
 {
     handCards.drawCard(deckGame, numberOfCards);
