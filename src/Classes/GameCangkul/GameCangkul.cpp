@@ -105,16 +105,18 @@ void GameCangkul::splashScreen() {
 
 }
 
-int GameCangkul::inputOption(int opt) {
-    return 0;
-}
+//int GameCangkul::inputOption(int opt) {
+//    return 0;
+//}
 
 bool GameCangkul::playerAction(string cmd) {
 
     if(cmd == "play"){
         cout << "playing a card" << endl;
         //bisa return false
-        return true;
+//        return true;
+
+        return playCard();
     } else if (cmd == "cangkul") {
         cout << "player turn draw from deck";
         //bisa return false
@@ -135,7 +137,7 @@ bool GameCangkul::playerAction(string cmd) {
 
         return false;
     } else if (cmd == "help") {
-        cout << "show help messages";
+        cout << "show help messages"; //TODO
 
         return false;
     }
@@ -154,6 +156,82 @@ bool GameCangkul::isRoundOver(){
 void GameCangkul::nextRound() {
     this->round++;
 }
+
+void GameCangkul::displayGameStat()
+{
+    cout << "\033[1m\033[35m"
+         << "---------------------------------" << endl;
+    cout << "           GAME STATUS" << endl;
+    cout << "---------------------------------"
+         << "\033[0m" << endl;
+    cout << "\033[1m\033[37m"
+         << "Turns: " << endl;
+    vector<int> turnsVec = players.getTurns();
+    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i)
+    {
+        if (*i == players.getIndexOfCurrentTurn())
+            cout << "\033[1m\033[32m"
+                 << "p" << (*i) + 1 << " "
+                 << "\033[0m";
+        else
+            cout << "p" << (*i) + 1 << " ";
+    }
+    cout << endl;
+    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i)
+    {
+        if (*i == players.getIndexOfCurrentTurn())
+            cout << "\033[1m\033[32m"
+                 << "^   "
+                 << "\033[0m";
+        else
+            cout << "   ";
+    }
+    cout << endl;
+
+    GameCangkul::printTableCard();
+}
+
+void GameCangkul::printTableCard()
+{
+    cout << "\033[1m\033[37m"
+         << "Table Card: "
+         << "\033[0m" << endl;
+    cout << "|  ";
+    vector<ColorCard> tableVec = GameCangkul::deckTable.getDeck();
+    for (auto i = tableVec.begin(); i != tableVec.end(); ++i)
+    {
+        cout << *i;
+    }
+    cout << endl;
+}
+
+bool GameCangkul::playCard() {
+    bool finished = false;
+    int count;
+
+    cout << "Pilih kartu yang akan dimainkan : ";
+
+    while(!finished){
+        count = 0;
+
+        if(GameCangkul::deckTable.getNumberOfCards() == 0){
+//            PlayerCangkul::printCard();
+//            count += PlayerCangkul::getNumberOfCard();
+        } else {
+//            PlayerCangkul::printCard(deckTable.getDeck()[0].getColor()); // TODO: modularize these
+//            count += PlayerCangkul::getNumberOfCard(deckTable.getDeck()[0].getColor());
+        }
+
+        int choice = inputOption(count);
+
+        finished = true;
+    }
+
+
+    return false;
+}
+
+
 
 std::vector<ColorCard> GameCangkul::initializeDeckGame() {
     std::vector<ColorCard> deckGame;

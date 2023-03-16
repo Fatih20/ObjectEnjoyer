@@ -7,16 +7,24 @@ class PlayerCangkul : public Player<ColorCard> {
     private:
         static int num_player;
 
+//        DeckPlayer<ColorCard> playableDeck;
+
     public:
         PlayerCangkul();
 
         PlayerCangkul(int gameID);
 
+        void updatePlayableDeck(Color color);
+
+        void resetPlayableDeck();
+
+        int getNumberOfPlayableCard();
+
         bool isWinner();
 
-        void printCards();
-
         void playCard(int index);
+
+
 };
 
 #endif

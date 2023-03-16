@@ -17,6 +17,11 @@ private:
      bool gameStarted; // to avoid game accidentally register itself as finished when card has not yet shared
      int round;
 
+
+     bool canPlay; // TODO: integrate
+     bool canCangkul;
+     bool canAmbil;
+
 public:
     /**
          * @brief Construct a new Game object
@@ -58,7 +63,7 @@ public:
 
     void splashScreen();
 
-    int inputOption(int);
+//    int inputOption(int);
 
     bool playerAction(string cmd);
 
@@ -67,6 +72,12 @@ public:
     bool isRoundOver();
 
     void nextRound();
+
+    void displayGameStat();
+
+    void printTableCard();
+
+    bool playCard();
 
     // TODO: nantinya akan dibuat method di deckgame
     std::vector<ColorCard> initializeDeckGame();
