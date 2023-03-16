@@ -206,6 +206,12 @@ public:
     void printCard();
 
     /**
+     * @brief Print out the player's card
+     *
+     */
+    void printCard(bool sorted);
+
+    /**
      * @brief Add card to player's hand
      *
      * @param card

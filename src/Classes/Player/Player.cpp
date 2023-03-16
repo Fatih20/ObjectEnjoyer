@@ -169,6 +169,25 @@ void Player<T>::printCard()
 };
 
 template <typename T>
+void Player<T>::printCard(bool sorted) {
+    if(sorted){
+        DeckPlayer<T> tempDeck = handCards;
+        tempDeck.sort();
+
+        vector<ColorCard> handCardVec = tempDeck.getDeck();
+
+        cout << "|  ";
+        for (auto i = handCardVec.begin(); i != handCardVec.end(); ++i)
+        {
+            cout << *i;
+        }
+        cout << endl;
+    } else {
+        Player<T>::printCard();
+    }
+}
+
+template <typename T>
 void Player<T>::drawCard(DeckGame<T> &deckGame, int numberOfCards)
 {
     handCards.drawCard(deckGame, numberOfCards);
