@@ -262,13 +262,13 @@ int PlayerInGameCandy::correctedIndexCustom(int rawIndex, vector<int> exceptedIn
 
 string PlayerInGameCandy::getWinner()
 {
-    unsigned int limit = pow(2, 32);
+    long long limit = (long long)pow(2, 32);
     bool found = false;
     string winnerUsername;
     for (auto playerIterator = players.begin(); playerIterator != players.end() && !found; playerIterator++)
     {
         double score = playerIterator->getScore();
-        if (score == limit || score < 0)
+        if (score == limit)
         {
             winnerUsername = (playerIterator->getUsername());
             found = true;
@@ -279,9 +279,9 @@ string PlayerInGameCandy::getWinner()
 
 bool PlayerInGameCandy::winnerExist()
 {
-    unsigned int limit = pow(2, 32);
+    long long limit = (long long)pow(2, 32);
     return players.end() != find_if(players.begin(), players.end(), [limit](PlayerCandy p) -> bool
-                                    { return p.getScore() > limit || p.getScore() < 0; });
+                                    { return p.getScore() > limit; });
 };
 
 void PlayerInGameCandy::drawAbilityCardAll(DeckGame<AbilityCard> &deckAbility)

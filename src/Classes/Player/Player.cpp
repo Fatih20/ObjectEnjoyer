@@ -97,31 +97,31 @@ Player<T> &Player<T>::operator=(const Player<T> &givenPlayer)
 };
 
 template <typename T>
-unsigned int Player<T>::getScore() const
+long long Player<T>::getScore() const
 {
     return this->score;
 };
 
 template <typename T>
-void Player<T>::addScore(unsigned int addedScore)
+void Player<T>::addScore(long long addedScore)
 {
     this->score += addedScore;
 };
 
 template <typename T>
-void Player<T>::subtractScore(unsigned int subtractedScore)
+void Player<T>::subtractScore(long long subtractedScore)
 {
     this->score -= subtractedScore;
 };
 
 template <typename T>
-void Player<T>::operator+=(unsigned int addedScore)
+void Player<T>::operator+=(long long addedScore)
 {
     this->addScore(addedScore);
 };
 
 template <typename T>
-void Player<T>::operator-=(unsigned int subtractedScore)
+void Player<T>::operator-=(long long subtractedScore)
 {
     subtractScore(subtractedScore);
 };
