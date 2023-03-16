@@ -32,7 +32,7 @@ public:
     void start();
 
     /**
-     * @brief winning condition : one of the players has 2^32>= points
+     * @brief winning condition : all players except one has no card left
      *
      * @return true
      * @return false

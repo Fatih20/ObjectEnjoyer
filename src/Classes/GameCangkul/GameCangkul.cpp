@@ -42,11 +42,17 @@ void GameCangkul::start() {
                  << "\nPlayer " << players.getPlayerWithTurn().getUsername() << " turn"
                  << "\033[0m" << endl;
 
-            cmd = GameCangkul::inputCommand();
-
-            // loop while called command is command that wont progress the game
-            while(!GameCangkul::playerAction(cmd)){
+            if(players.getPlayerWithTurn().isWinner()){
+                cout << "\033[1m\033[37m"
+                     << "\nKartu telah habis, pemain ini sudah menang! melewati turn "<< players.getPlayerWithTurn().getUsername()
+                     << "\033[0m" << endl;
+            } else {
                 cmd = GameCangkul::inputCommand();
+
+                // loop while called command is command that wont progress the game
+                while(!GameCangkul::playerAction(cmd)){
+                    cmd = GameCangkul::inputCommand();
+                }
             }
 
             players.nextTurn();
@@ -309,7 +315,7 @@ int GameCangkul::getRoundWinnerIndex() {
     vector<ColorCard> emptyDeck;
     this->deckTable.setDeck(emptyDeck); // TODO : make this empty()
 
-    cout << "Pemenang adalah " << players.getPlayerAtTurn(highestIndex).getUsername() << endl;
+    cout << "Pemenang ronde " << GameCangkul::getRoundNumber() << " adalah " << players.getPlayerAtTurn(highestIndex).getUsername() << endl;
 
     return highestIndex;
 }
