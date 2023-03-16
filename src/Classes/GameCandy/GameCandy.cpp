@@ -145,13 +145,13 @@ bool GameCandy::playerAction(string cmd)
     else if (cmd == "mycard")
     {
         cout << endl;
-        players.getPlayerWithTurn().printCard();
         if (round != 1)
         {
             cout << "\033[1m\033[37m"
-                 << "Your Ability Card: ";
-            cout << players.getPlayerWithTurn().getAbilityName() << "\033[0m" << endl;
+                 << "|  " << players.getPlayerWithTurn().getAbilityName() << "\033[0m"
+                 << "  ";
         }
+        players.getPlayerWithTurn().printCard();
     }
     else if (cmd == "help")
     {
