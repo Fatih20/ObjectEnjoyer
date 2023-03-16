@@ -164,7 +164,7 @@ bool GameCandy::playerAction(string cmd)
 
     cout << endl
          << "\033[1m\033[35m"
-         << "---------------------------------"
+         << "-------------------------------------------------------"
          << "\033[0m" << endl;
 
     if (cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse" || cmd == "combination"){

@@ -347,7 +347,7 @@ pair<PlayerCandy, Combination> PlayerInGameCandy::rewardHighestCombination(long 
     Combination highestCombination(*player, *table);
     for (int i = 1; i < numberOfPlayer; i++)
     {
-        cout << "Player " << i + 1 << endl;
+        // cout << "Player " << i + 1 << endl;
         DeckPlayer<ColorCard> playerHandInner;
         playerHandInner = getNthPlayer(i).getHand();
         Deck<ColorCard> *player = &playerHandInner;
@@ -355,7 +355,7 @@ pair<PlayerCandy, Combination> PlayerInGameCandy::rewardHighestCombination(long 
         Combination c(*player, *table);
         if (c > highestCombination)
         {
-            cout << "COMPARING WITH HIGHEST\n";
+            // cout << "COMPARING WITH HIGHEST\n";
             highestCombination = c;
             indexOfHighest = i;
         }
