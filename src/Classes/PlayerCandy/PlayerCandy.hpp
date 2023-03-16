@@ -117,6 +117,8 @@ public:
      * @return false
      */
     bool higherCombinationWeight(const PlayerCandy &otherPlayer, const DeckGame<ColorCard> &deckGame);
+
+    void printCard();
 };
 
 #endif

@@ -203,7 +203,7 @@ public:
      * @brief Print out the player's card
      *
      */
-    void printCard();
+    virtual void printCard();
 
     /**
      * @brief Add card to player's hand

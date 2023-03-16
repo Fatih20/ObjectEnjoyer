@@ -124,3 +124,14 @@ int PlayerCandy::compareCombinationWeight(PlayerCandy otherPlayer, DeckGame<Colo
         return -1;
     }
 };
+
+void PlayerCandy::printCard()
+{
+    if (abilityHand.getName() != "")
+    {
+        cout << "\033[1m\033[37m"
+             << "|  " << getAbilityName() << "\033[0m"
+             << "  ";
+    }
+    Player<ColorCard>::printCard();
+}
