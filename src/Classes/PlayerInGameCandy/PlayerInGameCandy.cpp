@@ -333,3 +333,30 @@ pair<PlayerCandy, Combination> PlayerInGameCandy::rewardHighestCombination(long 
     highestPlayer += reward;
     return make_pair(highestPlayer, highestCombination);
 }
+
+void PlayerInGameCandy::printTurnRemaining()
+{
+    vector<int> turnsCopy = this->turns;
+    cout << "\033[1m\033[37m";
+    for (auto i = turnsCopy.begin() + getIndexOfCurrentTurn(); i != turnsCopy.end(); ++i)
+        cout << "p" << (*i) + 1 << " ";
+    cout << "\033[0m" << endl;
+}
+
+void PlayerInGameCandy::printTurnNext()
+{
+    vector<int> turnsCopy = this->turns;
+    cout << "\033[1m\033[37m";
+    if (!reversedThisRoundInfo.first)
+    {
+        rotate(turnsCopy.begin(), turnsCopy.begin() + 1, turnsCopy.end());
+    }
+    else
+    {
+        reverse(turnsCopy.begin(), turnsCopy.begin() + getCurrentTurn());
+        reverse(turnsCopy.begin() + getCurrentTurn(), turnsCopy.end());
+    }
+    for (auto i = turnsCopy.begin(); i != turnsCopy.end(); ++i)
+        cout << "p" << (*i) + 1 << " ";
+    cout << "\033[0m" << endl;
+}

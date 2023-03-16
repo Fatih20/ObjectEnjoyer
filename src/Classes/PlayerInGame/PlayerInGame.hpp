@@ -155,5 +155,6 @@ public:
      * @return T&
      */
     T &getPlayerAtTurn(int turn);
+
+    virtual void printTurn();
 };
-// Kurang retake deck dan re-roll

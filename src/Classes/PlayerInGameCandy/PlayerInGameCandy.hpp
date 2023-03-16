@@ -205,6 +205,10 @@ public:
      * @return PlayerCandy
      */
     pair<PlayerCandy, Combination> rewardHighestCombination(long long reward, DeckGame<ColorCard> &tableCard);
+
+    void printTurnRemaining();
+
+    void printTurnNext();
 };
 
 #endif

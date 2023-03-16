@@ -454,19 +454,10 @@ void GameCandy::reverseAbility()
          << "\033[1m\033[37m"
          << "reverse"
          << "\033[0m" << endl;
-    cout << "Sisa urutan eksekusi round ini : "
-         << "\033[1m\033[37m";
-    vector<int> turnsVec = players.getTurns();
-    for (auto i = turnsVec.begin() + players.getIndexOfCurrentTurn(); i != turnsVec.end(); ++i)
-        cout << "p" << (*i) + 1 << " ";
-    cout << "\033[0m" << endl;
-    cout << "Urutan eksekusi round berikutnya : "
-         << "\033[1m\033[37m";
-    reverse(turnsVec.begin(), turnsVec.begin() + players.getCurrentTurn());
-    reverse(turnsVec.begin() + players.getCurrentTurn(), turnsVec.end());
-    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i)
-        cout << "p" << (*i) + 1 << " ";
-    cout << "\033[0m" << endl;
+    cout << "Sisa urutan eksekusi round ini : ";
+    players.printTurnRemaining();
+    cout << "Urutan eksekusi round berikutnya : ";
+    players.printTurnNext();
 }
 
 void GameCandy::swapAbility()
@@ -555,36 +546,13 @@ void GameCandy::changeGiftPoinMessage(string cmd, double multiplier)
 
 void GameCandy::displayGameStat()
 {
-    // cout << "\033[1m\033[35m"
-    //      << "---------------------------------" << endl;
-    // cout << "           GAME STATUS" << endl;
-    // cout << "---------------------------------"
-    //  << "\033[0m" << endl;
     cout << "\n\033[1m\033[37m"
          << "Gift Point: "
          << "\033[1m\033[33m" << this->giftPoint << "\033[0m" << endl;
     cout << "\033[1m\033[37m"
-         << "Turns: " << endl;
-    vector<int> turnsVec = players.getTurns();
-    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i)
-    {
-        if (*i == players.getIndexOfCurrentTurn())
-            cout << "\033[1m\033[32m"
-                 << "p" << (*i) + 1 << " "
-                 << "\033[0m";
-        else
-            cout << "p" << (*i) + 1 << " ";
-    }
+         << "Turns: ";
+    players.printTurn();
     cout << endl;
-    for (auto i = turnsVec.begin(); i != turnsVec.end(); ++i)
-    {
-        if (*i == players.getIndexOfCurrentTurn())
-            cout << "\033[1m\033[32m"
-                 << "^   "
-                 << "\033[0m";
-        else
-            cout << "   ";
-    }
     cout << endl;
     printTableCard();
 }

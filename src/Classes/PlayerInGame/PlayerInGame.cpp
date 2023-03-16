@@ -20,8 +20,6 @@ PlayerInGame<T>::PlayerInGame(int numberOfPlayer) : PlayerCollection<T>(numberOf
     this->turns = turnsCreated;
     currentTurn = 0;
     roundComplete = false;
-
-    // cout << "Turns size after PIG construction : " << turns.size() << endl;
 };
 
 template <typename T>
@@ -66,21 +64,6 @@ int PlayerInGame<T>::getIndexOfCurrentTurn()
 {
     return turns.at(currentTurn);
 }
-
-// template <typename T>
-// void PlayerInGame<T>::removePlayerOfID(int removedID)
-// {
-//     // To do : Erase from turn list as well
-//     for (int i = 0; i < this->players.size(); i++)
-//     {
-//         if (this->players.at(i).getGameID() == removedID)
-//         {
-//             this->players.erase(this->players.begin() + i);
-//         }
-//     };
-// };
-
-// template <typename T>
 
 template <typename T>
 T &PlayerInGame<T>::getPlayerWithTurn()
@@ -140,6 +123,25 @@ template <typename T>
 T &PlayerInGame<T>::getPlayerAtTurn(int turn)
 {
     return this->getNthPlayer(turns.at(turn));
+};
+
+template <typename T>
+void PlayerInGame<T>::printTurn()
+{
+    for (auto i = turns.begin(); i != turns.end(); ++i)
+    {
+        if (*i == getIndexOfCurrentTurn())
+            cout << "\033[1m\033[37m"
+                 << "p" << (*i) + 1 << " "
+                 << "\033[0m";
+        else
+        {
+
+            cout << "\033[1m\033[30m"
+                 << "p" << (*i) + 1 << " "
+                 << "\033[0m";
+        }
+    }
 };
 
 template class PlayerInGame<Player<ColorCard>>;
