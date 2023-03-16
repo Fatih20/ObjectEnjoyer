@@ -190,6 +190,10 @@ bool Deck<T>::operator<(const Deck<T> &other)
             return false;
         }
     }
+
+    //delete a;
+    //delete b;
+
     return false;
 }
 
@@ -202,7 +206,7 @@ void Deck<T>::sort()
 template <typename T>
 void Deck<T>::sort(bool descending)
 {
-    std::sort(this->vec.begin(), this->vec.end(), [descending](T a, T b) { // sementara exclusive ColorCard
+    std::sort(this->vec.begin(), this->vec.end(), [descending](T a, T b) {
         bool result = a.value() < b.value();
         return descending ? !result : result;
     });
