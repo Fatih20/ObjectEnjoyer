@@ -111,10 +111,10 @@ T Deck<T>::ejectCard()
 
         return ejectedCard;
     }
-    catch (EmptyDeckException &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+//    catch (EmptyDeckException &e)
+//    {
+//        std::cout << e.what() << std::endl;
+//    }
 }
 
 template <typename T>
@@ -130,10 +130,10 @@ T Deck<T>::ejectCardIndex(int index)
 
         return ejectedCard;
     }
-    catch (EmptyDeckException &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+//    catch (EmptyDeckException &e)
+//    {
+//        std::cout << e.what() << std::endl;
+//    }
 }
 
 template <typename T>
