@@ -101,16 +101,16 @@ Deck<T> &Deck<T>::operator<<(const T &card)
 template <typename T>
 T Deck<T>::ejectCard()
 {
-    try
-    {
+//    try
+//    {
         if (this->vec.size() <= 0)
-            throw EmptyDeckException(); // untested
+            throw EmptyDeckException();
 
         T ejectedCard = this->vec.back();
         this->vec.pop_back();
 
         return ejectedCard;
-    }
+//    }
 //    catch (EmptyDeckException &e)
 //    {
 //        std::cout << e.what() << std::endl;
@@ -120,16 +120,16 @@ T Deck<T>::ejectCard()
 template <typename T>
 T Deck<T>::ejectCardIndex(int index)
 {
-    try
-    {
+//    try
+//    {
         if (this->vec.size() <= 0)
-            throw EmptyDeckException(); // untested
+            throw EmptyDeckException();
 
         T ejectedCard = this->vec[index];
         this->vec.erase(this->vec.begin() + index);
 
         return ejectedCard;
-    }
+//    }
 //    catch (EmptyDeckException &e)
 //    {
 //        std::cout << e.what() << std::endl;
