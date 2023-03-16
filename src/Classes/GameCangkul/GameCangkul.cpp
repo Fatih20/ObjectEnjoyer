@@ -51,6 +51,9 @@ void GameCangkul::start() {
 
             players.nextTurn();
         }
+
+        players.setTurnsHead(GameCangkul::getRoundWinnerIndex());
+
         GameCangkul::nextRound();
         players.resetRound();
     }
@@ -121,9 +124,7 @@ bool GameCangkul::playerAction(string cmd) {
 
         return playCard();
     } else if (cmd == "cangkul") {
-        cout << "player turn draw from deck";
-        //bisa return false
-        return true;
+        return GameCangkul::cangkulCard();
     } else if (cmd == "ambil") {
         cout << "cek deck apakah kosong and can";
 
@@ -138,7 +139,7 @@ bool GameCangkul::playerAction(string cmd) {
 
         return false;
     } else if (cmd == "help") {
-        cout << "show help messages"; //TODO
+        GameCangkul::displayHelp();
 
         return false;
     }
@@ -227,7 +228,6 @@ bool GameCangkul::playCard() {
         players.getPlayerWithTurn().resetPlayableDeck();
 
         if(GameCangkul::deckTable.getNumberOfCards() != 0){
-            cout << "color ->" << GameCangkul::getTableColor() << endl;
             players.getPlayerWithTurn().updatePlayableDeck(GameCangkul::getTableColor());
         } else {
             players.getPlayerWithTurn().updatePlayableDeck();
@@ -244,12 +244,38 @@ bool GameCangkul::playCard() {
             GameCangkul::deckTable << cardToPlay;
 
             cout << "Memainkan kartu : " << cardToPlay;
+        } else {
+            players.getPlayerWithTurn().resetPlayableDeck();
+
+            cout << "Gagal memainkan kartu, lakukan cangkul atau ambil" << endl;
+
+            return false;
         }
 
         finished = true;
     }
 
     players.getPlayerWithTurn().resetPlayableDeck();
+
+    return true;
+}
+
+bool GameCangkul::ambilCard(){
+
+}
+
+bool GameCangkul::cangkulCard() {
+    if(GameCangkul::players.getPlayerWithTurn().getNumberOfPlayableCard() != 0){
+        cout << "Masih ada kartu yang bisa dimainkan! tidak bisa mencangkul." << endl;
+
+        return false;
+    }
+
+    ColorCard cangkuledCard = this->deckGame.ejectCard();
+
+    cout << "Mendapatkan kartu " << cangkuledCard << endl;
+
+    players.getPlayerWithTurn().addCard(cangkuledCard);
 
     return true;
 }
@@ -262,6 +288,23 @@ Color GameCangkul::getTableColor() {
     return GameCangkul::deckTable.getDeck()[0].getColor();
 }
 
+int GameCangkul::getRoundWinnerIndex() {
+    int highestNumber = 0;
+    int highestIndex = 0;
+
+    for(int i = 0; i < this->deckTable.getNumberOfCards(); i++){
+        if (highestNumber < this->deckTable.getDeck()[i].getNumber()){
+            highestNumber = this->deckTable.getDeck()[i].getNumber();
+            highestIndex = i;
+        }
+    }
+
+    this->deckTable.getDeck().clear();
+
+    cout << "Pemenang adalah " << players.getPlayerAtTurn(highestIndex).getUsername() << endl;
+
+    return highestIndex;
+}
 
 std::vector<ColorCard> GameCangkul::initializeDeckGame() {
     std::vector<ColorCard> deckGame;

@@ -113,6 +113,12 @@ public:
     void nextTurn();
 
     /**
+     * @biref move turns head by an offset
+     * @param offset (should be positive integer)
+     */
+    void setTurnsHead(int offset);
+
+    /**
      * @brief Print all of the player's in the game
      *
      */

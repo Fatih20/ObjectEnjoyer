@@ -45,6 +45,26 @@ void PlayerInGame<T>::setTurn(int newTurn)
     int numberOfPlayer = this->getNumberOfPlayer();
     currentTurn = (((newTurn) % numberOfPlayer) + numberOfPlayer) % numberOfPlayer;
 };
+
+template <typename T>
+void PlayerInGame<T>::setTurnsHead(int offset) {
+    cout << "TURNING HEAD WIHT OFFSET " << offset << endl;
+
+    vector<int> newTurns;
+    for (int i = offset; i < this->getNumberOfPlayer(); i++)
+    {
+        newTurns.push_back(this->turns[i]);
+    }
+    for(int i = 0; i < offset; i++){
+        newTurns.push_back(this->turns[i]);
+    }
+
+    this->turns = newTurns;
+
+    currentTurn = 0;
+    roundComplete = false;
+}
+
 template <typename T>
 void PlayerInGame<T>::reverseTurn()
 {
@@ -142,6 +162,8 @@ T &PlayerInGame<T>::getPlayerAtTurn(int turn)
 {
     return this->getNthPlayer(turns.at(turn));
 };
+
+
 
 template class PlayerInGame<Player<ColorCard>>;
 template class PlayerInGame<PlayerCandy>;

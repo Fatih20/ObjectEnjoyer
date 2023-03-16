@@ -72,8 +72,15 @@ public:
 
     bool playCard();
 
+    bool ambilCard();
+
+    bool cangkulCard();
+
     Color getTableColor();
+
     void displayHelp();
+
+    int getRoundWinnerIndex();
 
     // TODO: nantinya akan dibuat method di deckgame
     std::vector<ColorCard> initializeDeckGame();
