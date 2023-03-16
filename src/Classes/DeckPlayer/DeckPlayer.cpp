@@ -7,7 +7,7 @@ DeckPlayer<T>::DeckPlayer(DeckGame<T> &drawnDeck, int numberOfCards) : Deck<T>()
 }
 
 template <typename T>
-DeckPlayer<T>::DeckPlayer(DeckPlayer<T> &other)
+DeckPlayer<T>::DeckPlayer(DeckPlayer<T> &other) : Deck<T>(other)
 {
     this->vec = other.vec;
 };
@@ -18,7 +18,7 @@ DeckPlayer<T>::DeckPlayer() : Deck<T>()
 }
 
 template <typename T>
-DeckPlayer<T>::DeckPlayer(std::vector<T> vec)
+DeckPlayer<T>::DeckPlayer(std::vector<T> vec) : Deck<T>(vec)
 {
     this->vec = vec;
 };

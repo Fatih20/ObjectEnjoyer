@@ -206,6 +206,21 @@ public:
     virtual void printCard();
 
     /**
+     * @brief Print out the player's card
+     *
+     * @param sorted by weight
+     *
+     */
+    void printCard(bool sorted);
+
+    /**
+     * @brief Print out the player's card
+     *
+     * @param color filter
+     */
+    void printCard(Color colorFilter);
+
+    /**
      * @brief Add card to player's hand
      *
      * @param card

@@ -1,3 +1,6 @@
+#ifndef _PlayerInGame_HPP_
+#define _PlayerInGame_HPP_
+
 #include "../PlayerCollection/PlayerCollection.hpp"
 #include "../DeckGame/DeckGame.hpp"
 
@@ -110,6 +113,12 @@ public:
     void nextTurn();
 
     /**
+     * @biref move turns head by an offset
+     * @param offset (should be positive integer)
+     */
+    void setTurnsHead(int offset);
+
+    /**
      * @brief Print all of the player's in the game
      *
      */
@@ -158,3 +167,6 @@ public:
 
     virtual void printTurn();
 };
+
+
+#endif

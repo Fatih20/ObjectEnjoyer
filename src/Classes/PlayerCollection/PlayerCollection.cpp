@@ -1,6 +1,7 @@
 #include "PlayerCollection.hpp"
 #include "../ColorCard/ColorCard.hpp"
 #include "../PlayerCandy/PlayerCandy.hpp"
+#include "../PlayerCangkul/PlayerCangkul.hpp"
 #include <iostream>
 
 using namespace std;
@@ -55,3 +56,4 @@ T &PlayerCollection<T>::getNthPlayer(int index)
 
 template class PlayerCollection<Player<ColorCard>>;
 template class PlayerCollection<PlayerCandy>;
+template class PlayerCollection<PlayerCangkul>;

@@ -1,6 +1,7 @@
 #include "PlayerInGame.hpp"
 #include "../PlayerInGameException/PlayerInGameException.hpp"
 #include "../PlayerCandy/PlayerCandy.hpp"
+#include "../PlayerCangkul/PlayerCangkul.hpp"
 #include <iostream>
 #include <algorithm>
 
@@ -42,6 +43,24 @@ void PlayerInGame<T>::setTurn(int newTurn)
     int numberOfPlayer = this->getNumberOfPlayer();
     currentTurn = (((newTurn) % numberOfPlayer) + numberOfPlayer) % numberOfPlayer;
 };
+
+template <typename T>
+void PlayerInGame<T>::setTurnsHead(int offset) {
+    vector<int> newTurns;
+    for (int i = offset; i < this->getNumberOfPlayer(); i++)
+    {
+        newTurns.push_back(this->turns[i]);
+    }
+    for(int i = 0; i < offset; i++){
+        newTurns.push_back(this->turns[i]);
+    }
+
+    this->turns = newTurns;
+
+    currentTurn = 0;
+    roundComplete = false;
+}
+
 template <typename T>
 void PlayerInGame<T>::reverseTurn()
 {
@@ -146,3 +165,5 @@ void PlayerInGame<T>::printTurn()
 
 template class PlayerInGame<Player<ColorCard>>;
 template class PlayerInGame<PlayerCandy>;
+template class PlayerInGame<PlayerCangkul>;
+

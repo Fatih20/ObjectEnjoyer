@@ -101,20 +101,39 @@ Deck<T> &Deck<T>::operator<<(const T &card)
 template <typename T>
 T Deck<T>::ejectCard()
 {
-    try
-    {
+//    try
+//    {
         if (this->vec.size() <= 0)
-            throw EmptyDeckException(); // untested
+            throw EmptyDeckException();
 
         T ejectedCard = this->vec.back();
         this->vec.pop_back();
 
         return ejectedCard;
-    }
-    catch (EmptyDeckException &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+//    }
+//    catch (EmptyDeckException &e)
+//    {
+//        std::cout << e.what() << std::endl;
+//    }
+}
+
+template <typename T>
+T Deck<T>::ejectCardIndex(int index)
+{
+//    try
+//    {
+        if (this->vec.size() <= 0)
+            throw EmptyDeckException();
+
+        T ejectedCard = this->vec[index];
+        this->vec.erase(this->vec.begin() + index);
+
+        return ejectedCard;
+//    }
+//    catch (EmptyDeckException &e)
+//    {
+//        std::cout << e.what() << std::endl;
+//    }
 }
 
 template <typename T>
@@ -171,6 +190,10 @@ bool Deck<T>::operator<(const Deck<T> &other)
             return false;
         }
     }
+
+    //delete a;
+    //delete b;
+
     return false;
 }
 
@@ -183,8 +206,7 @@ void Deck<T>::sort()
 template <typename T>
 void Deck<T>::sort(bool descending)
 {
-    // std::cout << "Entering sort" << endl;
-    std::sort(this->vec.begin(), this->vec.end(), [descending](T a, T b) { // sementara exclusive ColorCard
+    std::sort(this->vec.begin(), this->vec.end(), [descending](T a, T b) {
         bool result = a.value() < b.value();
         return descending ? !result : result;
     });
@@ -258,6 +280,20 @@ Deck<T> &Deck<T>::operator+(Deck<T> &other)
     {
         *this << card;
     }
+
+    return *this;
+}
+
+template<typename T>
+Deck<T> &Deck<T>::operator+(const T &card) {
+    addCard(card);
+
+    return *this;
+}
+
+template <typename T>
+Deck<T> &Deck<T>::operator-(T &card) {
+    card = ejectCard();
 
     return *this;
 }
