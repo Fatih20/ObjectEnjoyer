@@ -21,7 +21,7 @@ GameCandy::GameCandy()
     this->tableCard = tableCard;
 
     // Initialize players
-    PlayerInGameCandy pIGC(this->deckGame, this->deckAbility, 7);
+    PlayerInGameCandy pIGC(this->deckGame, 7);
     this->players = pIGC;
     round = 1;
     giftPoint = 64;
@@ -53,7 +53,12 @@ void GameCandy::start()
                     cmd = inputCommand();
                 }
                 players.nextTurn();
+                cout << endl
+                 << "\033[1m\033[35m"
+                 << "-------------------------------------------------------"
+                 << "\033[0m" << endl;
             }
+
             nextRound();
             players.resetRound();
         }
@@ -173,11 +178,6 @@ bool GameCandy::playerAction(string cmd)
             return false;
         }
     }
-
-    cout << endl
-         << "\033[1m\033[35m"
-         << "-------------------------------------------------------"
-         << "\033[0m" << endl;
 
     if (cmd == "gamestat" || cmd == "mycard" || cmd == "help" || cmd == "reverse" || cmd == "combination")
     {
@@ -370,6 +370,7 @@ void GameCandy::roundAction()
 {
     if (round == 2)
     {
+        players.drawAbilityCardAll(this->deckAbility);
         cout << "Kartu ability telah dibagikan." << endl;
         cout << "Anda dapat menggunakan ability anda mulai sekarang!" << endl
              << endl;
