@@ -9,7 +9,7 @@ PlayerMini<T>::PlayerMini()
 }
 
 template <typename T>
-PlayerMini<T>::PlayerMini(string username, int score)
+PlayerMini<T>::PlayerMini(string username, long long score)
 {
     this->username = username;
     this->score = score;
@@ -30,7 +30,7 @@ bool PlayerMini<T>::operator>(const PlayerMini<T> &p) const
 };
 
 template <typename T>
-unsigned int PlayerMini<T>::getScore() const
+long long PlayerMini<T>::getScore() const
 {
     return this->score;
 };

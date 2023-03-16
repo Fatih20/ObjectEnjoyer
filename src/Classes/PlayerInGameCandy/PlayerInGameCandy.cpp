@@ -262,15 +262,15 @@ int PlayerInGameCandy::correctedIndexCustom(int rawIndex, vector<int> exceptedIn
 
 string PlayerInGameCandy::getWinner()
 {
-    long long limit = (long long)pow(2, 32);
+    long long limit = 4294967296;
     bool found = false;
     string winnerUsername;
-    for (auto playerIterator = players.begin(); playerIterator != players.end() && !found; playerIterator++)
+    for (int i = 0; i < getNumberOfPlayer() && !found; i++)
     {
-        double score = playerIterator->getScore();
-        if (score == limit)
+        long long score = getNthPlayer(i).getScore();
+        if (score > limit)
         {
-            winnerUsername = (playerIterator->getUsername());
+            winnerUsername = (getNthPlayer(i).getUsername());
             found = true;
         }
     }
@@ -279,7 +279,7 @@ string PlayerInGameCandy::getWinner()
 
 bool PlayerInGameCandy::winnerExist()
 {
-    long long limit = (long long)pow(2, 32);
+    long long limit = 4294967296;
     return players.end() != find_if(players.begin(), players.end(), [limit](PlayerCandy p) -> bool
                                     { return p.getScore() > limit; });
 };

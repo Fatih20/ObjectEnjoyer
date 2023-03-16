@@ -5,13 +5,13 @@ class PlayerMini
 {
 private:
     string username;
-    unsigned int score;
+    long long score;
 
 public:
     PlayerMini();
-    PlayerMini(string username, int score);
+    PlayerMini(string username, long long score);
     PlayerMini(const Player<T> &p);
     bool operator>(const PlayerMini<T> &p) const;
-    unsigned int getScore() const;
+    long long getScore() const;
     string getUsername() const;
 };
