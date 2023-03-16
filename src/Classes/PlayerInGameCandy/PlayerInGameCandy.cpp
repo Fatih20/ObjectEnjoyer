@@ -1,7 +1,6 @@
 #include "PlayerInGameCandy.hpp"
 #include "../PlayerInGameException/PlayerInGameException.hpp"
 #include "../PlayerMini/PlayerMini.hpp"
-#include "../Combination/Combination.hpp"
 #include <algorithm>
 
 using namespace std;

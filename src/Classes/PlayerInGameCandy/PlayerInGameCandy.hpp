@@ -4,6 +4,7 @@
 #include "../PlayerInGame/PlayerInGame.hpp"
 #include "../PlayerCandy/PlayerCandy.hpp"
 #include "../AbilityCard/AbilityCard.hpp"
+#include "../Combination/Combination.hpp"
 
 #include <iostream>
 
