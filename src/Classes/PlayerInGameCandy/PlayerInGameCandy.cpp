@@ -235,16 +235,28 @@ int PlayerInGameCandy::correctedIndexCustom(int rawIndex, vector<int> exceptedIn
     bool foundLimit = false;
     int resultIndex = rawIndex;
     int numberOfExceptedUnder = 0;
-    for (auto exceptedIndexesIt = exceptedIndexes.begin(); !foundLimit && exceptedIndexesIt != exceptedIndexes.end();
-         exceptedIndexesIt++)
+    int numberOfPlayer = getNumberOfPlayer();
+
+    vector<int> allIndex;
+
+    for (int i = 0; i < numberOfPlayer; i++)
     {
-        foundLimit = resultIndex < *exceptedIndexesIt;
-        if (!foundLimit)
+        allIndex.push_back(i);
+    }
+
+    int reversedEngineeredIndex = -1;
+    for (int i = 0; i < numberOfPlayer && !foundLimit; i++)
+    {
+        if (exceptedIndexes.end() == find(exceptedIndexes.begin(), exceptedIndexes.end(), i))
         {
-            numberOfExceptedUnder++;
+            reversedEngineeredIndex++;
+        }
+        foundLimit = reversedEngineeredIndex == rawIndex;
+        if (foundLimit)
+        {
+            resultIndex = i;
         }
     }
-    resultIndex += numberOfExceptedUnder;
     return resultIndex;
 };
 
