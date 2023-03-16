@@ -118,18 +118,11 @@ std::string GameCangkul::isCommandValid(std::string userCommand) {
 bool GameCangkul::playerAction(string cmd) {
 
     if(cmd == "play"){
-        cout << "playing a card" << endl;
-        //bisa return false
-//        return true;
-
-        return playCard();
+        return GameCangkul::playCard();
     } else if (cmd == "cangkul") {
         return GameCangkul::cangkulCard();
     } else if (cmd == "ambil") {
-        cout << "cek deck apakah kosong and can";
-
-        //bisa return false
-        return true;
+        return GameCangkul::ambilCard();
     } else if (cmd == "gamestat") {
         GameCangkul::displayGameStat();
 
@@ -261,7 +254,21 @@ bool GameCangkul::playCard() {
 }
 
 bool GameCangkul::ambilCard(){
+    if(GameCangkul::players.getPlayerWithTurn().getNumberOfPlayableCard() != 0){
+        cout << "Masih ada kartu yang bisa dimainkan! tidak bisa mengambil." << endl;
 
+        return false;
+    } else if(GameCangkul::deckGame.getNumberOfCards() != 0){
+        cout << "Masih ada kartu yang bisa dicangkul! tidak bisa mengambil." << endl;
+
+        return false;
+    }
+
+    for(int i = 0; i < this->deckTable.getNumberOfCards(); i++){
+        players.getPlayerWithTurn().addCard(this->deckTable.ejectCard()); //take all
+    }
+
+    return true;
 }
 
 bool GameCangkul::cangkulCard() {
