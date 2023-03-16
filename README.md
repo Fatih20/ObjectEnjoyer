@@ -25,8 +25,18 @@ sudo apt-get install gcc g++ clang -y
 
 ## Get Started✏️
 1. Run makefile
+#### Run Program
+>automatically build
   ```markdown
   % make run
+  ```
+#### Run Program w/o Build
+```markdown
+% make run-only
+```
+#### Build Program
+  ```markdown
+  % make build
   ```
 2. Enter commands/options as instructed
 3. Enter "help" for list of available commands and its description (only available in Game Candy)
